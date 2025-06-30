@@ -1,0 +1,5 @@
+assetId,name,state,capacity,type,volumeLossAdjustment,assetStartDate,contractId,contractCounterparty,contractType,contractBuyersPercentage,contractShape,contractStrikePrice,contractGreenPrice,contractEnergyPrice,contractIndexation,contractHasFloor,contractFloorValue,contractStartDate,contractEndDate,contractTerm,indexationReferenceYear
+1,Boulder Creek Wind Farm,QLD,228,wind,95,1/07/2026,1,Kangaroo,bundled,80,wind,90,10,80,3,TRUE,0,1/07/2026,30/06/2036,,2024
+2,Carmodys Hill Wind Farm,SA,192,wind,95,1/01/2028,1,Wombat,bundled,90,wind,80,10,70,2,TRUE,0,1/01/2028,31/12/2037,,2024
+3,Argoon Wind Farm,NSW,612,wind,95,1/01/2029,1,Koala,bundled,50,wind,85,5,80,3,TRUE,0,1/01/2029,31/12/2038,,2024
+3,Argoon Wind Farm,NSW,612,wind,95,1/01/2029,2,Dingo,bundled,40,wind,85,5,80,3,TRUE,0,1/01/2029,31/12/2038,,2024

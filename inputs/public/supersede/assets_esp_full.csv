@@ -1,0 +1,14 @@
+assetId,name,state,capacity,type,volumeLossAdjustment,assetStartDate,contractId,contractCounterparty,contractType,contractBuyersPercentage,contractShape,contractStrikePrice,contractGreenPrice,contractEnergyPrice,contractIndexation,contractHasFloor,contractFloorValue,contractStartDate,contractEndDate,contractTerm,indexationReferenceYear
+1,Toro WF,VIC,192,wind,91,4/07/2021,1,Kangaroo,Energy,26,wind,45,,45,3,TRUE,0,4/07/2021,31/12/2028,8,2021
+1,Toro WF,VIC,192,wind,91,4/07/2021,2,Wombat,bundled,34,wind,75,25,50,2,TRUE,0,1/07/2022,1/07/2032,10,2022
+1,Toro Wf,VIC,192,wind,91,4/07/2021,3,Koala,Energy,37,wind,46,,46,3,TRUE,0,15/01/2024,31/12/2033,10,2024
+2,Serpiente WF,SA,64,wind,93,1/01/2022,1,Dingo,bundled,100,wind,90,40,50,3,TRUE,0,1/07/2024,30/06/2034,10,2024
+3,Lobo WF,NSW,47,wind,93,31/01/2012,1,Platypus,bundled,100,wind,90,25,65,3,TRUE,0,31/01/2012,1/07/2026,14,2012
+4,Jaguar WF,VIC,100,wind,99,1/12/2022,1,Emu,bundled,42,wind,83,30,53,0,TRUE,0,1/01/2024,31/12/2033,10,2024
+4,Jaguar WF,VIC,100,wind,99,1/12/2022,2,Wallaby,bundled,19,wind,58,12,46,0,TRUE,0,1/12/2022,30/11/2032,10,2022
+4,Jaguar WF,VIC,100,wind,99,1/12/2022,3,Quokka,green,23,wind,43,43,,3,TRUE,0,1/01/2024,30/06/2028,5,2024
+5,Cóndor WF,VIC,158,wind,94,1/01/2021,1,Quokka,bundled,71,wind,57,25,32,3,TRUE,0,1/01/2024,31/08/2035,12,2024
+5,Cóndor WF,VIC,158,wind,94,1/01/2021,2,Numbat,green,29,wind,9,9,,0,TRUE,0,1/01/2024,31/12/2030,7,2024
+6,Águila WF,QLD,646,wind,97,6/06/2024,1,Tasmanian Devil,bundled,62,wind,54,25,29,3,TRUE,0,6/06/2024,15/06/2034,10,2024
+6,Águila WF,QLD,646,wind,97,6/06/2024,2,Echidna,bundled,23,wind,53,25,28,3,TRUE,0,1/04/2025,1/04/2040,15,2025
+7,Puma SF,QLD,387,solar,91,1/07/2026,1,Echidna,bundled,100,solar,60,25,35,3,TRUE,0,1/07/2026,1/07/2041,15,2026
