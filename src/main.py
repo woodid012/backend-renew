@@ -1,29 +1,41 @@
-# backend/main.py
+# src/main.py
 
 import sys
 import os
 import argparse
 
-# Add the backend directory to the Python path for module imports
+# Add the parent directory to the Python path for module imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir)
+
 import json
-import os
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
-from .config import DATE_FORMAT, OUTPUT_DATE_FORMAT, DEFAULT_CAPEX_FUNDING_TYPE, DEFAULT_DEBT_REPAYMENT_FREQUENCY, DEFAULT_DEBT_GRACE_PERIOD, USER_MODEL_START_DATE, USER_MODEL_END_DATE, DEFAULT_DEBT_SIZING_METHOD, DSCR_CALCULATION_FREQUENCY, ENABLE_TERMINAL_VALUE, MERCHANT_PRICE_ESCALATION_RATE, MERCHANT_PRICE_ESCALATION_REFERENCE_DATE, MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, MONGO_REVENUE_COLLECTION, TAX_RATE, DEFAULT_ASSET_LIFE_YEARS
-from .core.input_processor import load_asset_data, load_price_data
-from .calculations.revenue import calculate_revenue_timeseries
-from .calculations.expenses import calculate_opex_timeseries, calculate_capex_timeseries
-from .calculations.debt import calculate_debt_schedule
-from .calculations.cashflow import aggregate_cashflows
-from .calculations.depreciation import calculate_straight_line_depreciation
-from .core.output_generator import generate_asset_and_platform_output
-from .core.summary_generator import generate_summary_data
-from .core.equity_irr import calculate_equity_irr
-from .core.database import insert_dataframe_to_mongodb, get_mongo_client
-from .core.scenario_manager import load_scenario, apply_scenario_overrides
-from .config import MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, MONGO_REVENUE_COLLECTION
+
+# Import from src modules
+from src.config import (
+    DATE_FORMAT, OUTPUT_DATE_FORMAT, DEFAULT_CAPEX_FUNDING_TYPE, 
+    DEFAULT_DEBT_REPAYMENT_FREQUENCY, DEFAULT_DEBT_GRACE_PERIOD, 
+    USER_MODEL_START_DATE, USER_MODEL_END_DATE, DEFAULT_DEBT_SIZING_METHOD, 
+    DSCR_CALCULATION_FREQUENCY, ENABLE_TERMINAL_VALUE, 
+    MERCHANT_PRICE_ESCALATION_RATE, MERCHANT_PRICE_ESCALATION_REFERENCE_DATE, 
+    MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, 
+    MONGO_REVENUE_COLLECTION, TAX_RATE, DEFAULT_ASSET_LIFE_YEARS
+)
+from src.core.input_processor import load_asset_data, load_price_data
+from src.calculations.revenue import calculate_revenue_timeseries
+from src.calculations.expenses import calculate_opex_timeseries, calculate_capex_timeseries
+from src.calculations.debt import calculate_debt_schedule
+from src.calculations.cashflow import aggregate_cashflows
+from src.calculations.depreciation import calculate_straight_line_depreciation
+from src.core.output_generator import generate_asset_and_platform_output
+from src.core.summary_generator import generate_summary_data
+from src.core.equity_irr import calculate_equity_irr
+from src.core.database import insert_dataframe_to_mongodb, get_mongo_client
+from src.core.scenario_manager import load_scenario, apply_scenario_overrides
 
 
 def run_cashflow_model(scenario_file=None, scenario_id=None):
@@ -36,12 +48,13 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     print("=== STARTING CASHFLOW MODEL ===")
     
     # Load real data
-    # Construct the absolute path to the public directory
+    # Construct the absolute path to the data directory
     current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
 
-    zebre_json_path = os.path.join(current_dir, '..', 'data', 'raw_inputs', 'zebre_2025-01-13.json')
-    monthly_price_path = os.path.join(current_dir, '..', 'data', 'raw_inputs', 'merchant_price_monthly.csv')
-    yearly_spread_path = os.path.join(current_dir, '..', 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
+    zebre_json_path = os.path.join(project_root, 'data', 'raw_inputs', 'zebre_2025-01-13.json')
+    monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
+    yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
 
     ASSETS, ASSET_COST_ASSUMPTIONS = load_asset_data(zebre_json_path)
     MONTHLY_PRICES, YEARLY_SPREADS = load_price_data(monthly_price_path, yearly_spread_path)
@@ -95,7 +108,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
 
     # 1. Calculate Revenue
     print("\n=== CALCULATING REVENUE ===")
-    output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'output', 'model_results')
+    output_directory = os.path.join(project_root, 'output', 'model_results')
     revenue_df = calculate_revenue_timeseries(ASSETS, MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, output_directory)
     # Save revenue data to MongoDB
     print("\n=== SAVING REVENUE DATA TO MONGODB ===")

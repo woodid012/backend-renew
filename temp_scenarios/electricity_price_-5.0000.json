@@ -1,0 +1,6 @@
+{
+    "scenario_name": "electricity_price_-5.0000",
+    "overrides": {
+        "global_electricity_price_adjustment_per_mwh": -5.0
+    }
+}

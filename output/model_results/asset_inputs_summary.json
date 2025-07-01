@@ -38,7 +38,7 @@
             "costAssumptions": {
                 "operatingCosts": 4.06,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 51,
+                "terminalValue": 51.0,
                 "capex": 238.6,
                 "maxGearing": 0.65,
                 "targetDSCRContract": 1.4,
@@ -94,7 +94,7 @@
             "costAssumptions": {
                 "operatingCosts": 3.25,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 0,
+                "terminalValue": 0.0,
                 "capex": 208.3,
                 "maxGearing": 0.7,
                 "targetDSCRContract": 1.4,
@@ -151,7 +151,7 @@
             "costAssumptions": {
                 "operatingCosts": 10.01,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 119,
+                "terminalValue": 119.0,
                 "capex": 500,
                 "maxGearing": 0.7,
                 "targetDSCRContract": 1.4,
@@ -208,7 +208,7 @@
             "costAssumptions": {
                 "operatingCosts": 3.23,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 49,
+                "terminalValue": 49.0,
                 "capex": 246.8,
                 "maxGearing": 0.65,
                 "targetDSCRContract": 1.4,
@@ -265,7 +265,7 @@
             "costAssumptions": {
                 "operatingCosts": 5.19,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 83,
+                "terminalValue": 83.0,
                 "capex": 296.6,
                 "maxGearing": 0.65,
                 "targetDSCRContract": 1.4,
@@ -322,7 +322,7 @@
             "costAssumptions": {
                 "operatingCosts": 5.95,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 93,
+                "terminalValue": 93.0,
                 "capex": 452.7,
                 "maxGearing": 0.65,
                 "targetDSCRContract": 1.4,
@@ -379,7 +379,7 @@
             "costAssumptions": {
                 "operatingCosts": 6.05,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 97,
+                "terminalValue": 97.0,
                 "capex": 512.7,
                 "maxGearing": 0.65,
                 "targetDSCRContract": 1.4,
@@ -437,7 +437,7 @@
                 "capex": 141.5,
                 "operatingCosts": 2.2,
                 "operatingCostEscalation": 2.5,
-                "terminalValue": 32,
+                "terminalValue": 32.0,
                 "maxGearing": 0.7,
                 "targetDSCRContract": 1.4,
                 "targetDSCRMerchant": 2,

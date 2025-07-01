@@ -1,4 +1,4 @@
-# backend/calculations/debt.py
+# src/calculations/debt.py
 
 import pandas as pd
 import numpy as np
@@ -182,7 +182,7 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
             print(f"  Average debt service: ${best_schedule['metrics']['avg_debt_service']:,.2f}M")
             print(f"  Minimum DSCR: {best_schedule['metrics']['min_dscr']:.2f}")
         else:
-            print(f"[FAILURE] SOLUTION: No debt viable (100% equity)")
+            print(f"SOLUTION: No debt viable (100% equity)")
         print("=" * 50)
     
     return {
@@ -525,11 +525,11 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
                 actual_gearing = optimal_debt / total_capex
                 asset_capex['debt_capex'] = asset_capex['capex'] * actual_gearing
                 asset_capex['equity_capex'] = asset_capex['capex'] * (1 - actual_gearing)
-                print(f"✓ {asset_name}: ${optimal_debt:,.0f}M debt ({actual_gearing:.1%} gearing)")
+                print(f"SUCCESS: {asset_name}: ${optimal_debt:,.0f}M debt ({actual_gearing:.1%} gearing)")
             else:
                 asset_capex['debt_capex'] = 0
                 asset_capex['equity_capex'] = asset_capex['capex']
-                print(f"[SUCCESS] {asset_name}: 100% equity funding")
+                print(f"SUCCESS: {asset_name}: 100% equity funding")
             
             updated_capex_schedules.append(asset_capex)
             

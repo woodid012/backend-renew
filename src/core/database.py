@@ -1,10 +1,39 @@
+# src/core/database.py
+
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
 import pandas as pd
 
-# Load environment variables from .env.local
-load_dotenv(dotenv_path='.env.local')
+# Find and load environment variables from .env.local
+# Look for .env.local starting from current file location up to project root
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))  # Go up two levels from src/core/
+env_path = os.path.join(project_root, '.env.local')
+
+if os.path.exists(env_path):
+    load_dotenv(dotenv_path=env_path)
+    print(f"Loaded environment variables from: {env_path}")
+else:
+    # Try alternative locations
+    alternative_paths = [
+        os.path.join(os.getcwd(), '.env.local'),  # Current working directory
+        os.path.join(os.path.dirname(os.getcwd()), '.env.local'),  # Parent of working directory
+    ]
+    
+    env_loaded = False
+    for alt_path in alternative_paths:
+        if os.path.exists(alt_path):
+            load_dotenv(dotenv_path=alt_path)
+            print(f"Loaded environment variables from: {alt_path}")
+            env_loaded = True
+            break
+    
+    if not env_loaded:
+        print(f"Warning: .env.local not found. Searched locations:")
+        print(f"  - {env_path}")
+        for alt_path in alternative_paths:
+            print(f"  - {alt_path}")
 
 MONGO_URI = os.getenv('MONGODB_URI')
 MONGO_DB_NAME = os.getenv('MONGODB_DB')
