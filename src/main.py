@@ -35,7 +35,7 @@ from src.core.output_generator import generate_asset_and_platform_output
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr
 from src.core.database import insert_dataframe_to_mongodb, get_mongo_client
-from src.core.scenario_manager import load_scenario, apply_scenario_overrides
+from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
 
 
 def run_cashflow_model(scenario_file=None, scenario_id=None):
@@ -59,12 +59,10 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     ASSETS, ASSET_COST_ASSUMPTIONS = load_asset_data(zebre_json_path)
     MONTHLY_PRICES, YEARLY_SPREADS = load_price_data(monthly_price_path, yearly_spread_path)
 
+    # Load scenario data if provided
+    scenario_data = None
     if scenario_file:
-        print(f"Applying scenario overrides from {scenario_file}...")
         scenario_data = load_scenario(scenario_file)
-        ASSETS, ASSET_COST_ASSUMPTIONS, MONTHLY_PRICES, YEARLY_SPREADS = apply_scenario_overrides(
-            ASSETS, ASSET_COST_ASSUMPTIONS, MONTHLY_PRICES, YEARLY_SPREADS, scenario_data
-        )
 
     # Determine model start and end dates
     if USER_MODEL_START_DATE and USER_MODEL_END_DATE:
@@ -119,6 +117,14 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     opex_df = calculate_opex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date)
     initial_capex_df = calculate_capex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date, capex_funding_type=DEFAULT_CAPEX_FUNDING_TYPE)
 
+    # 2b. Apply ALL scenario overrides to calculated timeseries (NEW APPROACH)
+    if scenario_file:
+        print(f"Applying scenario overrides from {scenario_file} to timeseries...")
+        revenue_df, opex_df, initial_capex_df, ASSET_COST_ASSUMPTIONS = apply_all_scenarios_to_timeseries(
+            revenue_df, opex_df, initial_capex_df, ASSETS, ASSET_COST_ASSUMPTIONS, 
+            MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, scenario_data
+        )
+
     # 3. Calculate preliminary CFADS for debt sizing
     print("\n=== CALCULATING PRELIMINARY CASH FLOWS ===")
     prelim_cash_flow = pd.merge(revenue_df, opex_df, on=['asset_id', 'date'])
@@ -131,6 +137,10 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     # 4. Size debt based on operational cash flows and update CAPEX funding
     print("\n=== DEBT SIZING ===")
     debt_df, updated_capex_df = calculate_debt_schedule(ASSETS, ASSET_COST_ASSUMPTIONS, initial_capex_df, prelim_cash_flow, start_date, end_date, repayment_frequency=DEFAULT_DEBT_REPAYMENT_FREQUENCY, grace_period=DEFAULT_DEBT_GRACE_PERIOD, debt_sizing_method=DEFAULT_DEBT_SIZING_METHOD, dscr_calculation_frequency=DSCR_CALCULATION_FREQUENCY)
+
+    # 4b. Apply CAPEX scenarios to debt-sized CAPEX schedule (FINAL CAPEX ADJUSTMENT)
+    if scenario_file:
+        updated_capex_df = apply_post_debt_sizing_capex_scenarios(updated_capex_df, scenario_data)
 
     # 5. Aggregate into Final Cash Flow using updated CAPEX with correct debt/equity split
     print("\n=== AGGREGATING FINAL CASH FLOWS ===")
