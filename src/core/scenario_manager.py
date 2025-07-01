@@ -31,24 +31,13 @@ def apply_all_scenarios_to_timeseries(
     Apply ALL scenario overrides directly to calculated timeseries data.
     This centralizes all scenario logic in one place after timeseries calculation.
     
-    Args:
-        revenue_df (pd.DataFrame): Revenue timeseries
-        opex_df (pd.DataFrame): OPEX timeseries  
-        capex_df (pd.DataFrame): CAPEX timeseries
-        assets (list): Asset data
-        asset_cost_assumptions (dict): Cost assumptions (for interest rate/terminal value mods)
-        monthly_prices/yearly_spreads: Price data
-        start_date/end_date: Model period
-        scenario_overrides (dict): Dictionary of overrides from scenario file
-    
-    Returns:
-        tuple: (modified_revenue_df, modified_opex_df, modified_capex_df, modified_asset_cost_assumptions)
+    FIXED: CAPEX scenarios now only applied AFTER debt sizing to avoid double-application
     """
     
     # Make copies to avoid modifying originals
     modified_revenue_df = revenue_df.copy()
     modified_opex_df = opex_df.copy()
-    modified_capex_df = capex_df.copy()
+    modified_capex_df = capex_df.copy()  # This will NOT be modified here for CAPEX scenarios
     modified_asset_cost_assumptions = {k: v.copy() for k, v in asset_cost_assumptions.items()}
     
     overrides = scenario_overrides.get('overrides', {})
@@ -57,12 +46,12 @@ def apply_all_scenarios_to_timeseries(
         print("No scenario overrides to apply")
         return modified_revenue_df, modified_opex_df, modified_capex_df, modified_asset_cost_assumptions
     
-    print(f"\n=== APPLYING ALL SCENARIO OVERRIDES TO TIMESERIES ===")
+    print(f"\n=== APPLYING PRE-DEBT-SIZING SCENARIO OVERRIDES ===")
     print(f"Available overrides: {list(overrides.keys())}")
     
     # Extract all scenario parameters
     global_volume_multiplier = overrides.get('global_volume_multiplier', 1.0)
-    global_capex_multiplier = overrides.get('global_capex_multiplier', 1.0)
+    global_capex_multiplier = overrides.get('global_capex_multiplier', 1.0)  # Will be handled post-debt-sizing
     global_opex_multiplier = overrides.get('global_opex_multiplier', 1.0)
     global_electricity_price_adjustment_per_mwh = overrides.get('global_electricity_price_adjustment_per_mwh', 0.0)
     global_green_price_adjustment_per_mwh = overrides.get('global_green_price_adjustment_per_mwh', 0.0)
@@ -88,19 +77,10 @@ def apply_all_scenarios_to_timeseries(
                 print(f"    {field}: {old_total:.2f} -> {new_total:.2f}")
                 changes_made.append(f"Volume: {field}")
     
-    # 2. CAPEX SCENARIOS - Multiply all CAPEX components
+    # 2. CAPEX SCENARIOS - SKIP HERE, HANDLE POST-DEBT-SIZING
     if global_capex_multiplier != 1.0:
-        print(f"  Applying CAPEX multiplier: {global_capex_multiplier}")
-        
-        capex_fields = ['capex', 'equity_capex', 'debt_capex']
-        
-        for field in capex_fields:
-            if field in modified_capex_df.columns:
-                old_total = modified_capex_df[field].sum()
-                modified_capex_df[field] *= global_capex_multiplier
-                new_total = modified_capex_df[field].sum()
-                print(f"    {field}: {old_total:.2f} -> {new_total:.2f}")
-                changes_made.append(f"CAPEX: {field}")
+        print(f"  CAPEX multiplier {global_capex_multiplier} will be applied AFTER debt sizing")
+        changes_made.append(f"CAPEX: deferred to post-debt-sizing")
     
     # 3. OPEX SCENARIOS - Multiply OPEX
     if global_opex_multiplier != 1.0:
@@ -229,7 +209,7 @@ def apply_all_scenarios_to_timeseries(
     else:
         print(f"  No modifications applied")
     
-    print(f"=== ALL SCENARIO OVERRIDES COMPLETE ===\n")
+    print(f"=== PRE-DEBT-SIZING SCENARIO OVERRIDES COMPLETE ===\n")
     
     return modified_revenue_df, modified_opex_df, modified_capex_df, modified_asset_cost_assumptions
 
@@ -240,16 +220,25 @@ def apply_post_debt_sizing_capex_scenarios(
     """
     Apply CAPEX scenarios to the debt-sized CAPEX schedule.
     Called AFTER debt sizing to ensure CAPEX changes affect final cash flows.
+    
+    FIXED: Enhanced debugging to track the issue
     """
     
     overrides = scenario_overrides.get('overrides', {})
     global_capex_multiplier = overrides.get('global_capex_multiplier', 1.0)
     
     if global_capex_multiplier == 1.0:
+        print(f"\n=== NO CAPEX SCENARIO TO APPLY ===")
+        print(f"  CAPEX multiplier is 1.0, no changes needed")
         return final_capex_df
     
     print(f"\n=== APPLYING POST-DEBT-SIZING CAPEX SCENARIOS ===")
-    print(f"  Applying CAPEX multiplier to debt-sized schedule: {global_capex_multiplier}")
+    print(f"  Input CAPEX schedule summary:")
+    print(f"    Total rows: {len(final_capex_df)}")
+    print(f"    Total CAPEX: ${final_capex_df['capex'].sum():,.2f}M")
+    print(f"    Total Debt CAPEX: ${final_capex_df['debt_capex'].sum():,.2f}M")
+    print(f"    Total Equity CAPEX: ${final_capex_df['equity_capex'].sum():,.2f}M")
+    print(f"  Applying CAPEX multiplier: {global_capex_multiplier}")
     
     modified_capex_df = final_capex_df.copy()
     
@@ -260,7 +249,12 @@ def apply_post_debt_sizing_capex_scenarios(
             old_total = modified_capex_df[field].sum()
             modified_capex_df[field] *= global_capex_multiplier
             new_total = modified_capex_df[field].sum()
-            print(f"    {field}: {old_total:.2f} -> {new_total:.2f}")
+            print(f"    {field}: ${old_total:,.2f}M -> ${new_total:,.2f}M")
+    
+    print(f"  Output CAPEX schedule summary:")
+    print(f"    Total CAPEX: ${modified_capex_df['capex'].sum():,.2f}M")
+    print(f"    Total Debt CAPEX: ${modified_capex_df['debt_capex'].sum():,.2f}M")
+    print(f"    Total Equity CAPEX: ${modified_capex_df['equity_capex'].sum():,.2f}M")
     
     print(f"=== POST-DEBT-SIZING CAPEX SCENARIOS COMPLETE ===\n")
     

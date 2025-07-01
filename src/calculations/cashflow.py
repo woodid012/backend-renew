@@ -1,6 +1,7 @@
 import pandas as pd
 from dateutil.relativedelta import relativedelta
-from ..config import ENABLE_TERMINAL_VALUE
+from ..config import ENABLE_TERMINAL_VALUE, TAX_RATE
+
 
 def aggregate_cashflows(revenue, opex, capex, debt_schedule, depreciation_df, end_date, assets_data, asset_cost_assumptions):
     """
@@ -34,11 +35,24 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, depreciation_df, en
     debt_service = cash_flow['interest'] + cash_flow['principal']
     # Handle division by zero for DSCR
     cash_flow['dscr'] = cash_flow.apply(lambda row: row['cfads'] / debt_service[row.name] if debt_service[row.name] != 0 else None, axis=1)
+
+    # --- TAX CALCULATION ---
+    # TODO: Implement a more sophisticated tax calculation considering tax losses carried forward.
+    # For now, a simple tax expense is calculated based on positive EBT.
     
+    # Calculate Earnings Before Tax (EBT)
+    cash_flow['ebit'] = cash_flow['cfads'] - cash_flow['depreciation'] # Note: This is a simplified EBIT for tax purposes
+    cash_flow['ebt'] = cash_flow['ebit'] - cash_flow['interest']
+    
+    # Calculate tax expense (only on positive EBT)
+    cash_flow['tax_expense'] = cash_flow['ebt'].apply(lambda x: x * TAX_RATE if x > 0 else 0)
+    
+    # --- END TAX CALCULATION ---
+
     # Initialize terminal_value column
     cash_flow['terminal_value'] = 0.0
     
-    cash_flow['equity_cash_flow'] = cash_flow['cfads'] - cash_flow['interest'] - cash_flow['principal'] - cash_flow['equity_capex'] - cash_flow.get('tax_expense', 0)
+    cash_flow['equity_cash_flow'] = cash_flow['cfads'] - cash_flow['interest'] - cash_flow['principal'] - cash_flow['equity_capex'] - cash_flow['tax_expense']
 
     # Calculate Terminal Value
     if ENABLE_TERMINAL_VALUE:
