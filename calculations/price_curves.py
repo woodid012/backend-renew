@@ -72,7 +72,7 @@ def get_merchant_price(profile, price_type, region, date, monthly_prices, yearly
 
         if not filtered_prices.empty:
             base_price = filtered_prices['price'].iloc[0]
-            print(f"Found price for {profile}-{price_type} in {region} {date.strftime('%Y-%m')}: ${base_price:.2f} -> ${base_price * escalation_factor:.2f}")
+            
             return base_price * escalation_factor
         else:
             # Fallback logic: search backwards for valid prices
@@ -105,9 +105,6 @@ def get_merchant_price(profile, price_type, region, date, monthly_prices, yearly
             available_types = monthly_prices['type'].unique()
             available_regions = monthly_prices['REGION'].unique()
             
-            print(f"ERROR: No price data found for {profile}-{price_type} in {region}")
-            print(f"Available profiles: {available_profiles}")
-            print(f"Available types: {available_types}")
-            print(f"Available regions: {available_regions}")
+            
             
             return 50 * escalation_factor # Default fallback with escalation

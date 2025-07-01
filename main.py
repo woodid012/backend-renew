@@ -23,13 +23,13 @@ from core.equity_irr import calculate_equity_irr
 
 
 # Load real data
-# Construct the absolute path to the inputs directory
+# Construct the absolute path to the public directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = current_dir # The project root is the directory of this script.
+# project_root = os.path.abspath(os.path.join(current_dir, '..')) # Go up one level from 'backend' to 'renew-asset-platform'
 
-zebre_json_path = os.path.join(project_root, 'inputs', 'zebre_2025-01-13.json')
-monthly_price_path = os.path.join(project_root, 'inputs', 'merchant_price_monthly.csv')
-yearly_spread_path = os.path.join(project_root, 'inputs', 'merchant_yearly_spreads.csv')
+zebre_json_path = os.path.join(current_dir, 'inputs', 'zebre_2025-01-13.json')
+monthly_price_path = os.path.join(current_dir, 'inputs', 'merchant_price_monthly.csv')
+yearly_spread_path = os.path.join(current_dir, 'inputs', 'merchant_yearly_spreads.csv')
 
 ASSETS, ASSET_COST_ASSUMPTIONS = load_asset_data(zebre_json_path)
 MONTHLY_PRICES, YEARLY_SPREADS = load_price_data(monthly_price_path, yearly_spread_path)
@@ -42,7 +42,7 @@ def run_cashflow_model():
         str: JSON representation of the final cash flow DataFrame.
     """
     print("=== STARTING CASHFLOW MODEL ===")
-    print(f"Merchant Price Escalation: {MERCHANT_PRICE_ESCALATION_RATE:.1%} annually from {MERCHANT_PRICE_ESCALATION_REFERENCE_DATE}")
+    
     
     # Determine model start and end dates
     if USER_MODEL_START_DATE and USER_MODEL_END_DATE:
