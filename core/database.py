@@ -26,7 +26,7 @@ def get_mongo_client():
         print(f"MongoDB connection error: {e}")
         raise
 
-def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str):
+def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str, scenario_id: str = None):
     """
     Inserts a pandas DataFrame into a specified MongoDB collection.
     Each row in the DataFrame becomes a document in the collection.
@@ -34,6 +34,7 @@ def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str):
     Args:
         df (pd.DataFrame): The DataFrame to insert.
         collection_name (str): The name of the MongoDB collection.
+        scenario_id (str, optional): A unique identifier for the scenario run.
     """
     if df.empty:
         print(f"DataFrame for collection '{collection_name}' is empty. No data inserted.")

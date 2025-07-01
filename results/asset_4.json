@@ -19,10 +19,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -45,10 +46,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -71,10 +73,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -97,10 +100,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -123,10 +127,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -149,10 +154,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -175,10 +181,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -201,10 +208,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -227,10 +235,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -253,10 +262,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -279,10 +289,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -305,10 +316,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -331,10 +343,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -357,10 +370,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -383,10 +397,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -409,10 +424,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -435,10 +451,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -461,10 +478,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -487,10 +505,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -513,10 +532,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -539,10 +559,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -565,10 +586,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -591,10 +613,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -617,10 +640,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -643,10 +667,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -669,10 +694,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -695,10 +721,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -721,10 +748,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -747,10 +775,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -773,10 +802,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -799,10 +829,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -825,10 +856,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
         "period_type":""
     },
     {
@@ -851,11 +883,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":7.6027383641,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -877,11 +910,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":15.2054767282,
+        "depreciation":0.048968254,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -903,11 +937,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":22.8082150923,
+        "depreciation":0.0979365079,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -929,11 +964,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":30.4109534563,
+        "depreciation":0.1469047619,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -955,11 +991,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":38.0136918204,
+        "depreciation":0.1958730159,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -981,11 +1018,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":45.6164301845,
+        "depreciation":0.2448412698,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1007,11 +1045,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":53.2191685486,
+        "depreciation":0.2938095238,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1033,11 +1072,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":60.8219069127,
+        "depreciation":0.3427777778,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1059,11 +1099,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":68.4246452768,
+        "depreciation":0.3917460317,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1085,11 +1126,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":76.0273836408,
+        "depreciation":0.4407142857,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1111,11 +1153,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":83.6301220049,
+        "depreciation":0.4896825397,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1137,11 +1180,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":91.232860369,
+        "depreciation":0.5386507937,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1163,11 +1207,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":98.8355987331,
+        "depreciation":0.5876190476,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1189,11 +1234,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":106.4383370972,
+        "depreciation":0.6365873016,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1215,11 +1261,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":114.0410754613,
+        "depreciation":0.6855555556,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1241,11 +1288,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":121.6438138253,
+        "depreciation":0.7345238095,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1267,11 +1315,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":129.2465521894,
+        "depreciation":0.7834920635,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1293,11 +1342,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":136.8492905535,
+        "depreciation":0.8324603175,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1319,11 +1369,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":144.4520289176,
+        "depreciation":0.8814285714,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1345,11 +1396,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":152.0547672817,
+        "depreciation":0.9303968254,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1371,11 +1423,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":159.6575056458,
+        "depreciation":0.9793650794,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":-4.1496425883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"C"
     },
     {
         "asset_id":4,
@@ -1397,11 +1450,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":159.6575056458,
+        "depreciation":1.0283333333,
         "cfads":1.2648833333,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2648833333,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1423,11 +1477,12 @@
         "interest":2.3948625847,
         "principal":0.3385617562,
         "ending_balance":159.3189438896,
+        "depreciation":1.0283333333,
         "cfads":1.2675298801,
         "dscr":0.4637150043,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4658944608,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1449,11 +1504,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":159.3189438896,
+        "depreciation":1.0283333333,
         "cfads":1.2701809926,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2701809926,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1475,11 +1531,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":159.3189438896,
+        "depreciation":1.0283333333,
         "cfads":1.2728366789,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2728366789,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1501,11 +1558,12 @@
         "interest":2.3948625847,
         "principal":0.3385617562,
         "ending_balance":158.9803821333,
+        "depreciation":1.0283333333,
         "cfads":1.2754969467,
         "dscr":0.4666296878,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4579273942,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1527,11 +1585,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":158.9803821333,
+        "depreciation":1.0283333333,
         "cfads":1.2714326374,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2714326374,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1553,11 +1612,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":158.9803821333,
+        "depreciation":1.0283333333,
         "cfads":1.2741020922,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2741020922,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1579,11 +1639,12 @@
         "interest":2.3948625847,
         "principal":0.3385617562,
         "ending_balance":158.6418203771,
+        "depreciation":1.0283333333,
         "cfads":1.2767761523,
         "dscr":0.4670976742,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4566481886,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1605,11 +1666,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":158.6418203771,
+        "depreciation":1.0283333333,
         "cfads":1.2794548257,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2794548257,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1631,11 +1693,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":158.6418203771,
+        "depreciation":1.0283333333,
         "cfads":1.2821381204,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2821381204,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1657,11 +1720,12 @@
         "interest":2.3948625847,
         "principal":0.3385617562,
         "ending_balance":158.3032586209,
+        "depreciation":1.0283333333,
         "cfads":1.2848260442,
         "dscr":0.4700426586,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4485982966,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1683,11 +1747,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":158.3032586209,
+        "depreciation":1.0283333333,
         "cfads":1.2875186053,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2875186053,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1709,11 +1774,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":158.3032586209,
+        "depreciation":1.0283333333,
         "cfads":1.2902158117,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2902158117,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1735,11 +1801,12 @@
         "interest":2.3745488793,
         "principal":0.4136047219,
         "ending_balance":157.8896538991,
+        "depreciation":1.0283333333,
         "cfads":1.2929176712,
         "dscr":0.4637182366,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.49523593,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1761,11 +1828,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":157.8896538991,
+        "depreciation":1.0283333333,
         "cfads":1.295624192,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.295624192,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1787,11 +1855,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":157.8896538991,
+        "depreciation":1.0283333333,
         "cfads":1.2983353821,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2983353821,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1813,11 +1882,12 @@
         "interest":2.3745488793,
         "principal":0.4136047219,
         "ending_balance":157.4760491772,
+        "depreciation":1.0283333333,
         "cfads":1.3010512496,
         "dscr":0.4666354282,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4871023517,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1839,11 +1909,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":157.4760491772,
+        "depreciation":1.0283333333,
         "cfads":1.2968744066,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.2968744066,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1865,11 +1936,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":157.4760491772,
+        "depreciation":1.0283333333,
         "cfads":1.299599653,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.299599653,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1891,11 +1963,12 @@
         "interest":2.3745488793,
         "principal":0.4136047219,
         "ending_balance":157.0624444553,
+        "depreciation":1.0283333333,
         "cfads":1.3023296009,
         "dscr":0.4670939221,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4858240003,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1917,11 +1990,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":157.0624444553,
+        "depreciation":1.0283333333,
         "cfads":1.3050642586,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3050642586,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1943,11 +2017,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":157.0624444553,
+        "depreciation":1.0283333333,
         "cfads":1.3078036341,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3078036341,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1969,11 +2044,12 @@
         "interest":2.3745488793,
         "principal":0.4136047219,
         "ending_balance":156.6488397334,
+        "depreciation":1.0283333333,
         "cfads":1.3105477357,
         "dscr":0.4700414407,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4776058656,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -1995,11 +2071,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":156.6488397334,
+        "depreciation":1.0283333333,
         "cfads":1.3132965713,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3132965713,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2021,11 +2098,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":156.6488397334,
+        "depreciation":1.0283333333,
         "cfads":1.3160501492,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3160501492,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2047,11 +2125,12 @@
         "interest":2.349732596,
         "principal":0.4942341244,
         "ending_balance":156.154605609,
+        "depreciation":1.0283333333,
         "cfads":1.3188084776,
         "dscr":0.4637214874,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5251582427,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2073,11 +2152,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":156.154605609,
+        "depreciation":1.0283333333,
         "cfads":1.3215715647,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3215715647,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2099,11 +2179,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":156.154605609,
+        "depreciation":1.0283333333,
         "cfads":1.3243394187,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3243394187,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2125,11 +2206,12 @@
         "interest":2.349732596,
         "principal":0.4942341244,
         "ending_balance":155.6603714847,
+        "depreciation":1.0283333333,
         "cfads":1.3271120478,
         "dscr":0.4666412016,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5168546726,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2151,11 +2233,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":155.6603714847,
+        "depreciation":1.0283333333,
         "cfads":1.3228196294,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3228196294,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2177,11 +2260,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":155.6603714847,
+        "depreciation":1.0283333333,
         "cfads":1.3256018335,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3256018335,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2203,11 +2287,12 @@
         "interest":2.349732596,
         "principal":0.4942341244,
         "ending_balance":155.1661373603,
+        "depreciation":1.0283333333,
         "cfads":1.3283888374,
         "dscr":0.4670901484,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.515577883,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2229,11 +2314,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":155.1661373603,
+        "depreciation":1.0283333333,
         "cfads":1.3311806494,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3311806494,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2255,11 +2341,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":155.1661373603,
+        "depreciation":1.0283333333,
         "cfads":1.3339772779,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3339772779,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2281,11 +2368,12 @@
         "interest":2.349732596,
         "principal":0.4942341244,
         "ending_balance":154.671903236,
+        "depreciation":1.0283333333,
         "cfads":1.3367787311,
         "dscr":0.4700402158,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5071879893,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2307,11 +2395,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":154.671903236,
+        "depreciation":1.0283333333,
         "cfads":1.3395850174,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3395850174,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2333,11 +2422,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":154.671903236,
+        "depreciation":1.0283333333,
         "cfads":1.3423961451,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3423961451,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2359,11 +2449,12 @@
         "interest":2.3200785485,
         "principal":0.5808063029,
         "ending_balance":154.0910969331,
+        "depreciation":1.0283333333,
         "cfads":1.3452121226,
         "dscr":0.4637247569,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5556727288,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2385,11 +2476,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":154.0910969331,
+        "depreciation":1.0283333333,
         "cfads":1.3480329582,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3480329582,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2411,11 +2503,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":154.0910969331,
+        "depreciation":1.0283333333,
         "cfads":1.3508586603,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3508586603,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2437,11 +2530,12 @@
         "interest":2.3200785485,
         "principal":0.5808063029,
         "ending_balance":153.5102906302,
+        "depreciation":1.0283333333,
         "cfads":1.3536892373,
         "dscr":0.4666470083,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5471956141,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2463,11 +2557,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":153.5102906302,
+        "depreciation":1.0283333333,
         "cfads":1.3492781212,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3492781212,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2489,11 +2584,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":153.5102906302,
+        "depreciation":1.0283333333,
         "cfads":1.3521184732,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3521184732,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2515,11 +2611,12 @@
         "interest":2.3200785485,
         "principal":0.5808063029,
         "ending_balance":152.9294843274,
+        "depreciation":1.0283333333,
         "cfads":1.3549637255,
         "dscr":0.4670863529,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5459211259,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2541,11 +2638,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":152.9294843274,
+        "depreciation":1.0283333333,
         "cfads":1.3578138864,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3578138864,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2567,11 +2665,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":152.9294843274,
+        "depreciation":1.0283333333,
         "cfads":1.3606689644,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3606689644,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2593,11 +2692,12 @@
         "interest":2.3200785485,
         "principal":0.5808063029,
         "ending_balance":152.3486780245,
+        "depreciation":1.0283333333,
         "cfads":1.363528968,
         "dscr":0.4700389839,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5373558834,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2619,11 +2719,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":152.3486780245,
+        "depreciation":1.0283333333,
         "cfads":1.3663939057,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3663939057,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2645,11 +2746,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":152.3486780245,
+        "depreciation":1.0283333333,
         "cfads":1.369263786,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.369263786,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2671,11 +2773,12 @@
         "interest":2.2852301704,
         "principal":0.6736993817,
         "ending_balance":151.6749786428,
+        "depreciation":1.0283333333,
         "cfads":1.3721386174,
         "dscr":0.4637280453,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5867909347,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2697,11 +2800,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":151.6749786428,
+        "depreciation":1.0283333333,
         "cfads":1.3750184085,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3750184085,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2723,11 +2827,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":151.6749786428,
+        "depreciation":1.0283333333,
         "cfads":1.3779031677,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3779031677,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2749,11 +2854,12 @@
         "interest":2.2852301704,
         "principal":0.6736993817,
         "ending_balance":151.0012792611,
+        "depreciation":1.0283333333,
         "cfads":1.3807929038,
         "dscr":0.4666528484,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5781366482,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2775,11 +2881,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":151.0012792611,
+        "depreciation":1.0283333333,
         "cfads":1.3762598844,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3762598844,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2801,11 +2908,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":151.0012792611,
+        "depreciation":1.0283333333,
         "cfads":1.3791595998,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3791595998,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2827,11 +2935,12 @@
         "interest":2.2852301704,
         "principal":0.6736993817,
         "ending_balance":150.3275798794,
+        "depreciation":1.0283333333,
         "cfads":1.3820643179,
         "dscr":0.4670825356,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5768652342,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2853,11 +2962,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":150.3275798794,
+        "depreciation":1.0283333333,
         "cfads":1.3849740471,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3849740471,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2879,11 +2989,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":150.3275798794,
+        "depreciation":1.0283333333,
         "cfads":1.3878887963,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3878887963,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2905,11 +3016,12 @@
         "interest":2.2852301704,
         "principal":0.6736993817,
         "ending_balance":149.6538804977,
+        "depreciation":1.0283333333,
         "cfads":1.3908085739,
         "dscr":0.4700377449,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5681209781,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2931,11 +3043,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":149.6538804977,
+        "depreciation":1.0283333333,
         "cfads":1.3937333888,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3937333888,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2957,11 +3070,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":149.6538804977,
+        "depreciation":1.0283333333,
         "cfads":1.3966632496,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.3966632496,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -2983,11 +3097,12 @@
         "interest":2.2448082075,
         "principal":0.7733145847,
         "ending_balance":148.880565913,
+        "depreciation":1.0283333333,
         "cfads":1.399598165,
         "dscr":0.4637313527,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6185246272,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3009,11 +3124,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":148.880565913,
+        "depreciation":1.0283333333,
         "cfads":1.4025381437,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4025381437,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3035,11 +3151,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":148.880565913,
+        "depreciation":1.0283333333,
         "cfads":1.4054831944,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4054831944,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3061,11 +3178,12 @@
         "interest":2.2448082075,
         "principal":0.7733145847,
         "ending_balance":148.1072513283,
+        "depreciation":1.0283333333,
         "cfads":1.408433326,
         "dscr":0.4666587223,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6096894662,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3087,11 +3205,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":148.1072513283,
+        "depreciation":1.0283333333,
         "cfads":1.4037751127,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4037751127,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3113,11 +3232,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":148.1072513283,
+        "depreciation":1.0283333333,
         "cfads":1.4067354322,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4067354322,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3139,11 +3259,12 @@
         "interest":2.2448082075,
         "principal":0.7733145847,
         "ending_balance":147.3339367436,
+        "depreciation":1.0283333333,
         "cfads":1.4097008589,
         "dscr":0.4670786962,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6084219333,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3165,11 +3286,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":147.3339367436,
+        "depreciation":1.0283333333,
         "cfads":1.4126714015,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4126714015,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3191,11 +3313,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":147.3339367436,
+        "depreciation":1.0283333333,
         "cfads":1.4156470689,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4156470689,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3217,11 +3340,12 @@
         "interest":2.2448082075,
         "principal":0.7733145847,
         "ending_balance":146.5606221589,
+        "depreciation":1.0283333333,
         "cfads":1.4186278699,
         "dscr":0.4700364987,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5994949223,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3243,11 +3367,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":146.5606221589,
+        "depreciation":1.0283333333,
         "cfads":1.4216138134,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4216138134,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3269,11 +3394,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":146.5606221589,
+        "depreciation":1.0283333333,
         "cfads":1.4246049083,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4246049083,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3295,11 +3421,12 @@
         "interest":2.1984093324,
         "principal":0.8800776289,
         "ending_balance":145.68054453,
+        "depreciation":1.0283333333,
         "cfads":1.4276011634,
         "dscr":0.4637346792,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6508857979,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3321,11 +3448,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":145.68054453,
+        "depreciation":1.0283333333,
         "cfads":1.4306025876,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4306025876,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3347,11 +3475,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":145.68054453,
+        "depreciation":1.0283333333,
         "cfads":1.43360919,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.43360919,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3373,11 +3502,12 @@
         "interest":2.1984093324,
         "principal":0.8800776289,
         "ending_balance":144.8004669011,
+        "depreciation":1.0283333333,
         "cfads":1.4366209793,
         "dscr":0.4666646302,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.641865982,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3399,11 +3529,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":144.8004669011,
+        "depreciation":1.0283333333,
         "cfads":1.4318341942,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4318341942,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3425,11 +3556,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":144.8004669011,
+        "depreciation":1.0283333333,
         "cfads":1.4348563844,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4348563844,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3451,11 +3583,12 @@
         "interest":2.1984093324,
         "principal":0.8800776289,
         "ending_balance":143.9203892722,
+        "depreciation":1.0283333333,
         "cfads":1.4378837885,
         "dscr":0.4670748347,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6406031728,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3477,11 +3610,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":143.9203892722,
+        "depreciation":1.0283333333,
         "cfads":1.4409164154,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4409164154,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3503,11 +3637,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":143.9203892722,
+        "depreciation":1.0283333333,
         "cfads":1.4439542743,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4439542743,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3529,11 +3664,12 @@
         "interest":2.1984093324,
         "principal":0.8800776289,
         "ending_balance":143.0403116433,
+        "depreciation":1.0283333333,
         "cfads":1.446997374,
         "dscr":0.4700352453,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6314895872,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3555,11 +3691,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":143.0403116433,
+        "depreciation":1.0283333333,
         "cfads":1.4500457238,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4500457238,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3581,11 +3718,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":143.0403116433,
+        "depreciation":1.0283333333,
         "cfads":1.4530993325,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4530993325,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3607,11 +3745,12 @@
         "interest":2.1456046746,
         "principal":0.994440202,
         "ending_balance":142.0458714413,
+        "depreciation":1.0283333333,
         "cfads":1.4561582094,
         "dscr":0.463738025,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6838866672,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3633,11 +3772,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":142.0458714413,
+        "depreciation":1.0283333333,
         "cfads":1.4592223634,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4592223634,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3659,11 +3799,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":142.0458714413,
+        "depreciation":1.0283333333,
         "cfads":1.4622918037,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4622918037,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3685,11 +3826,12 @@
         "interest":2.1456046746,
         "principal":0.994440202,
         "ending_balance":141.0514312393,
+        "depreciation":1.0283333333,
         "cfads":1.4653665394,
         "dscr":0.4666705722,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6746783372,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3711,11 +3853,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":141.0514312393,
+        "depreciation":1.0283333333,
         "cfads":1.4604477151,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4604477151,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3737,11 +3880,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":141.0514312393,
+        "depreciation":1.0283333333,
         "cfads":1.4635330691,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4635330691,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3763,11 +3907,12 @@
         "interest":2.1456046746,
         "principal":0.994440202,
         "ending_balance":140.0569910374,
+        "depreciation":1.0283333333,
         "cfads":1.4666237459,
         "dscr":0.4670709507,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6734211307,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3789,11 +3934,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":140.0569910374,
+        "depreciation":1.0283333333,
         "cfads":1.4697197547,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4697197547,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3815,11 +3961,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":140.0569910374,
+        "depreciation":1.0283333333,
         "cfads":1.4728211048,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4728211048,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3841,11 +3988,12 @@
         "interest":2.1456046746,
         "principal":0.994440202,
         "ending_balance":139.0625508354,
+        "depreciation":1.0283333333,
         "cfads":1.4759278054,
         "dscr":0.4700339847,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6641170712,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3867,11 +4015,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":139.0625508354,
+        "depreciation":1.0283333333,
         "cfads":1.4790398656,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4790398656,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3893,11 +4042,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":139.0625508354,
+        "depreciation":1.0283333333,
         "cfads":1.4821572948,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4821572948,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3919,11 +4069,12 @@
         "interest":2.0859382625,
         "principal":1.1168815283,
         "ending_balance":137.9456693072,
+        "depreciation":1.0283333333,
         "cfads":1.4852801022,
         "dscr":0.4637413901,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7175396887,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3945,11 +4096,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":137.9456693072,
+        "depreciation":1.0283333333,
         "cfads":1.488408297,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.488408297,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3971,11 +4123,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":137.9456693072,
+        "depreciation":1.0283333333,
         "cfads":1.4915418886,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4915418886,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -3997,11 +4150,12 @@
         "interest":2.0859382625,
         "principal":1.1168815283,
         "ending_balance":136.8287877789,
+        "depreciation":1.0283333333,
         "cfads":1.4946808863,
         "dscr":0.4666765488,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7081389045,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4023,11 +4177,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":136.8287877789,
+        "depreciation":1.0283333333,
         "cfads":1.4896264632,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4896264632,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4049,11 +4204,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":136.8287877789,
+        "depreciation":1.0283333333,
         "cfads":1.4927763011,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4927763011,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4075,11 +4231,12 @@
         "interest":2.0859382625,
         "principal":1.1168815283,
         "ending_balance":135.7119062506,
+        "depreciation":1.0283333333,
         "cfads":1.495931573,
         "dscr":0.4670670443,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7068882178,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4101,11 +4258,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":135.7119062506,
+        "depreciation":1.0283333333,
         "cfads":1.4990922885,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.4990922885,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4127,11 +4285,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":135.7119062506,
+        "depreciation":1.0283333333,
         "cfads":1.5022584568,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5022584568,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4153,11 +4312,12 @@
         "interest":2.0859382625,
         "principal":1.1168815283,
         "ending_balance":134.5950247223,
+        "depreciation":1.0283333333,
         "cfads":1.5054300874,
         "dscr":0.4700327167,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6973897034,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4179,11 +4339,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":134.5950247223,
+        "depreciation":1.0283333333,
         "cfads":1.5086071897,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5086071897,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4205,11 +4366,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":134.5950247223,
+        "depreciation":1.0283333333,
         "cfads":1.5117897731,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5117897731,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4231,11 +4393,12 @@
         "interest":2.0189253708,
         "principal":1.2479100293,
         "ending_balance":133.3471146931,
+        "depreciation":1.0283333333,
         "cfads":1.5149778472,
         "dscr":0.4637447749,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.751857553,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4257,11 +4420,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":133.3471146931,
+        "depreciation":1.0283333333,
         "cfads":1.5181714213,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5181714213,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4283,11 +4447,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":133.3471146931,
+        "depreciation":1.0283333333,
         "cfads":1.5213705049,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5213705049,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4309,11 +4474,12 @@
         "interest":2.0189253708,
         "principal":1.2479100293,
         "ending_balance":132.0992046638,
+        "depreciation":1.0283333333,
         "cfads":1.5245751077,
         "dscr":0.46668256,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7422602924,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4335,11 +4501,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":132.0992046638,
+        "depreciation":1.0283333333,
         "cfads":1.519381432,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.519381432,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4361,11 +4528,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":132.0992046638,
+        "depreciation":1.0283333333,
         "cfads":1.5225971014,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5225971014,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4387,11 +4555,12 @@
         "interest":2.0189253708,
         "principal":1.2479100293,
         "ending_balance":130.8512946345,
+        "depreciation":1.0283333333,
         "cfads":1.5258183186,
         "dscr":0.4670631151,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7410170816,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4413,11 +4582,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":130.8512946345,
+        "depreciation":1.0283333333,
         "cfads":1.5290450929,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5290450929,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4439,11 +4609,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":130.8512946345,
+        "depreciation":1.0283333333,
         "cfads":1.5322774342,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5322774342,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4465,11 +4636,12 @@
         "interest":2.0189253708,
         "principal":1.2479100293,
         "ending_balance":129.6033846052,
+        "depreciation":1.0283333333,
         "cfads":1.5355153518,
         "dscr":0.4700314414,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7313200483,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4491,11 +4663,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":129.6033846052,
+        "depreciation":1.0283333333,
         "cfads":1.5387588556,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":1.5387588556,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4517,11 +4690,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":129.6033846052,
+        "depreciation":1.0283333333,
         "cfads":2.5664019597,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5664019597,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4543,11 +4717,12 @@
         "interest":1.9440507691,
         "principal":2.3641010042,
         "ending_balance":127.239283601,
+        "depreciation":1.0283333333,
         "cfads":2.5714239514,
         "dscr":0.5968740394,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7367278218,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4569,11 +4744,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":127.239283601,
+        "depreciation":1.0283333333,
         "cfads":2.5764546072,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5764546072,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4595,11 +4771,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":127.239283601,
+        "depreciation":1.0283333333,
         "cfads":2.5814939418,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5814939418,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4621,11 +4798,12 @@
         "interest":1.9440507691,
         "principal":2.3641010042,
         "ending_balance":124.8751825969,
+        "depreciation":1.0283333333,
         "cfads":2.5865419703,
         "dscr":0.6003832052,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.721609803,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4647,11 +4825,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":124.8751825969,
+        "depreciation":1.0283333333,
         "cfads":2.575708519,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.575708519,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4673,11 +4852,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":124.8751825969,
+        "depreciation":1.0283333333,
         "cfads":2.5807614272,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5807614272,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4699,11 +4879,12 @@
         "interest":1.9440507691,
         "principal":2.3641010042,
         "ending_balance":122.5110815927,
+        "depreciation":1.0283333333,
         "cfads":2.5858230527,
         "dscr":0.6002163315,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7223287206,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4725,11 +4906,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":122.5110815927,
+        "depreciation":1.0283333333,
         "cfads":2.5908934105,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5908934105,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4751,11 +4933,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":122.5110815927,
+        "depreciation":1.0283333333,
         "cfads":2.5959725157,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5959725157,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4777,11 +4960,12 @@
         "interest":1.9440507691,
         "principal":2.3641010042,
         "ending_balance":120.1469805885,
+        "depreciation":1.0283333333,
         "cfads":2.6010603834,
         "dscr":0.6037531917,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7070913899,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4803,11 +4987,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":120.1469805885,
+        "depreciation":1.0283333333,
         "cfads":2.6061570287,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6061570287,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4829,11 +5014,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":120.1469805885,
+        "depreciation":1.0283333333,
         "cfads":2.6112624667,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6112624667,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4855,11 +5041,12 @@
         "interest":1.8022047088,
         "principal":2.5634040705,
         "ending_balance":117.583576518,
+        "depreciation":1.0283333333,
         "cfads":2.6163767127,
         "dscr":0.5993154323,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7492320667,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4881,11 +5068,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":117.583576518,
+        "depreciation":1.0283333333,
         "cfads":2.6214997817,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6214997817,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4907,11 +5095,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":117.583576518,
+        "depreciation":1.0283333333,
         "cfads":2.6266316891,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6266316891,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4933,11 +5122,12 @@
         "interest":1.8022047088,
         "principal":2.5634040705,
         "ending_balance":115.0201724475,
+        "depreciation":1.0283333333,
         "cfads":2.6317724501,
         "dscr":0.602842028,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7338363293,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4959,11 +5149,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":115.0201724475,
+        "depreciation":1.0283333333,
         "cfads":2.6024472989,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6024472989,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -4985,11 +5176,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":115.0201724475,
+        "depreciation":1.0283333333,
         "cfads":2.6075615691,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6075615691,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5011,11 +5203,12 @@
         "interest":1.8022047088,
         "principal":2.5634040705,
         "ending_balance":112.456768377,
+        "depreciation":1.0283333333,
         "cfads":2.6126846625,
         "dscr":0.5984697197,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7529241168,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5037,11 +5230,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":112.456768377,
+        "depreciation":1.0283333333,
         "cfads":2.6178165943,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6178165943,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5063,11 +5257,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":112.456768377,
+        "depreciation":1.0283333333,
         "cfads":2.6229573797,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6229573797,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5089,11 +5284,12 @@
         "interest":1.8022047088,
         "principal":2.5634040705,
         "ending_balance":109.8933643065,
+        "depreciation":1.0283333333,
         "cfads":2.628107034,
         "dscr":0.6020024163,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7375017454,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5115,11 +5311,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":109.8933643065,
+        "depreciation":1.0283333333,
         "cfads":2.6332655724,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6332655724,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5141,11 +5338,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":109.8933643065,
+        "depreciation":1.0283333333,
         "cfads":2.6384330104,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6384330104,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5167,11 +5365,12 @@
         "interest":1.6484004646,
         "principal":2.4849351073,
         "ending_balance":107.4084291991,
+        "depreciation":1.0283333333,
         "cfads":2.6436093633,
         "dscr":0.6395825641,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4897262086,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5193,11 +5392,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":107.4084291991,
+        "depreciation":1.0283333333,
         "cfads":2.6487946465,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6487946465,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5219,11 +5419,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":107.4084291991,
+        "depreciation":1.0283333333,
         "cfads":2.6539888753,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6539888753,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5245,11 +5446,12 @@
         "interest":1.6484004646,
         "principal":2.4849351073,
         "ending_balance":104.9234940918,
+        "depreciation":1.0283333333,
         "cfads":2.6591920651,
         "dscr":0.6433525706,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.4741435068,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5271,11 +5473,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":104.9234940918,
+        "depreciation":1.0283333333,
         "cfads":2.3453289082,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.3453289082,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5297,11 +5500,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":104.9234940918,
+        "depreciation":1.0283333333,
         "cfads":2.3500152102,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.3500152102,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5323,11 +5527,12 @@
         "interest":1.6484004646,
         "principal":2.4849351073,
         "ending_balance":102.4385589845,
+        "depreciation":1.0283333333,
         "cfads":2.354709597,
         "dscr":0.5696874972,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7786259749,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5349,11 +5554,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":102.4385589845,
+        "depreciation":1.0283333333,
         "cfads":2.3594120826,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.3594120826,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5375,11 +5581,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":102.4385589845,
+        "depreciation":1.0283333333,
         "cfads":2.364122681,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.364122681,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5401,11 +5608,12 @@
         "interest":1.6484004646,
         "principal":2.4849351073,
         "ending_balance":99.9536238772,
+        "depreciation":1.0283333333,
         "cfads":2.3688414061,
         "dscr":0.5731064814,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7644941658,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5427,11 +5635,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":99.9536238772,
+        "depreciation":1.0283333333,
         "cfads":2.3735682719,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.3735682719,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5453,11 +5662,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":99.9536238772,
+        "depreciation":1.0283333333,
         "cfads":2.3783032926,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.3783032926,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5479,11 +5689,12 @@
         "interest":1.4993043582,
         "principal":2.5646390594,
         "ending_balance":97.3889848178,
+        "depreciation":1.0283333333,
         "cfads":2.3830464821,
         "dscr":0.586387712,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6808969354,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5505,11 +5716,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":97.3889848178,
+        "depreciation":1.0283333333,
         "cfads":2.3877978546,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.3877978546,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5531,11 +5743,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":97.3889848178,
+        "depreciation":1.0283333333,
         "cfads":2.3925574241,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.3925574241,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5557,11 +5770,12 @@
         "interest":1.4993043582,
         "principal":2.5646390594,
         "ending_balance":94.8243457585,
+        "depreciation":1.0283333333,
         "cfads":2.3973252049,
         "dscr":0.5899012261,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6666182126,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5583,11 +5797,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":94.8243457585,
+        "depreciation":1.0283333333,
         "cfads":2.4597389401,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.4597389401,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5609,11 +5824,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":94.8243457585,
+        "depreciation":1.0283333333,
         "cfads":2.4646386259,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.4646386259,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5635,11 +5851,12 @@
         "interest":1.4993043582,
         "principal":2.5646390594,
         "ending_balance":92.2597066991,
+        "depreciation":1.0283333333,
         "cfads":2.4695467648,
         "dscr":0.6076725267,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5943966528,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5661,11 +5878,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":92.2597066991,
+        "depreciation":1.0283333333,
         "cfads":2.4744633711,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.4744633711,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5687,11 +5905,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":92.2597066991,
+        "depreciation":1.0283333333,
         "cfads":2.4793884596,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.4793884596,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5713,11 +5932,12 @@
         "interest":1.4993043582,
         "principal":2.5646390594,
         "ending_balance":89.6950676397,
+        "depreciation":1.0283333333,
         "cfads":2.4843220449,
         "dscr":0.6113082269,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.5796213727,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5739,11 +5959,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":89.6950676397,
+        "depreciation":1.0283333333,
         "cfads":2.4892641416,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.4892641416,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5765,11 +5986,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":89.6950676397,
+        "depreciation":1.0283333333,
         "cfads":2.4942147644,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.4942147644,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5791,11 +6013,12 @@
         "interest":1.3454260146,
         "principal":2.8473403655,
         "ending_balance":86.8477272742,
+        "depreciation":1.0283333333,
         "cfads":2.499173928,
         "dscr":0.5960680137,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6935924521,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5817,11 +6040,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":86.8477272742,
+        "depreciation":1.0283333333,
         "cfads":2.5041416472,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5041416472,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5843,11 +6067,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":86.8477272742,
+        "depreciation":1.0283333333,
         "cfads":2.5091179367,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5091179367,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5869,11 +6094,12 @@
         "interest":1.3454260146,
         "principal":2.8473403655,
         "ending_balance":84.0003869086,
+        "depreciation":1.0283333333,
         "cfads":2.5141028114,
         "dscr":0.5996286421,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6786635688,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5895,11 +6121,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":84.0003869086,
+        "depreciation":1.0283333333,
         "cfads":2.5088353952,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5088353952,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5921,11 +6148,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":84.0003869086,
+        "depreciation":1.0283333333,
         "cfads":2.5138361858,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5138361858,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5947,11 +6175,12 @@
         "interest":1.3454260146,
         "principal":2.8473403655,
         "ending_balance":81.1530465431,
+        "depreciation":1.0283333333,
         "cfads":2.5188456038,
         "dscr":0.6007598267,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6739207763,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5973,11 +6202,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":81.1530465431,
+        "depreciation":1.0283333333,
         "cfads":2.5238636641,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5238636641,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -5999,11 +6229,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":81.1530465431,
+        "depreciation":1.0283333333,
         "cfads":2.5288903816,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5288903816,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6025,11 +6256,12 @@
         "interest":1.3454260146,
         "principal":2.8473403655,
         "ending_balance":78.3057061775,
+        "depreciation":1.0283333333,
         "cfads":2.5339257711,
         "dscr":0.6043565373,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.658840609,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6051,11 +6283,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":78.3057061775,
+        "depreciation":1.0283333333,
         "cfads":2.5389698477,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5389698477,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6077,11 +6310,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":78.3057061775,
+        "depreciation":1.0283333333,
         "cfads":2.5440226264,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.5440226264,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6103,11 +6337,12 @@
         "interest":1.1745855927,
         "principal":3.1548376542,
         "ending_balance":75.1508685234,
+        "depreciation":1.0283333333,
         "cfads":2.5490841222,
         "dscr":0.5887814558,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7803391247,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6129,11 +6364,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":75.1508685234,
+        "depreciation":1.0283333333,
         "cfads":2.55415435,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.55415435,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6155,11 +6391,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":75.1508685234,
+        "depreciation":1.0283333333,
         "cfads":2.559233325,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.559233325,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6181,11 +6418,12 @@
         "interest":1.1745855927,
         "principal":3.1548376542,
         "ending_balance":71.9960308692,
+        "depreciation":1.0283333333,
         "cfads":2.5643210623,
         "dscr":0.5923008484,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7651021845,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6207,11 +6445,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":71.9960308692,
+        "depreciation":1.0283333333,
         "cfads":2.613081581,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.613081581,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6233,11 +6472,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":71.9960308692,
+        "depreciation":1.0283333333,
         "cfads":2.618279031,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.618279031,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6259,11 +6499,12 @@
         "interest":1.1745855927,
         "principal":3.1548376542,
         "ending_balance":68.841193215,
+        "depreciation":1.0283333333,
         "cfads":2.6234854476,
         "dscr":0.605966499,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7059377992,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6285,11 +6526,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":68.841193215,
+        "depreciation":1.0283333333,
         "cfads":2.6287008463,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6287008463,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6311,11 +6553,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":68.841193215,
+        "depreciation":1.0283333333,
         "cfads":2.6339252427,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6339252427,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6337,11 +6580,12 @@
         "interest":1.1745855927,
         "principal":3.1548376542,
         "ending_balance":65.6863555609,
+        "depreciation":1.0283333333,
         "cfads":2.6391586522,
         "dscr":0.6095866589,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.6902645946,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6363,11 +6607,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":65.6863555609,
+        "depreciation":1.0283333333,
         "cfads":2.6444010904,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6444010904,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6389,11 +6634,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":65.6863555609,
+        "depreciation":1.0283333333,
         "cfads":2.6496525728,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.6496525728,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6415,11 +6661,12 @@
         "interest":0.9852953334,
         "principal":3.5477851833,
         "ending_balance":62.1385703776,
+        "depreciation":1.0283333333,
         "cfads":2.6549131152,
         "dscr":0.5856752611,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.8781674016,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6441,11 +6688,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":62.1385703776,
+        "depreciation":1.0283333333,
         "cfads":2.660182733,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.660182733,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6467,11 +6715,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":62.1385703776,
+        "depreciation":1.0283333333,
         "cfads":2.665461442,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.665461442,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6493,11 +6742,12 @@
         "interest":0.9852953334,
         "principal":3.5477851833,
         "ending_balance":58.5907851943,
+        "depreciation":1.0283333333,
         "cfads":2.6707492578,
         "dscr":0.5891687227,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.8623312589,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6519,11 +6769,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":58.5907851943,
+        "depreciation":1.0283333333,
         "cfads":2.746080641,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.746080641,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6545,11 +6796,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":58.5907851943,
+        "depreciation":1.0283333333,
         "cfads":2.7515247751,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.7515247751,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6571,11 +6823,12 @@
         "interest":0.9852953334,
         "principal":3.5477851833,
         "ending_balance":55.043000011,
+        "depreciation":1.0283333333,
         "cfads":2.7569783015,
         "dscr":0.6081908961,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7761022152,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6597,11 +6850,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":55.043000011,
+        "depreciation":1.0283333333,
         "cfads":2.7624412363,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.7624412363,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6623,11 +6877,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":55.043000011,
+        "depreciation":1.0283333333,
         "cfads":2.7679135958,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.7679135958,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6649,11 +6904,12 @@
         "interest":0.9852953334,
         "principal":3.5477851833,
         "ending_balance":51.4952148277,
+        "depreciation":1.0283333333,
         "cfads":2.7733953962,
         "dscr":0.611812516,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.7596851205,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6675,11 +6931,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":51.4952148277,
+        "depreciation":1.0283333333,
         "cfads":2.7788866538,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.7788866538,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6701,11 +6958,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":51.4952148277,
+        "depreciation":1.0283333333,
         "cfads":2.784387385,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.784387385,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6727,11 +6985,12 @@
         "interest":0.7724282224,
         "principal":3.9108257401,
         "ending_balance":47.5843890876,
+        "depreciation":1.0283333333,
         "cfads":2.789897606,
         "dscr":0.5957177698,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.8933563565,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6753,11 +7012,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":47.5843890876,
+        "depreciation":1.0283333333,
         "cfads":2.7954173333,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.7954173333,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6779,11 +7039,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":47.5843890876,
+        "depreciation":1.0283333333,
         "cfads":2.8009465832,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8009465832,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6805,11 +7066,12 @@
         "interest":0.7724282224,
         "principal":3.9108257401,
         "ending_balance":43.6735633475,
+        "depreciation":1.0283333333,
         "cfads":2.8064853722,
         "dscr":0.5992597016,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.8767685903,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6831,11 +7093,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":43.6735633475,
+        "depreciation":1.0283333333,
         "cfads":2.803596621,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.803596621,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6857,11 +7120,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":43.6735633475,
+        "depreciation":1.0283333333,
         "cfads":2.8091576466,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8091576466,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6883,11 +7147,12 @@
         "interest":0.7724282224,
         "principal":3.9108257401,
         "ending_balance":39.7627376075,
+        "depreciation":1.0283333333,
         "cfads":2.814728266,
         "dscr":0.60101978,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.8685256964,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6909,11 +7174,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":39.7627376075,
+        "depreciation":1.0283333333,
         "cfads":2.8203084959,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8203084959,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6935,11 +7201,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":39.7627376075,
+        "depreciation":1.0283333333,
         "cfads":2.8258983529,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8258983529,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6961,11 +7228,12 @@
         "interest":0.7724282224,
         "principal":3.9108257401,
         "ending_balance":35.8519118674,
+        "depreciation":1.0283333333,
         "cfads":2.8314978535,
         "dscr":0.6046005355,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.851756109,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -6987,11 +7255,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":35.8519118674,
+        "depreciation":1.0283333333,
         "cfads":2.8371070143,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8371070143,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7013,11 +7282,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":35.8519118674,
+        "depreciation":1.0283333333,
         "cfads":2.8427258521,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8427258521,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7039,11 +7309,12 @@
         "interest":0.537778678,
         "principal":4.3083117117,
         "ending_balance":31.5436001558,
+        "depreciation":1.0283333333,
         "cfads":2.8483543835,
         "dscr":0.5877633627,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.9977360062,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7065,11 +7336,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":31.5436001558,
+        "depreciation":1.0283333333,
         "cfads":2.8539926253,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8539926253,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7091,11 +7363,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":31.5436001558,
+        "depreciation":1.0283333333,
         "cfads":2.8596405942,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.8596405942,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7117,11 +7390,12 @@
         "interest":0.537778678,
         "principal":4.3083117117,
         "ending_balance":27.2352884441,
+        "depreciation":0.9793650794,
         "cfads":2.865298307,
         "dscr":0.5912597737,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.9807920827,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7143,11 +7417,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":27.2352884441,
+        "depreciation":0.9303968254,
         "cfads":2.9285428664,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9285428664,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7169,11 +7444,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":27.2352884441,
+        "depreciation":0.8814285714,
         "cfads":2.9343375559,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9343375559,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7195,11 +7471,12 @@
         "interest":0.537778678,
         "principal":4.3083117117,
         "ending_balance":22.9269767324,
+        "depreciation":0.8324603175,
         "cfads":2.9401422424,
         "dscr":0.6067039626,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.9059481473,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7221,11 +7498,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":22.9269767324,
+        "depreciation":0.7834920635,
         "cfads":2.9459569431,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9459569431,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7247,11 +7525,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":22.9269767324,
+        "depreciation":0.7345238095,
         "cfads":2.9517816754,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9517816754,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7273,11 +7552,12 @@
         "interest":0.537778678,
         "principal":4.3083117117,
         "ending_balance":18.6186650207,
+        "depreciation":0.6855555556,
         "cfads":2.9576164566,
         "dscr":0.6103098,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.8884739331,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7299,11 +7579,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":18.6186650207,
+        "depreciation":0.6365873016,
         "cfads":2.9634613039,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9634613039,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7325,11 +7606,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":18.6186650207,
+        "depreciation":0.5876190476,
         "cfads":2.9693162348,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9693162348,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7351,11 +7633,12 @@
         "interest":0.2792799753,
         "principal":4.6546662552,
         "ending_balance":13.9639987655,
+        "depreciation":0.5386507937,
         "cfads":2.9751812666,
         "dscr":0.6030023692,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.9587649639,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7377,11 +7660,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":13.9639987655,
+        "depreciation":0.4896825397,
         "cfads":2.9810564167,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9810564167,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7403,11 +7687,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":13.9639987655,
+        "depreciation":0.4407142857,
         "cfads":2.9869417027,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9869417027,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7429,11 +7714,12 @@
         "interest":0.2792799753,
         "principal":4.6546662552,
         "ending_balance":9.3093325103,
+        "depreciation":0.3917460317,
         "cfads":2.992837142,
         "dscr":0.6065808183,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.9411090885,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7455,11 +7741,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":9.3093325103,
+        "depreciation":0.3427777778,
         "cfads":2.928298772,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.928298772,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7481,11 +7768,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":9.3093325103,
+        "depreciation":0.2938095238,
         "cfads":2.9341115994,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9341115994,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7507,11 +7795,12 @@
         "interest":0.2792799753,
         "principal":4.6546662552,
         "ending_balance":4.6546662552,
+        "depreciation":0.2448412698,
         "cfads":2.9399344551,
         "dscr":0.5958586328,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.9940117754,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7533,11 +7822,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":4.6546662552,
+        "depreciation":0.1958730159,
         "cfads":2.9457673564,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9457673564,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7559,11 +7849,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":4.6546662552,
+        "depreciation":0.1469047619,
         "cfads":2.9516103206,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9516103206,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7585,11 +7876,12 @@
         "interest":0.2792799753,
         "principal":4.6546662552,
         "ending_balance":0.0,
+        "depreciation":0.0979365079,
         "cfads":2.9574633651,
         "dscr":0.5994113488,
+        "terminal_value":0.0,
         "equity_cash_flow":-1.9764828654,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7611,11 +7903,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.048968254,
         "cfads":2.9633265073,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9633265073,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7637,11 +7930,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9691997646,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9691997646,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7663,11 +7957,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9750831545,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9750831545,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7689,11 +7984,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9809766944,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9809766944,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7715,11 +8011,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9868804019,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9868804019,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7741,11 +8038,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9927942944,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9927942944,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7767,11 +8065,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0049493533,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0049493533,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7793,11 +8092,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0109134415,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0109134415,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7819,11 +8119,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0168878189,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0168878189,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7845,11 +8146,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0228725033,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0228725033,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7871,11 +8173,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0288675125,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0288675125,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7897,11 +8200,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0348728643,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0348728643,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7923,11 +8227,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0408885765,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0408885765,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7949,11 +8254,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0469146671,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0469146671,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -7975,11 +8281,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0529511539,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0529511539,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8001,11 +8308,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0589980548,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0589980548,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8027,11 +8335,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0650553879,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0650553879,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8053,11 +8362,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0711231711,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0711231711,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8079,11 +8389,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9182111343,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9182111343,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8105,11 +8416,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.92404508,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.92404508,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8131,11 +8443,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9298890904,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9298890904,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8157,11 +8470,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.935743183,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.935743183,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8183,11 +8497,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.941607375,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.941607375,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8209,11 +8524,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.947481684,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.947481684,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8235,11 +8551,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9533661273,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9533661273,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8261,11 +8578,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9592607225,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9592607225,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8287,11 +8605,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9651654871,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9651654871,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8313,11 +8632,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9710804385,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9710804385,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8339,11 +8659,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9770055945,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9770055945,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8365,11 +8686,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":2.9829409726,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":2.9829409726,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8391,11 +8713,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0325933385,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0325933385,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8417,11 +8740,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0386446027,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0386446027,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8443,11 +8767,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0447063065,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0447063065,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8469,11 +8794,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.050778468,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.050778468,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8495,11 +8821,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0568611053,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0568611053,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8521,11 +8848,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0629542362,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0629542362,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8547,11 +8875,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0690578791,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0690578791,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8573,11 +8902,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.075172052,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.075172052,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8599,11 +8929,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0812967731,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0812967731,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8625,11 +8956,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0874320606,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0874320606,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8651,11 +8983,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0935779327,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0935779327,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8677,11 +9010,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0997344076,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0997344076,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8703,11 +9037,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1484339695,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1484339695,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8729,11 +9064,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1547055679,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1547055679,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8755,11 +9091,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1609879861,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1609879861,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8781,11 +9118,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1672812427,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1672812427,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8807,11 +9145,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1735853565,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1735853565,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8833,11 +9172,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1799003461,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1799003461,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8859,11 +9199,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1862262304,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1862262304,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8885,11 +9226,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.192563028,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.192563028,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8911,11 +9253,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.198910758,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.198910758,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8937,11 +9280,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.2052694391,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.2052694391,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8963,11 +9307,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.2116390901,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.2116390901,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -8989,11 +9334,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.2180197302,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.2180197302,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9015,11 +9361,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.0967550764,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.0967550764,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9041,11 +9388,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.102958516,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.102958516,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9067,11 +9415,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1091726579,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1091726579,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9093,11 +9442,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1153975204,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1153975204,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9119,11 +9469,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.121633122,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.121633122,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9145,11 +9496,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1278794813,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":3.1278794813,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9171,11 +9523,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":3.1341366169,
         "dscr":null,
-        "equity_cash_flow":52.1341366169,
         "terminal_value":49.0,
-        "period_type":""
+        "equity_cash_flow":52.1341366169,
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9197,11 +9550,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9223,11 +9577,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9249,11 +9604,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9275,11 +9631,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9301,11 +9658,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9327,11 +9685,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9353,11 +9712,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9379,11 +9739,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9405,11 +9766,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9431,11 +9793,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9457,11 +9820,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9483,11 +9847,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9509,11 +9874,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9535,11 +9901,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9561,11 +9928,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9587,11 +9955,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9613,11 +9982,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9639,11 +10009,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9665,11 +10036,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9691,11 +10063,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9717,11 +10090,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9743,11 +10117,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9769,11 +10144,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9795,11 +10171,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9821,11 +10198,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9847,11 +10225,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9873,11 +10252,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9899,11 +10279,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9925,11 +10306,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9951,11 +10333,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -9977,11 +10360,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10003,11 +10387,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10029,11 +10414,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10055,11 +10441,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10081,11 +10468,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10107,11 +10495,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10133,11 +10522,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10159,11 +10549,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10185,11 +10576,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10211,11 +10603,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10237,11 +10630,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10263,11 +10657,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10289,11 +10684,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10315,11 +10711,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10341,11 +10738,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10367,11 +10765,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10393,11 +10792,12 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     },
     {
         "asset_id":4,
@@ -10419,10 +10819,11 @@
         "interest":0.0,
         "principal":0.0,
         "ending_balance":0.0,
+        "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "terminal_value":null,
-        "period_type":""
+        "period_type":"O"
     }
 ]

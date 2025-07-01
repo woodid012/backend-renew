@@ -59,5 +59,5 @@ def run_three_way_model():
         if client:
             client.close()
 
-if __name__ == 'main':
+if __name__ == '__main__':
     run_three_way_model()

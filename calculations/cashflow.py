@@ -1,9 +1,8 @@
-
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 from config import ENABLE_TERMINAL_VALUE
 
-def aggregate_cashflows(revenue, opex, capex, debt_schedule, end_date, assets_data, asset_cost_assumptions):
+def aggregate_cashflows(revenue, opex, capex, debt_schedule, depreciation_df, end_date, assets_data, asset_cost_assumptions):
     """
     Aggregates all financial components into a final cash flow statement for each asset.
 
@@ -12,7 +11,10 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, end_date, assets_da
         opex (pd.DataFrame): Time-series of opex.
         capex (pd.DataFrame): Time-series of capex.
         debt_schedule (pd.DataFrame): Time-series of debt schedule.
+        depreciation_df (pd.DataFrame): Time-series of depreciation.
         end_date (datetime): The end date of the analysis period.
+        assets_data (list): List of asset dictionaries.
+        asset_cost_assumptions (dict): Asset cost assumptions.
 
     Returns:
         pd.DataFrame: A DataFrame with the consolidated cash flow for each asset.
@@ -32,7 +34,11 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, end_date, assets_da
     debt_service = cash_flow['interest'] + cash_flow['principal']
     # Handle division by zero for DSCR
     cash_flow['dscr'] = cash_flow.apply(lambda row: row['cfads'] / debt_service[row.name] if debt_service[row.name] != 0 else None, axis=1)
-    cash_flow['equity_cash_flow'] = cash_flow['cfads'] - cash_flow['interest'] - cash_flow['principal'] - cash_flow['equity_capex'] - cash_flow['tax_expense']
+    
+    # Initialize terminal_value column
+    cash_flow['terminal_value'] = 0.0
+    
+    cash_flow['equity_cash_flow'] = cash_flow['cfads'] - cash_flow['interest'] - cash_flow['principal'] - cash_flow['equity_capex'] - cash_flow.get('tax_expense', 0)
 
     # Calculate Terminal Value
     if ENABLE_TERMINAL_VALUE:
