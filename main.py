@@ -2,6 +2,7 @@
 
 import sys
 import os
+import argparse
 
 # Add the backend directory to the Python path for module imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -9,32 +10,25 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import json
 import os
 import pandas as pd
+import numpy as np
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
-from config import DATE_FORMAT, OUTPUT_DATE_FORMAT, DEFAULT_CAPEX_FUNDING_TYPE, DEFAULT_DEBT_REPAYMENT_FREQUENCY, DEFAULT_DEBT_GRACE_PERIOD, USER_MODEL_START_DATE, USER_MODEL_END_DATE, DEFAULT_DEBT_SIZING_METHOD, DSCR_CALCULATION_FREQUENCY, ENABLE_TERMINAL_VALUE, MERCHANT_PRICE_ESCALATION_RATE, MERCHANT_PRICE_ESCALATION_REFERENCE_DATE
+from config import DATE_FORMAT, OUTPUT_DATE_FORMAT, DEFAULT_CAPEX_FUNDING_TYPE, DEFAULT_DEBT_REPAYMENT_FREQUENCY, DEFAULT_DEBT_GRACE_PERIOD, USER_MODEL_START_DATE, USER_MODEL_END_DATE, DEFAULT_DEBT_SIZING_METHOD, DSCR_CALCULATION_FREQUENCY, ENABLE_TERMINAL_VALUE, MERCHANT_PRICE_ESCALATION_RATE, MERCHANT_PRICE_ESCALATION_REFERENCE_DATE, MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, MONGO_REVENUE_COLLECTION, TAX_RATE, DEFAULT_ASSET_LIFE_YEARS
 from core.input_processor import load_asset_data, load_price_data
 from calculations.revenue import calculate_revenue_timeseries
 from calculations.expenses import calculate_opex_timeseries, calculate_capex_timeseries
 from calculations.debt import calculate_debt_schedule
 from calculations.cashflow import aggregate_cashflows
+from calculations.depreciation import calculate_straight_line_depreciation
 from core.output_generator import generate_asset_and_platform_output
 from core.summary_generator import generate_summary_data
 from core.equity_irr import calculate_equity_irr
+from core.database import insert_dataframe_to_mongodb, get_mongo_client
+from core.scenario_manager import load_scenario, apply_scenario_overrides
+from config import MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, MONGO_REVENUE_COLLECTION
 
 
-# Load real data
-# Construct the absolute path to the public directory
-current_dir = os.path.dirname(os.path.abspath(__file__))
-# project_root = os.path.abspath(os.path.join(current_dir, '..')) # Go up one level from 'backend' to 'renew-asset-platform'
-
-zebre_json_path = os.path.join(current_dir, 'inputs', 'zebre_2025-01-13.json')
-monthly_price_path = os.path.join(current_dir, 'inputs', 'merchant_price_monthly.csv')
-yearly_spread_path = os.path.join(current_dir, 'inputs', 'merchant_yearly_spreads.csv')
-
-ASSETS, ASSET_COST_ASSUMPTIONS = load_asset_data(zebre_json_path)
-MONTHLY_PRICES, YEARLY_SPREADS = load_price_data(monthly_price_path, yearly_spread_path)
-
-def run_cashflow_model():
+def run_cashflow_model(scenario_file=None, scenario_id=None):
     """
     Main function to run the cash flow model.
 
@@ -43,7 +37,24 @@ def run_cashflow_model():
     """
     print("=== STARTING CASHFLOW MODEL ===")
     
-    
+    # Load real data
+    # Construct the absolute path to the public directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    zebre_json_path = os.path.join(current_dir, 'inputs', 'zebre_2025-01-13.json')
+    monthly_price_path = os.path.join(current_dir, 'inputs', 'merchant_price_monthly.csv')
+    yearly_spread_path = os.path.join(current_dir, 'inputs', 'merchant_yearly_spreads.csv')
+
+    ASSETS, ASSET_COST_ASSUMPTIONS = load_asset_data(zebre_json_path)
+    MONTHLY_PRICES, YEARLY_SPREADS = load_price_data(monthly_price_path, yearly_spread_path)
+
+    if scenario_file:
+        print(f"Applying scenario overrides from {scenario_file}...")
+        scenario_data = load_scenario(scenario_file)
+        ASSETS, ASSET_COST_ASSUMPTIONS, MONTHLY_PRICES, YEARLY_SPREADS = apply_scenario_overrides(
+            ASSETS, ASSET_COST_ASSUMPTIONS, MONTHLY_PRICES, YEARLY_SPREADS, scenario_data
+        )
+
     # Determine model start and end dates
     if USER_MODEL_START_DATE and USER_MODEL_END_DATE:
         start_date = datetime.strptime(USER_MODEL_START_DATE, DATE_FORMAT)
@@ -88,6 +99,9 @@ def run_cashflow_model():
     print("\n=== CALCULATING REVENUE ===")
     output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results')
     revenue_df = calculate_revenue_timeseries(ASSETS, MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, output_directory)
+    # Save revenue data to MongoDB
+    print("\n=== SAVING REVENUE DATA TO MONGODB ===")
+    insert_dataframe_to_mongodb(revenue_df, MONGO_REVENUE_COLLECTION)
 
     # 2. Calculate Expenses (initial CAPEX with assumed funding split)
     print("\n=== CALCULATING EXPENSES ===")
@@ -98,6 +112,10 @@ def run_cashflow_model():
     print("\n=== CALCULATING PRELIMINARY CASH FLOWS ===")
     prelim_cash_flow = pd.merge(revenue_df, opex_df, on=['asset_id', 'date'])
     prelim_cash_flow['cfads'] = prelim_cash_flow['revenue'] - prelim_cash_flow['opex']
+
+    # Calculate Depreciation
+    print("\n=== CALCULATING DEPRECIATION ===")
+    depreciation_df = calculate_straight_line_depreciation(initial_capex_df, DEFAULT_ASSET_LIFE_YEARS, start_date, end_date)
 
     # 4. Size debt based on operational cash flows and update CAPEX funding
     print("\n=== DEBT SIZING ===")
@@ -194,6 +212,11 @@ def run_cashflow_model():
     print("\n=== SAVING OUTPUTS ===")
     generate_asset_and_platform_output(final_cash_flow, irr, output_directory)
 
+    # Save final cash flow to MongoDB
+        print(
+=== SAVING FINAL CASH FLOW TO MONGODB ===")
+    insert_dataframe_to_mongodb(final_cash_flow, MONGO_ASSET_OUTPUT_COLLECTION, scenario_id=scenario_id)
+
     def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir):
         asset_summaries = []
         for asset in assets:
@@ -264,6 +287,11 @@ def run_cashflow_model():
 import sys
 
 if __name__ == '__main__':
-    final_cashflows_json = run_cashflow_model()
+    parser = argparse.ArgumentParser(description="Run the cash flow model with optional scenario overrides.")
+    parser.add_argument('--scenario', type=str, help="Path to a JSON scenario file for overrides.")
+    parser.add_argument('--scenario_id', type=str, help="A unique identifier for the scenario run.")
+    args = parser.parse_args()
+
+    final_cashflows_json = run_cashflow_model(scenario_file=args.scenario, scenario_id=args.scenario_id)
 
     print(final_cashflows_json)

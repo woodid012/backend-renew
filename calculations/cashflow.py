@@ -21,6 +21,7 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, end_date, assets_da
     cash_flow = pd.merge(revenue, opex, on=['asset_id', 'date'], how='left')
     cash_flow = pd.merge(cash_flow, capex, on=['asset_id', 'date'], how='left')
     cash_flow = pd.merge(cash_flow, debt_schedule, on=['asset_id', 'date'], how='left')
+    cash_flow = pd.merge(cash_flow, depreciation_df, on=['asset_id', 'date'], how='left')
 
     # Fill NaNs for assets that might not have all components
     cash_flow.fillna(0, inplace=True)
@@ -31,7 +32,7 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, end_date, assets_da
     debt_service = cash_flow['interest'] + cash_flow['principal']
     # Handle division by zero for DSCR
     cash_flow['dscr'] = cash_flow.apply(lambda row: row['cfads'] / debt_service[row.name] if debt_service[row.name] != 0 else None, axis=1)
-    cash_flow['equity_cash_flow'] = cash_flow['cfads'] - cash_flow['interest'] - cash_flow['principal'] - cash_flow['equity_capex']
+    cash_flow['equity_cash_flow'] = cash_flow['cfads'] - cash_flow['interest'] - cash_flow['principal'] - cash_flow['equity_capex'] - cash_flow['tax_expense']
 
     # Calculate Terminal Value
     if ENABLE_TERMINAL_VALUE:
