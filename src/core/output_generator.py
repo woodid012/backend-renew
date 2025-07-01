@@ -1,8 +1,8 @@
 import pandas as pd
 import os
-from config import OUTPUT_DATE_FORMAT
+from ..config import OUTPUT_DATE_FORMAT
 
-def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir='results'):
+def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir='output/model_results'):
     """
     Generates asset-specific and aggregated platform cash flow outputs.
 

@@ -4,10 +4,10 @@ import os
 import sys
 
 # Add the backend directory to the Python path for module imports
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
 
-from core.database import get_mongo_client, insert_dataframe_to_mongodb
-from calculations.three_way_financials import generate_pnl, generate_cash_flow_statement, generate_balance_sheet
+from src.core.database import get_mongo_client, insert_dataframe_to_mongodb
+from src.calculations.three_way_financials import generate_pnl, generate_cash_flow_statement, generate_balance_sheet
 from config import MONGO_ASSET_OUTPUT_COLLECTION, MONGO_PNL_COLLECTION, MONGO_CASH_FLOW_STATEMENT_COLLECTION, MONGO_BALANCE_SHEET_COLLECTION
 
 def run_three_way_model():

@@ -2,7 +2,7 @@
 import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from config import DEFAULT_CAPEX_FUNDING_TYPE
+from ..config import DEFAULT_CAPEX_FUNDING_TYPE
 
 def calculate_opex_timeseries(assets, opex_assumptions, start_date, end_date):
     """

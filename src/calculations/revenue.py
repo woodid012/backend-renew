@@ -218,7 +218,7 @@ def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spread
         'avgEnergyPrice': avg_energy_price
     }
 
-def export_detailed_revenue(revenue_data_list, output_dir='results'):
+def export_detailed_revenue(revenue_data_list, output_dir='output/detailed_revenue'):
     """
     Export detailed revenue breakdown to JSON files.
     
@@ -258,7 +258,7 @@ def export_detailed_revenue(revenue_data_list, output_dir='results'):
     
     print(f"Exported combined detailed revenue to {combined_file}")
 
-def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_date, end_date, output_dir='results'):
+def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_date, end_date, output_dir='output/model_results'):
     """
     Calculates monthly revenue for each asset over a specified time period.
 

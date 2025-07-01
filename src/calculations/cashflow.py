@@ -1,6 +1,6 @@
 import pandas as pd
 from dateutil.relativedelta import relativedelta
-from config import ENABLE_TERMINAL_VALUE
+from ..config import ENABLE_TERMINAL_VALUE
 
 def aggregate_cashflows(revenue, opex, capex, debt_schedule, depreciation_df, end_date, assets_data, asset_cost_assumptions):
     """

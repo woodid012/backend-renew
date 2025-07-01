@@ -1,4 +1,5 @@
 import pandas as pd
+from ..config import DEFAULT_ASSET_LIFE_YEARS
 
 def calculate_straight_line_depreciation(capex_df, asset_life_years, model_start_date, model_end_date):
     """

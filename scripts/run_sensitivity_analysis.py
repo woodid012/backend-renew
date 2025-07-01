@@ -21,7 +21,7 @@ def run_main_model(scenario_file=None, scenario_id=None):
     """
     Runs the main cash flow model with an optional scenario file and ID.
     """
-    command = ["python", "main.py"]
+    command = ["python", "src/main.py"]
     if scenario_file:
         command.extend(["--scenario", scenario_file])
     if scenario_id:
@@ -34,7 +34,7 @@ def run_main_model(scenario_file=None, scenario_id=None):
         print(f"Error: {result.stderr}")
     return result.returncode == 0
 
-def run_sensitivity_analysis(config_file="sensitivity_config.json"):
+def run_sensitivity_analysis(config_file="config/sensitivity_config.json"):
     """
     Runs the sensitivity analysis based on the configuration file.
     """
