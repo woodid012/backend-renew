@@ -22,6 +22,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -49,6 +52,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -76,6 +82,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -103,6 +112,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -130,6 +142,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -157,6 +172,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -184,6 +202,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -211,6 +232,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -238,6 +262,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -265,6 +292,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -292,6 +322,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -319,6 +352,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -346,6 +382,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -373,6 +412,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -400,6 +442,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -427,6 +472,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -454,6 +502,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -481,6 +532,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -508,6 +562,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -535,6 +592,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -562,6 +622,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -589,6 +652,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -616,6 +682,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -643,6 +712,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -670,6 +742,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -697,6 +772,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":""
@@ -724,6 +802,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -751,6 +832,9 @@
         "depreciation":0.07859375,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.07859375,
+        "ebt":-0.07859375,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -778,6 +862,9 @@
         "depreciation":0.1571875,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.1571875,
+        "ebt":-0.1571875,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -805,6 +892,9 @@
         "depreciation":0.23578125,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.23578125,
+        "ebt":-0.23578125,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -832,6 +922,9 @@
         "depreciation":0.314375,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.314375,
+        "ebt":-0.314375,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -859,6 +952,9 @@
         "depreciation":0.39296875,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.39296875,
+        "ebt":-0.39296875,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -886,6 +982,9 @@
         "depreciation":0.4715625,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.4715625,
+        "ebt":-0.4715625,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -913,6 +1012,9 @@
         "depreciation":0.55015625,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.55015625,
+        "ebt":-0.55015625,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -940,6 +1042,9 @@
         "depreciation":0.62875,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.62875,
+        "ebt":-0.62875,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -967,6 +1072,9 @@
         "depreciation":0.70734375,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.70734375,
+        "ebt":-0.70734375,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -994,6 +1102,9 @@
         "depreciation":0.7859375,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.7859375,
+        "ebt":-0.7859375,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1021,6 +1132,9 @@
         "depreciation":0.86453125,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.86453125,
+        "ebt":-0.86453125,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1048,6 +1162,9 @@
         "depreciation":0.943125,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-0.943125,
+        "ebt":-0.943125,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1075,6 +1192,9 @@
         "depreciation":1.02171875,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.02171875,
+        "ebt":-1.02171875,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1102,6 +1222,9 @@
         "depreciation":1.1003125,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.1003125,
+        "ebt":-1.1003125,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1129,6 +1252,9 @@
         "depreciation":1.17890625,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.17890625,
+        "ebt":-1.17890625,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1156,6 +1282,9 @@
         "depreciation":1.2575,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.2575,
+        "ebt":-1.2575,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1183,6 +1312,9 @@
         "depreciation":1.33609375,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.33609375,
+        "ebt":-1.33609375,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1210,6 +1342,9 @@
         "depreciation":1.4146875,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.4146875,
+        "ebt":-1.4146875,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1237,6 +1372,9 @@
         "depreciation":1.49328125,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.49328125,
+        "ebt":-1.49328125,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1264,6 +1402,9 @@
         "depreciation":1.571875,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.571875,
+        "ebt":-1.571875,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1291,6 +1432,9 @@
         "depreciation":1.65046875,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.65046875,
+        "ebt":-1.65046875,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1318,6 +1462,9 @@
         "depreciation":1.7290625,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.7290625,
+        "ebt":-1.7290625,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1345,6 +1492,9 @@
         "depreciation":1.80765625,
         "cfads":0.0,
         "dscr":null,
+        "ebit":-1.80765625,
+        "ebt":-1.80765625,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-6.6018983853,
         "period_type":"C"
@@ -1372,8 +1522,11 @@
         "depreciation":1.88625,
         "cfads":2.4261666667,
         "dscr":null,
+        "ebit":0.5399166667,
+        "ebt":0.5399166667,
+        "tax_expense":0.161975,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4261666667,
+        "equity_cash_flow":2.2641916667,
         "period_type":"O"
     },
     {
@@ -1399,6 +1552,9 @@
         "depreciation":1.88625,
         "cfads":2.431207708,
         "dscr":0.4631022074,
+        "ebit":0.544957708,
+        "ebt":-3.8688588733,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.8186219605,
         "period_type":"O"
@@ -1426,8 +1582,11 @@
         "depreciation":1.88625,
         "cfads":2.4362574462,
         "dscr":null,
+        "ebit":0.5500074462,
+        "ebt":0.5500074462,
+        "tax_expense":0.1650022339,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4362574462,
+        "equity_cash_flow":2.2712552124,
         "period_type":"O"
     },
     {
@@ -1453,8 +1612,11 @@
         "depreciation":1.88625,
         "cfads":2.4413158962,
         "dscr":null,
+        "ebit":0.5550658962,
+        "ebt":0.5550658962,
+        "tax_expense":0.1665197689,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4413158962,
+        "equity_cash_flow":2.2747961274,
         "period_type":"O"
     },
     {
@@ -1480,6 +1642,9 @@
         "depreciation":1.88625,
         "cfads":2.4463830731,
         "dscr":0.4659928469,
+        "ebit":0.5601330731,
+        "ebt":-3.8536835082,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.8034465955,
         "period_type":"O"
@@ -1507,8 +1672,11 @@
         "depreciation":1.88625,
         "cfads":2.4514589918,
         "dscr":null,
+        "ebit":0.5652089918,
+        "ebt":0.5652089918,
+        "tax_expense":0.1695626976,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4514589918,
+        "equity_cash_flow":2.2818962943,
         "period_type":"O"
     },
     {
@@ -1534,8 +1702,11 @@
         "depreciation":1.88625,
         "cfads":2.4565436676,
         "dscr":null,
+        "ebit":0.5702936676,
+        "ebt":0.5702936676,
+        "tax_expense":0.1710881003,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4565436676,
+        "equity_cash_flow":2.2854555673,
         "period_type":"O"
     },
     {
@@ -1561,6 +1732,9 @@
         "depreciation":1.88625,
         "cfads":2.4616371154,
         "dscr":0.4688984731,
+        "ebit":0.5753871154,
+        "ebt":-3.8384294659,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.7881925531,
         "period_type":"O"
@@ -1588,8 +1762,11 @@
         "depreciation":1.88625,
         "cfads":2.4543435172,
         "dscr":null,
+        "ebit":0.5680935172,
+        "ebt":0.5680935172,
+        "tax_expense":0.1704280552,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4543435172,
+        "equity_cash_flow":2.283915462,
         "period_type":"O"
     },
     {
@@ -1615,8 +1792,11 @@
         "depreciation":1.88625,
         "cfads":2.4594545546,
         "dscr":null,
+        "ebit":0.5732045546,
+        "ebt":0.5732045546,
+        "tax_expense":0.1719613664,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4594545546,
+        "equity_cash_flow":2.2874931882,
         "period_type":"O"
     },
     {
@@ -1642,6 +1822,9 @@
         "depreciation":1.88625,
         "cfads":2.4645744097,
         "dscr":0.4694579758,
+        "ebit":0.5783244097,
+        "ebt":-3.8354921716,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.7852552589,
         "period_type":"O"
@@ -1669,8 +1852,11 @@
         "depreciation":1.88625,
         "cfads":2.4697030975,
         "dscr":null,
+        "ebit":0.5834530975,
+        "ebt":0.5834530975,
+        "tax_expense":0.1750359292,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4697030975,
+        "equity_cash_flow":2.2946671682,
         "period_type":"O"
     },
     {
@@ -1696,8 +1882,11 @@
         "depreciation":1.88625,
         "cfads":2.4748406333,
         "dscr":null,
+        "ebit":0.5885906333,
+        "ebt":0.5885906333,
+        "tax_expense":0.17657719,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4748406333,
+        "equity_cash_flow":2.2982634433,
         "period_type":"O"
     },
     {
@@ -1723,6 +1912,9 @@
         "depreciation":1.88625,
         "cfads":2.4799870325,
         "dscr":0.4631024472,
+        "ebit":0.5937370325,
+        "ebt":-3.7699187636,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.8751715241,
         "period_type":"O"
@@ -1750,8 +1942,11 @@
         "depreciation":1.88625,
         "cfads":2.4851423102,
         "dscr":null,
+        "ebit":0.5988923102,
+        "ebt":0.5988923102,
+        "tax_expense":0.1796676931,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4851423102,
+        "equity_cash_flow":2.3054746171,
         "period_type":"O"
     },
     {
@@ -1777,8 +1972,11 @@
         "depreciation":1.88625,
         "cfads":2.4903064818,
         "dscr":null,
+        "ebit":0.6040564818,
+        "ebt":0.6040564818,
+        "tax_expense":0.1812169445,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4903064818,
+        "equity_cash_flow":2.3090895373,
         "period_type":"O"
     },
     {
@@ -1804,6 +2002,9 @@
         "depreciation":1.88625,
         "cfads":2.4954795626,
         "dscr":0.4659954577,
+        "ebit":0.6092295626,
+        "ebt":-3.7544262334,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.8596789939,
         "period_type":"O"
@@ -1831,8 +2032,11 @@
         "depreciation":1.88625,
         "cfads":2.5006615681,
         "dscr":null,
+        "ebit":0.6144115681,
+        "ebt":0.6144115681,
+        "tax_expense":0.1843234704,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5006615681,
+        "equity_cash_flow":2.3163380977,
         "period_type":"O"
     },
     {
@@ -1858,8 +2062,11 @@
         "depreciation":1.88625,
         "cfads":2.5058525136,
         "dscr":null,
+        "ebit":0.6196025136,
+        "ebt":0.6196025136,
+        "tax_expense":0.1858807541,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5058525136,
+        "equity_cash_flow":2.3199717595,
         "period_type":"O"
     },
     {
@@ -1885,6 +2092,9 @@
         "depreciation":1.88625,
         "cfads":2.5110524145,
         "dscr":0.4689034672,
+        "ebit":0.6248024145,
+        "ebt":-3.7388533816,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.8441061421,
         "period_type":"O"
@@ -1912,8 +2122,11 @@
         "depreciation":1.88625,
         "cfads":2.5035555571,
         "dscr":null,
+        "ebit":0.6173055571,
+        "ebt":0.6173055571,
+        "tax_expense":0.1851916671,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5035555571,
+        "equity_cash_flow":2.31836389,
         "period_type":"O"
     },
     {
@@ -1939,8 +2152,11 @@
         "depreciation":1.88625,
         "cfads":2.5087734152,
         "dscr":null,
+        "ebit":0.6225234152,
+        "ebt":0.6225234152,
+        "tax_expense":0.1867570246,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5087734152,
+        "equity_cash_flow":2.3220163907,
         "period_type":"O"
     },
     {
@@ -1966,6 +2182,9 @@
         "depreciation":1.88625,
         "cfads":2.5140002752,
         "dscr":0.4694539384,
+        "ebit":0.6277502752,
+        "ebt":-3.7359055208,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.8411582813,
         "period_type":"O"
@@ -1993,8 +2212,11 @@
         "depreciation":1.88625,
         "cfads":2.5192361526,
         "dscr":null,
+        "ebit":0.6329861526,
+        "ebt":0.6329861526,
+        "tax_expense":0.1898958458,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5192361526,
+        "equity_cash_flow":2.3293403069,
         "period_type":"O"
     },
     {
@@ -2020,8 +2242,11 @@
         "depreciation":1.88625,
         "cfads":2.524481063,
         "dscr":null,
+        "ebit":0.638231063,
+        "ebt":0.638231063,
+        "tax_expense":0.1914693189,
         "terminal_value":0.0,
-        "equity_cash_flow":2.524481063,
+        "equity_cash_flow":2.3330117441,
         "period_type":"O"
     },
     {
@@ -2047,6 +2272,9 @@
         "depreciation":1.88625,
         "cfads":2.5297350219,
         "dscr":0.4631026883,
+        "ebit":0.6434850219,
+        "ebt":-3.6606806086,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.9328439827,
         "period_type":"O"
@@ -2074,8 +2302,11 @@
         "depreciation":1.88625,
         "cfads":2.5349980449,
         "dscr":null,
+        "ebit":0.6487480449,
+        "ebt":0.6487480449,
+        "tax_expense":0.1946244135,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5349980449,
+        "equity_cash_flow":2.3403736314,
         "period_type":"O"
     },
     {
@@ -2101,8 +2332,11 @@
         "depreciation":1.88625,
         "cfads":2.5402701477,
         "dscr":null,
+        "ebit":0.6540201477,
+        "ebt":0.6540201477,
+        "tax_expense":0.1962060443,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5402701477,
+        "equity_cash_flow":2.3440641034,
         "period_type":"O"
     },
     {
@@ -2128,6 +2362,9 @@
         "depreciation":1.88625,
         "cfads":2.5455513459,
         "dscr":0.4659980833,
+        "ebit":0.6593013459,
+        "ebt":-3.6448642845,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.9170276586,
         "period_type":"O"
@@ -2155,8 +2392,11 @@
         "depreciation":1.88625,
         "cfads":2.5508416553,
         "dscr":null,
+        "ebit":0.6645916553,
+        "ebt":0.6645916553,
+        "tax_expense":0.1993774966,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5508416553,
+        "equity_cash_flow":2.3514641587,
         "period_type":"O"
     },
     {
@@ -2182,8 +2422,11 @@
         "depreciation":1.88625,
         "cfads":2.5561410915,
         "dscr":null,
+        "ebit":0.6698910915,
+        "ebt":0.6698910915,
+        "tax_expense":0.2009673275,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5561410915,
+        "equity_cash_flow":2.3551737641,
         "period_type":"O"
     },
     {
@@ -2209,6 +2452,9 @@
         "depreciation":1.88625,
         "cfads":2.5614496704,
         "dscr":0.4689084896,
+        "ebit":0.6751996704,
+        "ebt":-3.6289659601,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.9011293342,
         "period_type":"O"
@@ -2236,8 +2482,11 @@
         "depreciation":1.88625,
         "cfads":2.5537440352,
         "dscr":null,
+        "ebit":0.6674940352,
+        "ebt":0.6674940352,
+        "tax_expense":0.2002482106,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5537440352,
+        "equity_cash_flow":2.3534958246,
         "period_type":"O"
     },
     {
@@ -2263,8 +2512,11 @@
         "depreciation":1.88625,
         "cfads":2.5590709465,
         "dscr":null,
+        "ebit":0.6728209465,
+        "ebt":0.6728209465,
+        "tax_expense":0.201846284,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5590709465,
+        "equity_cash_flow":2.3572246626,
         "period_type":"O"
     },
     {
@@ -2290,6 +2542,9 @@
         "depreciation":1.88625,
         "cfads":2.5644070479,
         "dscr":0.4694498781,
+        "ebit":0.6781570479,
+        "ebt":-3.6260085825,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.8981719566,
         "period_type":"O"
@@ -2317,8 +2572,11 @@
         "depreciation":1.88625,
         "cfads":2.5697523552,
         "dscr":null,
+        "ebit":0.6835023552,
+        "ebt":0.6835023552,
+        "tax_expense":0.2050507065,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5697523552,
+        "equity_cash_flow":2.3647016486,
         "period_type":"O"
     },
     {
@@ -2344,8 +2602,11 @@
         "depreciation":1.88625,
         "cfads":2.5751068841,
         "dscr":null,
+        "ebit":0.6888568841,
+        "ebt":0.6888568841,
+        "tax_expense":0.2066570652,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5751068841,
+        "equity_cash_flow":2.3684498189,
         "period_type":"O"
     },
     {
@@ -2371,6 +2632,9 @@
         "depreciation":1.88625,
         "cfads":2.5804706507,
         "dscr":0.4631029307,
+        "ebit":0.6942206507,
+        "ebt":-3.5404401772,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.9916613299,
         "period_type":"O"
@@ -2398,8 +2662,11 @@
         "depreciation":1.88625,
         "cfads":2.5858436709,
         "dscr":null,
+        "ebit":0.6995936709,
+        "ebt":0.6995936709,
+        "tax_expense":0.2098781013,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5858436709,
+        "equity_cash_flow":2.3759655697,
         "period_type":"O"
     },
     {
@@ -2425,8 +2692,11 @@
         "depreciation":1.88625,
         "cfads":2.5912259607,
         "dscr":null,
+        "ebit":0.7049759607,
+        "ebt":0.7049759607,
+        "tax_expense":0.2114927882,
         "terminal_value":0.0,
-        "equity_cash_flow":2.5912259607,
+        "equity_cash_flow":2.3797331725,
         "period_type":"O"
     },
     {
@@ -2452,6 +2722,9 @@
         "depreciation":1.88625,
         "cfads":2.596617536,
         "dscr":0.4660007238,
+        "ebit":0.710367536,
+        "ebt":-3.524293292,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.9755144447,
         "period_type":"O"
@@ -2479,8 +2752,11 @@
         "depreciation":1.88625,
         "cfads":2.6020184128,
         "dscr":null,
+        "ebit":0.7157684128,
+        "ebt":0.7157684128,
+        "tax_expense":0.2147305238,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6020184128,
+        "equity_cash_flow":2.387287889,
         "period_type":"O"
     },
     {
@@ -2506,8 +2782,11 @@
         "depreciation":1.88625,
         "cfads":2.6074286073,
         "dscr":null,
+        "ebit":0.7211786073,
+        "ebt":0.7211786073,
+        "tax_expense":0.2163535822,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6074286073,
+        "equity_cash_flow":2.3910750251,
         "period_type":"O"
     },
     {
@@ -2533,6 +2812,9 @@
         "depreciation":1.88625,
         "cfads":2.6128481354,
         "dscr":0.4689135405,
+        "ebit":0.7265981354,
+        "ebt":-3.5080626926,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.9592838453,
         "period_type":"O"
@@ -2560,8 +2842,11 @@
         "depreciation":1.88625,
         "cfads":2.6049280566,
         "dscr":null,
+        "ebit":0.7186780566,
+        "ebt":0.7186780566,
+        "tax_expense":0.215603417,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6049280566,
+        "equity_cash_flow":2.3893246396,
         "period_type":"O"
     },
     {
@@ -2587,8 +2872,11 @@
         "depreciation":1.88625,
         "cfads":2.6103663004,
         "dscr":null,
+        "ebit":0.7241163004,
+        "ebt":0.7241163004,
+        "tax_expense":0.2172348901,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6103663004,
+        "equity_cash_flow":2.3931314103,
         "period_type":"O"
     },
     {
@@ -2614,6 +2902,9 @@
         "depreciation":1.88625,
         "cfads":2.6158139263,
         "dscr":0.4694457948,
+        "ebit":0.7295639263,
+        "ebt":-3.5050969017,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-2.9563180544,
         "period_type":"O"
@@ -2641,8 +2932,11 @@
         "depreciation":1.88625,
         "cfads":2.6212709505,
         "dscr":null,
+        "ebit":0.7350209505,
+        "ebt":0.7350209505,
+        "tax_expense":0.2205062851,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6212709505,
+        "equity_cash_flow":2.4007646653,
         "period_type":"O"
     },
     {
@@ -2668,8 +2962,11 @@
         "depreciation":1.88625,
         "cfads":2.6267373891,
         "dscr":null,
+        "ebit":0.7404873891,
+        "ebt":0.7404873891,
+        "tax_expense":0.2221462167,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6267373891,
+        "equity_cash_flow":2.4045911724,
         "period_type":"O"
     },
     {
@@ -2695,6 +2992,9 @@
         "depreciation":1.88625,
         "cfads":2.6322132584,
         "dscr":0.4631031746,
+        "ebit":0.7459632584,
+        "ebt":-3.4084493004,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.0516459825,
         "period_type":"O"
@@ -2722,8 +3022,11 @@
         "depreciation":1.88625,
         "cfads":2.6376985748,
         "dscr":null,
+        "ebit":0.7514485748,
+        "ebt":0.7514485748,
+        "tax_expense":0.2254345724,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6376985748,
+        "equity_cash_flow":2.4122640023,
         "period_type":"O"
     },
     {
@@ -2749,8 +3052,11 @@
         "depreciation":1.88625,
         "cfads":2.6431933544,
         "dscr":null,
+        "ebit":0.7569433544,
+        "ebt":0.7569433544,
+        "tax_expense":0.2270830063,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6431933544,
+        "equity_cash_flow":2.4161103481,
         "period_type":"O"
     },
     {
@@ -2776,6 +3082,9 @@
         "depreciation":1.88625,
         "cfads":2.6486976136,
         "dscr":0.4660033793,
+        "ebit":0.7624476136,
+        "ebt":-3.3919649452,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.0351616273,
         "period_type":"O"
@@ -2803,8 +3112,11 @@
         "depreciation":1.88625,
         "cfads":2.6542113687,
         "dscr":null,
+        "ebit":0.7679613687,
+        "ebt":0.7679613687,
+        "tax_expense":0.2303884106,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6542113687,
+        "equity_cash_flow":2.4238229581,
         "period_type":"O"
     },
     {
@@ -2830,8 +3142,11 @@
         "depreciation":1.88625,
         "cfads":2.6597346363,
         "dscr":null,
+        "ebit":0.7734846363,
+        "ebt":0.7734846363,
+        "tax_expense":0.2320453909,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6597346363,
+        "equity_cash_flow":2.4276892454,
         "period_type":"O"
     },
     {
@@ -2857,6 +3172,9 @@
         "depreciation":1.88625,
         "cfads":2.6652674325,
         "dscr":0.4689186202,
+        "ebit":0.7790174325,
+        "ebt":-3.3753951263,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.0185918084,
         "period_type":"O"
@@ -2884,8 +3202,11 @@
         "depreciation":1.88625,
         "cfads":2.6571270934,
         "dscr":null,
+        "ebit":0.7708770934,
+        "ebt":0.7708770934,
+        "tax_expense":0.231263128,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6571270934,
+        "equity_cash_flow":2.4258639654,
         "period_type":"O"
     },
     {
@@ -2911,8 +3232,11 @@
         "depreciation":1.88625,
         "cfads":2.6626789965,
         "dscr":null,
+        "ebit":0.7764289965,
+        "ebt":0.7764289965,
+        "tax_expense":0.2329286989,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6626789965,
+        "equity_cash_flow":2.4297502975,
         "period_type":"O"
     },
     {
@@ -2938,6 +3262,9 @@
         "depreciation":1.88625,
         "cfads":2.6682404778,
         "dscr":0.4694416882,
+        "ebit":0.7819904778,
+        "ebt":-3.3724220811,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.0156187632,
         "period_type":"O"
@@ -2965,8 +3292,11 @@
         "depreciation":1.88625,
         "cfads":2.6738115537,
         "dscr":null,
+        "ebit":0.7875615537,
+        "ebt":0.7875615537,
+        "tax_expense":0.2362684661,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6738115537,
+        "equity_cash_flow":2.4375430876,
         "period_type":"O"
     },
     {
@@ -2992,8 +3322,11 @@
         "depreciation":1.88625,
         "cfads":2.6793922409,
         "dscr":null,
+        "ebit":0.7931422409,
+        "ebt":0.7931422409,
+        "tax_expense":0.2379426723,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6793922409,
+        "equity_cash_flow":2.4414495686,
         "period_type":"O"
     },
     {
@@ -3019,6 +3352,9 @@
         "depreciation":1.88625,
         "cfads":2.6849825559,
         "dscr":0.4631034198,
+        "ebit":0.7987325559,
+        "ebt":-3.263913202,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.1128207875,
         "period_type":"O"
@@ -3046,8 +3382,11 @@
         "depreciation":1.88625,
         "cfads":2.6905825154,
         "dscr":null,
+        "ebit":0.8043325154,
+        "ebt":0.8043325154,
+        "tax_expense":0.2412997546,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6905825154,
+        "equity_cash_flow":2.4492827608,
         "period_type":"O"
     },
     {
@@ -3073,8 +3412,11 @@
         "depreciation":1.88625,
         "cfads":2.6961921359,
         "dscr":null,
+        "ebit":0.8099421359,
+        "ebt":0.8099421359,
+        "tax_expense":0.2429826408,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6961921359,
+        "equity_cash_flow":2.4532094951,
         "period_type":"O"
     },
     {
@@ -3100,6 +3442,9 @@
         "depreciation":1.88625,
         "cfads":2.7018114341,
         "dscr":0.4660060499,
+        "ebit":0.8155614341,
+        "ebt":-3.2470843238,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.0959919094,
         "period_type":"O"
@@ -3127,8 +3472,11 @@
         "depreciation":1.88625,
         "cfads":2.7074404267,
         "dscr":null,
+        "ebit":0.8211904267,
+        "ebt":0.8211904267,
+        "tax_expense":0.246357128,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7074404267,
+        "equity_cash_flow":2.4610832987,
         "period_type":"O"
     },
     {
@@ -3154,8 +3502,11 @@
         "depreciation":1.88625,
         "cfads":2.7130791305,
         "dscr":null,
+        "ebit":0.8268291305,
+        "ebt":0.8268291305,
+        "tax_expense":0.2480487392,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7130791305,
+        "equity_cash_flow":2.4650303914,
         "period_type":"O"
     },
     {
@@ -3181,6 +3532,9 @@
         "depreciation":1.88625,
         "cfads":2.7187275622,
         "dscr":0.4689237287,
+        "ebit":0.8324775622,
+        "ebt":-3.2301681956,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.0790757812,
         "period_type":"O"
@@ -3208,8 +3562,11 @@
         "depreciation":1.88625,
         "cfads":2.710360991,
         "dscr":null,
+        "ebit":0.824110991,
+        "ebt":0.824110991,
+        "tax_expense":0.2472332973,
         "terminal_value":0.0,
-        "equity_cash_flow":2.710360991,
+        "equity_cash_flow":2.4631276937,
         "period_type":"O"
     },
     {
@@ -3235,8 +3592,11 @@
         "depreciation":1.88625,
         "cfads":2.7160289289,
         "dscr":null,
+        "ebit":0.8297789289,
+        "ebt":0.8297789289,
+        "tax_expense":0.2489336787,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7160289289,
+        "equity_cash_flow":2.4670952502,
         "period_type":"O"
     },
     {
@@ -3262,6 +3622,9 @@
         "depreciation":1.88625,
         "cfads":2.7217066451,
         "dscr":0.4694375583,
+        "ebit":0.8354566451,
+        "ebt":-3.2271891128,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.0760966983,
         "period_type":"O"
@@ -3289,8 +3652,11 @@
         "depreciation":1.88625,
         "cfads":2.7273941566,
         "dscr":null,
+        "ebit":0.8411441566,
+        "ebt":0.8411441566,
+        "tax_expense":0.252343247,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7273941566,
+        "equity_cash_flow":2.4750509096,
         "period_type":"O"
     },
     {
@@ -3316,8 +3682,11 @@
         "depreciation":1.88625,
         "cfads":2.7330914801,
         "dscr":null,
+        "ebit":0.8468414801,
+        "ebt":0.8468414801,
+        "tax_expense":0.254052444,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7330914801,
+        "equity_cash_flow":2.4790390361,
         "period_type":"O"
     },
     {
@@ -3343,6 +3712,9 @@
         "depreciation":1.88625,
         "cfads":2.7387986327,
         "dscr":0.4631036665,
+        "ebit":0.8525486327,
+        "ebt":-3.10598767,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.1752090311,
         "period_type":"O"
@@ -3370,8 +3742,11 @@
         "depreciation":1.88625,
         "cfads":2.7445156313,
         "dscr":null,
+        "ebit":0.8582656313,
+        "ebt":0.8582656313,
+        "tax_expense":0.2574796894,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7445156313,
+        "equity_cash_flow":2.4870359419,
         "period_type":"O"
     },
     {
@@ -3397,8 +3772,11 @@
         "depreciation":1.88625,
         "cfads":2.7502424929,
         "dscr":null,
+        "ebit":0.8639924929,
+        "ebt":0.8639924929,
+        "tax_expense":0.2591977479,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7502424929,
+        "equity_cash_flow":2.491044745,
         "period_type":"O"
     },
     {
@@ -3424,6 +3802,9 @@
         "depreciation":1.88625,
         "cfads":2.7559792344,
         "dscr":0.4660087357,
+        "ebit":0.8697292344,
+        "ebt":-3.0888070683,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.1580284294,
         "period_type":"O"
@@ -3451,8 +3832,11 @@
         "depreciation":1.88625,
         "cfads":2.761725873,
         "dscr":null,
+        "ebit":0.875475873,
+        "ebt":0.875475873,
+        "tax_expense":0.2626427619,
         "terminal_value":0.0,
-        "equity_cash_flow":2.761725873,
+        "equity_cash_flow":2.4990831111,
         "period_type":"O"
     },
     {
@@ -3478,8 +3862,11 @@
         "depreciation":1.88625,
         "cfads":2.7674824258,
         "dscr":null,
+        "ebit":0.8812324258,
+        "ebt":0.8812324258,
+        "tax_expense":0.2643697277,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7674824258,
+        "equity_cash_flow":2.503112698,
         "period_type":"O"
     },
     {
@@ -3505,6 +3892,9 @@
         "depreciation":1.88625,
         "cfads":2.7732489097,
         "dscr":0.4689288664,
+        "ebit":0.8869989097,
+        "ebt":-3.0715373931,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.1407587541,
         "period_type":"O"
@@ -3532,8 +3922,11 @@
         "depreciation":1.88625,
         "cfads":2.7646499756,
         "dscr":null,
+        "ebit":0.8783999756,
+        "ebt":0.8783999756,
+        "tax_expense":0.2635199927,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7646499756,
+        "equity_cash_flow":2.5011299829,
         "period_type":"O"
     },
     {
@@ -3559,8 +3952,11 @@
         "depreciation":1.88625,
         "cfads":2.7704363734,
         "dscr":null,
+        "ebit":0.8841863734,
+        "ebt":0.8841863734,
+        "tax_expense":0.265255912,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7704363734,
+        "equity_cash_flow":2.5051804614,
         "period_type":"O"
     },
     {
@@ -3586,6 +3982,9 @@
         "depreciation":1.88625,
         "cfads":2.7762327539,
         "dscr":0.4694334049,
+        "ebit":0.8899827539,
+        "ebt":-3.0685535488,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.1377749099,
         "period_type":"O"
@@ -3613,8 +4012,11 @@
         "depreciation":1.88625,
         "cfads":2.7820391344,
         "dscr":null,
+        "ebit":0.8957891344,
+        "ebt":0.8957891344,
+        "tax_expense":0.2687367403,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7820391344,
+        "equity_cash_flow":2.5133023941,
         "period_type":"O"
     },
     {
@@ -3640,8 +4042,11 @@
         "depreciation":1.88625,
         "cfads":2.787855532,
         "dscr":null,
+        "ebit":0.901605532,
+        "ebt":0.901605532,
+        "tax_expense":0.2704816596,
         "terminal_value":0.0,
-        "equity_cash_flow":2.787855532,
+        "equity_cash_flow":2.5173738724,
         "period_type":"O"
     },
     {
@@ -3667,6 +4072,9 @@
         "depreciation":1.88625,
         "cfads":2.7936819641,
         "dscr":0.4631039145,
+        "ebit":0.9074319641,
+        "ebt":-2.933776057,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2388344462,
         "period_type":"O"
@@ -3694,8 +4102,11 @@
         "depreciation":1.88625,
         "cfads":2.7995184479,
         "dscr":null,
+        "ebit":0.9132684479,
+        "ebt":0.9132684479,
+        "tax_expense":0.2739805344,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7995184479,
+        "equity_cash_flow":2.5255379136,
         "period_type":"O"
     },
     {
@@ -3721,8 +4132,11 @@
         "depreciation":1.88625,
         "cfads":2.8053650009,
         "dscr":null,
+        "ebit":0.9191150009,
+        "ebt":0.9191150009,
+        "tax_expense":0.2757345003,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8053650009,
+        "equity_cash_flow":2.5296305006,
         "period_type":"O"
     },
     {
@@ -3748,6 +4162,9 @@
         "depreciation":1.88625,
         "cfads":2.8112216404,
         "dscr":0.4660114369,
+        "ebit":0.9249716404,
+        "ebt":-2.9162363807,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2212947699,
         "period_type":"O"
@@ -3775,8 +4192,11 @@
         "depreciation":1.88625,
         "cfads":2.8170883837,
         "dscr":null,
+        "ebit":0.9308383837,
+        "ebt":0.9308383837,
+        "tax_expense":0.2792515151,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8170883837,
+        "equity_cash_flow":2.5378368686,
         "period_type":"O"
     },
     {
@@ -3802,8 +4222,11 @@
         "depreciation":1.88625,
         "cfads":2.8229652484,
         "dscr":null,
+        "ebit":0.9367152484,
+        "ebt":0.9367152484,
+        "tax_expense":0.2810145745,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8229652484,
+        "equity_cash_flow":2.5419506739,
         "period_type":"O"
     },
     {
@@ -3829,6 +4252,9 @@
         "depreciation":1.88625,
         "cfads":2.8288522518,
         "dscr":0.4689340334,
+        "ebit":0.9426022518,
+        "ebt":-2.8986057693,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2036641584,
         "period_type":"O"
@@ -3856,8 +4282,11 @@
         "depreciation":1.88625,
         "cfads":2.8200146611,
         "dscr":null,
+        "ebit":0.9337646611,
+        "ebt":0.9337646611,
+        "tax_expense":0.2801293983,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8200146611,
+        "equity_cash_flow":2.5398852627,
         "period_type":"O"
     },
     {
@@ -3883,8 +4312,11 @@
         "depreciation":1.88625,
         "cfads":2.8259219946,
         "dscr":null,
+        "ebit":0.9396719946,
+        "ebt":0.9396719946,
+        "tax_expense":0.2819015984,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8259219946,
+        "equity_cash_flow":2.5440203962,
         "period_type":"O"
     },
     {
@@ -3910,6 +4342,9 @@
         "depreciation":1.88625,
         "cfads":2.8318395194,
         "dscr":0.4694292277,
+        "ebit":0.9455895194,
+        "ebt":-2.8956185017,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2006768908,
         "period_type":"O"
@@ -3937,8 +4372,11 @@
         "depreciation":1.88625,
         "cfads":2.8377672532,
         "dscr":null,
+        "ebit":0.9515172532,
+        "ebt":0.9515172532,
+        "tax_expense":0.285455176,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8377672532,
+        "equity_cash_flow":2.5523120772,
         "period_type":"O"
     },
     {
@@ -3964,8 +4402,11 @@
         "depreciation":1.88625,
         "cfads":2.8437052135,
         "dscr":null,
+        "ebit":0.9574552135,
+        "ebt":0.9574552135,
+        "tax_expense":0.2872365641,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8437052135,
+        "equity_cash_flow":2.5564686495,
         "period_type":"O"
     },
     {
@@ -3991,6 +4432,9 @@
         "depreciation":1.88625,
         "cfads":2.849653418,
         "dscr":0.463104164,
+        "ebit":0.963403418,
+        "ebt":-2.7463260997,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.3037212211,
         "period_type":"O"
@@ -4018,8 +4462,11 @@
         "depreciation":1.88625,
         "cfads":2.8556118844,
         "dscr":null,
+        "ebit":0.9693618844,
+        "ebt":0.9693618844,
+        "tax_expense":0.2908085653,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8556118844,
+        "equity_cash_flow":2.5648033191,
         "period_type":"O"
     },
     {
@@ -4045,8 +4492,11 @@
         "depreciation":1.88625,
         "cfads":2.8615806303,
         "dscr":null,
+        "ebit":0.9753306303,
+        "ebt":0.9753306303,
+        "tax_expense":0.2925991891,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8615806303,
+        "equity_cash_flow":2.5689814412,
         "period_type":"O"
     },
     {
@@ -4072,6 +4522,9 @@
         "depreciation":1.88625,
         "cfads":2.8675596736,
         "dscr":0.4660141535,
+        "ebit":0.9813096736,
+        "ebt":-2.7284198442,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2858149656,
         "period_type":"O"
@@ -4099,8 +4552,11 @@
         "depreciation":1.88625,
         "cfads":2.8735490318,
         "dscr":null,
+        "ebit":0.9872990318,
+        "ebt":0.9872990318,
+        "tax_expense":0.2961897096,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8735490318,
+        "equity_cash_flow":2.5773593223,
         "period_type":"O"
     },
     {
@@ -4126,8 +4582,11 @@
         "depreciation":1.88625,
         "cfads":2.879548723,
         "dscr":null,
+        "ebit":0.993298723,
+        "ebt":0.993298723,
+        "tax_expense":0.2979896169,
         "terminal_value":0.0,
-        "equity_cash_flow":2.879548723,
+        "equity_cash_flow":2.5815591061,
         "period_type":"O"
     },
     {
@@ -4153,6 +4612,9 @@
         "depreciation":1.88625,
         "cfads":2.8855587648,
         "dscr":0.4689392299,
+        "ebit":0.9993087648,
+        "ebt":-2.7104207529,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2678158743,
         "period_type":"O"
@@ -4180,8 +4642,11 @@
         "depreciation":1.88625,
         "cfads":2.8764760559,
         "dscr":null,
+        "ebit":0.9902260559,
+        "ebt":0.9902260559,
+        "tax_expense":0.2970678168,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8764760559,
+        "equity_cash_flow":2.5794082391,
         "period_type":"O"
     },
     {
@@ -4207,8 +4672,11 @@
         "depreciation":1.88625,
         "cfads":2.8825068527,
         "dscr":null,
+        "ebit":0.9962568527,
+        "ebt":0.9962568527,
+        "tax_expense":0.2988770558,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8825068527,
+        "equity_cash_flow":2.5836297969,
         "period_type":"O"
     },
     {
@@ -4234,6 +4702,9 @@
         "depreciation":1.88625,
         "cfads":2.8885480538,
         "dscr":0.4694250266,
+        "ebit":1.0022980538,
+        "ebt":-2.7074314639,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2648265853,
         "period_type":"O"
@@ -4261,8 +4732,11 @@
         "depreciation":1.88625,
         "cfads":2.8945996772,
         "dscr":null,
+        "ebit":1.0083496772,
+        "ebt":1.0083496772,
+        "tax_expense":0.3025049032,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8945996772,
+        "equity_cash_flow":2.5920947741,
         "period_type":"O"
     },
     {
@@ -4288,8 +4762,11 @@
         "depreciation":1.88625,
         "cfads":2.9006617409,
         "dscr":null,
+        "ebit":1.0144117409,
+        "ebt":1.0144117409,
+        "tax_expense":0.3043235223,
         "terminal_value":0.0,
-        "equity_cash_flow":2.9006617409,
+        "equity_cash_flow":2.5963382187,
         "period_type":"O"
     },
     {
@@ -4315,6 +4792,9 @@
         "depreciation":1.88625,
         "cfads":2.9067342629,
         "dscr":0.4631044149,
+        "ebit":1.0204842629,
+        "ebt":-2.5426265475,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.369894008,
         "period_type":"O"
@@ -4342,8 +4822,11 @@
         "depreciation":1.88625,
         "cfads":2.9128172612,
         "dscr":null,
+        "ebit":1.0265672612,
+        "ebt":1.0265672612,
+        "tax_expense":0.3079701784,
         "terminal_value":0.0,
-        "equity_cash_flow":2.9128172612,
+        "equity_cash_flow":2.6048470829,
         "period_type":"O"
     },
     {
@@ -4369,8 +4852,11 @@
         "depreciation":1.88625,
         "cfads":2.918910754,
         "dscr":null,
+        "ebit":1.032660754,
+        "ebt":1.032660754,
+        "tax_expense":0.3097982262,
         "terminal_value":0.0,
-        "equity_cash_flow":2.918910754,
+        "equity_cash_flow":2.6091125278,
         "period_type":"O"
     },
     {
@@ -4396,6 +4882,9 @@
         "depreciation":1.88625,
         "cfads":2.9250147592,
         "dscr":0.4660168856,
+        "ebit":1.0387647592,
+        "ebt":-2.5243460513,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.3516135117,
         "period_type":"O"
@@ -4423,8 +4912,11 @@
         "depreciation":1.88625,
         "cfads":2.9311292951,
         "dscr":null,
+        "ebit":1.0448792951,
+        "ebt":1.0448792951,
+        "tax_expense":0.3134637885,
         "terminal_value":0.0,
-        "equity_cash_flow":2.9311292951,
+        "equity_cash_flow":2.6176655065,
         "period_type":"O"
     },
     {
@@ -4450,8 +4942,11 @@
         "depreciation":1.88625,
         "cfads":2.9372543797,
         "dscr":null,
+        "ebit":1.0510043797,
+        "ebt":1.0510043797,
+        "tax_expense":0.3153013139,
         "terminal_value":0.0,
-        "equity_cash_flow":2.9372543797,
+        "equity_cash_flow":2.6219530658,
         "period_type":"O"
     },
     {
@@ -4477,6 +4972,9 @@
         "depreciation":1.88625,
         "cfads":2.9433900314,
         "dscr":0.4689444562,
+        "ebit":1.0571400314,
+        "ebt":-2.505970779,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.3332382395,
         "period_type":"O"
@@ -4504,8 +5002,11 @@
         "depreciation":1.88625,
         "cfads":2.9340555711,
         "dscr":null,
+        "ebit":1.0478055711,
+        "ebt":1.0478055711,
+        "tax_expense":0.3143416713,
         "terminal_value":0.0,
-        "equity_cash_flow":2.9340555711,
+        "equity_cash_flow":2.6197138998,
         "period_type":"O"
     },
     {
@@ -4531,8 +5032,11 @@
         "depreciation":1.88625,
         "cfads":2.9402124116,
         "dscr":null,
+        "ebit":1.0539624116,
+        "ebt":1.0539624116,
+        "tax_expense":0.3161887235,
         "terminal_value":0.0,
-        "equity_cash_flow":2.9402124116,
+        "equity_cash_flow":2.6240236881,
         "period_type":"O"
     },
     {
@@ -4558,6 +5062,9 @@
         "depreciation":1.88625,
         "cfads":2.9463798738,
         "dscr":0.4694208015,
+        "ebit":1.0601298738,
+        "ebt":-2.5029809367,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.3302483971,
         "period_type":"O"
@@ -4585,8 +5092,11 @@
         "depreciation":1.88625,
         "cfads":2.9525579762,
         "dscr":null,
+        "ebit":1.0663079762,
+        "ebt":1.0663079762,
+        "tax_expense":0.3198923928,
         "terminal_value":0.0,
-        "equity_cash_flow":2.9525579762,
+        "equity_cash_flow":2.6326655833,
         "period_type":"O"
     },
     {
@@ -4612,8 +5122,11 @@
         "depreciation":1.88625,
         "cfads":4.8758506722,
         "dscr":null,
+        "ebit":2.9896006722,
+        "ebt":2.9896006722,
+        "tax_expense":0.8968802017,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8758506722,
+        "equity_cash_flow":3.9789704705,
         "period_type":"O"
     },
     {
@@ -4639,6 +5152,9 @@
         "depreciation":1.88625,
         "cfads":4.8853575022,
         "dscr":0.5959541322,
+        "ebit":2.9991075022,
+        "ebt":-0.4011922607,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.3121819368,
         "period_type":"O"
@@ -4666,8 +5182,11 @@
         "depreciation":1.88625,
         "cfads":4.8948807333,
         "dscr":null,
+        "ebit":3.0086307333,
+        "ebt":3.0086307333,
+        "tax_expense":0.90258922,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8948807333,
+        "equity_cash_flow":3.9922915133,
         "period_type":"O"
     },
     {
@@ -4693,8 +5212,11 @@
         "depreciation":1.88625,
         "cfads":4.904420394,
         "dscr":null,
+        "ebit":3.018170394,
+        "ebt":3.018170394,
+        "tax_expense":0.9054511182,
         "terminal_value":0.0,
-        "equity_cash_flow":4.904420394,
+        "equity_cash_flow":3.9989692758,
         "period_type":"O"
     },
     {
@@ -4720,6 +5242,9 @@
         "depreciation":1.88625,
         "cfads":4.9139765126,
         "dscr":0.599445303,
+        "ebit":3.0277265126,
+        "ebt":-0.3725732503,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2835629264,
         "period_type":"O"
@@ -4747,8 +5272,11 @@
         "depreciation":1.88625,
         "cfads":4.9235491173,
         "dscr":null,
+        "ebit":3.0372991173,
+        "ebt":3.0372991173,
+        "tax_expense":0.9111897352,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9235491173,
+        "equity_cash_flow":4.0123593821,
         "period_type":"O"
     },
     {
@@ -4774,8 +5302,11 @@
         "depreciation":1.88625,
         "cfads":4.9331382368,
         "dscr":null,
+        "ebit":3.0468882368,
+        "ebt":3.0468882368,
+        "tax_expense":0.914066471,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9331382368,
+        "equity_cash_flow":4.0190717657,
         "period_type":"O"
     },
     {
@@ -4801,6 +5332,9 @@
         "depreciation":1.88625,
         "cfads":4.9427438994,
         "dscr":0.6029545739,
+        "ebit":3.0564938994,
+        "ebt":-0.3438058635,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2547955396,
         "period_type":"O"
@@ -4828,8 +5362,11 @@
         "depreciation":1.88625,
         "cfads":4.9226527064,
         "dscr":null,
+        "ebit":3.0364027064,
+        "ebt":3.0364027064,
+        "tax_expense":0.9109208119,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9226527064,
+        "equity_cash_flow":4.0117318945,
         "period_type":"O"
     },
     {
@@ -4855,8 +5392,11 @@
         "depreciation":1.88625,
         "cfads":4.9322676544,
         "dscr":null,
+        "ebit":3.0460176544,
+        "ebt":3.0460176544,
+        "tax_expense":0.9138052963,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9322676544,
+        "equity_cash_flow":4.0184623581,
         "period_type":"O"
     },
     {
@@ -4882,6 +5422,9 @@
         "depreciation":1.88625,
         "cfads":4.9418991901,
         "dscr":0.6028515296,
+        "ebit":3.0556491901,
+        "ebt":-0.3446505728,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.2556402489,
         "period_type":"O"
@@ -4909,8 +5452,11 @@
         "depreciation":1.88625,
         "cfads":4.9515473421,
         "dscr":null,
+        "ebit":3.0652973421,
+        "ebt":3.0652973421,
+        "tax_expense":0.9195892026,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9515473421,
+        "equity_cash_flow":4.0319581395,
         "period_type":"O"
     },
     {
@@ -4936,8 +5482,11 @@
         "depreciation":1.88625,
         "cfads":4.9612121392,
         "dscr":null,
+        "ebit":3.0749621392,
+        "ebt":3.0749621392,
+        "tax_expense":0.9224886418,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9612121392,
+        "equity_cash_flow":4.0387234974,
         "period_type":"O"
     },
     {
@@ -4963,6 +5512,9 @@
         "depreciation":1.88625,
         "cfads":4.97089361,
         "dscr":0.5973390337,
+        "ebit":3.08464361,
+        "ebt":-0.0278217723,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.3508354751,
         "period_type":"O"
@@ -4990,8 +5542,11 @@
         "depreciation":1.88625,
         "cfads":4.9805917833,
         "dscr":null,
+        "ebit":3.0943417833,
+        "ebt":3.0943417833,
+        "tax_expense":0.928302535,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9805917833,
+        "equity_cash_flow":4.0522892483,
         "period_type":"O"
     },
     {
@@ -5017,8 +5572,11 @@
         "depreciation":1.88625,
         "cfads":4.9903066879,
         "dscr":null,
+        "ebit":3.1040566879,
+        "ebt":3.1040566879,
+        "tax_expense":0.9312170064,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9903066879,
+        "equity_cash_flow":4.0590896815,
         "period_type":"O"
     },
     {
@@ -5044,8 +5602,11 @@
         "depreciation":1.88625,
         "cfads":5.0000383527,
         "dscr":0.6008412797,
+        "ebit":3.1137883527,
+        "ebt":0.0013229704,
+        "tax_expense":0.0003968911,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.3216907324,
+        "equity_cash_flow":-3.3220876235,
         "period_type":"O"
     },
     {
@@ -5071,8 +5632,11 @@
         "depreciation":1.88625,
         "cfads":5.0097868066,
         "dscr":null,
+        "ebit":3.1235368066,
+        "ebt":3.1235368066,
+        "tax_expense":0.937061042,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0097868066,
+        "equity_cash_flow":4.0727257646,
         "period_type":"O"
     },
     {
@@ -5098,8 +5662,11 @@
         "depreciation":1.88625,
         "cfads":5.0195520785,
         "dscr":null,
+        "ebit":3.1333020785,
+        "ebt":3.1333020785,
+        "tax_expense":0.9399906236,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0195520785,
+        "equity_cash_flow":4.079561455,
         "period_type":"O"
     },
     {
@@ -5125,8 +5692,11 @@
         "depreciation":1.88625,
         "cfads":5.0293341975,
         "dscr":0.6043616833,
+        "ebit":3.1430841975,
+        "ebt":0.0306188152,
+        "tax_expense":0.0091856446,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.2923948876,
+        "equity_cash_flow":-3.3015805322,
         "period_type":"O"
     },
     {
@@ -5152,8 +5722,11 @@
         "depreciation":1.88625,
         "cfads":4.9740690763,
         "dscr":null,
+        "ebit":3.0878190763,
+        "ebt":3.0878190763,
+        "tax_expense":0.9263457229,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9740690763,
+        "equity_cash_flow":4.0477233534,
         "period_type":"O"
     },
     {
@@ -5179,8 +5752,11 @@
         "depreciation":1.88625,
         "cfads":4.9838007874,
         "dscr":null,
+        "ebit":3.0975507874,
+        "ebt":3.0975507874,
+        "tax_expense":0.9292652362,
         "terminal_value":0.0,
-        "equity_cash_flow":4.9838007874,
+        "equity_cash_flow":4.0545355511,
         "period_type":"O"
     },
     {
@@ -5206,6 +5782,9 @@
         "depreciation":1.88625,
         "cfads":4.9935492875,
         "dscr":0.600061506,
+        "ebit":3.1072992875,
+        "ebt":-0.0051660947,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.3281797976,
         "period_type":"O"
@@ -5233,8 +5812,11 @@
         "depreciation":1.88625,
         "cfads":5.0033146059,
         "dscr":null,
+        "ebit":3.1170646059,
+        "ebt":3.1170646059,
+        "tax_expense":0.9351193818,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0033146059,
+        "equity_cash_flow":4.0681952241,
         "period_type":"O"
     },
     {
@@ -5260,8 +5842,11 @@
         "depreciation":1.88625,
         "cfads":5.0130967713,
         "dscr":null,
+        "ebit":3.1268467713,
+        "ebt":3.1268467713,
+        "tax_expense":0.9380540314,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0130967713,
+        "equity_cash_flow":4.0750427399,
         "period_type":"O"
     },
     {
@@ -5287,8 +5872,11 @@
         "depreciation":1.88625,
         "cfads":5.022895813,
         "dscr":0.619525255,
+        "ebit":3.136645813,
+        "ebt":0.3367362529,
+        "tax_expense":0.1010208759,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.0847572201,
+        "equity_cash_flow":-3.185778096,
         "period_type":"O"
     },
     {
@@ -5314,8 +5902,11 @@
         "depreciation":1.88625,
         "cfads":5.03271176,
         "dscr":null,
+        "ebit":3.14646176,
+        "ebt":3.14646176,
+        "tax_expense":0.943938528,
         "terminal_value":0.0,
-        "equity_cash_flow":5.03271176,
+        "equity_cash_flow":4.088773232,
         "period_type":"O"
     },
     {
@@ -5341,8 +5932,11 @@
         "depreciation":1.88625,
         "cfads":5.0425446416,
         "dscr":null,
+        "ebit":3.1562946416,
+        "ebt":3.1562946416,
+        "tax_expense":0.9468883925,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0425446416,
+        "equity_cash_flow":4.0956562491,
         "period_type":"O"
     },
     {
@@ -5368,8 +5962,11 @@
         "depreciation":1.88625,
         "cfads":5.0523944868,
         "dscr":0.623163629,
+        "ebit":3.1661444868,
+        "ebt":0.3662349267,
+        "tax_expense":0.109870478,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.0552585463,
+        "equity_cash_flow":-3.1651290243,
         "period_type":"O"
     },
     {
@@ -5395,8 +5992,11 @@
         "depreciation":1.88625,
         "cfads":5.062261325,
         "dscr":null,
+        "ebit":3.176011325,
+        "ebt":3.176011325,
+        "tax_expense":0.9528033975,
         "terminal_value":0.0,
-        "equity_cash_flow":5.062261325,
+        "equity_cash_flow":4.1094579275,
         "period_type":"O"
     },
     {
@@ -5422,8 +6022,11 @@
         "depreciation":1.88625,
         "cfads":5.0721451855,
         "dscr":null,
+        "ebit":3.1858951855,
+        "ebt":3.1858951855,
+        "tax_expense":0.9557685556,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0721451855,
+        "equity_cash_flow":4.1163766298,
         "period_type":"O"
     },
     {
@@ -5449,8 +6052,11 @@
         "depreciation":1.88625,
         "cfads":5.0820460976,
         "dscr":0.6268208663,
+        "ebit":3.1957960976,
+        "ebt":0.3958865375,
+        "tax_expense":0.1187659613,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.0256069355,
+        "equity_cash_flow":-3.1443728968,
         "period_type":"O"
     },
     {
@@ -5476,8 +6082,11 @@
         "depreciation":1.88625,
         "cfads":4.4853600237,
         "dscr":null,
+        "ebit":2.5991100237,
+        "ebt":2.5991100237,
+        "tax_expense":0.7797330071,
         "terminal_value":0.0,
-        "equity_cash_flow":4.4853600237,
+        "equity_cash_flow":3.7056270166,
         "period_type":"O"
     },
     {
@@ -5503,8 +6112,11 @@
         "depreciation":1.88625,
         "cfads":4.4942773736,
         "dscr":null,
+        "ebit":2.6080273736,
+        "ebt":2.6080273736,
+        "tax_expense":0.7824082121,
         "terminal_value":0.0,
-        "equity_cash_flow":4.4942773736,
+        "equity_cash_flow":3.7118691615,
         "period_type":"O"
     },
     {
@@ -5530,6 +6142,9 @@
         "depreciation":1.88625,
         "cfads":4.5032101077,
         "dscr":0.5554270871,
+        "ebit":2.6169601077,
+        "ebt":-0.1829494524,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-3.6044429254,
         "period_type":"O"
@@ -5557,8 +6172,11 @@
         "depreciation":1.88625,
         "cfads":4.5121582526,
         "dscr":null,
+        "ebit":2.6259082526,
+        "ebt":2.6259082526,
+        "tax_expense":0.7877724758,
         "terminal_value":0.0,
-        "equity_cash_flow":4.5121582526,
+        "equity_cash_flow":3.7243857768,
         "period_type":"O"
     },
     {
@@ -5584,8 +6202,11 @@
         "depreciation":1.88625,
         "cfads":4.5211218348,
         "dscr":null,
+        "ebit":2.6348718348,
+        "ebt":2.6348718348,
+        "tax_expense":0.7904615505,
         "terminal_value":0.0,
-        "equity_cash_flow":4.5211218348,
+        "equity_cash_flow":3.7306602844,
         "period_type":"O"
     },
     {
@@ -5611,8 +6232,11 @@
         "depreciation":1.88625,
         "cfads":4.5301008811,
         "dscr":0.5899019189,
+        "ebit":2.6438508811,
+        "ebt":0.1624059293,
+        "tax_expense":0.0487217788,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.1493128242,
+        "equity_cash_flow":-3.198034603,
         "period_type":"O"
     },
     {
@@ -5638,8 +6262,11 @@
         "depreciation":1.88625,
         "cfads":4.539095418,
         "dscr":null,
+        "ebit":2.652845418,
+        "ebt":2.652845418,
+        "tax_expense":0.7958536254,
         "terminal_value":0.0,
-        "equity_cash_flow":4.539095418,
+        "equity_cash_flow":3.7432417926,
         "period_type":"O"
     },
     {
@@ -5665,8 +6292,11 @@
         "depreciation":1.88625,
         "cfads":4.5481054723,
         "dscr":null,
+        "ebit":2.6618554723,
+        "ebt":2.6618554723,
+        "tax_expense":0.7985566417,
         "terminal_value":0.0,
-        "equity_cash_flow":4.5481054723,
+        "equity_cash_flow":3.7495488306,
         "period_type":"O"
     },
     {
@@ -5692,8 +6322,11 @@
         "depreciation":1.88625,
         "cfads":4.5571310707,
         "dscr":0.5934217436,
+        "ebit":2.6708810707,
+        "ebt":0.189436119,
+        "tax_expense":0.0568308357,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.1222826345,
+        "equity_cash_flow":-3.1791134702,
         "period_type":"O"
     },
     {
@@ -5719,8 +6352,11 @@
         "depreciation":1.88625,
         "cfads":4.5661722402,
         "dscr":null,
+        "ebit":2.6799222402,
+        "ebt":2.6799222402,
+        "tax_expense":0.8039766721,
         "terminal_value":0.0,
-        "equity_cash_flow":4.5661722402,
+        "equity_cash_flow":3.7621955681,
         "period_type":"O"
     },
     {
@@ -5746,8 +6382,11 @@
         "depreciation":1.88625,
         "cfads":4.5752290075,
         "dscr":null,
+        "ebit":2.6889790075,
+        "ebt":2.6889790075,
+        "tax_expense":0.8066937022,
         "terminal_value":0.0,
-        "equity_cash_flow":4.5752290075,
+        "equity_cash_flow":3.7685353052,
         "period_type":"O"
     },
     {
@@ -5773,8 +6412,11 @@
         "depreciation":1.88625,
         "cfads":4.5843013996,
         "dscr":0.5969598169,
+        "ebit":2.6980513996,
+        "ebt":0.2166064478,
+        "tax_expense":0.0649819343,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.0951123057,
+        "equity_cash_flow":-3.16009424,
         "period_type":"O"
     },
     {
@@ -5800,8 +6442,11 @@
         "depreciation":1.88625,
         "cfads":4.7036291644,
         "dscr":null,
+        "ebit":2.8173791644,
+        "ebt":2.8173791644,
+        "tax_expense":0.8452137493,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7036291644,
+        "equity_cash_flow":3.8584154151,
         "period_type":"O"
     },
     {
@@ -5827,8 +6472,11 @@
         "depreciation":1.88625,
         "cfads":4.7129525526,
         "dscr":null,
+        "ebit":2.8267025526,
+        "ebt":2.8267025526,
+        "tax_expense":0.8480107658,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7129525526,
+        "equity_cash_flow":3.8649417868,
         "period_type":"O"
     },
     {
@@ -5854,8 +6502,11 @@
         "depreciation":1.88625,
         "cfads":4.7222920256,
         "dscr":0.6149287181,
+        "ebit":2.8360420256,
+        "ebt":0.3545970739,
+        "tax_expense":0.1063791222,
         "terminal_value":0.0,
-        "equity_cash_flow":-2.9571216797,
+        "equity_cash_flow":-3.0635008018,
         "period_type":"O"
     },
     {
@@ -5881,8 +6532,11 @@
         "depreciation":1.88625,
         "cfads":4.731647611,
         "dscr":null,
+        "ebit":2.845397611,
+        "ebt":2.845397611,
+        "tax_expense":0.8536192833,
         "terminal_value":0.0,
-        "equity_cash_flow":4.731647611,
+        "equity_cash_flow":3.8780283277,
         "period_type":"O"
     },
     {
@@ -5908,8 +6562,11 @@
         "depreciation":1.88625,
         "cfads":4.7410193367,
         "dscr":null,
+        "ebit":2.8547693367,
+        "ebt":2.8547693367,
+        "tax_expense":0.856430801,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7410193367,
+        "equity_cash_flow":3.8845885357,
         "period_type":"O"
     },
     {
@@ -5935,8 +6592,11 @@
         "depreciation":1.88625,
         "cfads":4.7504072305,
         "dscr":0.5954590329,
+        "ebit":2.8641572305,
+        "ebt":0.694590404,
+        "tax_expense":0.2083771212,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.2273157837,
+        "equity_cash_flow":-3.4356929049,
         "period_type":"O"
     },
     {
@@ -5962,8 +6622,11 @@
         "depreciation":1.88625,
         "cfads":4.7598113204,
         "dscr":null,
+        "ebit":2.8735613204,
+        "ebt":2.8735613204,
+        "tax_expense":0.8620683961,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7598113204,
+        "equity_cash_flow":3.8977429243,
         "period_type":"O"
     },
     {
@@ -5989,8 +6652,11 @@
         "depreciation":1.88625,
         "cfads":4.7692316342,
         "dscr":null,
+        "ebit":2.8829816342,
+        "ebt":2.8829816342,
+        "tax_expense":0.8648944903,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7692316342,
+        "equity_cash_flow":3.9043371439,
         "period_type":"O"
     },
     {
@@ -6016,8 +6682,11 @@
         "depreciation":1.88625,
         "cfads":4.7786681999,
         "dscr":0.5990015185,
+        "ebit":2.8924181999,
+        "ebt":0.7228513734,
+        "tax_expense":0.216855412,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.1990548143,
+        "equity_cash_flow":-3.4159102263,
         "period_type":"O"
     },
     {
@@ -6043,8 +6712,11 @@
         "depreciation":1.88625,
         "cfads":4.7881210457,
         "dscr":null,
+        "ebit":2.9018710457,
+        "ebt":2.9018710457,
+        "tax_expense":0.8705613137,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7881210457,
+        "equity_cash_flow":3.917559732,
         "period_type":"O"
     },
     {
@@ -6070,8 +6742,11 @@
         "depreciation":1.88625,
         "cfads":4.7975901995,
         "dscr":null,
+        "ebit":2.9113401995,
+        "ebt":2.9113401995,
+        "tax_expense":0.8734020598,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7975901995,
+        "equity_cash_flow":3.9241881396,
         "period_type":"O"
     },
     {
@@ -6097,8 +6772,11 @@
         "depreciation":1.88625,
         "cfads":4.8070756895,
         "dscr":0.6025623704,
+        "ebit":2.9208256895,
+        "ebt":0.751258863,
+        "tax_expense":0.2253776589,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.1706473248,
+        "equity_cash_flow":-3.3960249837,
         "period_type":"O"
     },
     {
@@ -6124,8 +6802,11 @@
         "depreciation":1.88625,
         "cfads":4.797630174,
         "dscr":null,
+        "ebit":2.911380174,
+        "ebt":2.911380174,
+        "tax_expense":0.8734140522,
         "terminal_value":0.0,
-        "equity_cash_flow":4.797630174,
+        "equity_cash_flow":3.9242161218,
         "period_type":"O"
     },
     {
@@ -6151,8 +6832,11 @@
         "depreciation":1.88625,
         "cfads":4.8071459499,
         "dscr":null,
+        "ebit":2.9208959499,
+        "ebt":2.9208959499,
+        "tax_expense":0.876268785,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8071459499,
+        "equity_cash_flow":3.9308771649,
         "period_type":"O"
     },
     {
@@ -6178,8 +6862,11 @@
         "depreciation":1.88625,
         "cfads":4.8166781424,
         "dscr":0.6037660287,
+        "ebit":2.9304281424,
+        "ebt":0.7608613159,
+        "tax_expense":0.2282583948,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.1610448719,
+        "equity_cash_flow":-3.3893032666,
         "period_type":"O"
     },
     {
@@ -6205,8 +6892,11 @@
         "depreciation":1.88625,
         "cfads":4.8262267799,
         "dscr":null,
+        "ebit":2.9399767799,
+        "ebt":2.9399767799,
+        "tax_expense":0.881993034,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8262267799,
+        "equity_cash_flow":3.9442337459,
         "period_type":"O"
     },
     {
@@ -6232,8 +6922,11 @@
         "depreciation":1.88625,
         "cfads":4.8357918907,
         "dscr":null,
+        "ebit":2.9495418907,
+        "ebt":2.9495418907,
+        "tax_expense":0.8848625672,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8357918907,
+        "equity_cash_flow":3.9509293235,
         "period_type":"O"
     },
     {
@@ -6259,8 +6952,11 @@
         "depreciation":1.88625,
         "cfads":4.8453735033,
         "dscr":0.591286726,
+        "ebit":2.9591235033,
+        "ebt":1.138046048,
+        "tax_expense":0.3414138144,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.3492523699,
+        "equity_cash_flow":-3.6906661843,
         "period_type":"O"
     },
     {
@@ -6286,8 +6982,11 @@
         "depreciation":1.88625,
         "cfads":4.8549716461,
         "dscr":null,
+        "ebit":2.9687216461,
+        "ebt":2.9687216461,
+        "tax_expense":0.8906164938,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8549716461,
+        "equity_cash_flow":3.9643551522,
         "period_type":"O"
     },
     {
@@ -6313,8 +7012,11 @@
         "depreciation":1.88625,
         "cfads":4.8645863476,
         "dscr":null,
+        "ebit":2.9783363476,
+        "ebt":2.9783363476,
+        "tax_expense":0.8935009043,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8645863476,
+        "equity_cash_flow":3.9710854433,
         "period_type":"O"
     },
     {
@@ -6340,8 +7042,11 @@
         "depreciation":1.88625,
         "cfads":4.8742176364,
         "dscr":0.5948066101,
+        "ebit":2.9879676364,
+        "ebt":1.1668901812,
+        "tax_expense":0.3500670543,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.3204082367,
+        "equity_cash_flow":-3.6704752911,
         "period_type":"O"
     },
     {
@@ -6367,8 +7072,11 @@
         "depreciation":1.88625,
         "cfads":4.8838655412,
         "dscr":null,
+        "ebit":2.9976155412,
+        "ebt":2.9976155412,
+        "tax_expense":0.8992846623,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8838655412,
+        "equity_cash_flow":3.9845808788,
         "period_type":"O"
     },
     {
@@ -6394,8 +7102,11 @@
         "depreciation":1.88625,
         "cfads":4.8935300905,
         "dscr":null,
+        "ebit":3.0072800905,
+        "ebt":3.0072800905,
+        "tax_expense":0.9021840271,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8935300905,
+        "equity_cash_flow":3.9913460633,
         "period_type":"O"
     },
     {
@@ -6421,8 +7132,11 @@
         "depreciation":1.88625,
         "cfads":4.9032113131,
         "dscr":0.5983447431,
+        "ebit":3.0169613131,
+        "ebt":1.1958838579,
+        "tax_expense":0.3587651574,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.29141456,
+        "equity_cash_flow":-3.6501797174,
         "period_type":"O"
     },
     {
@@ -6448,8 +7162,11 @@
         "depreciation":1.88625,
         "cfads":4.996587525,
         "dscr":null,
+        "ebit":3.110337525,
+        "ebt":3.110337525,
+        "tax_expense":0.9331012575,
         "terminal_value":0.0,
-        "equity_cash_flow":4.996587525,
+        "equity_cash_flow":4.0634862675,
         "period_type":"O"
     },
     {
@@ -6475,8 +7192,11 @@
         "depreciation":1.88625,
         "cfads":5.0064775149,
         "dscr":null,
+        "ebit":3.1202275149,
+        "ebt":3.1202275149,
+        "tax_expense":0.9360682545,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0064775149,
+        "equity_cash_flow":4.0704092604,
         "period_type":"O"
     },
     {
@@ -6502,8 +7222,11 @@
         "depreciation":1.88625,
         "cfads":5.0163845671,
         "dscr":0.6121554107,
+        "ebit":3.1301345671,
+        "ebt":1.3090571118,
+        "tax_expense":0.3927171335,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.1782413061,
+        "equity_cash_flow":-3.5709584396,
         "period_type":"O"
     },
     {
@@ -6529,8 +7252,11 @@
         "depreciation":1.88625,
         "cfads":5.0263087109,
         "dscr":null,
+        "ebit":3.1400587109,
+        "ebt":3.1400587109,
+        "tax_expense":0.9420176133,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0263087109,
+        "equity_cash_flow":4.0842910976,
         "period_type":"O"
     },
     {
@@ -6556,8 +7282,11 @@
         "depreciation":1.88625,
         "cfads":5.0362499758,
         "dscr":null,
+        "ebit":3.1499999758,
+        "ebt":3.1499999758,
+        "tax_expense":0.9449999927,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0362499758,
+        "equity_cash_flow":4.0912499831,
         "period_type":"O"
     },
     {
@@ -6583,8 +7312,11 @@
         "depreciation":1.88625,
         "cfads":5.0462083915,
         "dscr":0.5894996486,
+        "ebit":3.1599583915,
+        "ebt":1.7212938413,
+        "tax_expense":0.5163881524,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.5139466541,
+        "equity_cash_flow":-4.0303348065,
         "period_type":"O"
     },
     {
@@ -6610,8 +7342,11 @@
         "depreciation":1.88625,
         "cfads":5.0561839874,
         "dscr":null,
+        "ebit":3.1699339874,
+        "ebt":3.1699339874,
+        "tax_expense":0.9509801962,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0561839874,
+        "equity_cash_flow":4.1052037912,
         "period_type":"O"
     },
     {
@@ -6637,8 +7372,11 @@
         "depreciation":1.88625,
         "cfads":5.0661767933,
         "dscr":null,
+        "ebit":3.1799267933,
+        "ebt":3.1799267933,
+        "tax_expense":0.953978038,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0661767933,
+        "equity_cash_flow":4.1121987553,
         "period_type":"O"
     },
     {
@@ -6664,8 +7402,11 @@
         "depreciation":1.88625,
         "cfads":5.0761868387,
         "dscr":0.5930017402,
+        "ebit":3.1899368387,
+        "ebt":1.7512722886,
+        "tax_expense":0.5253816866,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.4839682068,
+        "equity_cash_flow":-4.0093498934,
         "period_type":"O"
     },
     {
@@ -6691,8 +7432,11 @@
         "depreciation":1.88625,
         "cfads":5.0862141535,
         "dscr":null,
+        "ebit":3.1999641535,
+        "ebt":3.1999641535,
+        "tax_expense":0.9599892461,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0862141535,
+        "equity_cash_flow":4.1262249075,
         "period_type":"O"
     },
     {
@@ -6718,8 +7462,11 @@
         "depreciation":1.88625,
         "cfads":5.0962587675,
         "dscr":null,
+        "ebit":3.2100087675,
+        "ebt":3.2100087675,
+        "tax_expense":0.9630026303,
         "terminal_value":0.0,
-        "equity_cash_flow":5.0962587675,
+        "equity_cash_flow":4.1332561373,
         "period_type":"O"
     },
     {
@@ -6745,8 +7492,11 @@
         "depreciation":1.88625,
         "cfads":5.1063207105,
         "dscr":0.5965219886,
+        "ebit":3.2200707105,
+        "ebt":1.7814061603,
+        "tax_expense":0.5344218481,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.4538343351,
+        "equity_cash_flow":-3.9882561832,
         "period_type":"O"
     },
     {
@@ -6772,8 +7522,11 @@
         "depreciation":1.88625,
         "cfads":5.2502722068,
         "dscr":null,
+        "ebit":3.3640222068,
+        "ebt":3.3640222068,
+        "tax_expense":1.009206662,
         "terminal_value":0.0,
-        "equity_cash_flow":5.2502722068,
+        "equity_cash_flow":4.2410655448,
         "period_type":"O"
     },
     {
@@ -6799,8 +7552,11 @@
         "depreciation":1.88625,
         "cfads":5.2606316007,
         "dscr":null,
+        "ebit":3.3743816007,
+        "ebt":3.3743816007,
+        "tax_expense":1.0123144802,
         "terminal_value":0.0,
-        "equity_cash_flow":5.2606316007,
+        "equity_cash_flow":4.2483171205,
         "period_type":"O"
     },
     {
@@ -6826,8 +7582,11 @@
         "depreciation":1.88625,
         "cfads":5.2710088667,
         "dscr":0.6157609107,
+        "ebit":3.3847588667,
+        "ebt":1.9460943166,
+        "tax_expense":0.583828295,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.2891461788,
+        "equity_cash_flow":-3.8729744738,
         "period_type":"O"
     },
     {
@@ -6853,8 +7612,11 @@
         "depreciation":1.88625,
         "cfads":5.2814040356,
         "dscr":null,
+        "ebit":3.3951540356,
+        "ebt":3.3951540356,
+        "tax_expense":1.0185462107,
         "terminal_value":0.0,
-        "equity_cash_flow":5.2814040356,
+        "equity_cash_flow":4.2628578249,
         "period_type":"O"
     },
     {
@@ -6880,8 +7642,11 @@
         "depreciation":1.88625,
         "cfads":5.2918171383,
         "dscr":null,
+        "ebit":3.4055671383,
+        "ebt":3.4055671383,
+        "tax_expense":1.0216701415,
         "terminal_value":0.0,
-        "equity_cash_flow":5.2918171383,
+        "equity_cash_flow":4.2701469968,
         "period_type":"O"
     },
     {
@@ -6907,8 +7672,11 @@
         "depreciation":1.88625,
         "cfads":5.3022482056,
         "dscr":0.5952701935,
+        "ebit":3.4159982056,
+        "ebt":2.4046230852,
+        "tax_expense":0.7213869256,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.6050484531,
+        "equity_cash_flow":-4.3264353787,
         "period_type":"O"
     },
     {
@@ -6934,8 +7702,11 @@
         "depreciation":1.88625,
         "cfads":5.3126972687,
         "dscr":null,
+        "ebit":3.4264472687,
+        "ebt":3.4264472687,
+        "tax_expense":1.0279341806,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3126972687,
+        "equity_cash_flow":4.2847630881,
         "period_type":"O"
     },
     {
@@ -6961,8 +7732,11 @@
         "depreciation":1.88625,
         "cfads":5.3231643585,
         "dscr":null,
+        "ebit":3.4369143585,
+        "ebt":3.4369143585,
+        "tax_expense":1.0310743075,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3231643585,
+        "equity_cash_flow":4.2920900509,
         "period_type":"O"
     },
     {
@@ -6988,8 +7762,11 @@
         "depreciation":1.88625,
         "cfads":5.3336495062,
         "dscr":0.5987955393,
+        "ebit":3.4473995062,
+        "ebt":2.4360243857,
+        "tax_expense":0.7308073157,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.5736471526,
+        "equity_cash_flow":-4.3044544683,
         "period_type":"O"
     },
     {
@@ -7015,8 +7792,11 @@
         "depreciation":1.88625,
         "cfads":5.3441527428,
         "dscr":null,
+        "ebit":3.4579027428,
+        "ebt":3.4579027428,
+        "tax_expense":1.0373708228,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3441527428,
+        "equity_cash_flow":4.30678192,
         "period_type":"O"
     },
     {
@@ -7042,8 +7822,11 @@
         "depreciation":1.88625,
         "cfads":5.3546740997,
         "dscr":null,
+        "ebit":3.4684240997,
+        "ebt":3.4684240997,
+        "tax_expense":1.0405272299,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3546740997,
+        "equity_cash_flow":4.3141468698,
         "period_type":"O"
     },
     {
@@ -7069,8 +7852,11 @@
         "depreciation":1.88625,
         "cfads":5.365213608,
         "dscr":0.6023391623,
+        "ebit":3.478963608,
+        "ebt":2.4675884876,
+        "tax_expense":0.7402765463,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.5420830507,
+        "equity_cash_flow":-4.282359597,
         "period_type":"O"
     },
     {
@@ -7096,8 +7882,11 @@
         "depreciation":1.88625,
         "cfads":5.3603387581,
         "dscr":null,
+        "ebit":3.4740887581,
+        "ebt":3.4740887581,
+        "tax_expense":1.0422266274,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3603387581,
+        "equity_cash_flow":4.3181121307,
         "period_type":"O"
     },
     {
@@ -7123,8 +7912,11 @@
         "depreciation":1.88625,
         "cfads":5.3709205795,
         "dscr":null,
+        "ebit":3.4846705795,
+        "ebt":3.4846705795,
+        "tax_expense":1.0454011738,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3709205795,
+        "equity_cash_flow":4.3255194056,
         "period_type":"O"
     },
     {
@@ -7150,8 +7942,11 @@
         "depreciation":1.88625,
         "cfads":5.3815206566,
         "dscr":0.604169914,
+        "ebit":3.4952706566,
+        "ebt":2.4838955361,
+        "tax_expense":0.7451686608,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.5257760022,
+        "equity_cash_flow":-4.270944663,
         "period_type":"O"
     },
     {
@@ -7177,8 +7972,11 @@
         "depreciation":1.88625,
         "cfads":5.3921390209,
         "dscr":null,
+        "ebit":3.5058890209,
+        "ebt":3.5058890209,
+        "tax_expense":1.0517667063,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3921390209,
+        "equity_cash_flow":4.3403723147,
         "period_type":"O"
     },
     {
@@ -7204,8 +8002,11 @@
         "depreciation":1.88625,
         "cfads":5.4027757041,
         "dscr":null,
+        "ebit":3.5165257041,
+        "ebt":3.5165257041,
+        "tax_expense":1.0549577112,
         "terminal_value":0.0,
-        "equity_cash_flow":5.4027757041,
+        "equity_cash_flow":4.3478179929,
         "period_type":"O"
     },
     {
@@ -7231,8 +8032,11 @@
         "depreciation":1.80765625,
         "cfads":5.4134307378,
         "dscr":0.5907105931,
+        "ebit":3.6057744878,
+        "ebt":3.0681546596,
+        "tax_expense":0.9204463979,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.7508381975,
+        "equity_cash_flow":-4.6712845954,
         "period_type":"O"
     },
     {
@@ -7258,8 +8062,11 @@
         "depreciation":1.7290625,
         "cfads":5.4241041535,
         "dscr":null,
+        "ebit":3.6950416535,
+        "ebt":3.6950416535,
+        "tax_expense":1.1085124961,
         "terminal_value":0.0,
-        "equity_cash_flow":5.4241041535,
+        "equity_cash_flow":4.3155916575,
         "period_type":"O"
     },
     {
@@ -7285,8 +8092,11 @@
         "depreciation":1.65046875,
         "cfads":5.434795983,
         "dscr":null,
+        "ebit":3.784327233,
+        "ebt":3.784327233,
+        "tax_expense":1.1352981699,
         "terminal_value":0.0,
-        "equity_cash_flow":5.434795983,
+        "equity_cash_flow":4.2994978131,
         "period_type":"O"
     },
     {
@@ -7312,8 +8122,11 @@
         "depreciation":1.571875,
         "cfads":5.4455062581,
         "dscr":0.5942106563,
+        "ebit":3.8736312581,
+        "ebt":3.33601143,
+        "tax_expense":1.000803429,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.7187626771,
+        "equity_cash_flow":-4.7195661061,
         "period_type":"O"
     },
     {
@@ -7339,8 +8152,11 @@
         "depreciation":1.49328125,
         "cfads":5.4562350106,
         "dscr":null,
+        "ebit":3.9629537606,
+        "ebt":3.9629537606,
+        "tax_expense":1.1888861282,
         "terminal_value":0.0,
-        "equity_cash_flow":5.4562350106,
+        "equity_cash_flow":4.2673488824,
         "period_type":"O"
     },
     {
@@ -7366,8 +8182,11 @@
         "depreciation":1.4146875,
         "cfads":5.4669822724,
         "dscr":null,
+        "ebit":4.0522947724,
+        "ebt":4.0522947724,
+        "tax_expense":1.2156884317,
         "terminal_value":0.0,
-        "equity_cash_flow":5.4669822724,
+        "equity_cash_flow":4.2512938407,
         "period_type":"O"
     },
     {
@@ -7393,8 +8212,11 @@
         "depreciation":1.33609375,
         "cfads":5.4777480754,
         "dscr":0.5977288657,
+        "ebit":4.1416543254,
+        "ebt":3.6040344972,
+        "tax_expense":1.0812103492,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.6865208599,
+        "equity_cash_flow":-4.7677312091,
         "period_type":"O"
     },
     {
@@ -7420,8 +8242,11 @@
         "depreciation":1.2575,
         "cfads":5.5987308292,
         "dscr":null,
+        "ebit":4.3412308292,
+        "ebt":4.3412308292,
+        "tax_expense":1.3023692488,
         "terminal_value":0.0,
-        "equity_cash_flow":5.5987308292,
+        "equity_cash_flow":4.2963615804,
         "period_type":"O"
     },
     {
@@ -7447,8 +8272,11 @@
         "depreciation":1.17890625,
         "cfads":5.6097572789,
         "dscr":null,
+        "ebit":4.4308510289,
+        "ebt":4.4308510289,
+        "tax_expense":1.3292553087,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6097572789,
+        "equity_cash_flow":4.2805019702,
         "period_type":"O"
     },
     {
@@ -7474,8 +8302,11 @@
         "depreciation":1.1003125,
         "cfads":5.6208027514,
         "dscr":0.6133389135,
+        "ebit":4.5204902514,
+        "ebt":3.9828704233,
+        "tax_expense":1.194861127,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.5434661839,
+        "equity_cash_flow":-4.7383273109,
         "period_type":"O"
     },
     {
@@ -7501,8 +8332,11 @@
         "depreciation":1.02171875,
         "cfads":5.6318672796,
         "dscr":null,
+        "ebit":4.6101485296,
+        "ebt":4.6101485296,
+        "tax_expense":1.3830445589,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6318672796,
+        "equity_cash_flow":4.2488227207,
         "period_type":"O"
     },
     {
@@ -7528,8 +8362,11 @@
         "depreciation":0.943125,
         "cfads":5.6429508964,
         "dscr":null,
+        "ebit":4.6998258964,
+        "ebt":4.6998258964,
+        "tax_expense":1.4099477689,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6429508964,
+        "equity_cash_flow":4.2330031275,
         "period_type":"O"
     },
     {
@@ -7555,8 +8392,11 @@
         "depreciation":0.86453125,
         "cfads":5.6540536347,
         "dscr":15.9853485122,
+        "ebit":4.7895223847,
+        "ebt":4.7695015029,
+        "tax_expense":1.4308504509,
         "terminal_value":0.0,
-        "equity_cash_flow":5.300351391,
+        "equity_cash_flow":3.8695009401,
         "period_type":"O"
     },
     {
@@ -7582,8 +8422,11 @@
         "depreciation":0.7859375,
         "cfads":5.6651755274,
         "dscr":null,
+        "ebit":4.8792380274,
+        "ebt":4.8792380274,
+        "tax_expense":1.4637714082,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6651755274,
+        "equity_cash_flow":4.2014041192,
         "period_type":"O"
     },
     {
@@ -7609,8 +8452,11 @@
         "depreciation":0.70734375,
         "cfads":5.6763166076,
         "dscr":null,
+        "ebit":4.9689728576,
+        "ebt":4.9689728576,
+        "tax_expense":1.4906918573,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6763166076,
+        "equity_cash_flow":4.1856247503,
         "period_type":"O"
     },
     {
@@ -7636,8 +8482,11 @@
         "depreciation":0.62875,
         "cfads":5.6874769085,
         "dscr":16.079844022,
+        "ebit":5.0587269085,
+        "ebt":5.0387060268,
+        "tax_expense":1.511611808,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3337746648,
+        "equity_cash_flow":3.8221628568,
         "period_type":"O"
     },
     {
@@ -7663,8 +8512,11 @@
         "depreciation":0.55015625,
         "cfads":5.6986564631,
         "dscr":null,
+        "ebit":5.1485002131,
+        "ebt":5.1485002131,
+        "tax_expense":1.5445500639,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6986564631,
+        "equity_cash_flow":4.1541063992,
         "period_type":"O"
     },
     {
@@ -7690,8 +8542,11 @@
         "depreciation":0.4715625,
         "cfads":5.7098553048,
         "dscr":null,
+        "ebit":5.2382928048,
+        "ebt":5.2382928048,
+        "tax_expense":1.5714878414,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7098553048,
+        "equity_cash_flow":4.1383674633,
         "period_type":"O"
     },
     {
@@ -7717,8 +8572,11 @@
         "depreciation":0.39296875,
         "cfads":5.7210734667,
         "dscr":16.1748294477,
+        "ebit":5.3281047167,
+        "ebt":5.3080838349,
+        "tax_expense":1.5924251505,
         "terminal_value":0.0,
-        "equity_cash_flow":5.367371223,
+        "equity_cash_flow":3.7749460725,
         "period_type":"O"
     },
     {
@@ -7744,8 +8602,11 @@
         "depreciation":0.314375,
         "cfads":5.5989198657,
         "dscr":null,
+        "ebit":5.2845448657,
+        "ebt":5.2845448657,
+        "tax_expense":1.5853634597,
         "terminal_value":0.0,
-        "equity_cash_flow":5.5989198657,
+        "equity_cash_flow":4.013556406,
         "period_type":"O"
     },
     {
@@ -7771,8 +8632,11 @@
         "depreciation":0.23578125,
         "cfads":5.6099808292,
         "dscr":null,
+        "ebit":5.3741995792,
+        "ebt":5.3741995792,
+        "tax_expense":1.6122598737,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6099808292,
+        "equity_cash_flow":3.9977209554,
         "period_type":"O"
     },
     {
@@ -7798,8 +8662,11 @@
         "depreciation":0.1571875,
         "cfads":5.621060875,
         "dscr":15.892070168,
+        "ebit":5.463873375,
+        "ebt":5.4438524933,
+        "tax_expense":1.633155748,
         "terminal_value":0.0,
-        "equity_cash_flow":5.2673586313,
+        "equity_cash_flow":3.6342028834,
         "period_type":"O"
     },
     {
@@ -7825,8 +8692,11 @@
         "depreciation":0.07859375,
         "cfads":5.6321600362,
         "dscr":null,
+        "ebit":5.5535662862,
+        "ebt":5.5535662862,
+        "tax_expense":1.6660698859,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6321600362,
+        "equity_cash_flow":3.9660901503,
         "period_type":"O"
     },
     {
@@ -7852,8 +8722,11 @@
         "depreciation":0.0,
         "cfads":5.6432783457,
         "dscr":null,
+        "ebit":5.6432783457,
+        "ebt":5.6432783457,
+        "tax_expense":1.6929835037,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6432783457,
+        "equity_cash_flow":3.950294842,
         "period_type":"O"
     },
     {
@@ -7879,8 +8752,11 @@
         "depreciation":0.0,
         "cfads":5.6544158365,
         "dscr":null,
+        "ebit":5.6544158365,
+        "ebt":5.6544158365,
+        "tax_expense":1.696324751,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6544158365,
+        "equity_cash_flow":3.9580910856,
         "period_type":"O"
     },
     {
@@ -7906,8 +8782,11 @@
         "depreciation":0.0,
         "cfads":5.6655725418,
         "dscr":null,
+        "ebit":5.6655725418,
+        "ebt":5.6655725418,
+        "tax_expense":1.6996717625,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6655725418,
+        "equity_cash_flow":3.9659007792,
         "period_type":"O"
     },
     {
@@ -7933,8 +8812,11 @@
         "depreciation":0.0,
         "cfads":5.6767484946,
         "dscr":null,
+        "ebit":5.6767484946,
+        "ebt":5.6767484946,
+        "tax_expense":1.7030245484,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6767484946,
+        "equity_cash_flow":3.9737239462,
         "period_type":"O"
     },
     {
@@ -7960,8 +8842,11 @@
         "depreciation":0.0,
         "cfads":5.6879437282,
         "dscr":null,
+        "ebit":5.6879437282,
+        "ebt":5.6879437282,
+        "tax_expense":1.7063831185,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6879437282,
+        "equity_cash_flow":3.9815606097,
         "period_type":"O"
     },
     {
@@ -7987,8 +8872,11 @@
         "depreciation":0.0,
         "cfads":5.6991582758,
         "dscr":null,
+        "ebit":5.6991582758,
+        "ebt":5.6991582758,
+        "tax_expense":1.7097474827,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6991582758,
+        "equity_cash_flow":3.9894107931,
         "period_type":"O"
     },
     {
@@ -8014,8 +8902,11 @@
         "depreciation":0.0,
         "cfads":5.7103921708,
         "dscr":null,
+        "ebit":5.7103921708,
+        "ebt":5.7103921708,
+        "tax_expense":1.7131176512,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7103921708,
+        "equity_cash_flow":3.9972745196,
         "period_type":"O"
     },
     {
@@ -8041,8 +8932,11 @@
         "depreciation":0.0,
         "cfads":5.7216454466,
         "dscr":null,
+        "ebit":5.7216454466,
+        "ebt":5.7216454466,
+        "tax_expense":1.716493634,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7216454466,
+        "equity_cash_flow":4.0051518126,
         "period_type":"O"
     },
     {
@@ -8068,8 +8962,11 @@
         "depreciation":0.0,
         "cfads":5.7454446028,
         "dscr":null,
+        "ebit":5.7454446028,
+        "ebt":5.7454446028,
+        "tax_expense":1.7236333808,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7454446028,
+        "equity_cash_flow":4.021811222,
         "period_type":"O"
     },
     {
@@ -8095,8 +8992,11 @@
         "depreciation":0.0,
         "cfads":5.7567933935,
         "dscr":null,
+        "ebit":5.7567933935,
+        "ebt":5.7567933935,
+        "tax_expense":1.727038018,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7567933935,
+        "equity_cash_flow":4.0297553754,
         "period_type":"O"
     },
     {
@@ -8122,8 +9022,11 @@
         "depreciation":0.0,
         "cfads":5.768161763,
         "dscr":null,
+        "ebit":5.768161763,
+        "ebt":5.768161763,
+        "tax_expense":1.7304485289,
         "terminal_value":0.0,
-        "equity_cash_flow":5.768161763,
+        "equity_cash_flow":4.0377132341,
         "period_type":"O"
     },
     {
@@ -8149,8 +9052,11 @@
         "depreciation":0.0,
         "cfads":5.7795497454,
         "dscr":null,
+        "ebit":5.7795497454,
+        "ebt":5.7795497454,
+        "tax_expense":1.7338649236,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7795497454,
+        "equity_cash_flow":4.0456848218,
         "period_type":"O"
     },
     {
@@ -8176,8 +9082,11 @@
         "depreciation":0.0,
         "cfads":5.7909573743,
         "dscr":null,
+        "ebit":5.7909573743,
+        "ebt":5.7909573743,
+        "tax_expense":1.7372872123,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7909573743,
+        "equity_cash_flow":4.053670162,
         "period_type":"O"
     },
     {
@@ -8203,8 +9112,11 @@
         "depreciation":0.0,
         "cfads":5.8023846836,
         "dscr":null,
+        "ebit":5.8023846836,
+        "ebt":5.8023846836,
+        "tax_expense":1.7407154051,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8023846836,
+        "equity_cash_flow":4.0616692786,
         "period_type":"O"
     },
     {
@@ -8230,8 +9142,11 @@
         "depreciation":0.0,
         "cfads":5.8138317074,
         "dscr":null,
+        "ebit":5.8138317074,
+        "ebt":5.8138317074,
+        "tax_expense":1.7441495122,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8138317074,
+        "equity_cash_flow":4.0696821952,
         "period_type":"O"
     },
     {
@@ -8257,8 +9172,11 @@
         "depreciation":0.0,
         "cfads":5.8252984797,
         "dscr":null,
+        "ebit":5.8252984797,
+        "ebt":5.8252984797,
+        "tax_expense":1.7475895439,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8252984797,
+        "equity_cash_flow":4.0777089358,
         "period_type":"O"
     },
     {
@@ -8284,8 +9202,11 @@
         "depreciation":0.0,
         "cfads":5.8367850344,
         "dscr":null,
+        "ebit":5.8367850344,
+        "ebt":5.8367850344,
+        "tax_expense":1.7510355103,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8367850344,
+        "equity_cash_flow":4.0857495241,
         "period_type":"O"
     },
     {
@@ -8311,8 +9232,11 @@
         "depreciation":0.0,
         "cfads":5.8482914057,
         "dscr":null,
+        "ebit":5.8482914057,
+        "ebt":5.8482914057,
+        "tax_expense":1.7544874217,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8482914057,
+        "equity_cash_flow":4.093803984,
         "period_type":"O"
     },
     {
@@ -8338,8 +9262,11 @@
         "depreciation":0.0,
         "cfads":5.8598176279,
         "dscr":null,
+        "ebit":5.8598176279,
+        "ebt":5.8598176279,
+        "tax_expense":1.7579452884,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8598176279,
+        "equity_cash_flow":4.1018723395,
         "period_type":"O"
     },
     {
@@ -8365,8 +9292,11 @@
         "depreciation":0.0,
         "cfads":5.8713637352,
         "dscr":null,
+        "ebit":5.8713637352,
+        "ebt":5.8713637352,
+        "tax_expense":1.7614091206,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8713637352,
+        "equity_cash_flow":4.1099546146,
         "period_type":"O"
     },
     {
@@ -8392,8 +9322,11 @@
         "depreciation":0.0,
         "cfads":5.5810810082,
         "dscr":null,
+        "ebit":5.5810810082,
+        "ebt":5.5810810082,
+        "tax_expense":1.6743243025,
         "terminal_value":0.0,
-        "equity_cash_flow":5.5810810082,
+        "equity_cash_flow":3.9067567057,
         "period_type":"O"
     },
     {
@@ -8419,8 +9352,11 @@
         "depreciation":0.0,
         "cfads":5.5921821568,
         "dscr":null,
+        "ebit":5.5921821568,
+        "ebt":5.5921821568,
+        "tax_expense":1.677654647,
         "terminal_value":0.0,
-        "equity_cash_flow":5.5921821568,
+        "equity_cash_flow":3.9145275097,
         "period_type":"O"
     },
     {
@@ -8446,8 +9382,11 @@
         "depreciation":0.0,
         "cfads":5.6033024571,
         "dscr":null,
+        "ebit":5.6033024571,
+        "ebt":5.6033024571,
+        "tax_expense":1.6809907371,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6033024571,
+        "equity_cash_flow":3.9223117199,
         "period_type":"O"
     },
     {
@@ -8473,8 +9412,11 @@
         "depreciation":0.0,
         "cfads":5.6144419421,
         "dscr":null,
+        "ebit":5.6144419421,
+        "ebt":5.6144419421,
+        "tax_expense":1.6843325826,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6144419421,
+        "equity_cash_flow":3.9301093595,
         "period_type":"O"
     },
     {
@@ -8500,8 +9442,11 @@
         "depreciation":0.0,
         "cfads":5.625600645,
         "dscr":null,
+        "ebit":5.625600645,
+        "ebt":5.625600645,
+        "tax_expense":1.6876801935,
         "terminal_value":0.0,
-        "equity_cash_flow":5.625600645,
+        "equity_cash_flow":3.9379204515,
         "period_type":"O"
     },
     {
@@ -8527,8 +9472,11 @@
         "depreciation":0.0,
         "cfads":5.636778599,
         "dscr":null,
+        "ebit":5.636778599,
+        "ebt":5.636778599,
+        "tax_expense":1.6910335797,
         "terminal_value":0.0,
-        "equity_cash_flow":5.636778599,
+        "equity_cash_flow":3.9457450193,
         "period_type":"O"
     },
     {
@@ -8554,8 +9502,11 @@
         "depreciation":0.0,
         "cfads":5.6479758372,
         "dscr":null,
+        "ebit":5.6479758372,
+        "ebt":5.6479758372,
+        "tax_expense":1.6943927511,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6479758372,
+        "equity_cash_flow":3.953583086,
         "period_type":"O"
     },
     {
@@ -8581,8 +9532,11 @@
         "depreciation":0.0,
         "cfads":5.6591923928,
         "dscr":null,
+        "ebit":5.6591923928,
+        "ebt":5.6591923928,
+        "tax_expense":1.6977577179,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6591923928,
+        "equity_cash_flow":3.961434675,
         "period_type":"O"
     },
     {
@@ -8608,8 +9562,11 @@
         "depreciation":0.0,
         "cfads":5.6704282993,
         "dscr":null,
+        "ebit":5.6704282993,
+        "ebt":5.6704282993,
+        "tax_expense":1.7011284898,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6704282993,
+        "equity_cash_flow":3.9692998095,
         "period_type":"O"
     },
     {
@@ -8635,8 +9592,11 @@
         "depreciation":0.0,
         "cfads":5.6816835901,
         "dscr":null,
+        "ebit":5.6816835901,
+        "ebt":5.6816835901,
+        "tax_expense":1.704505077,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6816835901,
+        "equity_cash_flow":3.977178513,
         "period_type":"O"
     },
     {
@@ -8662,8 +9622,11 @@
         "depreciation":0.0,
         "cfads":5.6929582984,
         "dscr":null,
+        "ebit":5.6929582984,
+        "ebt":5.6929582984,
+        "tax_expense":1.7078874895,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6929582984,
+        "equity_cash_flow":3.9850708089,
         "period_type":"O"
     },
     {
@@ -8689,8 +9652,11 @@
         "depreciation":0.0,
         "cfads":5.704252458,
         "dscr":null,
+        "ebit":5.704252458,
+        "ebt":5.704252458,
+        "tax_expense":1.7112757374,
         "terminal_value":0.0,
-        "equity_cash_flow":5.704252458,
+        "equity_cash_flow":3.9929767206,
         "period_type":"O"
     },
     {
@@ -8716,8 +9682,11 @@
         "depreciation":0.0,
         "cfads":5.7994374366,
         "dscr":null,
+        "ebit":5.7994374366,
+        "ebt":5.7994374366,
+        "tax_expense":1.739831231,
         "terminal_value":0.0,
-        "equity_cash_flow":5.7994374366,
+        "equity_cash_flow":4.0596062056,
         "period_type":"O"
     },
     {
@@ -8743,8 +9712,11 @@
         "depreciation":0.0,
         "cfads":5.8109521105,
         "dscr":null,
+        "ebit":5.8109521105,
+        "ebt":5.8109521105,
+        "tax_expense":1.7432856332,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8109521105,
+        "equity_cash_flow":4.0676664774,
         "period_type":"O"
     },
     {
@@ -8770,8 +9742,11 @@
         "depreciation":0.0,
         "cfads":5.8224866496,
         "dscr":null,
+        "ebit":5.8224866496,
+        "ebt":5.8224866496,
+        "tax_expense":1.7467459949,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8224866496,
+        "equity_cash_flow":4.0757406547,
         "period_type":"O"
     },
     {
@@ -8797,8 +9772,11 @@
         "depreciation":0.0,
         "cfads":5.8340410881,
         "dscr":null,
+        "ebit":5.8340410881,
+        "ebt":5.8340410881,
+        "tax_expense":1.7502123264,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8340410881,
+        "equity_cash_flow":4.0838287617,
         "period_type":"O"
     },
     {
@@ -8824,8 +9802,11 @@
         "depreciation":0.0,
         "cfads":5.8456154604,
         "dscr":null,
+        "ebit":5.8456154604,
+        "ebt":5.8456154604,
+        "tax_expense":1.7536846381,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8456154604,
+        "equity_cash_flow":4.0919308223,
         "period_type":"O"
     },
     {
@@ -8851,8 +9832,11 @@
         "depreciation":0.0,
         "cfads":5.8572098008,
         "dscr":null,
+        "ebit":5.8572098008,
+        "ebt":5.8572098008,
+        "tax_expense":1.7571629402,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8572098008,
+        "equity_cash_flow":4.1000468605,
         "period_type":"O"
     },
     {
@@ -8878,8 +9862,11 @@
         "depreciation":0.0,
         "cfads":5.8688241437,
         "dscr":null,
+        "ebit":5.8688241437,
+        "ebt":5.8688241437,
+        "tax_expense":1.7606472431,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8688241437,
+        "equity_cash_flow":4.1081769006,
         "period_type":"O"
     },
     {
@@ -8905,8 +9892,11 @@
         "depreciation":0.0,
         "cfads":5.8804585238,
         "dscr":null,
+        "ebit":5.8804585238,
+        "ebt":5.8804585238,
+        "tax_expense":1.7641375571,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8804585238,
+        "equity_cash_flow":4.1163209667,
         "period_type":"O"
     },
     {
@@ -8932,8 +9922,11 @@
         "depreciation":0.0,
         "cfads":5.8921129755,
         "dscr":null,
+        "ebit":5.8921129755,
+        "ebt":5.8921129755,
+        "tax_expense":1.7676338927,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8921129755,
+        "equity_cash_flow":4.1244790829,
         "period_type":"O"
     },
     {
@@ -8959,8 +9952,11 @@
         "depreciation":0.0,
         "cfads":5.9037875335,
         "dscr":null,
+        "ebit":5.9037875335,
+        "ebt":5.9037875335,
+        "tax_expense":1.7711362601,
         "terminal_value":0.0,
-        "equity_cash_flow":5.9037875335,
+        "equity_cash_flow":4.1326512735,
         "period_type":"O"
     },
     {
@@ -8986,8 +9982,11 @@
         "depreciation":0.0,
         "cfads":5.9154822325,
         "dscr":null,
+        "ebit":5.9154822325,
+        "ebt":5.9154822325,
+        "tax_expense":1.7746446698,
         "terminal_value":0.0,
-        "equity_cash_flow":5.9154822325,
+        "equity_cash_flow":4.1408375628,
         "period_type":"O"
     },
     {
@@ -9013,8 +10012,11 @@
         "depreciation":0.0,
         "cfads":5.9271971072,
         "dscr":null,
+        "ebit":5.9271971072,
+        "ebt":5.9271971072,
+        "tax_expense":1.7781591322,
         "terminal_value":0.0,
-        "equity_cash_flow":5.9271971072,
+        "equity_cash_flow":4.1490379751,
         "period_type":"O"
     },
     {
@@ -9040,8 +10042,11 @@
         "depreciation":0.0,
         "cfads":6.0205866327,
         "dscr":null,
+        "ebit":6.0205866327,
+        "ebt":6.0205866327,
+        "tax_expense":1.8061759898,
         "terminal_value":0.0,
-        "equity_cash_flow":6.0205866327,
+        "equity_cash_flow":4.2144106429,
         "period_type":"O"
     },
     {
@@ -9067,8 +10072,11 @@
         "depreciation":0.0,
         "cfads":6.0325205705,
         "dscr":null,
+        "ebit":6.0325205705,
+        "ebt":6.0325205705,
+        "tax_expense":1.8097561712,
         "terminal_value":0.0,
-        "equity_cash_flow":6.0325205705,
+        "equity_cash_flow":4.2227643994,
         "period_type":"O"
     },
     {
@@ -9094,8 +10102,11 @@
         "depreciation":0.0,
         "cfads":6.0444750968,
         "dscr":null,
+        "ebit":6.0444750968,
+        "ebt":6.0444750968,
+        "tax_expense":1.8133425291,
         "terminal_value":0.0,
-        "equity_cash_flow":6.0444750968,
+        "equity_cash_flow":4.2311325678,
         "period_type":"O"
     },
     {
@@ -9121,8 +10132,11 @@
         "depreciation":0.0,
         "cfads":6.0564502471,
         "dscr":null,
+        "ebit":6.0564502471,
+        "ebt":6.0564502471,
+        "tax_expense":1.8169350741,
         "terminal_value":0.0,
-        "equity_cash_flow":6.0564502471,
+        "equity_cash_flow":4.239515173,
         "period_type":"O"
     },
     {
@@ -9148,8 +10162,11 @@
         "depreciation":0.0,
         "cfads":6.0684460569,
         "dscr":null,
+        "ebit":6.0684460569,
+        "ebt":6.0684460569,
+        "tax_expense":1.8205338171,
         "terminal_value":0.0,
-        "equity_cash_flow":6.0684460569,
+        "equity_cash_flow":4.2479122399,
         "period_type":"O"
     },
     {
@@ -9175,8 +10192,11 @@
         "depreciation":0.0,
         "cfads":6.080462562,
         "dscr":null,
+        "ebit":6.080462562,
+        "ebt":6.080462562,
+        "tax_expense":1.8241387686,
         "terminal_value":0.0,
-        "equity_cash_flow":6.080462562,
+        "equity_cash_flow":4.2563237934,
         "period_type":"O"
     },
     {
@@ -9202,8 +10222,11 @@
         "depreciation":0.0,
         "cfads":6.0924997979,
         "dscr":null,
+        "ebit":6.0924997979,
+        "ebt":6.0924997979,
+        "tax_expense":1.8277499394,
         "terminal_value":0.0,
-        "equity_cash_flow":6.0924997979,
+        "equity_cash_flow":4.2647498585,
         "period_type":"O"
     },
     {
@@ -9229,8 +10252,11 @@
         "depreciation":0.0,
         "cfads":6.1045578005,
         "dscr":null,
+        "ebit":6.1045578005,
+        "ebt":6.1045578005,
+        "tax_expense":1.8313673401,
         "terminal_value":0.0,
-        "equity_cash_flow":6.1045578005,
+        "equity_cash_flow":4.2731904603,
         "period_type":"O"
     },
     {
@@ -9256,8 +10282,11 @@
         "depreciation":0.0,
         "cfads":6.1166366056,
         "dscr":null,
+        "ebit":6.1166366056,
+        "ebt":6.1166366056,
+        "tax_expense":1.8349909817,
         "terminal_value":0.0,
-        "equity_cash_flow":6.1166366056,
+        "equity_cash_flow":4.2816456239,
         "period_type":"O"
     },
     {
@@ -9283,8 +10312,11 @@
         "depreciation":0.0,
         "cfads":6.1287362491,
         "dscr":null,
+        "ebit":6.1287362491,
+        "ebt":6.1287362491,
+        "tax_expense":1.8386208747,
         "terminal_value":0.0,
-        "equity_cash_flow":6.1287362491,
+        "equity_cash_flow":4.2901153743,
         "period_type":"O"
     },
     {
@@ -9310,8 +10342,11 @@
         "depreciation":0.0,
         "cfads":6.1408567669,
         "dscr":null,
+        "ebit":6.1408567669,
+        "ebt":6.1408567669,
+        "tax_expense":1.8422570301,
         "terminal_value":0.0,
-        "equity_cash_flow":6.1408567669,
+        "equity_cash_flow":4.2985997368,
         "period_type":"O"
     },
     {
@@ -9337,8 +10372,11 @@
         "depreciation":0.0,
         "cfads":6.152998195,
         "dscr":null,
+        "ebit":6.152998195,
+        "ebt":6.152998195,
+        "tax_expense":1.8458994585,
         "terminal_value":0.0,
-        "equity_cash_flow":6.152998195,
+        "equity_cash_flow":4.3070987365,
         "period_type":"O"
     },
     {
@@ -9364,8 +10402,11 @@
         "depreciation":0.0,
         "cfads":5.9229886192,
         "dscr":null,
+        "ebit":5.9229886192,
+        "ebt":5.9229886192,
+        "tax_expense":1.7768965858,
         "terminal_value":0.0,
-        "equity_cash_flow":5.9229886192,
+        "equity_cash_flow":4.1460920335,
         "period_type":"O"
     },
     {
@@ -9391,8 +10432,11 @@
         "depreciation":0.0,
         "cfads":5.9347928609,
         "dscr":null,
+        "ebit":5.9347928609,
+        "ebt":5.9347928609,
+        "tax_expense":1.7804378583,
         "terminal_value":0.0,
-        "equity_cash_flow":5.9347928609,
+        "equity_cash_flow":4.1543550026,
         "period_type":"O"
     },
     {
@@ -9418,8 +10462,11 @@
         "depreciation":0.0,
         "cfads":5.9466174673,
         "dscr":null,
+        "ebit":5.9466174673,
+        "ebt":5.9466174673,
+        "tax_expense":1.7839852402,
         "terminal_value":0.0,
-        "equity_cash_flow":5.9466174673,
+        "equity_cash_flow":4.1626322271,
         "period_type":"O"
     },
     {
@@ -9445,8 +10492,11 @@
         "depreciation":0.0,
         "cfads":5.9584624736,
         "dscr":null,
+        "ebit":5.9584624736,
+        "ebt":5.9584624736,
+        "tax_expense":1.7875387421,
         "terminal_value":106.95,
-        "equity_cash_flow":112.9084624736,
+        "equity_cash_flow":111.1209237315,
         "period_type":"O"
     },
     {
@@ -9472,6 +10522,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9499,6 +10552,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9526,6 +10582,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9553,6 +10612,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9580,6 +10642,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9607,6 +10672,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9634,6 +10702,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9661,6 +10732,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9688,6 +10762,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9715,6 +10792,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9742,6 +10822,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9769,6 +10852,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9796,6 +10882,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9823,6 +10912,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9850,6 +10942,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9877,6 +10972,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9904,6 +11002,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9931,6 +11032,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9958,6 +11062,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -9985,6 +11092,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10012,6 +11122,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10039,6 +11152,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10066,6 +11182,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10093,6 +11212,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10120,6 +11242,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10147,6 +11272,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10174,6 +11302,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10201,6 +11332,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10228,6 +11362,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10255,6 +11392,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10282,6 +11422,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10309,6 +11452,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10336,6 +11482,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10363,6 +11512,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10390,6 +11542,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10417,6 +11572,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10444,6 +11602,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10471,6 +11632,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10498,6 +11662,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10525,6 +11692,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10552,6 +11722,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10579,6 +11752,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10606,6 +11782,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10633,6 +11812,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10660,6 +11842,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10687,6 +11872,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10714,6 +11902,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10741,6 +11932,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10768,6 +11962,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10795,6 +11992,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"
@@ -10822,6 +12022,9 @@
         "depreciation":0.0,
         "cfads":0.0,
         "dscr":null,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
         "period_type":"O"

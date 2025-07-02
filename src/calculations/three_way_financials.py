@@ -1,5 +1,23 @@
 import pandas as pd
 
+def aggregate_timeseries(df, freq='QTR'):
+    """
+    Aggregates a timeseries DataFrame to the specified frequency.
+    """
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.set_index('date')
+
+    if freq == 'M':
+        return df.groupby('asset_id').resample('M').sum().reset_index()
+    elif freq == 'QTR':
+        return df.groupby('asset_id').resample('Q').sum().reset_index()
+    elif freq == 'CY':
+        return df.groupby('asset_id').resample('A').sum().reset_index()
+    elif freq == 'FY':
+        return df.groupby('asset_id').resample('A-JUN').sum().reset_index()
+    else:
+        return df.reset_index()
+
 def generate_pnl(cash_flow_df):
     """
     Generates a simple Profit & Loss (P&L) statement.

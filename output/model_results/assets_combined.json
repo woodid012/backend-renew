@@ -21,9 +21,12 @@
         "ending_balance":8.1077188559,
         "depreciation":0.0,
         "cfads":0.0,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-04-01T00:00Z",
@@ -47,9 +50,12 @@
         "ending_balance":16.2154377118,
         "depreciation":0.0584803922,
         "cfads":0.0,
+        "ebit":-0.0584803922,
+        "ebt":-0.0584803922,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-05-01T00:00Z",
@@ -73,9 +79,12 @@
         "ending_balance":24.3231565677,
         "depreciation":0.1169607843,
         "cfads":0.0,
+        "ebit":-0.1169607843,
+        "ebt":-0.1169607843,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-06-01T00:00Z",
@@ -99,9 +108,12 @@
         "ending_balance":32.4308754237,
         "depreciation":0.1754411765,
         "cfads":0.0,
+        "ebit":-0.1754411765,
+        "ebt":-0.1754411765,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-07-01T00:00Z",
@@ -125,9 +137,12 @@
         "ending_balance":40.5385942796,
         "depreciation":0.2339215686,
         "cfads":0.0,
+        "ebit":-0.2339215686,
+        "ebt":-0.2339215686,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-08-01T00:00Z",
@@ -151,9 +166,12 @@
         "ending_balance":48.6463131355,
         "depreciation":0.2924019608,
         "cfads":0.0,
+        "ebit":-0.2924019608,
+        "ebt":-0.2924019608,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-09-01T00:00Z",
@@ -177,9 +195,12 @@
         "ending_balance":56.7540319914,
         "depreciation":0.3508823529,
         "cfads":0.0,
+        "ebit":-0.3508823529,
+        "ebt":-0.3508823529,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-10-01T00:00Z",
@@ -203,9 +224,12 @@
         "ending_balance":64.8617508473,
         "depreciation":0.4093627451,
         "cfads":0.0,
+        "ebit":-0.4093627451,
+        "ebt":-0.4093627451,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-11-01T00:00Z",
@@ -229,9 +253,12 @@
         "ending_balance":72.9694697032,
         "depreciation":0.4678431373,
         "cfads":0.0,
+        "ebit":-0.4678431373,
+        "ebt":-0.4678431373,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2024-12-01T00:00Z",
@@ -255,9 +282,12 @@
         "ending_balance":81.0771885591,
         "depreciation":0.5263235294,
         "cfads":0.0,
+        "ebit":-0.5263235294,
+        "ebt":-0.5263235294,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-01-01T00:00Z",
@@ -281,9 +311,12 @@
         "ending_balance":89.1849074151,
         "depreciation":0.5848039216,
         "cfads":0.0,
+        "ebit":-0.5848039216,
+        "ebt":-0.5848039216,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-02-01T00:00Z",
@@ -307,9 +340,12 @@
         "ending_balance":97.292626271,
         "depreciation":0.6432843137,
         "cfads":0.0,
+        "ebit":-0.6432843137,
+        "ebt":-0.6432843137,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-03-01T00:00Z",
@@ -333,9 +369,12 @@
         "ending_balance":105.4003451269,
         "depreciation":0.7017647059,
         "cfads":0.0,
+        "ebit":-0.7017647059,
+        "ebt":-0.7017647059,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-04-01T00:00Z",
@@ -359,9 +398,12 @@
         "ending_balance":113.5080639828,
         "depreciation":0.760245098,
         "cfads":0.0,
+        "ebit":-0.760245098,
+        "ebt":-0.760245098,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-05-01T00:00Z",
@@ -385,9 +427,12 @@
         "ending_balance":121.6157828387,
         "depreciation":0.8187254902,
         "cfads":0.0,
+        "ebit":-0.8187254902,
+        "ebt":-0.8187254902,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-06-01T00:00Z",
@@ -411,9 +456,12 @@
         "ending_balance":129.7235016946,
         "depreciation":0.8772058824,
         "cfads":0.0,
+        "ebit":-0.8772058824,
+        "ebt":-0.8772058824,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-07-01T00:00Z",
@@ -437,9 +485,12 @@
         "ending_balance":137.8312205505,
         "depreciation":0.9356862745,
         "cfads":0.0,
+        "ebit":-0.9356862745,
+        "ebt":-0.9356862745,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-5.9275752617,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-08-01T00:00Z",
@@ -463,9 +514,12 @@
         "ending_balance":137.8312205505,
         "depreciation":0.9941666667,
         "cfads":1.4333848417,
+        "ebit":0.439218175,
+        "ebt":0.439218175,
+        "tax_expense":0.1317654525,
         "terminal_value":0.0,
-        "equity_cash_flow":1.4333848417,
-        "irr":0.1093631295
+        "equity_cash_flow":1.3016193892,
+        "irr":0.0859203288
     },
     {
         "date":"2025-09-01T00:00Z",
@@ -489,9 +543,12 @@
         "ending_balance":136.8227812755,
         "depreciation":0.9941666667,
         "cfads":1.4346495955,
+        "ebit":0.4404829288,
+        "ebt":-1.6269853794,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-1.6412579878,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2025-10-01T00:00Z",
@@ -515,9 +572,12 @@
         "ending_balance":159.6654920121,
         "depreciation":0.9941666667,
         "cfads":1.4359152522,
+        "ebit":0.4417485855,
+        "ebt":0.4417485855,
+        "tax_expense":0.1325245757,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.4499454398,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.5824700155,
+        "irr":0.0859203288
     },
     {
         "date":"2025-11-01T00:00Z",
@@ -541,9 +601,12 @@
         "ending_balance":182.5082027487,
         "depreciation":1.134702381,
         "cfads":1.4371818124,
+        "ebit":0.3024794314,
+        "ebt":0.3024794314,
+        "tax_expense":0.1329045437,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.4486788796,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.5815834233,
+        "irr":0.0859203288
     },
     {
         "date":"2025-12-01T00:00Z",
@@ -567,9 +630,12 @@
         "ending_balance":204.3424742102,
         "depreciation":1.2752380952,
         "cfads":1.4384492767,
+        "ebit":0.1632111814,
+        "ebt":-1.9042571268,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-12.5233189986,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2026-01-01T00:00Z",
@@ -593,9 +659,12 @@
         "ending_balance":227.1851849468,
         "depreciation":1.4157738095,
         "cfads":1.4312593125,
+        "ebit":0.0154855029,
+        "ebt":0.0154855029,
+        "tax_expense":0.1311277937,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.4546013795,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.5857291733,
+        "irr":0.0859203288
     },
     {
         "date":"2026-02-01T00:00Z",
@@ -619,9 +688,12 @@
         "ending_balance":250.0278956834,
         "depreciation":1.5563095238,
         "cfads":1.432528587,
+        "ebit":-0.1237809368,
+        "ebt":-0.1237809368,
+        "tax_expense":0.1315085761,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.453332105,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.5848406811,
+        "irr":0.0859203288
     },
     {
         "date":"2026-03-01T00:00Z",
@@ -645,9 +717,12 @@
         "ending_balance":271.8621671449,
         "depreciation":1.6968452381,
         "cfads":1.4337987676,
+        "ebit":-0.2630464705,
+        "ebt":-2.3305147787,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-12.5279695077,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2026-04-01T00:00Z",
@@ -671,9 +746,12 @@
         "ending_balance":294.7048778815,
         "depreciation":1.8373809524,
         "cfads":1.435069855,
+        "ebit":-0.4023110974,
+        "ebt":-0.4023110974,
+        "tax_expense":0.1322709565,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.450790837,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.5830617935,
+        "irr":0.0859203288
     },
     {
         "date":"2026-05-01T00:00Z",
@@ -697,9 +775,12 @@
         "ending_balance":329.8081902328,
         "depreciation":1.9779166667,
         "cfads":1.4363418497,
+        "ebit":-0.5415748169,
+        "ebt":-0.5415748169,
+        "tax_expense":0.1326525549,
         "terminal_value":0.0,
-        "equity_cash_flow":-16.0514172275,
-        "irr":0.1093631295
+        "equity_cash_flow":-16.1840697825,
+        "irr":0.0859203288
     },
     {
         "date":"2026-06-01T00:00Z",
@@ -723,9 +804,12 @@
         "ending_balance":363.9030633091,
         "depreciation":2.197046131,
         "cfads":1.4376147525,
+        "ebit":-0.7594313785,
+        "ebt":-2.8268996867,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.1260519081,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2026-07-01T00:00Z",
@@ -749,9 +833,12 @@
         "ending_balance":399.0063756604,
         "depreciation":2.4161755952,
         "cfads":1.4388885639,
+        "ebit":-0.9772870313,
+        "ebt":-0.9772870313,
+        "tax_expense":0.1334165692,
         "terminal_value":0.0,
-        "equity_cash_flow":-16.0488705134,
-        "irr":0.1093631295
+        "equity_cash_flow":-16.1822870825,
+        "irr":0.0859203288
     },
     {
         "date":"2026-08-01T00:00Z",
@@ -775,9 +862,12 @@
         "ending_balance":443.2901291814,
         "depreciation":2.6353050595,
         "cfads":1.4401632846,
+        "ebit":-1.1951417749,
+        "ebt":-1.1951417749,
+        "tax_expense":0.1337989854,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.9909641467,
-        "irr":0.1093631295
+        "equity_cash_flow":-21.1247631321,
+        "irr":0.0859203288
     },
     {
         "date":"2026-09-01T00:00Z",
@@ -801,9 +891,12 @@
         "ending_balance":486.4905476615,
         "depreciation":2.9132837302,
         "cfads":1.4414389153,
+        "ebit":-1.4718448148,
+        "ebt":-3.4788067666,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-24.0799855087,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2026-10-01T00:00Z",
@@ -827,9 +920,12 @@
         "ending_balance":530.7743011826,
         "depreciation":3.1912624008,
         "cfads":1.4427154567,
+        "ebit":-1.7485469441,
+        "ebt":-1.7485469441,
+        "tax_expense":0.134564637,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.9884119747,
-        "irr":0.1093631295
+        "equity_cash_flow":-21.1229766117,
+        "irr":0.0859203288
     },
     {
         "date":"2026-11-01T00:00Z",
@@ -853,9 +949,12 @@
         "ending_balance":582.6607930677,
         "depreciation":3.4692410714,
         "cfads":1.4439929093,
+        "ebit":-2.0252481622,
+        "ebt":-2.0252481622,
+        "tax_expense":0.1349478728,
         "terminal_value":0.0,
-        "equity_cash_flow":-25.1367771104,
-        "irr":0.1093631295
+        "equity_cash_flow":-25.2717249831,
+        "irr":0.0859203288
     },
     {
         "date":"2026-12-01T00:00Z",
@@ -879,9 +978,12 @@
         "ending_balance":633.4639499119,
         "depreciation":3.796187996,
         "cfads":1.4452712738,
+        "ebit":-2.3509167222,
+        "ebt":-4.357878674,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-28.2257957385,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2027-01-01T00:00Z",
@@ -905,9 +1007,12 @@
         "ending_balance":693.2270145967,
         "depreciation":4.1231349206,
         "cfads":1.4378807592,
+        "ebit":-2.6852541614,
+        "ebt":-2.6852541614,
+        "tax_expense":0.1331142278,
         "terminal_value":0.0,
-        "equity_cash_flow":-29.0579831274,
-        "irr":0.1093631295
+        "equity_cash_flow":-29.1910973552,
+        "irr":0.0859203288
     },
     {
         "date":"2027-02-01T00:00Z",
@@ -931,9 +1036,12 @@
         "ending_balance":752.9900792815,
         "depreciation":4.4992137897,
         "cfads":1.4391609495,
+        "ebit":-3.0600528402,
+        "ebt":-3.0600528402,
+        "tax_expense":0.1334982849,
         "terminal_value":0.0,
-        "equity_cash_flow":-29.0567029371,
-        "irr":0.1093631295
+        "equity_cash_flow":-29.190201222,
+        "irr":0.0859203288
     },
     {
         "date":"2027-03-01T00:00Z",
@@ -957,9 +1065,12 @@
         "ending_balance":811.6698089254,
         "depreciation":4.8752926587,
         "cfads":1.4404420537,
+        "ebit":-3.434850605,
+        "ebt":-5.4418125568,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-32.1457188256,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2027-04-01T00:00Z",
@@ -983,9 +1094,12 @@
         "ending_balance":871.4328736102,
         "depreciation":5.2513715278,
         "cfads":1.4417240724,
+        "ebit":-3.8096474554,
+        "ebt":-3.8096474554,
+        "tax_expense":0.1342672217,
         "terminal_value":0.0,
-        "equity_cash_flow":-29.0541398142,
-        "irr":0.1093631295
+        "equity_cash_flow":-29.1884070359,
+        "irr":0.0859203288
     },
     {
         "date":"2027-05-01T00:00Z",
@@ -1009,9 +1123,12 @@
         "ending_balance":931.195938295,
         "depreciation":5.6274503968,
         "cfads":1.4430070063,
+        "ebit":-4.1844433905,
+        "ebt":-4.1844433905,
+        "tax_expense":0.1346521019,
         "terminal_value":0.0,
-        "equity_cash_flow":-29.0528568803,
-        "irr":0.1093631295
+        "equity_cash_flow":-29.1875089822,
+        "irr":0.0859203288
     },
     {
         "date":"2027-06-01T00:00Z",
@@ -1035,9 +1152,12 @@
         "ending_balance":989.8756679389,
         "depreciation":6.0035292659,
         "cfads":1.444290856,
+        "ebit":-4.5592384099,
+        "ebt":-6.5662003616,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-32.1418700233,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2027-07-01T00:00Z",
@@ -1061,9 +1181,12 @@
         "ending_balance":1026.7960218871,
         "depreciation":6.3796081349,
         "cfads":6.5833326622,
+        "ebit":0.2037245273,
+        "ebt":0.2037245273,
+        "tax_expense":0.7913747987,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.0266705324,
-        "irr":0.1093631295
+        "equity_cash_flow":-13.8180453311,
+        "irr":0.0859203288
     },
     {
         "date":"2027-08-01T00:00Z",
@@ -1087,9 +1210,12 @@
         "ending_balance":1079.5856312813,
         "depreciation":6.6151512897,
         "cfads":6.5908270149,
+        "ebit":-0.0243242748,
+        "ebt":-0.0243242748,
+        "tax_expense":0.7936231045,
         "terminal_value":0.0,
-        "equity_cash_flow":-21.564206448,
-        "irr":0.1093631295
+        "equity_cash_flow":-22.3578295525,
+        "irr":0.0859203288
     },
     {
         "date":"2027-09-01T00:00Z",
@@ -1113,9 +1239,12 @@
         "ending_balance":1126.643493287,
         "depreciation":6.9524206349,
         "cfads":6.5983295935,
+        "ebit":-0.3540910414,
+        "ebt":-9.4915067728,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-36.4258669893,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2027-10-01T00:00Z",
@@ -1139,9 +1268,12 @@
         "ending_balance":1179.4331026812,
         "depreciation":7.2896899802,
         "cfads":7.1011087531,
+        "ebit":-0.1885812271,
+        "ebt":-0.1885812271,
+        "tax_expense":0.9467076259,
         "terminal_value":0.0,
-        "equity_cash_flow":-21.0539247098,
-        "irr":0.1093631295
+        "equity_cash_flow":-22.0006323358,
+        "irr":0.0859203288
     },
     {
         "date":"2027-11-01T00:00Z",
@@ -1165,9 +1297,12 @@
         "ending_balance":1232.2227120755,
         "depreciation":7.6269593254,
         "cfads":7.1094407247,
+        "ebit":-0.5175186007,
+        "ebt":-0.5175186007,
+        "tax_expense":0.9492072174,
         "terminal_value":0.0,
-        "equity_cash_flow":-21.0455927382,
-        "irr":0.1093631295
+        "equity_cash_flow":-21.9947999556,
+        "irr":0.0859203288
     },
     {
         "date":"2027-12-01T00:00Z",
@@ -1191,9 +1326,12 @@
         "ending_balance":1279.2805740811,
         "depreciation":7.9642286706,
         "cfads":7.1177822884,
+        "ebit":-0.8464463822,
+        "ebt":-9.9838621136,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-35.9064142944,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2028-01-01T00:00Z",
@@ -1217,9 +1355,12 @@
         "ending_balance":1324.1936106757,
         "depreciation":8.3014980159,
         "cfads":8.1191814047,
+        "ebit":-0.1823166112,
+        "ebt":-0.1823166112,
+        "tax_expense":1.0752544214,
         "terminal_value":0.0,
-        "equity_cash_flow":-16.1207581912,
-        "irr":0.1093631295
+        "equity_cash_flow":-17.1960126126,
+        "irr":0.0859203288
     },
     {
         "date":"2028-02-01T00:00Z",
@@ -1243,9 +1384,12 @@
         "ending_balance":1369.1066472702,
         "depreciation":8.5896354167,
         "cfads":8.1296207653,
+        "ebit":-0.4600146513,
+        "ebt":-0.4600146513,
+        "tax_expense":1.0783862296,
         "terminal_value":0.0,
-        "equity_cash_flow":-16.1103188306,
-        "irr":0.1093631295
+        "equity_cash_flow":-17.1887050602,
+        "irr":0.0859203288
     },
     {
         "date":"2028-03-01T00:00Z",
@@ -1269,9 +1413,12 @@
         "ending_balance":1407.83361754,
         "depreciation":8.8777728175,
         "cfads":8.1400733196,
+        "ebit":-0.7376994978,
+        "ebt":-11.2928983331,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-32.8411314363,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2028-04-01T00:00Z",
@@ -1295,9 +1442,12 @@
         "ending_balance":1452.7466541346,
         "depreciation":9.1659102183,
         "cfads":7.6503732278,
+        "ebit":-1.5155369905,
+        "ebt":-1.5155369905,
+        "tax_expense":0.9346119683,
         "terminal_value":0.0,
-        "equity_cash_flow":-16.5895663681,
-        "irr":0.1093631295
+        "equity_cash_flow":-17.5241783365,
+        "irr":0.0859203288
     },
     {
         "date":"2028-05-01T00:00Z",
@@ -1321,9 +1471,12 @@
         "ending_balance":1476.2186479447,
         "depreciation":9.454047619,
         "cfads":12.0205179452,
+        "ebit":2.5664703262,
+        "ebt":2.5664703262,
+        "tax_expense":1.3090303836,
         "terminal_value":0.0,
-        "equity_cash_flow":-0.6741549113,
-        "irr":0.1093631295
+        "equity_cash_flow":-1.9831852949,
+        "irr":0.0859203288
     },
     {
         "date":"2028-06-01T00:00Z",
@@ -1347,9 +1500,12 @@
         "ending_balance":1491.3747513333,
         "depreciation":9.6047420635,
         "cfads":12.0393121842,
+        "ebit":2.4345701207,
+        "ebt":-15.4262842643,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-26.832105479,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2028-07-01T00:00Z",
@@ -1373,9 +1529,12 @@
         "ending_balance":1514.8467451434,
         "depreciation":9.7554365079,
         "cfads":11.8905898354,
+        "ebit":2.1351533275,
+        "ebt":2.1351533275,
+        "tax_expense":1.2700519506,
         "terminal_value":0.0,
-        "equity_cash_flow":-0.8040830211,
-        "irr":0.1093631295
+        "equity_cash_flow":-2.0741349718,
+        "irr":0.0859203288
     },
     {
         "date":"2028-08-01T00:00Z",
@@ -1399,9 +1558,12 @@
         "ending_balance":1530.7160005894,
         "depreciation":9.9061309524,
         "cfads":13.1740477756,
+        "ebit":3.2679168232,
+        "ebt":3.2679168232,
+        "tax_expense":1.3465893327,
         "terminal_value":0.0,
-        "equity_cash_flow":4.6290175073,
-        "irr":0.1093631295
+        "equity_cash_flow":3.2824281747,
+        "irr":0.0859203288
     },
     {
         "date":"2028-09-01T00:00Z",
@@ -1425,9 +1587,12 @@
         "ending_balance":1537.4569375445,
         "depreciation":10.0078571429,
         "cfads":13.1952962274,
+        "ebit":3.1874390845,
+        "ebt":-16.7243730419,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-24.3898646582,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2028-10-01T00:00Z",
@@ -1451,9 +1616,12 @@
         "ending_balance":1553.3261929906,
         "depreciation":10.1095833333,
         "cfads":13.7216883895,
+        "ebit":3.6121050561,
+        "ebt":3.6121050561,
+        "tax_expense":1.5108815168,
         "terminal_value":0.0,
-        "equity_cash_flow":5.1766581212,
-        "irr":0.1093631295
+        "equity_cash_flow":3.6657766044,
+        "irr":0.0859203288
     },
     {
         "date":"2028-11-01T00:00Z",
@@ -1477,9 +1645,12 @@
         "ending_balance":1569.1954484366,
         "depreciation":10.2113095238,
         "cfads":13.7438297737,
+        "ebit":3.5325202499,
+        "ebt":3.5325202499,
+        "tax_expense":1.5175239321,
         "terminal_value":0.0,
-        "equity_cash_flow":5.1987995054,
-        "irr":0.1093631295
+        "equity_cash_flow":3.6812755733,
+        "irr":0.0859203288
     },
     {
         "date":"2028-12-01T00:00Z",
@@ -1503,9 +1674,12 @@
         "ending_balance":1575.9363853917,
         "depreciation":10.3130357143,
         "cfads":13.7660045291,
+        "ebit":3.4529688148,
+        "ebt":-16.4588433116,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-23.8191563565,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2029-01-01T00:00Z",
@@ -1529,9 +1703,12 @@
         "ending_balance":1591.8056408377,
         "depreciation":10.4147619048,
         "cfads":13.8854685798,
+        "ebit":3.470706675,
+        "ebt":3.470706675,
+        "tax_expense":1.5600155739,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3404383115,
-        "irr":0.1093631295
+        "equity_cash_flow":3.7804227376,
+        "irr":0.0859203288
     },
     {
         "date":"2029-02-01T00:00Z",
@@ -1555,9 +1732,12 @@
         "ending_balance":1607.6748962838,
         "depreciation":10.5164880952,
         "cfads":13.9079879575,
+        "ebit":3.3914998623,
+        "ebt":3.3914998623,
+        "tax_expense":1.5667713872,
         "terminal_value":0.0,
-        "equity_cash_flow":5.3629576892,
-        "irr":0.1093631295
+        "equity_cash_flow":3.796186302,
+        "irr":0.0859203288
     },
     {
         "date":"2029-03-01T00:00Z",
@@ -1581,9 +1761,12 @@
         "ending_balance":1614.3510578844,
         "depreciation":10.6182142857,
         "cfads":13.930541324,
+        "ebit":3.3123270383,
+        "ebt":-16.572225952,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-23.6921357799,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2029-04-01T00:00Z",
@@ -1607,9 +1790,12 @@
         "ending_balance":1630.2203133304,
         "depreciation":10.7199404762,
         "cfads":13.4430220787,
+        "ebit":2.7230816026,
+        "ebt":2.7230816026,
+        "tax_expense":1.4272816236,
         "terminal_value":0.0,
-        "equity_cash_flow":4.8979918105,
-        "irr":0.1093631295
+        "equity_cash_flow":3.4707101869,
+        "irr":0.0859203288
     },
     {
         "date":"2029-05-01T00:00Z",
@@ -1633,9 +1819,12 @@
         "ending_balance":1630.2203133304,
         "depreciation":10.8216666667,
         "cfads":16.0287396564,
+        "ebit":5.2070729897,
+        "ebt":5.2070729897,
+        "tax_expense":1.5621218969,
         "terminal_value":0.0,
-        "equity_cash_flow":16.0287396564,
-        "irr":0.1093631295
+        "equity_cash_flow":14.4666177595,
+        "irr":0.0859203288
     },
     {
         "date":"2029-06-01T00:00Z",
@@ -1659,9 +1848,12 @@
         "ending_balance":1620.1613851108,
         "depreciation":10.8216666667,
         "cfads":16.0558497734,
+        "ebit":5.2341831067,
+        "ebt":-19.5213959032,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-18.7586574562,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2029-07-01T00:00Z",
@@ -1685,9 +1877,12 @@
         "ending_balance":1620.1613851108,
         "depreciation":10.8216666667,
         "cfads":15.9121276631,
+        "ebit":5.0904609964,
+        "ebt":5.0904609964,
+        "tax_expense":1.5271382989,
         "terminal_value":0.0,
-        "equity_cash_flow":15.9121276631,
-        "irr":0.1093631295
+        "equity_cash_flow":14.3849893642,
+        "irr":0.0859203288
     },
     {
         "date":"2029-08-01T00:00Z",
@@ -1711,9 +1906,12 @@
         "ending_balance":1620.1613851108,
         "depreciation":10.8216666667,
         "cfads":15.9390413118,
+        "ebit":5.1173746451,
+        "ebt":5.1173746451,
+        "tax_expense":1.5352123935,
         "terminal_value":0.0,
-        "equity_cash_flow":15.9390413118,
-        "irr":0.1093631295
+        "equity_cash_flow":14.4038289182,
+        "irr":0.0859203288
     },
     {
         "date":"2029-09-01T00:00Z",
@@ -1737,9 +1935,12 @@
         "ending_balance":1609.5242229534,
         "depreciation":10.8216666667,
         "cfads":15.9659966014,
+        "ebit":5.1443299347,
+        "ebt":-19.2185985477,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.0340940385,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2029-10-01T00:00Z",
@@ -1763,9 +1964,12 @@
         "ending_balance":1609.5242229534,
         "depreciation":10.8216666667,
         "cfads":16.5081445,
+        "ebit":5.6864778333,
+        "ebt":5.6864778333,
+        "tax_expense":1.70594335,
         "terminal_value":0.0,
-        "equity_cash_flow":16.5081445,
-        "irr":0.1093631295
+        "equity_cash_flow":14.80220115,
+        "irr":0.0859203288
     },
     {
         "date":"2029-11-01T00:00Z",
@@ -1789,9 +1993,12 @@
         "ending_balance":1609.5242229534,
         "depreciation":10.8216666667,
         "cfads":16.5360288198,
+        "ebit":5.7143621531,
+        "ebt":5.7143621531,
+        "tax_expense":1.7143086459,
         "terminal_value":0.0,
-        "equity_cash_flow":16.5360288198,
-        "irr":0.1093631295
+        "equity_cash_flow":14.8217201739,
+        "irr":0.0859203288
     },
     {
         "date":"2029-12-01T00:00Z",
@@ -1815,9 +2022,12 @@
         "ending_balance":1598.8870607959,
         "depreciation":10.8216666667,
         "cfads":16.5639563733,
+        "ebit":5.7422897066,
+        "ebt":-18.6206387759,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-18.4361342666,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2030-01-01T00:00Z",
@@ -1841,9 +2051,12 @@
         "ending_balance":1598.8870607959,
         "depreciation":10.8216666667,
         "cfads":16.6781431762,
+        "ebit":5.8564765095,
+        "ebt":5.8564765095,
+        "tax_expense":1.7569429529,
         "terminal_value":0.0,
-        "equity_cash_flow":16.6781431762,
-        "irr":0.1093631295
+        "equity_cash_flow":14.9212002233,
+        "irr":0.0859203288
     },
     {
         "date":"2030-02-01T00:00Z",
@@ -1867,9 +2080,12 @@
         "ending_balance":1598.8870607959,
         "depreciation":10.8216666667,
         "cfads":16.7064406474,
+        "ebit":5.8847739807,
+        "ebt":5.8847739807,
+        "tax_expense":1.7654321942,
         "terminal_value":0.0,
-        "equity_cash_flow":16.7064406474,
-        "irr":0.1093631295
+        "equity_cash_flow":14.9410084532,
+        "irr":0.0859203288
     },
     {
         "date":"2030-03-01T00:00Z",
@@ -1893,9 +2109,12 @@
         "ending_balance":1588.1804929416,
         "depreciation":10.8216666667,
         "cfads":16.7347820299,
+        "ebit":5.9131153632,
+        "ebt":-18.4186674618,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-18.3035686495,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2030-04-01T00:00Z",
@@ -1919,9 +2138,12 @@
         "ending_balance":1588.1804929416,
         "depreciation":10.8216666667,
         "cfads":16.2429223705,
+        "ebit":5.4212557038,
+        "ebt":5.4212557038,
+        "tax_expense":1.6263767111,
         "terminal_value":0.0,
-        "equity_cash_flow":16.2429223705,
-        "irr":0.1093631295
+        "equity_cash_flow":14.6165456593,
+        "irr":0.0859203288
     },
     {
         "date":"2030-05-01T00:00Z",
@@ -1945,9 +2167,12 @@
         "ending_balance":1588.1804929416,
         "depreciation":10.8216666667,
         "cfads":16.2704978864,
+        "ebit":5.4488312197,
+        "ebt":5.4488312197,
+        "tax_expense":1.6346493659,
         "terminal_value":0.0,
-        "equity_cash_flow":16.2704978864,
-        "irr":0.1093631295
+        "equity_cash_flow":14.6358485205,
+        "irr":0.0859203288
     },
     {
         "date":"2030-06-01T00:00Z",
@@ -1971,9 +2196,12 @@
         "ending_balance":1576.9899796883,
         "depreciation":10.8216666667,
         "cfads":16.2981161281,
+        "ebit":5.4764494614,
+        "ebt":-18.6755938554,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.044440442,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2030-07-01T00:00Z",
@@ -1997,9 +2225,12 @@
         "ending_balance":1576.9899796883,
         "depreciation":10.8216666667,
         "cfads":16.1515068499,
+        "ebit":5.3298401833,
+        "ebt":5.3298401833,
+        "tax_expense":1.598952055,
         "terminal_value":0.0,
-        "equity_cash_flow":16.1515068499,
-        "irr":0.1093631295
+        "equity_cash_flow":14.552554795,
+        "irr":0.0859203288
     },
     {
         "date":"2030-08-01T00:00Z",
@@ -2023,9 +2254,12 @@
         "ending_balance":1576.9899796883,
         "depreciation":10.8216666667,
         "cfads":16.1789247144,
+        "ebit":5.3572580478,
+        "ebt":5.3572580478,
+        "tax_expense":1.6071774143,
         "terminal_value":0.0,
-        "equity_cash_flow":16.1789247144,
-        "irr":0.1093631295
+        "equity_cash_flow":14.5717473001,
+        "irr":0.0859203288
     },
     {
         "date":"2030-09-01T00:00Z",
@@ -2049,9 +2283,12 @@
         "ending_balance":1565.184565378,
         "depreciation":10.8216666667,
         "cfads":16.2063850455,
+        "ebit":5.3847183788,
+        "ebt":-18.3399803742,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.3237280179,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2030-10-01T00:00Z",
@@ -2075,9 +2312,12 @@
         "ending_balance":1565.184565378,
         "depreciation":10.8216666667,
         "cfads":16.7592774367,
+        "ebit":5.93761077,
+        "ebt":5.93761077,
+        "tax_expense":1.781283231,
         "terminal_value":0.0,
-        "equity_cash_flow":16.7592774367,
-        "irr":0.1093631295
+        "equity_cash_flow":14.9779942057,
+        "irr":0.0859203288
     },
     {
         "date":"2030-11-01T00:00Z",
@@ -2101,9 +2341,12 @@
         "ending_balance":1565.184565378,
         "depreciation":10.8216666667,
         "cfads":16.7876852586,
+        "ebit":5.9660185919,
+        "ebt":5.9660185919,
+        "tax_expense":1.7898055776,
         "terminal_value":0.0,
-        "equity_cash_flow":16.7876852586,
-        "irr":0.1093631295
+        "equity_cash_flow":14.997879681,
+        "irr":0.0859203288
     },
     {
         "date":"2030-12-01T00:00Z",
@@ -2127,9 +2370,12 @@
         "ending_balance":1553.3791510676,
         "depreciation":10.8216666667,
         "cfads":16.8161371714,
+        "ebit":5.9944705048,
+        "ebt":-17.7302282482,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-18.7139758919,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2031-01-01T00:00Z",
@@ -2153,9 +2399,12 @@
         "ending_balance":1553.3791510676,
         "depreciation":10.8216666667,
         "cfads":16.9321202013,
+        "ebit":6.1104535346,
+        "ebt":6.1104535346,
+        "tax_expense":1.8331360604,
         "terminal_value":0.0,
-        "equity_cash_flow":16.9321202013,
-        "irr":0.1093631295
+        "equity_cash_flow":15.0989841409,
+        "irr":0.0859203288
     },
     {
         "date":"2031-02-01T00:00Z",
@@ -2179,9 +2428,12 @@
         "ending_balance":1553.3791510676,
         "depreciation":10.8216666667,
         "cfads":16.9609493804,
+        "ebit":6.1392827137,
+        "ebt":6.1392827137,
+        "tax_expense":1.8417848141,
         "terminal_value":0.0,
-        "equity_cash_flow":16.9609493804,
-        "irr":0.1093631295
+        "equity_cash_flow":15.1191645663,
+        "irr":0.0859203288
     },
     {
         "date":"2031-03-01T00:00Z",
@@ -2205,9 +2457,12 @@
         "ending_balance":1541.4994083583,
         "depreciation":10.8216666667,
         "cfads":16.9898233416,
+        "ebit":6.168156675,
+        "ebt":-17.5212320788,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-18.5793081214,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2031-04-01T00:00Z",
@@ -2231,9 +2486,12 @@
         "ending_balance":1541.4994083583,
         "depreciation":10.8216666667,
         "cfads":16.4881572636,
+        "ebit":5.6664905969,
+        "ebt":5.6664905969,
+        "tax_expense":1.6999471791,
         "terminal_value":0.0,
-        "equity_cash_flow":16.4881572636,
-        "irr":0.1093631295
+        "equity_cash_flow":14.7882100845,
+        "irr":0.0859203288
     },
     {
         "date":"2031-05-01T00:00Z",
@@ -2257,9 +2515,12 @@
         "ending_balance":1541.4994083583,
         "depreciation":10.8216666667,
         "cfads":16.5162501332,
+        "ebit":5.6945834665,
+        "ebt":5.6945834665,
+        "tax_expense":1.70837504,
         "terminal_value":0.0,
-        "equity_cash_flow":16.5162501332,
-        "irr":0.1093631295
+        "equity_cash_flow":14.8078750932,
+        "irr":0.0859203288
     },
     {
         "date":"2031-06-01T00:00Z",
@@ -2283,9 +2544,12 @@
         "ending_balance":1529.1006480233,
         "depreciation":10.8216666667,
         "cfads":16.5443865761,
+        "ebit":5.7227199095,
+        "ebt":-17.7578926121,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.3349862803,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2031-07-01T00:00Z",
@@ -2309,9 +2573,12 @@
         "ending_balance":1529.1006480233,
         "depreciation":10.8216666667,
         "cfads":16.3948327256,
+        "ebit":5.573166059,
+        "ebt":5.573166059,
+        "tax_expense":1.6719498177,
         "terminal_value":0.0,
-        "equity_cash_flow":16.3948327256,
-        "irr":0.1093631295
+        "equity_cash_flow":14.7228829079,
+        "irr":0.0859203288
     },
     {
         "date":"2031-08-01T00:00Z",
@@ -2335,9 +2602,12 @@
         "ending_balance":1529.1006480233,
         "depreciation":10.8216666667,
         "cfads":16.4227648056,
+        "ebit":5.6010981389,
+        "ebt":5.6010981389,
+        "tax_expense":1.6803294417,
         "terminal_value":0.0,
-        "equity_cash_flow":16.4227648056,
-        "irr":0.1093631295
+        "equity_cash_flow":14.7424353639,
+        "irr":0.0859203288
     },
     {
         "date":"2031-09-01T00:00Z",
@@ -2361,9 +2631,12 @@
         "ending_balance":1516.0481022055,
         "depreciation":10.8216666667,
         "cfads":16.4507401945,
+        "ebit":5.6290735279,
+        "ebt":-17.3873003665,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.6181795176,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2031-10-01T00:00Z",
@@ -2387,9 +2660,12 @@
         "ending_balance":1516.0481022055,
         "depreciation":10.8216666667,
         "cfads":17.0145906043,
+        "ebit":6.1929239376,
+        "ebt":6.1929239376,
+        "tax_expense":1.8578771813,
         "terminal_value":0.0,
-        "equity_cash_flow":17.0145906043,
-        "irr":0.1093631295
+        "equity_cash_flow":15.156713423,
+        "irr":0.0859203288
     },
     {
         "date":"2031-11-01T00:00Z",
@@ -2413,9 +2689,12 @@
         "ending_balance":1516.0481022055,
         "depreciation":10.8216666667,
         "cfads":17.0435323124,
+        "ebit":6.2218656457,
+        "ebt":6.2218656457,
+        "tax_expense":1.8665596937,
         "terminal_value":0.0,
-        "equity_cash_flow":17.0435323124,
-        "irr":0.1093631295
+        "equity_cash_flow":15.1769726186,
+        "irr":0.0859203288
     },
     {
         "date":"2031-12-01T00:00Z",
@@ -2439,9 +2718,12 @@
         "ending_balance":1502.9955563878,
         "depreciation":10.8216666667,
         "cfads":17.0725189863,
+        "ebit":6.2508523196,
+        "ebt":-16.7655215748,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-18.9964007259,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2032-01-01T00:00Z",
@@ -2465,9 +2747,12 @@
         "ending_balance":1502.9955563878,
         "depreciation":10.8216666667,
         "cfads":17.19032286,
+        "ebit":6.3686561933,
+        "ebt":6.3686561933,
+        "tax_expense":1.910596858,
         "terminal_value":0.0,
-        "equity_cash_flow":17.19032286,
-        "irr":0.1093631295
+        "equity_cash_flow":15.279726002,
+        "irr":0.0859203288
     },
     {
         "date":"2032-02-01T00:00Z",
@@ -2491,9 +2776,12 @@
         "ending_balance":1502.9955563878,
         "depreciation":10.8216666667,
         "cfads":17.2196942954,
+        "ebit":6.3980276287,
+        "ebt":6.3980276287,
+        "tax_expense":1.9194082886,
         "terminal_value":0.0,
-        "equity_cash_flow":17.2196942954,
-        "irr":0.1093631295
+        "equity_cash_flow":15.3002860068,
+        "irr":0.0859203288
     },
     {
         "date":"2032-03-01T00:00Z",
@@ -2517,9 +2805,12 @@
         "ending_balance":1489.8634492889,
         "depreciation":10.8216666667,
         "cfads":17.2491114017,
+        "ebit":6.427444735,
+        "ebt":-16.5491594562,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-18.8595998884,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2032-04-01T00:00Z",
@@ -2543,9 +2834,12 @@
         "ending_balance":1489.8634492889,
         "depreciation":10.8216666667,
         "cfads":16.737443984,
+        "ebit":5.9157773173,
+        "ebt":5.9157773173,
+        "tax_expense":1.7747331952,
         "terminal_value":0.0,
-        "equity_cash_flow":16.737443984,
-        "irr":0.1093631295
+        "equity_cash_flow":14.9627107888,
+        "irr":0.0859203288
     },
     {
         "date":"2032-05-01T00:00Z",
@@ -2569,9 +2863,12 @@
         "ending_balance":1489.8634492889,
         "depreciation":10.8216666667,
         "cfads":16.7660644718,
+        "ebit":5.9443978051,
+        "ebt":5.9443978051,
+        "tax_expense":1.7833193415,
         "terminal_value":0.0,
-        "equity_cash_flow":16.7660644718,
-        "irr":0.1093631295
+        "equity_cash_flow":14.9827451302,
+        "irr":0.0859203288
     },
     {
         "date":"2032-06-01T00:00Z",
@@ -2595,9 +2892,12 @@
         "ending_balance":1476.1750299222,
         "depreciation":10.8216666667,
         "cfads":16.7947293976,
+        "ebit":5.9730627309,
+        "ebt":-16.7636241706,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.6303768706,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2032-07-01T00:00Z",
@@ -2621,9 +2921,12 @@
         "ending_balance":1476.1750299222,
         "depreciation":10.8216666667,
         "cfads":16.6421724341,
+        "ebit":5.8205057674,
+        "ebt":5.8205057674,
+        "tax_expense":1.7461517302,
         "terminal_value":0.0,
-        "equity_cash_flow":16.6421724341,
-        "irr":0.1093631295
+        "equity_cash_flow":14.8960207039,
+        "irr":0.0859203288
     },
     {
         "date":"2032-08-01T00:00Z",
@@ -2647,9 +2950,12 @@
         "ending_balance":1476.1750299222,
         "depreciation":10.8216666667,
         "cfads":16.6706289327,
+        "ebit":5.8489622661,
+        "ebt":5.8489622661,
+        "tax_expense":1.7546886798,
         "terminal_value":0.0,
-        "equity_cash_flow":16.6706289327,
-        "irr":0.1093631295
+        "equity_cash_flow":14.9159402529,
+        "irr":0.0859203288
     },
     {
         "date":"2032-09-01T00:00Z",
@@ -2673,9 +2979,12 @@
         "ending_balance":1461.7915903302,
         "depreciation":10.8216666667,
         "cfads":16.6991296,
+        "ebit":5.8774629333,
+        "ebt":-16.355758212,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.9175311373,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2032-10-01T00:00Z",
@@ -2699,9 +3008,12 @@
         "ending_balance":1461.7915903302,
         "depreciation":10.8216666667,
         "cfads":17.274155803,
+        "ebit":6.4524891363,
+        "ebt":6.4524891363,
+        "tax_expense":1.9357467409,
         "terminal_value":0.0,
-        "equity_cash_flow":17.274155803,
-        "irr":0.1093631295
+        "equity_cash_flow":15.3384090621,
+        "irr":0.0859203288
     },
     {
         "date":"2032-11-01T00:00Z",
@@ -2725,9 +3037,12 @@
         "ending_balance":1461.7915903302,
         "depreciation":10.8216666667,
         "cfads":17.3036419927,
+        "ebit":6.481975326,
+        "ebt":6.481975326,
+        "tax_expense":1.9445925978,
         "terminal_value":0.0,
-        "equity_cash_flow":17.3036419927,
-        "irr":0.1093631295
+        "equity_cash_flow":15.3590493949,
+        "irr":0.0859203288
     },
     {
         "date":"2032-12-01T00:00Z",
@@ -2751,9 +3066,12 @@
         "ending_balance":1447.4081507383,
         "depreciation":10.8216666667,
         "cfads":17.3331740409,
+        "ebit":6.5115073742,
+        "ebt":-15.7217137711,
+        "tax_expense":0.007383221,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.2834866964,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.2908699175,
+        "irr":0.0859203288
     },
     {
         "date":"2033-01-01T00:00Z",
@@ -2777,9 +3095,12 @@
         "ending_balance":1447.4081507383,
         "depreciation":10.8216666667,
         "cfads":17.4528235932,
+        "ebit":6.6311569265,
+        "ebt":6.6311569265,
+        "tax_expense":1.989347078,
         "terminal_value":0.0,
-        "equity_cash_flow":17.4528235932,
-        "irr":0.1093631295
+        "equity_cash_flow":15.4634765152,
+        "irr":0.0859203288
     },
     {
         "date":"2033-02-01T00:00Z",
@@ -2803,9 +3124,12 @@
         "ending_balance":1447.4081507383,
         "depreciation":10.8216666667,
         "cfads":17.482748048,
+        "ebit":6.6610813813,
+        "ebt":6.6610813813,
+        "tax_expense":1.9983244144,
         "terminal_value":0.0,
-        "equity_cash_flow":17.482748048,
-        "irr":0.1093631295
+        "equity_cash_flow":15.4844236336,
+        "irr":0.0859203288
     },
     {
         "date":"2033-03-01T00:00Z",
@@ -2829,9 +3153,12 @@
         "ending_balance":1432.9395879085,
         "depreciation":10.8216666667,
         "cfads":17.5127190804,
+        "ebit":6.6910524137,
+        "ebt":-15.4976253515,
+        "tax_expense":0.0641041942,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.1445215146,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.2086257088,
+        "irr":0.0859203288
     },
     {
         "date":"2033-04-01T00:00Z",
@@ -2855,9 +3182,12 @@
         "ending_balance":1432.9395879085,
         "depreciation":10.8216666667,
         "cfads":16.990851533,
+        "ebit":6.1691848663,
+        "ebt":6.1691848663,
+        "tax_expense":1.8507554599,
         "terminal_value":0.0,
-        "equity_cash_flow":16.990851533,
-        "irr":0.1093631295
+        "equity_cash_flow":15.1400960731,
+        "irr":0.0859203288
     },
     {
         "date":"2033-05-01T00:00Z",
@@ -2881,9 +3211,12 @@
         "ending_balance":1432.9395879085,
         "depreciation":10.8216666667,
         "cfads":17.0200101123,
+        "ebit":6.1983434456,
+        "ebt":6.1983434456,
+        "tax_expense":1.8595030337,
         "terminal_value":0.0,
-        "equity_cash_flow":17.0200101123,
-        "irr":0.1093631295
+        "equity_cash_flow":15.1605070786,
+        "irr":0.0859203288
     },
     {
         "date":"2033-06-01T00:00Z",
@@ -2907,9 +3240,12 @@
         "ending_balance":1417.8750601417,
         "depreciation":10.8216666667,
         "cfads":17.0492140119,
+        "ebit":6.2275473453,
+        "ebt":-15.6878343942,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-19.9306954943,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2033-07-01T00:00Z",
@@ -2933,9 +3269,12 @@
         "ending_balance":1417.8750601417,
         "depreciation":10.8216666667,
         "cfads":16.8935942365,
+        "ebit":6.0719275698,
+        "ebt":6.0719275698,
+        "tax_expense":1.8215782709,
         "terminal_value":0.0,
-        "equity_cash_flow":16.8935942365,
-        "irr":0.1093631295
+        "equity_cash_flow":15.0720159655,
+        "irr":0.0859203288
     },
     {
         "date":"2033-08-01T00:00Z",
@@ -2959,9 +3298,12 @@
         "ending_balance":1417.8750601417,
         "depreciation":10.8216666667,
         "cfads":16.9225855649,
+        "ebit":6.1009188982,
+        "ebt":6.1009188982,
+        "tax_expense":1.8302756695,
         "terminal_value":0.0,
-        "equity_cash_flow":16.9225855649,
-        "irr":0.1093631295
+        "equity_cash_flow":15.0923098954,
+        "irr":0.0859203288
     },
     {
         "date":"2033-09-01T00:00Z",
@@ -2985,9 +3327,12 @@
         "ending_balance":1402.0717861084,
         "depreciation":10.8216666667,
         "cfads":16.951621939,
+        "ebit":6.1299552724,
+        "ebt":-15.2402594974,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-20.221866864,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2033-10-01T00:00Z",
@@ -3011,9 +3356,12 @@
         "ending_balance":1402.0717861084,
         "depreciation":10.8216666667,
         "cfads":17.5380460432,
+        "ebit":6.7163793765,
+        "ebt":6.7163793765,
+        "tax_expense":2.014913813,
         "terminal_value":0.0,
-        "equity_cash_flow":17.5380460432,
-        "irr":0.1093631295
+        "equity_cash_flow":15.5231322302,
+        "irr":0.0859203288
     },
     {
         "date":"2033-11-01T00:00Z",
@@ -3037,9 +3385,12 @@
         "ending_balance":1402.0717861084,
         "depreciation":10.8216666667,
         "cfads":17.5680875257,
+        "ebit":6.746420859,
+        "ebt":6.746420859,
+        "tax_expense":2.0239262577,
         "terminal_value":0.0,
-        "equity_cash_flow":17.5680875257,
-        "irr":0.1093631295
+        "equity_cash_flow":15.544161268,
+        "irr":0.0859203288
     },
     {
         "date":"2033-12-01T00:00Z",
@@ -3063,9 +3414,12 @@
         "ending_balance":1386.2685120752,
         "depreciation":10.8216666667,
         "cfads":17.5981757774,
+        "ebit":6.7765091107,
+        "ebt":-14.5937056591,
+        "tax_expense":0.0780618099,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.5753130257,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.6533748356,
+        "irr":0.0859203288
     },
     {
         "date":"2034-01-01T00:00Z",
@@ -3089,9 +3443,12 @@
         "ending_balance":1386.2685120752,
         "depreciation":10.8216666667,
         "cfads":17.7196960582,
+        "ebit":6.8980293915,
+        "ebt":6.8980293915,
+        "tax_expense":2.0694088174,
         "terminal_value":0.0,
-        "equity_cash_flow":17.7196960582,
-        "irr":0.1093631295
+        "equity_cash_flow":15.6502872407,
+        "irr":0.0859203288
     },
     {
         "date":"2034-02-01T00:00Z",
@@ -3115,9 +3472,12 @@
         "ending_balance":1386.2685120752,
         "depreciation":10.8216666667,
         "cfads":17.7501845144,
+        "ebit":6.9285178477,
+        "ebt":6.9285178477,
+        "tax_expense":2.0785553543,
         "terminal_value":0.0,
-        "equity_cash_flow":17.7501845144,
-        "irr":0.1093631295
+        "equity_cash_flow":15.6716291601,
+        "irr":0.0859203288
     },
     {
         "date":"2034-03-01T00:00Z",
@@ -3141,9 +3501,12 @@
         "ending_balance":1370.374203739,
         "depreciation":10.8216666667,
         "cfads":17.7807204735,
+        "ebit":6.9590538068,
+        "ebt":-14.3615101887,
+        "tax_expense":0.1358983342,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.4341518582,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.5700501924,
+        "irr":0.0859203288
     },
     {
         "date":"2034-04-01T00:00Z",
@@ -3167,9 +3530,12 @@
         "ending_balance":1370.374203739,
         "depreciation":10.8216666667,
         "cfads":17.2484500604,
+        "ebit":6.4267833938,
+        "ebt":6.4267833938,
+        "tax_expense":1.9280350181,
         "terminal_value":0.0,
-        "equity_cash_flow":17.2484500604,
-        "irr":0.1093631295
+        "equity_cash_flow":15.3204150423,
+        "irr":0.0859203288
     },
     {
         "date":"2034-05-01T00:00Z",
@@ -3193,9 +3559,12 @@
         "ending_balance":1370.374203739,
         "depreciation":10.8216666667,
         "cfads":17.2781574179,
+        "ebit":6.4564907513,
+        "ebt":6.4564907513,
+        "tax_expense":1.9369472254,
         "terminal_value":0.0,
-        "equity_cash_flow":17.2781574179,
-        "irr":0.1093631295
+        "equity_cash_flow":15.3412101926,
+        "irr":0.0859203288
     },
     {
         "date":"2034-06-01T00:00Z",
@@ -3219,9 +3588,12 @@
         "ending_balance":1353.8417759792,
         "depreciation":10.8216666667,
         "cfads":17.3079109961,
+        "ebit":6.4862443295,
+        "ebt":-14.525265744,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-20.2360268371,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2034-07-01T00:00Z",
@@ -3245,9 +3617,12 @@
         "ending_balance":1353.8417759792,
         "depreciation":10.8216666667,
         "cfads":17.1491675283,
+        "ebit":6.3275008616,
+        "ebt":6.3275008616,
+        "tax_expense":1.8982502585,
         "terminal_value":0.0,
-        "equity_cash_flow":17.1491675283,
-        "irr":0.1093631295
+        "equity_cash_flow":15.2509172698,
+        "irr":0.0859203288
     },
     {
         "date":"2034-08-01T00:00Z",
@@ -3271,9 +3646,12 @@
         "ending_balance":1353.8417759792,
         "depreciation":10.8216666667,
         "cfads":17.1787043096,
+        "ebit":6.357037643,
+        "ebt":6.357037643,
+        "tax_expense":1.9071112929,
         "terminal_value":0.0,
-        "equity_cash_flow":17.1787043096,
-        "irr":0.1093631295
+        "equity_cash_flow":15.2715930167,
+        "irr":0.0859203288
     },
     {
         "date":"2034-09-01T00:00Z",
@@ -3297,9 +3675,12 @@
         "ending_balance":1336.5242351807,
         "depreciation":10.8216666667,
         "cfads":17.2082870317,
+        "ebit":6.386620365,
+        "ebt":-14.0353979628,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":-20.5312720946,
-        "irr":0.1093631295
+        "irr":0.0859203288
     },
     {
         "date":"2034-10-01T00:00Z",
@@ -3323,9 +3704,12 @@
         "ending_balance":1336.5242351807,
         "depreciation":10.8216666667,
         "cfads":17.8063355646,
+        "ebit":6.984668898,
+        "ebt":6.984668898,
+        "tax_expense":2.0954006694,
         "terminal_value":0.0,
-        "equity_cash_flow":17.8063355646,
-        "irr":0.1093631295
+        "equity_cash_flow":15.7109348952,
+        "irr":0.0859203288
     },
     {
         "date":"2034-11-01T00:00Z",
@@ -3349,9 +3733,12 @@
         "ending_balance":1336.5242351807,
         "depreciation":10.8216666667,
         "cfads":17.836943371,
+        "ebit":7.0152767044,
+        "ebt":7.0152767044,
+        "tax_expense":2.1045830113,
         "terminal_value":0.0,
-        "equity_cash_flow":17.836943371,
-        "irr":0.1093631295
+        "equity_cash_flow":15.7323603597,
+        "irr":0.0859203288
     },
     {
         "date":"2034-12-01T00:00Z",
@@ -3375,9 +3762,12 @@
         "ending_balance":1319.2066943822,
         "depreciation":10.8216666667,
         "cfads":17.867598876,
+        "ebit":7.0459322094,
+        "ebt":-13.3760861184,
+        "tax_expense":0.1540217083,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.8719602503,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.0259819586,
+        "irr":0.0859203288
     },
     {
         "date":"2035-01-01T00:00Z",
@@ -3401,9 +3791,12 @@
         "ending_balance":1319.2066943822,
         "depreciation":10.8216666667,
         "cfads":17.9910151476,
+        "ebit":7.1693484809,
+        "ebt":7.1693484809,
+        "tax_expense":2.1508045443,
         "terminal_value":0.0,
-        "equity_cash_flow":17.9910151476,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8402106033,
+        "irr":0.0859203288
     },
     {
         "date":"2035-02-01T00:00Z",
@@ -3427,9 +3820,12 @@
         "ending_balance":1319.2066943822,
         "depreciation":10.8216666667,
         "cfads":18.0220788109,
+        "ebit":7.2004121442,
+        "ebt":7.2004121442,
+        "tax_expense":2.1601236433,
         "terminal_value":0.0,
-        "equity_cash_flow":18.0220788109,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8619551676,
+        "irr":0.0859203288
     },
     {
         "date":"2035-03-01T00:00Z",
@@ -3453,9 +3849,12 @@
         "ending_balance":1301.7918378662,
         "depreciation":10.8216666667,
         "cfads":18.053190921,
+        "ebit":7.2315242544,
+        "ebt":-13.1353812409,
+        "tax_expense":0.2129956609,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.7285710903,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.9415667512,
+        "irr":0.0859203288
     },
     {
         "date":"2035-04-01T00:00Z",
@@ -3479,9 +3878,12 @@
         "ending_balance":1301.7918378662,
         "depreciation":10.8216666667,
         "cfads":17.5103108824,
+        "ebit":6.6886442157,
+        "ebt":6.6886442157,
+        "tax_expense":2.0065932647,
         "terminal_value":0.0,
-        "equity_cash_flow":17.5103108824,
-        "irr":0.1093631295
+        "equity_cash_flow":15.5037176177,
+        "irr":0.0859203288
     },
     {
         "date":"2035-05-01T00:00Z",
@@ -3505,9 +3907,12 @@
         "ending_balance":1301.7918378662,
         "depreciation":10.8216666667,
         "cfads":17.5405779225,
+        "ebit":6.7189112558,
+        "ebt":6.7189112558,
+        "tax_expense":2.0156733767,
         "terminal_value":0.0,
-        "equity_cash_flow":17.5405779225,
-        "irr":0.1093631295
+        "equity_cash_flow":15.5249045457,
+        "irr":0.0859203288
     },
     {
         "date":"2035-06-01T00:00Z",
@@ -3531,9 +3936,12 @@
         "ending_balance":1283.694053162,
         "depreciation":10.8216666667,
         "cfads":17.5708921019,
+        "ebit":6.7492254353,
+        "ebt":-13.2703389726,
+        "tax_expense":0.0445989185,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.5464570101,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.5910559286,
+        "irr":0.0859203288
     },
     {
         "date":"2035-07-01T00:00Z",
@@ -3557,9 +3965,12 @@
         "ending_balance":1283.694053162,
         "depreciation":10.8216666667,
         "cfads":17.4089628566,
+        "ebit":6.5872961899,
+        "ebt":6.5872961899,
+        "tax_expense":1.976188857,
         "terminal_value":0.0,
-        "equity_cash_flow":17.4089628566,
-        "irr":0.1093631295
+        "equity_cash_flow":15.4327739996,
+        "irr":0.0859203288
     },
     {
         "date":"2035-08-01T00:00Z",
@@ -3583,9 +3994,12 @@
         "ending_balance":1283.694053162,
         "depreciation":10.8216666667,
         "cfads":17.3417185446,
+        "ebit":6.5200518779,
+        "ebt":6.5200518779,
+        "tax_expense":1.9560155634,
         "terminal_value":0.0,
-        "equity_cash_flow":17.3417185446,
-        "irr":0.1093631295
+        "equity_cash_flow":15.3857029812,
+        "irr":0.0859203288
     },
     {
         "date":"2035-09-01T00:00Z",
@@ -3609,9 +4023,12 @@
         "ending_balance":1265.2840793735,
         "depreciation":10.8216666667,
         "cfads":17.3717889874,
+        "ebit":6.5501223208,
+        "ebt":-12.8328435591,
+        "tax_expense":0.0578300884,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.4211506809,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.4789807694,
+        "irr":0.0859203288
     },
     {
         "date":"2035-10-01T00:00Z",
@@ -3635,9 +4052,12 @@
         "ending_balance":1265.2840793735,
         "depreciation":10.8216666667,
         "cfads":17.9816234497,
+        "ebit":7.1599567831,
+        "ebt":7.1599567831,
+        "tax_expense":2.1479870349,
         "terminal_value":0.0,
-        "equity_cash_flow":17.9816234497,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8336364148,
+        "irr":0.0859203288
     },
     {
         "date":"2035-11-01T00:00Z",
@@ -3661,9 +4081,12 @@
         "ending_balance":1265.2840793735,
         "depreciation":10.8216666667,
         "cfads":18.0127392516,
+        "ebit":7.191072585,
+        "ebt":7.191072585,
+        "tax_expense":2.1573217755,
         "terminal_value":0.0,
-        "equity_cash_flow":18.0127392516,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8554174761,
+        "irr":0.0859203288
     },
     {
         "date":"2035-12-01T00:00Z",
@@ -3687,9 +4110,12 @@
         "ending_balance":1246.874105585,
         "depreciation":10.8216666667,
         "cfads":18.0439036507,
+        "ebit":7.2222369841,
+        "ebt":-12.1607288958,
+        "tax_expense":0.2355993556,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.7490360177,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.9846353732,
+        "irr":0.0859203288
     },
     {
         "date":"2036-01-01T00:00Z",
@@ -3713,9 +4139,12 @@
         "ending_balance":1246.874105585,
         "depreciation":10.8216666667,
         "cfads":18.5327697446,
+        "ebit":7.711103078,
+        "ebt":7.711103078,
+        "tax_expense":2.3133309234,
         "terminal_value":0.0,
-        "equity_cash_flow":18.5327697446,
-        "irr":0.1093631295
+        "equity_cash_flow":16.2194388212,
+        "irr":0.0859203288
     },
     {
         "date":"2036-02-01T00:00Z",
@@ -3739,9 +4168,12 @@
         "ending_balance":1246.874105585,
         "depreciation":10.8216666667,
         "cfads":18.5646098725,
+        "ebit":7.7429432058,
+        "ebt":7.7429432058,
+        "tax_expense":2.3228829617,
         "terminal_value":0.0,
-        "equity_cash_flow":18.5646098725,
-        "irr":0.1093631295
+        "equity_cash_flow":16.2417269107,
+        "irr":0.0859203288
     },
     {
         "date":"2036-03-01T00:00Z",
@@ -3765,9 +4197,12 @@
         "ending_balance":1228.360141794,
         "depreciation":10.8216666667,
         "cfads":18.5964995459,
+        "ebit":7.7748328792,
+        "ebt":-11.5471812251,
+        "tax_expense":0.2957330411,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.2394783494,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.5352113906,
+        "irr":0.0859203288
     },
     {
         "date":"2036-04-01T00:00Z",
@@ -3791,9 +4226,12 @@
         "ending_balance":1228.360141794,
         "depreciation":10.8216666667,
         "cfads":18.0429891126,
+        "ebit":7.2213224459,
+        "ebt":7.2213224459,
+        "tax_expense":2.1663967338,
         "terminal_value":0.0,
-        "equity_cash_flow":18.0429891126,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8765923788,
+        "irr":0.0859203288
     },
     {
         "date":"2036-05-01T00:00Z",
@@ -3817,9 +4255,12 @@
         "ending_balance":1228.360141794,
         "depreciation":10.8216666667,
         "cfads":18.0740171923,
+        "ebit":7.2523505257,
+        "ebt":7.2523505257,
+        "tax_expense":2.1757051577,
         "terminal_value":0.0,
-        "equity_cash_flow":18.0740171923,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8983120346,
+        "irr":0.0859203288
     },
     {
         "date":"2036-06-01T00:00Z",
@@ -3843,9 +4284,12 @@
         "ending_balance":1209.1156251196,
         "depreciation":10.8216666667,
         "cfads":18.1050934846,
+        "ebit":7.2834268179,
+        "ebt":-11.6502705077,
+        "tax_expense":0.1239894134,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.0731205154,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.1971099288,
+        "irr":0.0859203288
     },
     {
         "date":"2036-07-01T00:00Z",
@@ -3869,9 +4313,12 @@
         "ending_balance":1209.1156251196,
         "depreciation":10.8216666667,
         "cfads":17.9401056505,
+        "ebit":7.1184389838,
+        "ebt":7.1184389838,
+        "tax_expense":2.1355316951,
         "terminal_value":0.0,
-        "equity_cash_flow":17.9401056505,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8045739553,
+        "irr":0.0859203288
     },
     {
         "date":"2036-08-01T00:00Z",
@@ -3895,9 +4342,12 @@
         "ending_balance":1209.1156251196,
         "depreciation":10.8216666667,
         "cfads":17.9709567158,
+        "ebit":7.1492900491,
+        "ebt":7.1492900491,
+        "tax_expense":2.1447870147,
         "terminal_value":0.0,
-        "equity_cash_flow":17.9709567158,
-        "irr":0.1093631295
+        "equity_cash_flow":15.826169701,
+        "irr":0.0859203288
     },
     {
         "date":"2036-09-01T00:00Z",
@@ -3921,9 +4371,12 @@
         "ending_balance":1188.7880357678,
         "depreciation":10.8216666667,
         "cfads":18.0018557029,
+        "ebit":7.1801890362,
+        "ebt":-11.0981784163,
+        "tax_expense":0.1418493069,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.6041011015,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.7459504084,
+        "irr":0.0859203288
     },
     {
         "date":"2036-10-01T00:00Z",
@@ -3947,9 +4400,12 @@
         "ending_balance":1188.7880357678,
         "depreciation":10.8216666667,
         "cfads":18.6240417068,
+        "ebit":7.8023750401,
+        "ebt":7.8023750401,
+        "tax_expense":2.340712512,
         "terminal_value":0.0,
-        "equity_cash_flow":18.6240417068,
-        "irr":0.1093631295
+        "equity_cash_flow":16.2833291947,
+        "irr":0.0859203288
     },
     {
         "date":"2036-11-01T00:00Z",
@@ -3973,9 +4429,12 @@
         "ending_balance":1188.7880357678,
         "depreciation":10.8216666667,
         "cfads":18.6560072045,
+        "ebit":7.8343405378,
+        "ebt":7.8343405378,
+        "tax_expense":2.3503021613,
         "terminal_value":0.0,
-        "equity_cash_flow":18.6560072045,
-        "irr":0.1093631295
+        "equity_cash_flow":16.3057050431,
+        "irr":0.0859203288
     },
     {
         "date":"2036-12-01T00:00Z",
@@ -3999,9 +4458,12 @@
         "ending_balance":1168.460446416,
         "depreciation":10.8216666667,
         "cfads":18.688022453,
+        "ebit":7.8663557863,
+        "ebt":-10.4120116662,
+        "tax_expense":0.3231517383,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.9179343514,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.2410860897,
+        "irr":0.0859203288
     },
     {
         "date":"2037-01-01T00:00Z",
@@ -4025,9 +4487,12 @@
         "ending_balance":1168.460446416,
         "depreciation":10.8216666667,
         "cfads":18.7897562212,
+        "ebit":7.9680895545,
+        "ebt":7.9680895545,
+        "tax_expense":2.3904268664,
         "terminal_value":0.0,
-        "equity_cash_flow":18.7897562212,
-        "irr":0.1093631295
+        "equity_cash_flow":16.3993293548,
+        "irr":0.0859203288
     },
     {
         "date":"2037-02-01T00:00Z",
@@ -4051,9 +4516,12 @@
         "ending_balance":1168.460446416,
         "depreciation":10.8216666667,
         "cfads":18.8221779124,
+        "ebit":8.0005112457,
+        "ebt":8.0005112457,
+        "tax_expense":2.4001533737,
         "terminal_value":0.0,
-        "equity_cash_flow":18.8221779124,
-        "irr":0.1093631295
+        "equity_cash_flow":16.4220245387,
+        "irr":0.0859203288
     },
     {
         "date":"2037-03-01T00:00Z",
@@ -4077,9 +4545,12 @@
         "ending_balance":1148.0217760285,
         "depreciation":10.8216666667,
         "cfads":18.8546501201,
+        "ebit":8.0329834534,
+        "ebt":-10.1781928234,
+        "tax_expense":0.3844678971,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.7951965443,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.1796644414,
+        "irr":0.0859203288
     },
     {
         "date":"2037-04-01T00:00Z",
@@ -4103,9 +4574,12 @@
         "ending_balance":1148.0217760285,
         "depreciation":10.8216666667,
         "cfads":18.2900873802,
+        "ebit":7.4684207135,
+        "ebt":7.4684207135,
+        "tax_expense":2.2405262141,
         "terminal_value":0.0,
-        "equity_cash_flow":18.2900873802,
-        "irr":0.1093631295
+        "equity_cash_flow":16.0495611661,
+        "irr":0.0859203288
     },
     {
         "date":"2037-05-01T00:00Z",
@@ -4129,9 +4603,12 @@
         "ending_balance":1148.0217760285,
         "depreciation":10.8216666667,
         "cfads":18.3216808426,
+        "ebit":7.5000141759,
+        "ebt":7.5000141759,
+        "tax_expense":2.2500042528,
         "terminal_value":0.0,
-        "equity_cash_flow":18.3216808426,
-        "irr":0.1093631295
+        "equity_cash_flow":16.0716765898,
+        "irr":0.0859203288
     },
     {
         "date":"2037-06-01T00:00Z",
@@ -4155,9 +4632,12 @@
         "ending_balance":1126.8019407355,
         "depreciation":10.8216666667,
         "cfads":18.353323462,
+        "ebit":7.5316567953,
+        "ebt":-10.2473695298,
+        "tax_expense":0.2093108647,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.6455381561,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.8548490208,
+        "irr":0.0859203288
     },
     {
         "date":"2037-07-01T00:00Z",
@@ -4181,9 +4661,12 @@
         "ending_balance":1126.8019407355,
         "depreciation":10.8216666667,
         "cfads":22.6225005947,
+        "ebit":11.800833928,
+        "ebt":11.800833928,
+        "tax_expense":3.5402501784,
         "terminal_value":0.0,
-        "equity_cash_flow":22.6225005947,
-        "irr":0.1093631295
+        "equity_cash_flow":19.0822504163,
+        "irr":0.0859203288
     },
     {
         "date":"2037-08-01T00:00Z",
@@ -4207,9 +4690,12 @@
         "ending_balance":1126.8019407355,
         "depreciation":10.8216666667,
         "cfads":20.2248188028,
+        "ebit":9.4031521362,
+        "ebt":9.4031521362,
+        "tax_expense":2.8209456409,
         "terminal_value":0.0,
-        "equity_cash_flow":20.2248188028,
-        "irr":0.1093631295
+        "equity_cash_flow":17.403873162,
+        "irr":0.0859203288
     },
     {
         "date":"2037-09-01T00:00Z",
@@ -4233,9 +4719,12 @@
         "ending_balance":1104.8776278894,
         "depreciation":10.8216666667,
         "cfads":18.2610317339,
+        "ebit":7.4393650672,
+        "ebt":-9.6193470242,
+        "tax_expense":0.0788840103,
         "terminal_value":0.0,
-        "equity_cash_flow":-20.7219932037,
-        "irr":0.1093631295
+        "equity_cash_flow":-20.800877214,
+        "irr":0.0859203288
     },
     {
         "date":"2037-10-01T00:00Z",
@@ -4259,9 +4748,12 @@
         "ending_balance":1104.8776278894,
         "depreciation":10.8216666667,
         "cfads":18.1787663788,
+        "ebit":7.3570997121,
+        "ebt":7.3570997121,
+        "tax_expense":2.2071299136,
         "terminal_value":0.0,
-        "equity_cash_flow":18.1787663788,
-        "irr":0.1093631295
+        "equity_cash_flow":15.9716364651,
+        "irr":0.0859203288
     },
     {
         "date":"2037-11-01T00:00Z",
@@ -4285,9 +4777,12 @@
         "ending_balance":1104.8776278894,
         "depreciation":10.8216666667,
         "cfads":17.9426340309,
+        "ebit":7.1209673642,
+        "ebt":7.1209673642,
+        "tax_expense":2.1362902093,
         "terminal_value":0.0,
-        "equity_cash_flow":17.9426340309,
-        "irr":0.1093631295
+        "equity_cash_flow":15.8063438216,
+        "irr":0.0859203288
     },
     {
         "date":"2037-12-01T00:00Z",
@@ -4311,9 +4806,12 @@
         "ending_balance":1082.9533150433,
         "depreciation":10.8216666667,
         "cfads":19.4100726233,
+        "ebit":8.5884059566,
+        "ebt":-8.4703061348,
+        "tax_expense":0.39827012,
         "terminal_value":0.0,
-        "equity_cash_flow":-19.5729523143,
-        "irr":0.1093631295
+        "equity_cash_flow":-19.9712224342,
+        "irr":0.0859203288
     },
     {
         "date":"2038-01-01T00:00Z",
@@ -4337,9 +4835,12 @@
         "ending_balance":1082.9533150433,
         "depreciation":10.8216666667,
         "cfads":21.68518244,
+        "ebit":10.8635157734,
+        "ebt":10.8635157734,
+        "tax_expense":3.259054732,
         "terminal_value":0.0,
-        "equity_cash_flow":21.68518244,
-        "irr":0.1093631295
+        "equity_cash_flow":18.426127708,
+        "irr":0.0859203288
     },
     {
         "date":"2038-02-01T00:00Z",
@@ -4363,9 +4864,12 @@
         "ending_balance":1082.9533150433,
         "depreciation":10.8216666667,
         "cfads":21.1481808776,
+        "ebit":10.3265142109,
+        "ebt":10.3265142109,
+        "tax_expense":3.0979542633,
         "terminal_value":0.0,
-        "equity_cash_flow":21.1481808776,
-        "irr":0.1093631295
+        "equity_cash_flow":18.0502266143,
+        "irr":0.0859203288
     },
     {
         "date":"2038-03-01T00:00Z",
@@ -4389,9 +4893,12 @@
         "ending_balance":1061.0048493529,
         "depreciation":10.8216666667,
         "cfads":25.8549029824,
+        "ebit":15.0332363157,
+        "ebt":-1.9516197379,
+        "tax_expense":2.1753936289,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.0784187617,
-        "irr":0.1093631295
+        "equity_cash_flow":-15.2538123906,
+        "irr":0.0859203288
     },
     {
         "date":"2038-04-01T00:00Z",
@@ -4415,9 +4922,12 @@
         "ending_balance":1061.0048493529,
         "depreciation":10.8216666667,
         "cfads":22.0345513853,
+        "ebit":11.2128847187,
+        "ebt":11.2128847187,
+        "tax_expense":3.3638654156,
         "terminal_value":0.0,
-        "equity_cash_flow":22.0345513853,
-        "irr":0.1093631295
+        "equity_cash_flow":18.6706859697,
+        "irr":0.0859203288
     },
     {
         "date":"2038-05-01T00:00Z",
@@ -4441,9 +4951,12 @@
         "ending_balance":1061.0048493529,
         "depreciation":10.8216666667,
         "cfads":22.1999157446,
+        "ebit":11.378249078,
+        "ebt":11.378249078,
+        "tax_expense":3.4134747234,
         "terminal_value":0.0,
-        "equity_cash_flow":22.1999157446,
-        "irr":0.1093631295
+        "equity_cash_flow":18.7864410212,
+        "irr":0.0859203288
     },
     {
         "date":"2038-06-01T00:00Z",
@@ -4467,9 +4980,12 @@
         "ending_balance":1036.8679533541,
         "depreciation":10.8216666667,
         "cfads":25.8118883779,
+        "ebit":14.9902217112,
+        "ebt":-1.5156144963,
+        "tax_expense":1.4218342601,
         "terminal_value":0.0,
-        "equity_cash_flow":-14.8308438285,
-        "irr":0.1093631295
+        "equity_cash_flow":-16.2526780886,
+        "irr":0.0859203288
     },
     {
         "date":"2038-07-01T00:00Z",
@@ -4493,9 +5009,12 @@
         "ending_balance":1036.8679533541,
         "depreciation":10.8216666667,
         "cfads":25.0627497151,
+        "ebit":14.2410830484,
+        "ebt":14.2410830484,
+        "tax_expense":4.2723249145,
         "terminal_value":0.0,
-        "equity_cash_flow":25.0627497151,
-        "irr":0.1093631295
+        "equity_cash_flow":20.7904248006,
+        "irr":0.0859203288
     },
     {
         "date":"2038-08-01T00:00Z",
@@ -4519,9 +5038,12 @@
         "ending_balance":1036.8679533541,
         "depreciation":10.8216666667,
         "cfads":24.6700050895,
+        "ebit":13.8483384228,
+        "ebt":13.8483384228,
+        "tax_expense":4.1545015269,
         "terminal_value":0.0,
-        "equity_cash_flow":24.6700050895,
-        "irr":0.1093631295
+        "equity_cash_flow":20.5155035627,
+        "irr":0.0859203288
     },
     {
         "date":"2038-09-01T00:00Z",
@@ -4545,9 +5067,12 @@
         "ending_balance":1016.6840539179,
         "depreciation":10.8216666667,
         "cfads":22.8343441773,
+        "ebit":12.0126775107,
+        "ebt":-3.73057581,
+        "tax_expense":0.2911429318,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.0928085795,
-        "irr":0.1093631295
+        "equity_cash_flow":-13.3839515114,
+        "irr":0.0859203288
     },
     {
         "date":"2038-10-01T00:00Z",
@@ -4571,9 +5096,12 @@
         "ending_balance":1016.6840539179,
         "depreciation":10.8216666667,
         "cfads":22.7530782923,
+        "ebit":11.9314116256,
+        "ebt":11.9314116256,
+        "tax_expense":3.5794234877,
         "terminal_value":0.0,
-        "equity_cash_flow":22.7530782923,
-        "irr":0.1093631295
+        "equity_cash_flow":19.1736548046,
+        "irr":0.0859203288
     },
     {
         "date":"2038-11-01T00:00Z",
@@ -4597,9 +5125,12 @@
         "ending_balance":1016.6840539179,
         "depreciation":10.8216666667,
         "cfads":22.44346701,
+        "ebit":11.6218003433,
+        "ebt":11.6218003433,
+        "tax_expense":3.486540103,
         "terminal_value":0.0,
-        "equity_cash_flow":22.44346701,
-        "irr":0.1093631295
+        "equity_cash_flow":18.956926907,
+        "irr":0.0859203288
     },
     {
         "date":"2038-12-01T00:00Z",
@@ -4623,9 +5154,12 @@
         "ending_balance":996.5001544817,
         "depreciation":10.8216666667,
         "cfads":23.6236293274,
+        "ebit":12.8019626608,
+        "ebt":-2.94129066,
+        "tax_expense":0.5013860273,
         "terminal_value":0.0,
-        "equity_cash_flow":-12.3035234295,
-        "irr":0.1093631295
+        "equity_cash_flow":-12.8049094568,
+        "irr":0.0859203288
     },
     {
         "date":"2039-01-01T00:00Z",
@@ -4649,9 +5183,12 @@
         "ending_balance":996.5001544817,
         "depreciation":10.8216666667,
         "cfads":25.2593291258,
+        "ebit":14.4376624592,
+        "ebt":14.4376624592,
+        "tax_expense":4.3312987378,
         "terminal_value":0.0,
-        "equity_cash_flow":25.2593291258,
-        "irr":0.1093631295
+        "equity_cash_flow":20.9280303881,
+        "irr":0.0859203288
     },
     {
         "date":"2039-02-01T00:00Z",
@@ -4675,9 +5212,12 @@
         "ending_balance":996.5001544817,
         "depreciation":10.8216666667,
         "cfads":24.5269808276,
+        "ebit":13.705314161,
+        "ebt":13.705314161,
+        "tax_expense":4.1115942483,
         "terminal_value":0.0,
-        "equity_cash_flow":24.5269808276,
-        "irr":0.1093631295
+        "equity_cash_flow":20.4153865794,
+        "irr":0.0859203288
     },
     {
         "date":"2039-03-01T00:00Z",
@@ -4701,9 +5241,12 @@
         "ending_balance":976.3232371882,
         "depreciation":10.8216666667,
         "cfads":29.2782608951,
+        "ebit":18.4565942285,
+        "ebt":2.7886461163,
+        "tax_expense":2.3556866451,
         "terminal_value":0.0,
-        "equity_cash_flow":-6.5666045105,
-        "irr":0.1093631295
+        "equity_cash_flow":-8.9222911556,
+        "irr":0.0859203288
     },
     {
         "date":"2039-04-01T00:00Z",
@@ -4727,9 +5270,12 @@
         "ending_balance":976.3232371882,
         "depreciation":10.8216666667,
         "cfads":25.3319417032,
+        "ebit":14.5102750365,
+        "ebt":14.5102750365,
+        "tax_expense":4.353082511,
         "terminal_value":0.0,
-        "equity_cash_flow":25.3319417032,
-        "irr":0.1093631295
+        "equity_cash_flow":20.9788591922,
+        "irr":0.0859203288
     },
     {
         "date":"2039-05-01T00:00Z",
@@ -4753,9 +5299,12 @@
         "ending_balance":976.3232371882,
         "depreciation":10.8216666667,
         "cfads":24.9872307794,
+        "ebit":14.1655641128,
+        "ebt":14.1655641128,
+        "tax_expense":4.2496692338,
         "terminal_value":0.0,
-        "equity_cash_flow":24.9872307794,
-        "irr":0.1093631295
+        "equity_cash_flow":20.7375615456,
+        "irr":0.0859203288
     },
     {
         "date":"2039-06-01T00:00Z",
@@ -4779,9 +5328,12 @@
         "ending_balance":953.0924972378,
         "depreciation":10.8216666667,
         "cfads":28.7914646196,
+        "ebit":17.9697979529,
+        "ebt":2.9121755053,
+        "tax_expense":1.6240928202,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.4968977785,
-        "irr":0.1093631295
+        "equity_cash_flow":-11.1209905987,
+        "irr":0.0859203288
     },
     {
         "date":"2039-07-01T00:00Z",
@@ -4805,9 +5357,12 @@
         "ending_balance":953.0924972378,
         "depreciation":10.8216666667,
         "cfads":28.6461942498,
+        "ebit":17.8245275832,
+        "ebt":17.8245275832,
+        "tax_expense":5.3473582749,
         "terminal_value":0.0,
-        "equity_cash_flow":28.6461942498,
-        "irr":0.1093631295
+        "equity_cash_flow":23.2988359749,
+        "irr":0.0859203288
     },
     {
         "date":"2039-08-01T00:00Z",
@@ -4831,9 +5386,12 @@
         "ending_balance":953.0924972378,
         "depreciation":10.8216666667,
         "cfads":26.6713077984,
+        "ebit":15.8496411317,
+        "ebt":15.8496411317,
+        "tax_expense":4.7548923395,
         "terminal_value":0.0,
-        "equity_cash_flow":26.6713077984,
-        "irr":0.1093631295
+        "equity_cash_flow":21.9164154588,
+        "irr":0.0859203288
     },
     {
         "date":"2039-09-01T00:00Z",
@@ -4857,9 +5415,12 @@
         "ending_balance":929.3587833015,
         "depreciation":10.8216666667,
         "cfads":24.2966692771,
+        "ebit":13.4750026105,
+        "ebt":-1.0572167441,
+        "tax_expense":0.2464933641,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.9692640137,
-        "irr":0.1093631295
+        "equity_cash_flow":-14.2157573778,
+        "irr":0.0859203288
     },
     {
         "date":"2039-10-01T00:00Z",
@@ -4883,9 +5444,12 @@
         "ending_balance":929.3587833015,
         "depreciation":10.8216666667,
         "cfads":24.3309652484,
+        "ebit":13.5092985817,
+        "ebt":13.5092985817,
+        "tax_expense":4.0527895745,
         "terminal_value":0.0,
-        "equity_cash_flow":24.3309652484,
-        "irr":0.1093631295
+        "equity_cash_flow":20.2781756738,
+        "irr":0.0859203288
     },
     {
         "date":"2039-11-01T00:00Z",
@@ -4909,9 +5473,12 @@
         "ending_balance":929.3587833015,
         "depreciation":10.8216666667,
         "cfads":24.1984682676,
+        "ebit":13.3768016009,
+        "ebt":13.3768016009,
+        "tax_expense":4.0130404803,
         "terminal_value":0.0,
-        "equity_cash_flow":24.1984682676,
-        "irr":0.1093631295
+        "equity_cash_flow":20.1854277873,
+        "irr":0.0859203288
     },
     {
         "date":"2039-12-01T00:00Z",
@@ -4935,9 +5502,12 @@
         "ending_balance":905.6250693651,
         "depreciation":10.8216666667,
         "cfads":25.5794821676,
+        "ebit":14.757815501,
+        "ebt":0.2255961464,
+        "tax_expense":0.6104295141,
         "terminal_value":0.0,
-        "equity_cash_flow":-12.6864511232,
-        "irr":0.1093631295
+        "equity_cash_flow":-13.2968806373,
+        "irr":0.0859203288
     },
     {
         "date":"2040-01-01T00:00Z",
@@ -4961,9 +5531,12 @@
         "ending_balance":905.6250693651,
         "depreciation":10.8216666667,
         "cfads":29.2256491327,
+        "ebit":18.4039824661,
+        "ebt":18.4039824661,
+        "tax_expense":5.5211947398,
         "terminal_value":0.0,
-        "equity_cash_flow":29.2256491327,
-        "irr":0.1093631295
+        "equity_cash_flow":23.7044543929,
+        "irr":0.0859203288
     },
     {
         "date":"2040-02-01T00:00Z",
@@ -4987,9 +5560,12 @@
         "ending_balance":905.6250693651,
         "depreciation":10.8216666667,
         "cfads":28.1654737444,
+        "ebit":17.3438070777,
+        "ebt":17.3438070777,
+        "tax_expense":5.2031421233,
         "terminal_value":0.0,
-        "equity_cash_flow":28.1654737444,
-        "irr":0.1093631295
+        "equity_cash_flow":22.9623316211,
+        "irr":0.0859203288
     },
     {
         "date":"2040-03-01T00:00Z",
@@ -5013,9 +5589,12 @@
         "ending_balance":881.3197123736,
         "depreciation":10.8216666667,
         "cfads":33.0791529411,
+        "ebit":22.2574862745,
+        "ebt":7.8001531999,
+        "tax_expense":2.5865270168,
         "terminal_value":0.0,
-        "equity_cash_flow":-5.683537125,
-        "irr":0.1093631295
+        "equity_cash_flow":-8.2700641417,
+        "irr":0.0859203288
     },
     {
         "date":"2040-04-01T00:00Z",
@@ -5039,9 +5618,12 @@
         "ending_balance":881.3197123736,
         "depreciation":10.8216666667,
         "cfads":28.786615134,
+        "ebit":17.9649484673,
+        "ebt":17.9649484673,
+        "tax_expense":5.3894845402,
         "terminal_value":0.0,
-        "equity_cash_flow":28.786615134,
-        "irr":0.1093631295
+        "equity_cash_flow":23.3971305938,
+        "irr":0.0859203288
     },
     {
         "date":"2040-05-01T00:00Z",
@@ -5065,9 +5647,12 @@
         "ending_balance":881.3197123736,
         "depreciation":10.8216666667,
         "cfads":26.8901867242,
+        "ebit":16.0685200576,
+        "ebt":16.0685200576,
+        "tax_expense":4.8205560173,
         "terminal_value":0.0,
-        "equity_cash_flow":26.8901867242,
-        "irr":0.1093631295
+        "equity_cash_flow":22.069630707,
+        "irr":0.0859203288
     },
     {
         "date":"2040-06-01T00:00Z",
@@ -5091,9 +5676,12 @@
         "ending_balance":855.2058710071,
         "depreciation":10.8216666667,
         "cfads":31.1272863085,
+        "ebit":20.3056196419,
+        "ebt":6.6418415913,
+        "tax_expense":2.1312817852,
         "terminal_value":0.0,
-        "equity_cash_flow":-8.6503331086,
-        "irr":0.1093631295
+        "equity_cash_flow":-10.7816148938,
+        "irr":0.0859203288
     },
     {
         "date":"2040-07-01T00:00Z",
@@ -5117,9 +5705,12 @@
         "ending_balance":855.2058710071,
         "depreciation":10.8216666667,
         "cfads":30.2267330863,
+        "ebit":19.4050664196,
+        "ebt":19.4050664196,
+        "tax_expense":5.8215199259,
         "terminal_value":0.0,
-        "equity_cash_flow":30.2267330863,
-        "irr":0.1093631295
+        "equity_cash_flow":24.4052131604,
+        "irr":0.0859203288
     },
     {
         "date":"2040-08-01T00:00Z",
@@ -5143,9 +5734,12 @@
         "ending_balance":855.2058710071,
         "depreciation":10.8216666667,
         "cfads":28.4690971533,
+        "ebit":17.6474304867,
+        "ebt":17.6474304867,
+        "tax_expense":5.294229146,
         "terminal_value":0.0,
-        "equity_cash_flow":28.4690971533,
-        "irr":0.1093631295
+        "equity_cash_flow":23.1748680073,
+        "irr":0.0859203288
     },
     {
         "date":"2040-09-01T00:00Z",
@@ -5169,9 +5763,12 @@
         "ending_balance":828.8917418371,
         "depreciation":10.8216666667,
         "cfads":26.0025505751,
+        "ebit":15.1808839084,
+        "ebt":2.07268739,
+        "tax_expense":0.6317435474,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.4197751133,
-        "irr":0.1093631295
+        "equity_cash_flow":-14.0515186607,
+        "irr":0.0859203288
     },
     {
         "date":"2040-10-01T00:00Z",
@@ -5195,9 +5792,12 @@
         "ending_balance":828.8917418371,
         "depreciation":10.8216666667,
         "cfads":26.2448652819,
+        "ebit":15.4231986152,
+        "ebt":15.4231986152,
+        "tax_expense":4.6269595846,
         "terminal_value":0.0,
-        "equity_cash_flow":26.2448652819,
-        "irr":0.1093631295
+        "equity_cash_flow":21.6179056973,
+        "irr":0.0859203288
     },
     {
         "date":"2040-11-01T00:00Z",
@@ -5221,9 +5821,12 @@
         "ending_balance":828.8917418371,
         "depreciation":10.8216666667,
         "cfads":25.7761753979,
+        "ebit":14.9545087312,
+        "ebt":14.9545087312,
+        "tax_expense":4.4863526194,
         "terminal_value":0.0,
-        "equity_cash_flow":25.7761753979,
-        "irr":0.1093631295
+        "equity_cash_flow":21.2898227785,
+        "irr":0.0859203288
     },
     {
         "date":"2040-12-01T00:00Z",
@@ -5247,9 +5850,12 @@
         "ending_balance":802.5776126671,
         "depreciation":10.8216666667,
         "cfads":27.3382861994,
+        "ebit":16.5166195327,
+        "ebt":3.4084230144,
+        "tax_expense":1.0277894241,
         "terminal_value":0.0,
-        "equity_cash_flow":-12.0840394889,
-        "irr":0.1093631295
+        "equity_cash_flow":-13.1118289131,
+        "irr":0.0859203288
     },
     {
         "date":"2041-01-01T00:00Z",
@@ -5273,9 +5879,12 @@
         "ending_balance":802.5776126671,
         "depreciation":10.8216666667,
         "cfads":27.8803819557,
+        "ebit":17.058715289,
+        "ebt":17.058715289,
+        "tax_expense":5.1176145867,
         "terminal_value":0.0,
-        "equity_cash_flow":27.8803819557,
-        "irr":0.1093631295
+        "equity_cash_flow":22.762767369,
+        "irr":0.0859203288
     },
     {
         "date":"2041-02-01T00:00Z",
@@ -5299,9 +5908,12 @@
         "ending_balance":802.5776126671,
         "depreciation":10.8216666667,
         "cfads":27.454459309,
+        "ebit":16.6327926423,
+        "ebt":16.6327926423,
+        "tax_expense":4.9898377927,
         "terminal_value":0.0,
-        "equity_cash_flow":27.454459309,
-        "irr":0.1093631295
+        "equity_cash_flow":22.4646215163,
+        "irr":0.0859203288
     },
     {
         "date":"2041-03-01T00:00Z",
@@ -5325,9 +5937,12 @@
         "ending_balance":776.2040860801,
         "depreciation":10.8216666667,
         "cfads":32.6696054032,
+        "ebit":21.8479387365,
+        "ebt":8.8489270814,
+        "tax_expense":2.893625007,
         "terminal_value":0.0,
-        "equity_cash_flow":-6.702932839,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.596557846,
+        "irr":0.0859203288
     },
     {
         "date":"2041-04-01T00:00Z",
@@ -5351,9 +5966,12 @@
         "ending_balance":776.2040860801,
         "depreciation":10.8216666667,
         "cfads":28.391332312,
+        "ebit":17.5696656453,
+        "ebt":17.5696656453,
+        "tax_expense":5.2708996936,
         "terminal_value":0.0,
-        "equity_cash_flow":28.391332312,
-        "irr":0.1093631295
+        "equity_cash_flow":23.1204326184,
+        "irr":0.0859203288
     },
     {
         "date":"2041-05-01T00:00Z",
@@ -5377,9 +5995,12 @@
         "ending_balance":776.2040860801,
         "depreciation":10.8216666667,
         "cfads":25.9799082591,
+        "ebit":15.1582415924,
+        "ebt":15.1582415924,
+        "tax_expense":4.5474724777,
         "terminal_value":0.0,
-        "equity_cash_flow":25.9799082591,
-        "irr":0.1093631295
+        "equity_cash_flow":21.4324357814,
+        "irr":0.0859203288
     },
     {
         "date":"2041-06-01T00:00Z",
@@ -5403,9 +6024,12 @@
         "ending_balance":749.0699247385,
         "depreciation":10.8216666667,
         "cfads":30.1325722781,
+        "ebit":19.3109056114,
+        "ebt":7.2139580428,
+        "tax_expense":2.3036330042,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.0985366322,
-        "irr":0.1093631295
+        "equity_cash_flow":-11.4021696363,
+        "irr":0.0859203288
     },
     {
         "date":"2041-07-01T00:00Z",
@@ -5429,9 +6053,12 @@
         "ending_balance":749.0699247385,
         "depreciation":10.8216666667,
         "cfads":28.4087314826,
+        "ebit":17.587064816,
+        "ebt":17.587064816,
+        "tax_expense":5.2761194448,
         "terminal_value":0.0,
-        "equity_cash_flow":28.4087314826,
-        "irr":0.1093631295
+        "equity_cash_flow":23.1326120378,
+        "irr":0.0859203288
     },
     {
         "date":"2041-08-01T00:00Z",
@@ -5455,9 +6082,12 @@
         "ending_balance":749.0699247385,
         "depreciation":10.8216666667,
         "cfads":27.4927492217,
+        "ebit":16.671082555,
+        "ebt":16.671082555,
+        "tax_expense":5.0013247665,
         "terminal_value":0.0,
-        "equity_cash_flow":27.4927492217,
-        "irr":0.1093631295
+        "equity_cash_flow":22.4914244552,
+        "irr":0.0859203288
     },
     {
         "date":"2041-09-01T00:00Z",
@@ -5481,9 +6111,12 @@
         "ending_balance":722.2338756275,
         "depreciation":10.8216666667,
         "cfads":24.9059255333,
+        "ebit":14.0842588666,
+        "ebt":2.5549100984,
+        "tax_expense":0.8098503923,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.4594723459,
-        "irr":0.1093631295
+        "equity_cash_flow":-14.2693227382,
+        "irr":0.0859203288
     },
     {
         "date":"2041-10-01T00:00Z",
@@ -5507,9 +6140,12 @@
         "ending_balance":722.2338756275,
         "depreciation":10.8216666667,
         "cfads":25.0494200902,
+        "ebit":14.2277534235,
+        "ebt":14.2277534235,
+        "tax_expense":4.2683260271,
         "terminal_value":0.0,
-        "equity_cash_flow":25.0494200902,
-        "irr":0.1093631295
+        "equity_cash_flow":20.7810940631,
+        "irr":0.0859203288
     },
     {
         "date":"2041-11-01T00:00Z",
@@ -5533,9 +6169,12 @@
         "ending_balance":722.2338756275,
         "depreciation":10.8216666667,
         "cfads":24.7301736838,
+        "ebit":13.9085070172,
+        "ebt":13.9085070172,
+        "tax_expense":4.1725521051,
         "terminal_value":0.0,
-        "equity_cash_flow":24.7301736838,
-        "irr":0.1093631295
+        "equity_cash_flow":20.5576215787,
+        "irr":0.0859203288
     },
     {
         "date":"2041-12-01T00:00Z",
@@ -5559,9 +6198,12 @@
         "ending_balance":695.3978265166,
         "depreciation":10.8216666667,
         "cfads":26.273988539,
+        "ebit":15.4523218723,
+        "ebt":3.9229731042,
+        "tax_expense":1.2159856772,
         "terminal_value":0.0,
-        "equity_cash_flow":-12.0914093401,
-        "irr":0.1093631295
+        "equity_cash_flow":-13.3073950173,
+        "irr":0.0859203288
     },
     {
         "date":"2042-01-01T00:00Z",
@@ -5585,9 +6227,12 @@
         "ending_balance":695.3978265166,
         "depreciation":10.8216666667,
         "cfads":27.715981041,
+        "ebit":16.8943143744,
+        "ebt":16.8943143744,
+        "tax_expense":5.0682943123,
         "terminal_value":0.0,
-        "equity_cash_flow":27.715981041,
-        "irr":0.1093631295
+        "equity_cash_flow":22.6476867287,
+        "irr":0.0859203288
     },
     {
         "date":"2042-02-01T00:00Z",
@@ -5611,9 +6256,12 @@
         "ending_balance":695.3978265166,
         "depreciation":10.8216666667,
         "cfads":26.819264268,
+        "ebit":15.9975976013,
+        "ebt":15.9975976013,
+        "tax_expense":4.7992792804,
         "terminal_value":0.0,
-        "equity_cash_flow":26.819264268,
-        "irr":0.1093631295
+        "equity_cash_flow":22.0199849876,
+        "irr":0.0859203288
     },
     {
         "date":"2042-03-01T00:00Z",
@@ -5637,9 +6285,12 @@
         "ending_balance":668.1864561776,
         "depreciation":10.8216666667,
         "cfads":31.9995441864,
+        "ebit":21.1778775197,
+        "ebt":9.7612774598,
+        "tax_expense":3.0597603061,
         "terminal_value":0.0,
-        "equity_cash_flow":-6.6284262124,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.6881865185,
+        "irr":0.0859203288
     },
     {
         "date":"2042-04-01T00:00Z",
@@ -5663,9 +6314,12 @@
         "ending_balance":668.1864561776,
         "depreciation":10.8216666667,
         "cfads":28.3627327964,
+        "ebit":17.5410661298,
+        "ebt":17.5410661298,
+        "tax_expense":5.2623198389,
         "terminal_value":0.0,
-        "equity_cash_flow":28.3627327964,
-        "irr":0.1093631295
+        "equity_cash_flow":23.1004129575,
+        "irr":0.0859203288
     },
     {
         "date":"2042-05-01T00:00Z",
@@ -5689,9 +6343,12 @@
         "ending_balance":668.1864561776,
         "depreciation":10.8216666667,
         "cfads":26.2015113385,
+        "ebit":15.3798446719,
+        "ebt":15.3798446719,
+        "tax_expense":4.6139534016,
         "terminal_value":0.0,
-        "equity_cash_flow":26.2015113385,
-        "irr":0.1093631295
+        "equity_cash_flow":21.587557937,
+        "irr":0.0859203288
     },
     {
         "date":"2042-06-01T00:00Z",
@@ -5715,9 +6372,12 @@
         "ending_balance":639.2307652804,
         "depreciation":10.8216666667,
         "cfads":30.0503146645,
+        "ebit":19.2286479978,
+        "ebt":8.7597501097,
+        "tax_expense":2.7505207975,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.3742741209,
-        "irr":0.1093631295
+        "equity_cash_flow":-12.1247949184,
+        "irr":0.0859203288
     },
     {
         "date":"2042-07-01T00:00Z",
@@ -5741,9 +6401,12 @@
         "ending_balance":639.2307652804,
         "depreciation":10.8216666667,
         "cfads":28.906441169,
+        "ebit":18.0847745023,
+        "ebt":18.0847745023,
+        "tax_expense":5.4254323507,
         "terminal_value":0.0,
-        "equity_cash_flow":28.906441169,
-        "irr":0.1093631295
+        "equity_cash_flow":23.4810088183,
+        "irr":0.0859203288
     },
     {
         "date":"2042-08-01T00:00Z",
@@ -5767,9 +6430,12 @@
         "ending_balance":639.2307652804,
         "depreciation":10.8216666667,
         "cfads":27.4159048302,
+        "ebit":16.5942381636,
+        "ebt":16.5942381636,
+        "tax_expense":4.9782714491,
         "terminal_value":0.0,
-        "equity_cash_flow":27.4159048302,
-        "irr":0.1093631295
+        "equity_cash_flow":22.4376333812,
+        "irr":0.0859203288
     },
     {
         "date":"2042-09-01T00:00Z",
@@ -5793,9 +6459,12 @@
         "ending_balance":610.1659977973,
         "depreciation":10.8216666667,
         "cfads":25.0266065177,
+        "ebit":14.204939851,
+        "ebt":4.2857540295,
+        "tax_expense":1.2984653014,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.957346787,
-        "irr":0.1093631295
+        "equity_cash_flow":-15.2558120884,
+        "irr":0.0859203288
     },
     {
         "date":"2042-10-01T00:00Z",
@@ -5819,9 +6488,12 @@
         "ending_balance":610.1659977973,
         "depreciation":10.8216666667,
         "cfads":25.2382336704,
+        "ebit":14.4165670038,
+        "ebt":14.4165670038,
+        "tax_expense":4.3249701011,
         "terminal_value":0.0,
-        "equity_cash_flow":25.2382336704,
-        "irr":0.1093631295
+        "equity_cash_flow":20.9132635693,
+        "irr":0.0859203288
     },
     {
         "date":"2042-11-01T00:00Z",
@@ -5845,9 +6517,12 @@
         "ending_balance":610.1659977973,
         "depreciation":10.8216666667,
         "cfads":24.8581021439,
+        "ebit":14.0364354772,
+        "ebt":14.0364354772,
+        "tax_expense":4.2109306432,
         "terminal_value":0.0,
-        "equity_cash_flow":24.8581021439,
-        "irr":0.1093631295
+        "equity_cash_flow":20.6471715007,
+        "irr":0.0859203288
     },
     {
         "date":"2042-12-01T00:00Z",
@@ -5871,9 +6546,12 @@
         "ending_balance":581.1012303141,
         "depreciation":10.8216666667,
         "cfads":26.2406081426,
+        "ebit":15.418941476,
+        "ebt":5.4997556545,
+        "tax_expense":1.6595893194,
         "terminal_value":0.0,
-        "equity_cash_flow":-12.743345162,
-        "irr":0.1093631295
+        "equity_cash_flow":-14.4029344814,
+        "irr":0.0859203288
     },
     {
         "date":"2043-01-01T00:00Z",
@@ -5897,9 +6575,12 @@
         "ending_balance":581.1012303141,
         "depreciation":10.8216666667,
         "cfads":27.1115433949,
+        "ebit":16.2898767282,
+        "ebt":16.2898767282,
+        "tax_expense":4.8869630185,
         "terminal_value":0.0,
-        "equity_cash_flow":27.1115433949,
-        "irr":0.1093631295
+        "equity_cash_flow":22.2245803764,
+        "irr":0.0859203288
     },
     {
         "date":"2043-02-01T00:00Z",
@@ -5923,9 +6604,12 @@
         "ending_balance":581.1012303141,
         "depreciation":10.8216666667,
         "cfads":25.9744409444,
+        "ebit":15.1527742778,
+        "ebt":15.1527742778,
+        "tax_expense":4.5458322833,
         "terminal_value":0.0,
-        "equity_cash_flow":25.9744409444,
-        "irr":0.1093631295
+        "equity_cash_flow":21.4286086611,
+        "irr":0.0859203288
     },
     {
         "date":"2043-03-01T00:00Z",
@@ -5949,9 +6633,12 @@
         "ending_balance":551.9727778475,
         "depreciation":10.8216666667,
         "cfads":32.1329947919,
+        "ebit":21.3113281252,
+        "ebt":11.5274102857,
+        "tax_expense":3.4913451213,
         "terminal_value":0.0,
-        "equity_cash_flow":-6.7793755143,
-        "irr":0.1093631295
+        "equity_cash_flow":-10.2707206356,
+        "irr":0.0859203288
     },
     {
         "date":"2043-04-01T00:00Z",
@@ -5975,9 +6662,12 @@
         "ending_balance":551.9727778475,
         "depreciation":10.8216666667,
         "cfads":32.4398955305,
+        "ebit":21.6182288638,
+        "ebt":21.6182288638,
+        "tax_expense":6.4854686591,
         "terminal_value":0.0,
-        "equity_cash_flow":32.4398955305,
-        "irr":0.1093631295
+        "equity_cash_flow":25.9544268713,
+        "irr":0.0859203288
     },
     {
         "date":"2043-05-01T00:00Z",
@@ -6001,9 +6691,12 @@
         "ending_balance":551.9727778475,
         "depreciation":10.8216666667,
         "cfads":25.9284770424,
+        "ebit":15.1068103757,
+        "ebt":15.1068103757,
+        "tax_expense":4.5320431127,
         "terminal_value":0.0,
-        "equity_cash_flow":25.9284770424,
-        "irr":0.1093631295
+        "equity_cash_flow":21.3964339297,
+        "irr":0.0859203288
     },
     {
         "date":"2043-06-01T00:00Z",
@@ -6027,9 +6720,12 @@
         "ending_balance":521.584006964,
         "depreciation":10.8216666667,
         "cfads":30.0319028269,
+        "ebit":19.2102361602,
+        "ebt":10.4786797259,
+        "tax_expense":3.1736737481,
         "terminal_value":0.0,
-        "equity_cash_flow":-9.0884244909,
-        "irr":0.1093631295
+        "equity_cash_flow":-12.262098239,
+        "irr":0.0859203288
     },
     {
         "date":"2043-07-01T00:00Z",
@@ -6053,9 +6749,12 @@
         "ending_balance":521.584006964,
         "depreciation":10.8216666667,
         "cfads":28.0643408236,
+        "ebit":17.242674157,
+        "ebt":17.242674157,
+        "tax_expense":5.1728022471,
         "terminal_value":0.0,
-        "equity_cash_flow":28.0643408236,
-        "irr":0.1093631295
+        "equity_cash_flow":22.8915385765,
+        "irr":0.0859203288
     },
     {
         "date":"2043-08-01T00:00Z",
@@ -6079,9 +6778,12 @@
         "ending_balance":521.584006964,
         "depreciation":10.8216666667,
         "cfads":27.099085382,
+        "ebit":16.2774187153,
+        "ebt":16.2774187153,
+        "tax_expense":4.8832256146,
         "terminal_value":0.0,
-        "equity_cash_flow":27.099085382,
-        "irr":0.1093631295
+        "equity_cash_flow":22.2158597674,
+        "irr":0.0859203288
     },
     {
         "date":"2043-09-01T00:00Z",
@@ -6105,9 +6807,12 @@
         "ending_balance":489.9929330229,
         "depreciation":10.8216666667,
         "cfads":25.6554685172,
+        "ebit":14.8338018505,
+        "ebt":6.658502078,
+        "tax_expense":1.9975506234,
         "terminal_value":0.0,
-        "equity_cash_flow":-14.1109051964,
-        "irr":0.1093631295
+        "equity_cash_flow":-16.1084558199,
+        "irr":0.0859203288
     },
     {
         "date":"2043-10-01T00:00Z",
@@ -6131,9 +6836,12 @@
         "ending_balance":489.9929330229,
         "depreciation":10.8216666667,
         "cfads":24.9863080796,
+        "ebit":14.164641413,
+        "ebt":14.164641413,
+        "tax_expense":4.2493924239,
         "terminal_value":0.0,
-        "equity_cash_flow":24.9863080796,
-        "irr":0.1093631295
+        "equity_cash_flow":20.7369156557,
+        "irr":0.0859203288
     },
     {
         "date":"2043-11-01T00:00Z",
@@ -6157,9 +6865,12 @@
         "ending_balance":489.9929330229,
         "depreciation":10.8216666667,
         "cfads":24.8491413344,
+        "ebit":14.0274746678,
+        "ebt":14.0274746678,
+        "tax_expense":4.2082424003,
         "terminal_value":0.0,
-        "equity_cash_flow":24.8491413344,
-        "irr":0.1093631295
+        "equity_cash_flow":20.6408989341,
+        "irr":0.0859203288
     },
     {
         "date":"2043-12-01T00:00Z",
@@ -6183,9 +6894,12 @@
         "ending_balance":458.4018590817,
         "depreciation":10.8216666667,
         "cfads":26.1254646951,
+        "ebit":15.3037980285,
+        "ebt":7.128498256,
+        "tax_expense":2.1385494768,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.6409090185,
-        "irr":0.1093631295
+        "equity_cash_flow":-15.7794584953,
+        "irr":0.0859203288
     },
     {
         "date":"2044-01-01T00:00Z",
@@ -6209,9 +6923,12 @@
         "ending_balance":458.4018590817,
         "depreciation":10.8216666667,
         "cfads":27.9625458693,
+        "ebit":17.1408792027,
+        "ebt":17.1408792027,
+        "tax_expense":5.1422637608,
         "terminal_value":0.0,
-        "equity_cash_flow":27.9625458693,
-        "irr":0.1093631295
+        "equity_cash_flow":22.8202821085,
+        "irr":0.0859203288
     },
     {
         "date":"2044-02-01T00:00Z",
@@ -6235,9 +6952,12 @@
         "ending_balance":458.4018590817,
         "depreciation":10.8216666667,
         "cfads":26.6377153264,
+        "ebit":15.8160486598,
+        "ebt":15.8160486598,
+        "tax_expense":4.7448145979,
         "terminal_value":0.0,
-        "equity_cash_flow":26.6377153264,
-        "irr":0.1093631295
+        "equity_cash_flow":21.8929007285,
+        "irr":0.0859203288
     },
     {
         "date":"2044-03-01T00:00Z",
@@ -6261,9 +6981,12 @@
         "ending_balance":426.6437183373,
         "depreciation":10.8216666667,
         "cfads":32.0611833294,
+        "ebit":21.2395166628,
+        "ebt":13.2033059712,
+        "tax_expense":3.9609917914,
         "terminal_value":0.0,
-        "equity_cash_flow":-7.7331681065,
-        "irr":0.1093631295
+        "equity_cash_flow":-11.6941598978,
+        "irr":0.0859203288
     },
     {
         "date":"2044-04-01T00:00Z",
@@ -6287,9 +7010,12 @@
         "ending_balance":426.6437183373,
         "depreciation":10.7631862745,
         "cfads":28.4755353502,
+        "ebit":17.7123490757,
+        "ebt":17.7123490757,
+        "tax_expense":5.3137047227,
         "terminal_value":0.0,
-        "equity_cash_flow":28.4755353502,
-        "irr":0.1093631295
+        "equity_cash_flow":23.1618306275,
+        "irr":0.0859203288
     },
     {
         "date":"2044-05-01T00:00Z",
@@ -6313,9 +7039,12 @@
         "ending_balance":426.6437183373,
         "depreciation":10.7047058824,
         "cfads":27.0590993277,
+        "ebit":16.3543934454,
+        "ebt":16.3543934454,
+        "tax_expense":4.9063180336,
         "terminal_value":0.0,
-        "equity_cash_flow":27.0590993277,
-        "irr":0.1093631295
+        "equity_cash_flow":22.1527812941,
+        "irr":0.0859203288
     },
     {
         "date":"2044-06-01T00:00Z",
@@ -6339,9 +7068,12 @@
         "ending_balance":394.1084295673,
         "depreciation":10.6462254902,
         "cfads":31.3847788809,
+        "ebit":20.7385533907,
+        "ebt":13.8303232094,
+        "tax_expense":4.1490969628,
         "terminal_value":0.0,
-        "equity_cash_flow":-8.0587400704,
-        "irr":0.1093631295
+        "equity_cash_flow":-12.2078370333,
+        "irr":0.0859203288
     },
     {
         "date":"2044-07-01T00:00Z",
@@ -6365,9 +7097,12 @@
         "ending_balance":394.1084295673,
         "depreciation":10.587745098,
         "cfads":29.7036178971,
+        "ebit":19.1158727991,
+        "ebt":19.1158727991,
+        "tax_expense":5.7347618397,
         "terminal_value":0.0,
-        "equity_cash_flow":29.7036178971,
-        "irr":0.1093631295
+        "equity_cash_flow":23.9688560574,
+        "irr":0.0859203288
     },
     {
         "date":"2044-08-01T00:00Z",
@@ -6391,9 +7126,12 @@
         "ending_balance":394.1084295673,
         "depreciation":10.5292647059,
         "cfads":28.0792119508,
+        "ebit":17.549947245,
+        "ebt":17.549947245,
+        "tax_expense":5.2649841735,
         "terminal_value":0.0,
-        "equity_cash_flow":28.0792119508,
-        "irr":0.1093631295
+        "equity_cash_flow":22.8142277774,
+        "irr":0.0859203288
     },
     {
         "date":"2044-09-01T00:00Z",
@@ -6417,9 +7155,12 @@
         "ending_balance":360.7113599915,
         "depreciation":10.4707843137,
         "cfads":25.8972218077,
+        "ebit":15.426437494,
+        "ebt":9.146602158,
+        "tax_expense":2.7439806474,
         "terminal_value":0.0,
-        "equity_cash_flow":-13.7796831041,
-        "irr":0.1093631295
+        "equity_cash_flow":-16.5236637515,
+        "irr":0.0859203288
     },
     {
         "date":"2044-10-01T00:00Z",
@@ -6443,9 +7184,12 @@
         "ending_balance":360.7113599915,
         "depreciation":10.4123039216,
         "cfads":26.1111710531,
+        "ebit":15.6988671315,
+        "ebt":15.6988671315,
+        "tax_expense":4.7096601395,
         "terminal_value":0.0,
-        "equity_cash_flow":26.1111710531,
-        "irr":0.1093631295
+        "equity_cash_flow":21.4015109136,
+        "irr":0.0859203288
     },
     {
         "date":"2044-11-01T00:00Z",
@@ -6469,9 +7213,12 @@
         "ending_balance":360.7113599915,
         "depreciation":10.3538235294,
         "cfads":25.8221511203,
+        "ebit":15.4683275909,
+        "ebt":15.4683275909,
+        "tax_expense":4.6404982773,
         "terminal_value":0.0,
-        "equity_cash_flow":25.8221511203,
-        "irr":0.1093631295
+        "equity_cash_flow":21.181652843,
+        "irr":0.0859203288
     },
     {
         "date":"2044-12-01T00:00Z",
@@ -6495,9 +7242,12 @@
         "ending_balance":327.3142904157,
         "depreciation":10.2953431373,
         "cfads":26.9956411881,
+        "ebit":16.7002980508,
+        "ebt":10.4204627148,
+        "tax_expense":3.1261388144,
         "terminal_value":0.0,
-        "equity_cash_flow":-12.6812637237,
-        "irr":0.1093631295
+        "equity_cash_flow":-15.8074025382,
+        "irr":0.0859203288
     },
     {
         "date":"2045-01-01T00:00Z",
@@ -6521,9 +7271,12 @@
         "ending_balance":327.3142904157,
         "depreciation":10.2368627451,
         "cfads":26.8397862343,
+        "ebit":16.6029234892,
+        "ebt":16.6029234892,
+        "tax_expense":4.9808770467,
         "terminal_value":0.0,
-        "equity_cash_flow":26.8397862343,
-        "irr":0.1093631295
+        "equity_cash_flow":21.8589091875,
+        "irr":0.0859203288
     },
     {
         "date":"2045-02-01T00:00Z",
@@ -6547,9 +7300,12 @@
         "ending_balance":327.3142904157,
         "depreciation":10.1783823529,
         "cfads":25.7620843247,
+        "ebit":15.5837019718,
+        "ebt":15.5837019718,
+        "tax_expense":4.6751105915,
         "terminal_value":0.0,
-        "equity_cash_flow":25.7620843247,
-        "irr":0.1093631295
+        "equity_cash_flow":21.0869737332,
+        "irr":0.0859203288
     },
     {
         "date":"2045-03-01T00:00Z",
@@ -6573,9 +7329,12 @@
         "ending_balance":294.112500762,
         "depreciation":10.1199019608,
         "cfads":31.7517657328,
+        "ebit":21.631863772,
+        "ebt":15.5011415251,
+        "tax_expense":4.6503424575,
         "terminal_value":0.0,
-        "equity_cash_flow":-7.5807461678,
-        "irr":0.1093631295
+        "equity_cash_flow":-12.2310886253,
+        "irr":0.0859203288
     },
     {
         "date":"2045-04-01T00:00Z",
@@ -6599,9 +7358,12 @@
         "ending_balance":294.112500762,
         "depreciation":10.0614215686,
         "cfads":27.7177160644,
+        "ebit":17.6562944957,
+        "ebt":17.6562944957,
+        "tax_expense":5.2968883487,
         "terminal_value":0.0,
-        "equity_cash_flow":27.7177160644,
-        "irr":0.1093631295
+        "equity_cash_flow":22.4208277156,
+        "irr":0.0859203288
     },
     {
         "date":"2045-05-01T00:00Z",
@@ -6625,9 +7387,12 @@
         "ending_balance":294.112500762,
         "depreciation":10.0029411765,
         "cfads":25.9302488233,
+        "ebit":15.9273076468,
+        "ebt":15.9273076468,
+        "tax_expense":4.778192294,
         "terminal_value":0.0,
-        "equity_cash_flow":25.9302488233,
-        "irr":0.1093631295
+        "equity_cash_flow":21.1520565292,
+        "irr":0.0859203288
     },
     {
         "date":"2045-06-01T00:00Z",
@@ -6651,9 +7416,12 @@
         "ending_balance":264.4761285034,
         "depreciation":9.9444607843,
         "cfads":30.2589434284,
+        "ebit":20.3144826441,
+        "ebt":15.358369789,
+        "tax_expense":4.6075109367,
         "terminal_value":0.0,
-        "equity_cash_flow":-4.3335416852,
-        "irr":0.1093631295
+        "equity_cash_flow":-8.9410526219,
+        "irr":0.0859203288
     },
     {
         "date":"2045-07-01T00:00Z",
@@ -6677,9 +7445,12 @@
         "ending_balance":264.4761285034,
         "depreciation":9.8859803922,
         "cfads":28.4549175224,
+        "ebit":18.5689371303,
+        "ebt":18.5689371303,
+        "tax_expense":5.5706811391,
         "terminal_value":0.0,
-        "equity_cash_flow":28.4549175224,
-        "irr":0.1093631295
+        "equity_cash_flow":22.8842363834,
+        "irr":0.0859203288
     },
     {
         "date":"2045-08-01T00:00Z",
@@ -6703,9 +7474,12 @@
         "ending_balance":264.4761285034,
         "depreciation":9.8275,
         "cfads":27.352265154,
+        "ebit":17.524765154,
+        "ebt":17.524765154,
+        "tax_expense":5.2574295462,
         "terminal_value":0.0,
-        "equity_cash_flow":27.352265154,
-        "irr":0.1093631295
+        "equity_cash_flow":22.0948356078,
+        "irr":0.0859203288
     },
     {
         "date":"2045-09-01T00:00Z",
@@ -6729,9 +7503,12 @@
         "ending_balance":236.9720024566,
         "depreciation":9.8275,
         "cfads":24.8265683898,
+        "ebit":14.9990683898,
+        "ebt":10.7230572283,
+        "tax_expense":3.2169171685,
         "terminal_value":0.0,
-        "equity_cash_flow":-6.9535688185,
-        "irr":0.1093631295
+        "equity_cash_flow":-10.170485987,
+        "irr":0.0859203288
     },
     {
         "date":"2045-10-01T00:00Z",
@@ -6755,9 +7532,12 @@
         "ending_balance":236.9720024566,
         "depreciation":9.8275,
         "cfads":25.1150683902,
+        "ebit":15.2875683902,
+        "ebt":15.2875683902,
+        "tax_expense":4.586270517,
         "terminal_value":0.0,
-        "equity_cash_flow":25.1150683902,
-        "irr":0.1093631295
+        "equity_cash_flow":20.5287978731,
+        "irr":0.0859203288
     },
     {
         "date":"2045-11-01T00:00Z",
@@ -6781,9 +7561,12 @@
         "ending_balance":236.9720024566,
         "depreciation":9.6869642857,
         "cfads":24.7020895893,
+        "ebit":15.0151253036,
+        "ebt":15.0151253036,
+        "tax_expense":4.5045375911,
         "terminal_value":0.0,
-        "equity_cash_flow":24.7020895893,
-        "irr":0.1093631295
+        "equity_cash_flow":20.1975519982,
+        "irr":0.0859203288
     },
     {
         "date":"2045-12-01T00:00Z",
@@ -6807,9 +7590,12 @@
         "ending_balance":209.4678764098,
         "depreciation":9.5464285714,
         "cfads":26.4210396192,
+        "ebit":16.8746110478,
+        "ebt":12.5985998863,
+        "tax_expense":3.7795799659,
         "terminal_value":0.0,
-        "equity_cash_flow":-5.3590975891,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.138677555,
+        "irr":0.0859203288
     },
     {
         "date":"2046-01-01T00:00Z",
@@ -6833,9 +7619,12 @@
         "ending_balance":209.4678764098,
         "depreciation":9.4058928571,
         "cfads":27.1965649369,
+        "ebit":17.7906720798,
+        "ebt":17.7906720798,
+        "tax_expense":5.3372016239,
         "terminal_value":0.0,
-        "equity_cash_flow":27.1965649369,
-        "irr":0.1093631295
+        "equity_cash_flow":21.859363313,
+        "irr":0.0859203288
     },
     {
         "date":"2046-02-01T00:00Z",
@@ -6859,9 +7648,12 @@
         "ending_balance":209.4678764098,
         "depreciation":9.2653571429,
         "cfads":26.69080818,
+        "ebit":17.4254510371,
+        "ebt":17.4254510371,
+        "tax_expense":5.2276353111,
         "terminal_value":0.0,
-        "equity_cash_flow":26.69080818,
-        "irr":0.1093631295
+        "equity_cash_flow":21.4631728689,
+        "irr":0.0859203288
     },
     {
         "date":"2046-03-01T00:00Z",
@@ -6885,9 +7677,12 @@
         "ending_balance":184.2536885936,
         "depreciation":9.1248214286,
         "cfads":32.8707983044,
+        "ebit":23.7459768758,
+        "ebt":19.6073631342,
+        "tax_expense":5.8822089403,
         "terminal_value":0.0,
-        "equity_cash_flow":3.5179967466,
-        "irr":0.1093631295
+        "equity_cash_flow":-2.3642121937,
+        "irr":0.0859203288
     },
     {
         "date":"2046-04-01T00:00Z",
@@ -6911,9 +7706,12 @@
         "ending_balance":184.2536885936,
         "depreciation":8.9842857143,
         "cfads":28.2768760128,
+        "ebit":19.2925902985,
+        "ebt":19.2925902985,
+        "tax_expense":5.7877770895,
         "terminal_value":0.0,
-        "equity_cash_flow":28.2768760128,
-        "irr":0.1093631295
+        "equity_cash_flow":22.4890989232,
+        "irr":0.0859203288
     },
     {
         "date":"2046-05-01T00:00Z",
@@ -6937,9 +7735,12 @@
         "ending_balance":184.2536885936,
         "depreciation":8.84375,
         "cfads":26.5616661284,
+        "ebit":17.7179161284,
+        "ebt":17.7179161284,
+        "tax_expense":5.3153748385,
         "terminal_value":0.0,
-        "equity_cash_flow":26.5616661284,
-        "irr":0.1093631295
+        "equity_cash_flow":21.2462912899,
+        "irr":0.0859203288
     },
     {
         "date":"2046-06-01T00:00Z",
@@ -6963,9 +7764,12 @@
         "ending_balance":157.5203835888,
         "depreciation":8.6246205357,
         "cfads":31.2810354456,
+        "ebit":22.6564149099,
+        "ebt":19.4784855163,
+        "tax_expense":5.8435456549,
         "terminal_value":0.0,
-        "equity_cash_flow":1.3698010472,
-        "irr":0.1093631295
+        "equity_cash_flow":-4.4737446077,
+        "irr":0.0859203288
     },
     {
         "date":"2046-07-01T00:00Z",
@@ -6989,9 +7793,12 @@
         "ending_balance":157.5203835888,
         "depreciation":8.4054910714,
         "cfads":28.6227200961,
+        "ebit":20.2172290247,
+        "ebt":20.2172290247,
+        "tax_expense":6.0651687074,
         "terminal_value":0.0,
-        "equity_cash_flow":28.6227200961,
-        "irr":0.1093631295
+        "equity_cash_flow":22.5575513887,
+        "irr":0.0859203288
     },
     {
         "date":"2046-08-01T00:00Z",
@@ -7015,9 +7822,12 @@
         "ending_balance":157.5203835888,
         "depreciation":8.1863616071,
         "cfads":27.6264057559,
+        "ebit":19.4400441487,
+        "ebt":19.4400441487,
+        "tax_expense":5.8320132446,
         "terminal_value":0.0,
-        "equity_cash_flow":27.6264057559,
-        "irr":0.1093631295
+        "equity_cash_flow":21.7943925113,
+        "irr":0.0859203288
     },
     {
         "date":"2046-09-01T00:00Z",
@@ -7041,9 +7851,12 @@
         "ending_balance":130.0449695977,
         "depreciation":7.9083829365,
         "cfads":25.4077463969,
+        "ebit":17.4993634604,
+        "ebt":14.8736009877,
+        "tax_expense":4.4620802963,
         "terminal_value":0.0,
-        "equity_cash_flow":-4.6934300669,
-        "irr":0.1093631295
+        "equity_cash_flow":-9.1555103632,
+        "irr":0.0859203288
     },
     {
         "date":"2046-10-01T00:00Z",
@@ -7067,9 +7880,12 @@
         "ending_balance":130.0449695977,
         "depreciation":7.6304042659,
         "cfads":25.5346284275,
+        "ebit":17.9042241616,
+        "ebt":17.9042241616,
+        "tax_expense":5.3712672485,
         "terminal_value":0.0,
-        "equity_cash_flow":25.5346284275,
-        "irr":0.1093631295
+        "equity_cash_flow":20.163361179,
+        "irr":0.0859203288
     },
     {
         "date":"2046-11-01T00:00Z",
@@ -7093,9 +7909,12 @@
         "ending_balance":130.0449695977,
         "depreciation":7.3524255952,
         "cfads":25.7881379329,
+        "ebit":18.4357123376,
+        "ebt":18.4357123376,
+        "tax_expense":5.5307137013,
         "terminal_value":0.0,
-        "equity_cash_flow":25.7881379329,
-        "irr":0.1093631295
+        "equity_cash_flow":20.2574242316,
+        "irr":0.0859203288
     },
     {
         "date":"2046-12-01T00:00Z",
@@ -7119,9 +7938,12 @@
         "ending_balance":102.5695556065,
         "depreciation":7.0254786706,
         "cfads":26.5250800373,
+        "ebit":19.4996013667,
+        "ebt":16.873838894,
+        "tax_expense":5.0621516682,
         "terminal_value":0.0,
-        "equity_cash_flow":-3.5760964265,
-        "irr":0.1093631295
+        "equity_cash_flow":-8.6382480947,
+        "irr":0.0859203288
     },
     {
         "date":"2047-01-01T00:00Z",
@@ -7145,9 +7967,12 @@
         "ending_balance":102.5695556065,
         "depreciation":6.698531746,
         "cfads":28.1297693306,
+        "ebit":21.4312375846,
+        "ebt":21.4312375846,
+        "tax_expense":6.4293712754,
         "terminal_value":0.0,
-        "equity_cash_flow":28.1297693306,
-        "irr":0.1093631295
+        "equity_cash_flow":21.7003980553,
+        "irr":0.0859203288
     },
     {
         "date":"2047-02-01T00:00Z",
@@ -7171,9 +7996,12 @@
         "ending_balance":102.5695556065,
         "depreciation":6.322452877,
         "cfads":26.9377259806,
+        "ebit":20.6152731036,
+        "ebt":20.6152731036,
+        "tax_expense":6.1845819311,
         "terminal_value":0.0,
-        "equity_cash_flow":26.9377259806,
-        "irr":0.1093631295
+        "equity_cash_flow":20.7531440495,
+        "irr":0.0859203288
     },
     {
         "date":"2047-03-01T00:00Z",
@@ -7197,9 +8025,12 @@
         "ending_balance":75.0941416154,
         "depreciation":5.9463740079,
         "cfads":34.8594863988,
+        "ebit":28.9131123908,
+        "ebt":26.2873499181,
+        "tax_expense":7.8862049754,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7583099349,
-        "irr":0.1093631295
+        "equity_cash_flow":-3.1278950405,
+        "irr":0.0859203288
     },
     {
         "date":"2047-04-01T00:00Z",
@@ -7223,9 +8054,12 @@
         "ending_balance":75.0941416154,
         "depreciation":5.5702951389,
         "cfads":29.1091808857,
+        "ebit":23.5388857468,
+        "ebt":23.5388857468,
+        "tax_expense":7.061665724,
         "terminal_value":0.0,
-        "equity_cash_flow":29.1091808857,
-        "irr":0.1093631295
+        "equity_cash_flow":22.0475151617,
+        "irr":0.0859203288
     },
     {
         "date":"2047-05-01T00:00Z",
@@ -7249,9 +8083,12 @@
         "ending_balance":75.0941416154,
         "depreciation":5.1942162698,
         "cfads":27.2377553687,
+        "ebit":22.0435390988,
+        "ebt":22.0435390988,
+        "tax_expense":6.6130617296,
         "terminal_value":0.0,
-        "equity_cash_flow":27.2377553687,
-        "irr":0.1093631295
+        "equity_cash_flow":20.624693639,
+        "irr":0.0859203288
     },
     {
         "date":"2047-06-01T00:00Z",
@@ -7275,9 +8112,12 @@
         "ending_balance":55.3235653724,
         "depreciation":4.8181374008,
         "cfads":31.9413243325,
+        "ebit":27.1231869317,
+        "ebt":25.5492558384,
+        "tax_expense":7.6647767515,
         "terminal_value":0.0,
-        "equity_cash_flow":10.5968169962,
-        "irr":0.1093631295
+        "equity_cash_flow":2.9320402447,
+        "irr":0.0859203288
     },
     {
         "date":"2047-07-01T00:00Z",
@@ -7301,9 +8141,12 @@
         "ending_balance":55.3235653724,
         "depreciation":4.4420585317,
         "cfads":29.7954787277,
+        "ebit":25.3534201959,
+        "ebt":25.3534201959,
+        "tax_expense":7.6060260588,
         "terminal_value":0.0,
-        "equity_cash_flow":29.7954787277,
-        "irr":0.1093631295
+        "equity_cash_flow":22.1894526689,
+        "irr":0.0859203288
     },
     {
         "date":"2047-08-01T00:00Z",
@@ -7327,9 +8170,12 @@
         "ending_balance":55.3235653724,
         "depreciation":4.206515377,
         "cfads":28.5775303315,
+        "ebit":24.3710149545,
+        "ebt":24.3710149545,
+        "tax_expense":7.3113044863,
         "terminal_value":0.0,
-        "equity_cash_flow":28.5775303315,
-        "irr":0.1093631295
+        "equity_cash_flow":21.2662258451,
+        "irr":0.0859203288
     },
     {
         "date":"2047-09-01T00:00Z",
@@ -7353,9 +8199,12 @@
         "ending_balance":40.8432138751,
         "depreciation":3.8692460317,
         "cfads":26.0525085287,
+        "ebit":22.183262497,
+        "ebt":21.2060255759,
+        "tax_expense":6.3618076728,
         "terminal_value":0.0,
-        "equity_cash_flow":10.5949201102,
-        "irr":0.1093631295
+        "equity_cash_flow":4.2331124375,
+        "irr":0.0859203288
     },
     {
         "date":"2047-10-01T00:00Z",
@@ -7379,9 +8228,12 @@
         "ending_balance":40.8432138751,
         "depreciation":3.5319766865,
         "cfads":26.0166550466,
+        "ebit":22.4846783601,
+        "ebt":22.4846783601,
+        "tax_expense":6.745403508,
         "terminal_value":0.0,
-        "equity_cash_flow":26.0166550466,
-        "irr":0.1093631295
+        "equity_cash_flow":19.2712515386,
+        "irr":0.0859203288
     },
     {
         "date":"2047-11-01T00:00Z",
@@ -7405,9 +8257,12 @@
         "ending_balance":40.8432138751,
         "depreciation":3.1947073413,
         "cfads":25.7761982177,
+        "ebit":22.5814908764,
+        "ebt":22.5814908764,
+        "tax_expense":6.7744472629,
         "terminal_value":0.0,
-        "equity_cash_flow":25.7761982177,
-        "irr":0.1093631295
+        "equity_cash_flow":19.0017509548,
+        "irr":0.0859203288
     },
     {
         "date":"2047-12-01T00:00Z",
@@ -7431,9 +8286,12 @@
         "ending_balance":26.3628623777,
         "depreciation":2.857437996,
         "cfads":27.2085931572,
+        "ebit":24.3511551612,
+        "ebt":23.3739182401,
+        "tax_expense":7.012175472,
         "terminal_value":0.0,
-        "equity_cash_flow":11.7510047388,
-        "irr":0.1093631295
+        "equity_cash_flow":4.7388292667,
+        "irr":0.0859203288
     },
     {
         "date":"2048-01-01T00:00Z",
@@ -7457,9 +8315,12 @@
         "ending_balance":26.3628623777,
         "depreciation":2.5201686508,
         "cfads":28.6863225146,
+        "ebit":26.1661538638,
+        "ebt":26.1661538638,
+        "tax_expense":7.8498461591,
         "terminal_value":0.0,
-        "equity_cash_flow":28.6863225146,
-        "irr":0.1093631295
+        "equity_cash_flow":20.8364763554,
+        "irr":0.0859203288
     },
     {
         "date":"2048-02-01T00:00Z",
@@ -7483,9 +8344,12 @@
         "ending_balance":26.3628623777,
         "depreciation":2.23203125,
         "cfads":27.4452507193,
+        "ebit":25.2132194693,
+        "ebt":25.2132194693,
+        "tax_expense":7.5639658408,
         "terminal_value":0.0,
-        "equity_cash_flow":27.4452507193,
-        "irr":0.1093631295
+        "equity_cash_flow":19.8812848785,
+        "irr":0.0859203288
     },
     {
         "date":"2048-03-01T00:00Z",
@@ -7509,9 +8373,12 @@
         "ending_balance":11.8825108803,
         "depreciation":1.9438938492,
         "cfads":32.7898746517,
+        "ebit":30.8459808025,
+        "ebt":29.8687438814,
+        "tax_expense":8.9606231644,
         "terminal_value":0.0,
-        "equity_cash_flow":17.3322862332,
-        "irr":0.1093631295
+        "equity_cash_flow":8.3716630688,
+        "irr":0.0859203288
     },
     {
         "date":"2048-04-01T00:00Z",
@@ -7535,9 +8402,12 @@
         "ending_balance":11.8825108803,
         "depreciation":1.6557564484,
         "cfads":29.8954713081,
+        "ebit":28.2397148597,
+        "ebt":28.2397148597,
+        "tax_expense":8.4719144579,
         "terminal_value":0.0,
-        "equity_cash_flow":29.8954713081,
-        "irr":0.1093631295
+        "equity_cash_flow":21.4235568502,
+        "irr":0.0859203288
     },
     {
         "date":"2048-05-01T00:00Z",
@@ -7561,9 +8431,12 @@
         "ending_balance":11.8825108803,
         "depreciation":1.3676190476,
         "cfads":29.4146358081,
+        "ebit":28.0470167605,
+        "ebt":28.0470167605,
+        "tax_expense":8.4141050281,
         "terminal_value":0.0,
-        "equity_cash_flow":29.4146358081,
-        "irr":0.1093631295
+        "equity_cash_flow":21.0005307799,
+        "irr":0.0859203288
     },
     {
         "date":"2048-06-01T00:00Z",
@@ -7587,9 +8460,12 @@
         "ending_balance":5.4209141044,
         "depreciation":1.2169246032,
         "cfads":32.8947346909,
+        "ebit":31.6778100878,
+        "ebt":31.2901142812,
+        "tax_expense":9.3870342844,
         "terminal_value":0.0,
-        "equity_cash_flow":26.0454421085,
-        "irr":0.1093631295
+        "equity_cash_flow":16.6584078241,
+        "irr":0.0859203288
     },
     {
         "date":"2048-07-01T00:00Z",
@@ -7613,9 +8489,12 @@
         "ending_balance":5.4209141044,
         "depreciation":1.0662301587,
         "cfads":30.0699444212,
+        "ebit":29.0037142625,
+        "ebt":29.0037142625,
+        "tax_expense":8.7011142787,
         "terminal_value":0.0,
-        "equity_cash_flow":30.0699444212,
-        "irr":0.1093631295
+        "equity_cash_flow":21.3688301425,
+        "irr":0.0859203288
     },
     {
         "date":"2048-08-01T00:00Z",
@@ -7639,9 +8518,12 @@
         "ending_balance":5.4209141044,
         "depreciation":0.9155357143,
         "cfads":29.0332148805,
+        "ebit":28.1176791662,
+        "ebt":28.1176791662,
+        "tax_expense":8.4353037499,
         "terminal_value":0.0,
-        "equity_cash_flow":29.0332148805,
-        "irr":0.1093631295
+        "equity_cash_flow":20.5979111306,
+        "irr":0.0859203288
     },
     {
         "date":"2048-09-01T00:00Z",
@@ -7665,9 +8547,12 @@
         "ending_balance":3.6139835837,
         "depreciation":0.8138095238,
         "cfads":26.6458224556,
+        "ebit":25.8320129318,
+        "ebt":25.7235971006,
+        "tax_expense":7.7170791302,
         "terminal_value":0.0,
-        "equity_cash_flow":24.7304761036,
-        "irr":0.1093631295
+        "equity_cash_flow":17.0133969735,
+        "irr":0.0859203288
     },
     {
         "date":"2048-10-01T00:00Z",
@@ -7691,9 +8576,12 @@
         "ending_balance":3.6139835837,
         "depreciation":0.7120833333,
         "cfads":26.8489238399,
+        "ebit":26.1368405066,
+        "ebt":26.1368405066,
+        "tax_expense":7.841052152,
         "terminal_value":0.0,
-        "equity_cash_flow":26.8489238399,
-        "irr":0.1093631295
+        "equity_cash_flow":19.0078716879,
+        "irr":0.0859203288
     },
     {
         "date":"2048-11-01T00:00Z",
@@ -7717,9 +8605,12 @@
         "ending_balance":3.6139835837,
         "depreciation":0.6103571429,
         "cfads":26.50298615,
+        "ebit":25.8926290072,
+        "ebt":25.8926290072,
+        "tax_expense":7.7677887022,
         "terminal_value":0.0,
-        "equity_cash_flow":26.50298615,
-        "irr":0.1093631295
+        "equity_cash_flow":18.7351974479,
+        "irr":0.0859203288
     },
     {
         "date":"2048-12-01T00:00Z",
@@ -7743,9 +8634,12 @@
         "ending_balance":1.8070530629,
         "depreciation":0.5086309524,
         "cfads":27.7546827511,
+        "ebit":27.2460517987,
+        "ebt":27.1376359674,
+        "tax_expense":8.1412907902,
         "terminal_value":0.0,
-        "equity_cash_flow":25.8393363991,
-        "irr":0.1093631295
+        "equity_cash_flow":17.6980456089,
+        "irr":0.0859203288
     },
     {
         "date":"2049-01-01T00:00Z",
@@ -7769,9 +8663,12 @@
         "ending_balance":1.8070530629,
         "depreciation":0.4069047619,
         "cfads":28.6948232519,
+        "ebit":28.28791849,
+        "ebt":28.28791849,
+        "tax_expense":8.486375547,
         "terminal_value":0.0,
-        "equity_cash_flow":28.6948232519,
-        "irr":0.1093631295
+        "equity_cash_flow":20.2084477049,
+        "irr":0.0859203288
     },
     {
         "date":"2049-02-01T00:00Z",
@@ -7795,9 +8692,12 @@
         "ending_balance":1.8070530629,
         "depreciation":0.3051785714,
         "cfads":27.2133807383,
+        "ebit":26.9082021669,
+        "ebt":26.9082021669,
+        "tax_expense":8.0724606501,
         "terminal_value":0.0,
-        "equity_cash_flow":27.2133807383,
-        "irr":0.1093631295
+        "equity_cash_flow":19.1409200882,
+        "irr":0.0859203288
     },
     {
         "date":"2049-03-01T00:00Z",
@@ -7821,9 +8721,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.203452381,
         "cfads":33.3190359592,
+        "ebit":33.1155835782,
+        "ebt":33.007167747,
+        "tax_expense":9.9021503241,
         "terminal_value":0.0,
-        "equity_cash_flow":31.4036896072,
-        "irr":0.1093631295
+        "equity_cash_flow":21.5015392831,
+        "irr":0.0859203288
     },
     {
         "date":"2049-04-01T00:00Z",
@@ -7847,9 +8750,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.1017261905,
         "cfads":29.6181753854,
+        "ebit":29.5164491949,
+        "ebt":29.5164491949,
+        "tax_expense":8.8549347585,
         "terminal_value":0.0,
-        "equity_cash_flow":29.6181753854,
-        "irr":0.1093631295
+        "equity_cash_flow":20.7632406269,
+        "irr":0.0859203288
     },
     {
         "date":"2049-05-01T00:00Z",
@@ -7873,9 +8779,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":27.9252550973,
+        "ebit":27.9252550973,
+        "ebt":27.9252550973,
+        "tax_expense":8.3775765292,
         "terminal_value":0.0,
-        "equity_cash_flow":27.9252550973,
-        "irr":0.1093631295
+        "equity_cash_flow":19.5476785681,
+        "irr":0.0859203288
     },
     {
         "date":"2049-06-01T00:00Z",
@@ -7899,9 +8808,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":34.0068072064,
+        "ebit":34.0068072064,
+        "ebt":34.0068072064,
+        "tax_expense":10.2020421619,
         "terminal_value":0.0,
-        "equity_cash_flow":34.0068072064,
-        "irr":0.1093631295
+        "equity_cash_flow":23.8047650445,
+        "irr":0.0859203288
     },
     {
         "date":"2049-07-01T00:00Z",
@@ -7925,9 +8837,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":30.1274160294,
+        "ebit":30.1274160294,
+        "ebt":30.1274160294,
+        "tax_expense":9.0382248088,
         "terminal_value":0.0,
-        "equity_cash_flow":30.1274160294,
-        "irr":0.1093631295
+        "equity_cash_flow":21.0891912206,
+        "irr":0.0859203288
     },
     {
         "date":"2049-08-01T00:00Z",
@@ -7951,9 +8866,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":29.0387576859,
+        "ebit":29.0387576859,
+        "ebt":29.0387576859,
+        "tax_expense":8.7116273058,
         "terminal_value":0.0,
-        "equity_cash_flow":29.0387576859,
-        "irr":0.1093631295
+        "equity_cash_flow":20.3271303801,
+        "irr":0.0859203288
     },
     {
         "date":"2049-09-01T00:00Z",
@@ -7977,9 +8895,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":26.5724900851,
+        "ebit":26.5724900851,
+        "ebt":26.5724900851,
+        "tax_expense":7.9717470255,
         "terminal_value":0.0,
-        "equity_cash_flow":26.5724900851,
-        "irr":0.1093631295
+        "equity_cash_flow":18.6007430596,
+        "irr":0.0859203288
     },
     {
         "date":"2049-10-01T00:00Z",
@@ -8003,9 +8924,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":26.5239226024,
+        "ebit":26.5239226024,
+        "ebt":26.5239226024,
+        "tax_expense":7.9571767807,
         "terminal_value":0.0,
-        "equity_cash_flow":26.5239226024,
-        "irr":0.1093631295
+        "equity_cash_flow":18.5667458217,
+        "irr":0.0859203288
     },
     {
         "date":"2049-11-01T00:00Z",
@@ -8029,9 +8953,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":26.359046323,
+        "ebit":26.359046323,
+        "ebt":26.359046323,
+        "tax_expense":7.9077138969,
         "terminal_value":0.0,
-        "equity_cash_flow":26.359046323,
-        "irr":0.1093631295
+        "equity_cash_flow":18.4513324261,
+        "irr":0.0859203288
     },
     {
         "date":"2049-12-01T00:00Z",
@@ -8055,9 +8982,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":27.320020785,
+        "ebit":27.320020785,
+        "ebt":27.320020785,
+        "tax_expense":8.1960062355,
         "terminal_value":0.0,
-        "equity_cash_flow":27.320020785,
-        "irr":0.1093631295
+        "equity_cash_flow":19.1240145495,
+        "irr":0.0859203288
     },
     {
         "date":"2050-01-01T00:00Z",
@@ -8081,9 +9011,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":28.6439940533,
+        "ebit":28.6439940533,
+        "ebt":28.6439940533,
+        "tax_expense":8.593198216,
         "terminal_value":0.0,
-        "equity_cash_flow":28.6439940533,
-        "irr":0.1093631295
+        "equity_cash_flow":20.0507958373,
+        "irr":0.0859203288
     },
     {
         "date":"2050-02-01T00:00Z",
@@ -8107,9 +9040,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":26.9212678038,
+        "ebit":26.9212678038,
+        "ebt":26.9212678038,
+        "tax_expense":8.0763803412,
         "terminal_value":0.0,
-        "equity_cash_flow":26.9212678038,
-        "irr":0.1093631295
+        "equity_cash_flow":18.8448874627,
+        "irr":0.0859203288
     },
     {
         "date":"2050-03-01T00:00Z",
@@ -8133,9 +9069,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":32.978049825,
+        "ebit":32.978049825,
+        "ebt":32.978049825,
+        "tax_expense":9.8934149475,
         "terminal_value":0.0,
-        "equity_cash_flow":32.978049825,
-        "irr":0.1093631295
+        "equity_cash_flow":23.0846348775,
+        "irr":0.0859203288
     },
     {
         "date":"2050-04-01T00:00Z",
@@ -8159,9 +9098,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":29.4342397364,
+        "ebit":29.4342397364,
+        "ebt":29.4342397364,
+        "tax_expense":8.8302719209,
         "terminal_value":0.0,
-        "equity_cash_flow":29.4342397364,
-        "irr":0.1093631295
+        "equity_cash_flow":20.6039678155,
+        "irr":0.0859203288
     },
     {
         "date":"2050-05-01T00:00Z",
@@ -8185,9 +9127,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":27.768414812,
+        "ebit":27.768414812,
+        "ebt":27.768414812,
+        "tax_expense":8.3305244436,
         "terminal_value":0.0,
-        "equity_cash_flow":27.768414812,
-        "irr":0.1093631295
+        "equity_cash_flow":19.4378903684,
+        "irr":0.0859203288
     },
     {
         "date":"2050-06-01T00:00Z",
@@ -8211,9 +9156,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":32.6876058906,
+        "ebit":32.6876058906,
+        "ebt":32.6876058906,
+        "tax_expense":9.8062817672,
         "terminal_value":0.0,
-        "equity_cash_flow":32.6876058906,
-        "irr":0.1093631295
+        "equity_cash_flow":22.8813241234,
+        "irr":0.0859203288
     },
     {
         "date":"2050-07-01T00:00Z",
@@ -8237,9 +9185,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":29.8113767034,
+        "ebit":29.8113767034,
+        "ebt":29.8113767034,
+        "tax_expense":8.943413011,
         "terminal_value":58.65,
-        "equity_cash_flow":88.4613767034,
-        "irr":0.1093631295
+        "equity_cash_flow":79.5179636924,
+        "irr":0.0859203288
     },
     {
         "date":"2050-08-01T00:00Z",
@@ -8263,9 +9214,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":27.1072857825,
+        "ebit":27.1072857825,
+        "ebt":27.1072857825,
+        "tax_expense":8.1321857348,
         "terminal_value":0.0,
-        "equity_cash_flow":27.1072857825,
-        "irr":0.1093631295
+        "equity_cash_flow":18.9751000478,
+        "irr":0.0859203288
     },
     {
         "date":"2050-09-01T00:00Z",
@@ -8289,9 +9243,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":24.5639526042,
+        "ebit":24.5639526042,
+        "ebt":24.5639526042,
+        "tax_expense":7.3691857813,
         "terminal_value":0.0,
-        "equity_cash_flow":24.5639526042,
-        "irr":0.1093631295
+        "equity_cash_flow":17.1947668229,
+        "irr":0.0859203288
     },
     {
         "date":"2050-10-01T00:00Z",
@@ -8315,9 +9272,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":24.5790639921,
+        "ebit":24.5790639921,
+        "ebt":24.5790639921,
+        "tax_expense":7.3737191976,
         "terminal_value":0.0,
-        "equity_cash_flow":24.5790639921,
-        "irr":0.1093631295
+        "equity_cash_flow":17.2053447944,
+        "irr":0.0859203288
     },
     {
         "date":"2050-11-01T00:00Z",
@@ -8341,9 +9301,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":24.1355797495,
+        "ebit":24.1355797495,
+        "ebt":24.1355797495,
+        "tax_expense":7.2406739249,
         "terminal_value":0.0,
-        "equity_cash_flow":24.1355797495,
-        "irr":0.1093631295
+        "equity_cash_flow":16.8949058247,
+        "irr":0.0859203288
     },
     {
         "date":"2050-12-01T00:00Z",
@@ -8367,9 +9330,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":25.4500078491,
+        "ebit":25.4500078491,
+        "ebt":25.4500078491,
+        "tax_expense":7.6350023547,
         "terminal_value":0.0,
-        "equity_cash_flow":25.4500078491,
-        "irr":0.1093631295
+        "equity_cash_flow":17.8150054944,
+        "irr":0.0859203288
     },
     {
         "date":"2051-01-01T00:00Z",
@@ -8393,9 +9359,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":27.6236472157,
+        "ebit":27.6236472157,
+        "ebt":27.6236472157,
+        "tax_expense":8.2870941647,
         "terminal_value":0.0,
-        "equity_cash_flow":27.6236472157,
-        "irr":0.1093631295
+        "equity_cash_flow":19.336553051,
+        "irr":0.0859203288
     },
     {
         "date":"2051-02-01T00:00Z",
@@ -8419,9 +9388,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":25.9514184699,
+        "ebit":25.9514184699,
+        "ebt":25.9514184699,
+        "tax_expense":7.785425541,
         "terminal_value":0.0,
-        "equity_cash_flow":25.9514184699,
-        "irr":0.1093631295
+        "equity_cash_flow":18.1659929289,
+        "irr":0.0859203288
     },
     {
         "date":"2051-03-01T00:00Z",
@@ -8445,9 +9417,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":32.161815321,
+        "ebit":32.161815321,
+        "ebt":32.161815321,
+        "tax_expense":9.6485445963,
         "terminal_value":0.0,
-        "equity_cash_flow":32.161815321,
-        "irr":0.1093631295
+        "equity_cash_flow":22.5132707247,
+        "irr":0.0859203288
     },
     {
         "date":"2051-04-01T00:00Z",
@@ -8471,9 +9446,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":28.3079196718,
+        "ebit":28.3079196718,
+        "ebt":28.3079196718,
+        "tax_expense":8.4923759015,
         "terminal_value":0.0,
-        "equity_cash_flow":28.3079196718,
-        "irr":0.1093631295
+        "equity_cash_flow":19.8155437703,
+        "irr":0.0859203288
     },
     {
         "date":"2051-05-01T00:00Z",
@@ -8497,9 +9475,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":26.8028860608,
+        "ebit":26.8028860608,
+        "ebt":26.8028860608,
+        "tax_expense":8.0408658182,
         "terminal_value":0.0,
-        "equity_cash_flow":26.8028860608,
-        "irr":0.1093631295
+        "equity_cash_flow":18.7620202425,
+        "irr":0.0859203288
     },
     {
         "date":"2051-06-01T00:00Z",
@@ -8523,9 +9504,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":31.9164656519,
+        "ebit":31.9164656519,
+        "ebt":31.9164656519,
+        "tax_expense":9.5749396956,
         "terminal_value":0.0,
-        "equity_cash_flow":31.9164656519,
-        "irr":0.1093631295
+        "equity_cash_flow":22.3415259564,
+        "irr":0.0859203288
     },
     {
         "date":"2051-07-01T00:00Z",
@@ -8549,9 +9533,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":30.4822967739,
+        "ebit":30.4822967739,
+        "ebt":30.4822967739,
+        "tax_expense":9.1446890322,
         "terminal_value":0.0,
-        "equity_cash_flow":30.4822967739,
-        "irr":0.1093631295
+        "equity_cash_flow":21.3376077417,
+        "irr":0.0859203288
     },
     {
         "date":"2051-08-01T00:00Z",
@@ -8575,9 +9562,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":27.9750078309,
+        "ebit":27.9750078309,
+        "ebt":27.9750078309,
+        "tax_expense":8.3925023493,
         "terminal_value":0.0,
-        "equity_cash_flow":27.9750078309,
-        "irr":0.1093631295
+        "equity_cash_flow":19.5825054816,
+        "irr":0.0859203288
     },
     {
         "date":"2051-09-01T00:00Z",
@@ -8601,9 +9591,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":24.8968084782,
+        "ebit":24.8968084782,
+        "ebt":24.8968084782,
+        "tax_expense":7.4690425435,
         "terminal_value":0.0,
-        "equity_cash_flow":24.8968084782,
-        "irr":0.1093631295
+        "equity_cash_flow":17.4277659348,
+        "irr":0.0859203288
     },
     {
         "date":"2051-10-01T00:00Z",
@@ -8627,9 +9620,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":25.0616351841,
+        "ebit":25.0616351841,
+        "ebt":25.0616351841,
+        "tax_expense":7.5184905552,
         "terminal_value":0.0,
-        "equity_cash_flow":25.0616351841,
-        "irr":0.1093631295
+        "equity_cash_flow":17.5431446289,
+        "irr":0.0859203288
     },
     {
         "date":"2051-11-01T00:00Z",
@@ -8653,9 +9649,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":24.8303258855,
+        "ebit":24.8303258855,
+        "ebt":24.8303258855,
+        "tax_expense":7.4490977657,
         "terminal_value":0.0,
-        "equity_cash_flow":24.8303258855,
-        "irr":0.1093631295
+        "equity_cash_flow":17.3812281199,
+        "irr":0.0859203288
     },
     {
         "date":"2051-12-01T00:00Z",
@@ -8679,9 +9678,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":25.827229911,
+        "ebit":25.827229911,
+        "ebt":25.827229911,
+        "tax_expense":7.7481689733,
         "terminal_value":0.0,
-        "equity_cash_flow":25.827229911,
-        "irr":0.1093631295
+        "equity_cash_flow":18.0790609377,
+        "irr":0.0859203288
     },
     {
         "date":"2052-01-01T00:00Z",
@@ -8705,9 +9707,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":28.7356938536,
+        "ebit":28.7356938536,
+        "ebt":28.7356938536,
+        "tax_expense":8.6207081561,
         "terminal_value":0.0,
-        "equity_cash_flow":28.7356938536,
-        "irr":0.1093631295
+        "equity_cash_flow":20.1149856975,
+        "irr":0.0859203288
     },
     {
         "date":"2052-02-01T00:00Z",
@@ -8731,9 +9736,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":26.9429336869,
+        "ebit":26.9429336869,
+        "ebt":26.9429336869,
+        "tax_expense":8.0828801061,
         "terminal_value":0.0,
-        "equity_cash_flow":26.9429336869,
-        "irr":0.1093631295
+        "equity_cash_flow":18.8600535808,
+        "irr":0.0859203288
     },
     {
         "date":"2052-03-01T00:00Z",
@@ -8757,9 +9765,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":32.8547046586,
+        "ebit":32.8547046586,
+        "ebt":32.8547046586,
+        "tax_expense":9.8564113976,
         "terminal_value":0.0,
-        "equity_cash_flow":32.8547046586,
-        "irr":0.1093631295
+        "equity_cash_flow":22.998293261,
+        "irr":0.0859203288
     },
     {
         "date":"2052-04-01T00:00Z",
@@ -8783,9 +9794,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":29.0655867016,
+        "ebit":29.0655867016,
+        "ebt":29.0655867016,
+        "tax_expense":8.7196760105,
         "terminal_value":0.0,
-        "equity_cash_flow":29.0655867016,
-        "irr":0.1093631295
+        "equity_cash_flow":20.3459106912,
+        "irr":0.0859203288
     },
     {
         "date":"2052-05-01T00:00Z",
@@ -8809,9 +9823,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":28.2071731304,
+        "ebit":28.2071731304,
+        "ebt":28.2071731304,
+        "tax_expense":8.4621519391,
         "terminal_value":0.0,
-        "equity_cash_flow":28.2071731304,
-        "irr":0.1093631295
+        "equity_cash_flow":19.7450211913,
+        "irr":0.0859203288
     },
     {
         "date":"2052-06-01T00:00Z",
@@ -8835,9 +9852,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":33.202335987,
+        "ebit":33.202335987,
+        "ebt":33.202335987,
+        "tax_expense":9.9607007961,
         "terminal_value":136.85,
-        "equity_cash_flow":170.052335987,
-        "irr":0.1093631295
+        "equity_cash_flow":160.0916351909,
+        "irr":0.0859203288
     },
     {
         "date":"2052-07-01T00:00Z",
@@ -8861,9 +9881,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":26.8133897415,
+        "ebit":26.8133897415,
+        "ebt":26.8133897415,
+        "tax_expense":8.0440169225,
         "terminal_value":0.0,
-        "equity_cash_flow":26.8133897415,
-        "irr":0.1093631295
+        "equity_cash_flow":18.7693728191,
+        "irr":0.0859203288
     },
     {
         "date":"2052-08-01T00:00Z",
@@ -8887,9 +9910,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":24.7456695949,
+        "ebit":24.7456695949,
+        "ebt":24.7456695949,
+        "tax_expense":7.4237008785,
         "terminal_value":0.0,
-        "equity_cash_flow":24.7456695949,
-        "irr":0.1093631295
+        "equity_cash_flow":17.3219687165,
+        "irr":0.0859203288
     },
     {
         "date":"2052-09-01T00:00Z",
@@ -8913,9 +9939,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":22.0643344094,
+        "ebit":22.0643344094,
+        "ebt":22.0643344094,
+        "tax_expense":6.6193003228,
         "terminal_value":0.0,
-        "equity_cash_flow":22.0643344094,
-        "irr":0.1093631295
+        "equity_cash_flow":15.4450340866,
+        "irr":0.0859203288
     },
     {
         "date":"2052-10-01T00:00Z",
@@ -8939,9 +9968,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":22.1885109445,
+        "ebit":22.1885109445,
+        "ebt":22.1885109445,
+        "tax_expense":6.6565532833,
         "terminal_value":0.0,
-        "equity_cash_flow":22.1885109445,
-        "irr":0.1093631295
+        "equity_cash_flow":15.5319576611,
+        "irr":0.0859203288
     },
     {
         "date":"2052-11-01T00:00Z",
@@ -8965,9 +9997,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":21.6326540044,
+        "ebit":21.6326540044,
+        "ebt":21.6326540044,
+        "tax_expense":6.4897962013,
         "terminal_value":0.0,
-        "equity_cash_flow":21.6326540044,
-        "irr":0.1093631295
+        "equity_cash_flow":15.1428578031,
+        "irr":0.0859203288
     },
     {
         "date":"2052-12-01T00:00Z",
@@ -8991,9 +10026,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":22.8214135979,
+        "ebit":22.8214135979,
+        "ebt":22.8214135979,
+        "tax_expense":6.8464240794,
         "terminal_value":36.8,
-        "equity_cash_flow":59.6214135979,
-        "irr":0.1093631295
+        "equity_cash_flow":52.7749895185,
+        "irr":0.0859203288
     },
     {
         "date":"2053-01-01T00:00Z",
@@ -9017,9 +10055,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":22.4088657359,
+        "ebit":22.4088657359,
+        "ebt":22.4088657359,
+        "tax_expense":6.7226597208,
         "terminal_value":0.0,
-        "equity_cash_flow":22.4088657359,
-        "irr":0.1093631295
+        "equity_cash_flow":15.6862060151,
+        "irr":0.0859203288
     },
     {
         "date":"2053-02-01T00:00Z",
@@ -9043,9 +10084,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":21.2435806095,
+        "ebit":21.2435806095,
+        "ebt":21.2435806095,
+        "tax_expense":6.3730741828,
         "terminal_value":0.0,
-        "equity_cash_flow":21.2435806095,
-        "irr":0.1093631295
+        "equity_cash_flow":14.8705064266,
+        "irr":0.0859203288
     },
     {
         "date":"2053-03-01T00:00Z",
@@ -9069,9 +10113,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":27.5880510435,
+        "ebit":27.5880510435,
+        "ebt":27.5880510435,
+        "tax_expense":8.276415313,
         "terminal_value":0.0,
-        "equity_cash_flow":27.5880510435,
-        "irr":0.1093631295
+        "equity_cash_flow":19.3116357304,
+        "irr":0.0859203288
     },
     {
         "date":"2053-04-01T00:00Z",
@@ -9095,9 +10142,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":23.7634591128,
+        "ebit":23.7634591128,
+        "ebt":23.7634591128,
+        "tax_expense":7.1290377338,
         "terminal_value":202.4,
-        "equity_cash_flow":226.1634591128,
-        "irr":0.1093631295
+        "equity_cash_flow":219.034421379,
+        "irr":0.0859203288
     },
     {
         "date":"2053-05-01T00:00Z",
@@ -9121,9 +10171,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":12.8073832171,
+        "ebit":12.8073832171,
+        "ebt":12.8073832171,
+        "tax_expense":3.8422149651,
         "terminal_value":0.0,
-        "equity_cash_flow":12.8073832171,
-        "irr":0.1093631295
+        "equity_cash_flow":8.965168252,
+        "irr":0.0859203288
     },
     {
         "date":"2053-06-01T00:00Z",
@@ -9147,9 +10200,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":18.0414629379,
+        "ebit":18.0414629379,
+        "ebt":18.0414629379,
+        "tax_expense":5.4124388814,
         "terminal_value":0.0,
-        "equity_cash_flow":18.0414629379,
-        "irr":0.1093631295
+        "equity_cash_flow":12.6290240565,
+        "irr":0.0859203288
     },
     {
         "date":"2053-07-01T00:00Z",
@@ -9173,9 +10229,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":14.7417473313,
+        "ebit":14.7417473313,
+        "ebt":14.7417473313,
+        "tax_expense":4.4225241994,
         "terminal_value":56.35,
-        "equity_cash_flow":71.0917473313,
-        "irr":0.1093631295
+        "equity_cash_flow":66.6692231319,
+        "irr":0.0859203288
     },
     {
         "date":"2053-08-01T00:00Z",
@@ -9199,9 +10258,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":11.0521101737,
+        "ebit":11.0521101737,
+        "ebt":11.0521101737,
+        "tax_expense":3.3156330521,
         "terminal_value":0.0,
-        "equity_cash_flow":11.0521101737,
-        "irr":0.1093631295
+        "equity_cash_flow":7.7364771216,
+        "irr":0.0859203288
     },
     {
         "date":"2053-09-01T00:00Z",
@@ -9225,9 +10287,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":7.6832292529,
+        "ebit":7.6832292529,
+        "ebt":7.6832292529,
+        "tax_expense":2.3049687759,
         "terminal_value":0.0,
-        "equity_cash_flow":7.6832292529,
-        "irr":0.1093631295
+        "equity_cash_flow":5.378260477,
+        "irr":0.0859203288
     },
     {
         "date":"2053-10-01T00:00Z",
@@ -9251,9 +10316,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":7.6692037388,
+        "ebit":7.6692037388,
+        "ebt":7.6692037388,
+        "tax_expense":2.3007611217,
         "terminal_value":0.0,
-        "equity_cash_flow":7.6692037388,
-        "irr":0.1093631295
+        "equity_cash_flow":5.3684426172,
+        "irr":0.0859203288
     },
     {
         "date":"2053-11-01T00:00Z",
@@ -9277,9 +10345,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":7.2337836284,
+        "ebit":7.2337836284,
+        "ebt":7.2337836284,
+        "tax_expense":2.1701350885,
         "terminal_value":0.0,
-        "equity_cash_flow":7.2337836284,
-        "irr":0.1093631295
+        "equity_cash_flow":5.0636485398,
+        "irr":0.0859203288
     },
     {
         "date":"2053-12-01T00:00Z",
@@ -9303,9 +10374,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":8.5440425571,
+        "ebit":8.5440425571,
+        "ebt":8.5440425571,
+        "tax_expense":2.5632127671,
         "terminal_value":0.0,
-        "equity_cash_flow":8.5440425571,
-        "irr":0.1093631295
+        "equity_cash_flow":5.98082979,
+        "irr":0.0859203288
     },
     {
         "date":"2054-01-01T00:00Z",
@@ -9329,9 +10403,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":9.9757801859,
+        "ebit":9.9757801859,
+        "ebt":9.9757801859,
+        "tax_expense":2.9927340558,
         "terminal_value":0.0,
-        "equity_cash_flow":9.9757801859,
-        "irr":0.1093631295
+        "equity_cash_flow":6.9830461301,
+        "irr":0.0859203288
     },
     {
         "date":"2054-02-01T00:00Z",
@@ -9355,9 +10432,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":8.8343488636,
+        "ebit":8.8343488636,
+        "ebt":8.8343488636,
+        "tax_expense":2.6503046591,
         "terminal_value":0.0,
-        "equity_cash_flow":8.8343488636,
-        "irr":0.1093631295
+        "equity_cash_flow":6.1840442045,
+        "irr":0.0859203288
     },
     {
         "date":"2054-03-01T00:00Z",
@@ -9381,9 +10461,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":15.3521244949,
+        "ebit":15.3521244949,
+        "ebt":15.3521244949,
+        "tax_expense":4.6056373485,
         "terminal_value":0.0,
-        "equity_cash_flow":15.3521244949,
-        "irr":0.1093631295
+        "equity_cash_flow":10.7464871465,
+        "irr":0.0859203288
     },
     {
         "date":"2054-04-01T00:00Z",
@@ -9407,9 +10490,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":11.3377029253,
+        "ebit":11.3377029253,
+        "ebt":11.3377029253,
+        "tax_expense":3.4013108776,
         "terminal_value":111.55,
-        "equity_cash_flow":122.8877029253,
-        "irr":0.1093631295
+        "equity_cash_flow":119.4863920477,
+        "irr":0.0859203288
     },
     {
         "date":"2054-05-01T00:00Z",
@@ -9433,9 +10519,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":3.4873695339,
+        "ebit":3.4873695339,
+        "ebt":3.4873695339,
+        "tax_expense":1.0462108602,
         "terminal_value":0.0,
-        "equity_cash_flow":3.4873695339,
-        "irr":0.1093631295
+        "equity_cash_flow":2.4411586737,
+        "irr":0.0859203288
     },
     {
         "date":"2054-06-01T00:00Z",
@@ -9459,9 +10548,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":9.0142315202,
+        "ebit":9.0142315202,
+        "ebt":9.0142315202,
+        "tax_expense":2.7042694561,
         "terminal_value":0.0,
-        "equity_cash_flow":9.0142315202,
-        "irr":0.1093631295
+        "equity_cash_flow":6.3099620642,
+        "irr":0.0859203288
     },
     {
         "date":"2054-07-01T00:00Z",
@@ -9485,9 +10577,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":5.5987337868,
+        "ebit":5.5987337868,
+        "ebt":5.5987337868,
+        "tax_expense":1.679620136,
         "terminal_value":0.0,
-        "equity_cash_flow":5.5987337868,
-        "irr":0.1093631295
+        "equity_cash_flow":3.9191136507,
+        "irr":0.0859203288
     },
     {
         "date":"2054-08-01T00:00Z",
@@ -9511,9 +10606,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":4.5198665803,
+        "ebit":4.5198665803,
+        "ebt":4.5198665803,
+        "tax_expense":1.3559599741,
         "terminal_value":0.0,
-        "equity_cash_flow":4.5198665803,
-        "irr":0.1093631295
+        "equity_cash_flow":3.1639066062,
+        "irr":0.0859203288
     },
     {
         "date":"2054-09-01T00:00Z",
@@ -9537,9 +10635,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.2903205978,
+        "ebit":1.2903205978,
+        "ebt":1.2903205978,
+        "tax_expense":0.3870961793,
         "terminal_value":0.0,
-        "equity_cash_flow":1.2903205978,
-        "irr":0.1093631295
+        "equity_cash_flow":0.9032244185,
+        "irr":0.0859203288
     },
     {
         "date":"2054-10-01T00:00Z",
@@ -9563,9 +10664,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.4737445962,
+        "ebit":1.4737445962,
+        "ebt":1.4737445962,
+        "tax_expense":0.4421233789,
         "terminal_value":0.0,
-        "equity_cash_flow":1.4737445962,
-        "irr":0.1093631295
+        "equity_cash_flow":1.0316212174,
+        "irr":0.0859203288
     },
     {
         "date":"2054-11-01T00:00Z",
@@ -9589,9 +10693,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.1819861383,
+        "ebit":1.1819861383,
+        "ebt":1.1819861383,
+        "tax_expense":0.3545958415,
         "terminal_value":0.0,
-        "equity_cash_flow":1.1819861383,
-        "irr":0.1093631295
+        "equity_cash_flow":0.8273902968,
+        "irr":0.0859203288
     },
     {
         "date":"2054-12-01T00:00Z",
@@ -9615,9 +10722,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":2.1582944763,
+        "ebit":2.1582944763,
+        "ebt":2.1582944763,
+        "tax_expense":0.6474883429,
         "terminal_value":0.0,
-        "equity_cash_flow":2.1582944763,
-        "irr":0.1093631295
+        "equity_cash_flow":1.5108061334,
+        "irr":0.0859203288
     },
     {
         "date":"2055-01-01T00:00Z",
@@ -9641,9 +10751,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":3.8241172673,
+        "ebit":3.8241172673,
+        "ebt":3.8241172673,
+        "tax_expense":1.1472351802,
         "terminal_value":0.0,
-        "equity_cash_flow":3.8241172673,
-        "irr":0.1093631295
+        "equity_cash_flow":2.6768820871,
+        "irr":0.0859203288
     },
     {
         "date":"2055-02-01T00:00Z",
@@ -9667,9 +10780,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":2.6380707089,
+        "ebit":2.6380707089,
+        "ebt":2.6380707089,
+        "tax_expense":0.7914212127,
         "terminal_value":0.0,
-        "equity_cash_flow":2.6380707089,
-        "irr":0.1093631295
+        "equity_cash_flow":1.8466494962,
+        "irr":0.0859203288
     },
     {
         "date":"2055-03-01T00:00Z",
@@ -9693,9 +10809,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":9.2540682106,
+        "ebit":9.2540682106,
+        "ebt":9.2540682106,
+        "tax_expense":2.7762204632,
         "terminal_value":0.0,
-        "equity_cash_flow":9.2540682106,
-        "irr":0.1093631295
+        "equity_cash_flow":6.4778477474,
+        "irr":0.0859203288
     },
     {
         "date":"2055-04-01T00:00Z",
@@ -9719,9 +10838,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":5.4026999013,
+        "ebit":5.4026999013,
+        "ebt":5.4026999013,
+        "tax_expense":1.6208099704,
         "terminal_value":0.0,
-        "equity_cash_flow":5.4026999013,
-        "irr":0.1093631295
+        "equity_cash_flow":3.7818899309,
+        "irr":0.0859203288
     },
     {
         "date":"2055-05-01T00:00Z",
@@ -9745,9 +10867,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":3.7277375286,
+        "ebit":3.7277375286,
+        "ebt":3.7277375286,
+        "tax_expense":1.1183212586,
         "terminal_value":0.0,
-        "equity_cash_flow":3.7277375286,
-        "irr":0.1093631295
+        "equity_cash_flow":2.60941627,
+        "irr":0.0859203288
     },
     {
         "date":"2055-06-01T00:00Z",
@@ -9771,9 +10896,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":10.287927979,
+        "ebit":10.287927979,
+        "ebt":10.287927979,
+        "tax_expense":3.0863783937,
         "terminal_value":0.0,
-        "equity_cash_flow":10.287927979,
-        "irr":0.1093631295
+        "equity_cash_flow":7.2015495853,
+        "irr":0.0859203288
     },
     {
         "date":"2055-07-01T00:00Z",
@@ -9797,9 +10925,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":7.0252472661,
+        "ebit":7.0252472661,
+        "ebt":7.0252472661,
+        "tax_expense":2.1075741798,
         "terminal_value":0.0,
-        "equity_cash_flow":7.0252472661,
-        "irr":0.1093631295
+        "equity_cash_flow":4.9176730863,
+        "irr":0.0859203288
     },
     {
         "date":"2055-08-01T00:00Z",
@@ -9823,9 +10954,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":4.6698575053,
+        "ebit":4.6698575053,
+        "ebt":4.6698575053,
+        "tax_expense":1.4009572516,
         "terminal_value":0.0,
-        "equity_cash_flow":4.6698575053,
-        "irr":0.1093631295
+        "equity_cash_flow":3.2689002537,
+        "irr":0.0859203288
     },
     {
         "date":"2055-09-01T00:00Z",
@@ -9849,9 +10983,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.173339149,
+        "ebit":1.173339149,
+        "ebt":1.173339149,
+        "tax_expense":0.3520017447,
         "terminal_value":0.0,
-        "equity_cash_flow":1.173339149,
-        "irr":0.1093631295
+        "equity_cash_flow":0.8213374043,
+        "irr":0.0859203288
     },
     {
         "date":"2055-10-01T00:00Z",
@@ -9875,9 +11012,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.085053298,
+        "ebit":1.085053298,
+        "ebt":1.085053298,
+        "tax_expense":0.3255159894,
         "terminal_value":0.0,
-        "equity_cash_flow":1.085053298,
-        "irr":0.1093631295
+        "equity_cash_flow":0.7595373086,
+        "irr":0.0859203288
     },
     {
         "date":"2055-11-01T00:00Z",
@@ -9901,9 +11041,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.0080698437,
+        "ebit":1.0080698437,
+        "ebt":1.0080698437,
+        "tax_expense":0.3024209531,
         "terminal_value":0.0,
-        "equity_cash_flow":1.0080698437,
-        "irr":0.1093631295
+        "equity_cash_flow":0.7056488906,
+        "irr":0.0859203288
     },
     {
         "date":"2055-12-01T00:00Z",
@@ -9927,9 +11070,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":2.4378349487,
+        "ebit":2.4378349487,
+        "ebt":2.4378349487,
+        "tax_expense":0.7313504846,
         "terminal_value":0.0,
-        "equity_cash_flow":2.4378349487,
-        "irr":0.1093631295
+        "equity_cash_flow":1.7064844641,
+        "irr":0.0859203288
     },
     {
         "date":"2056-01-01T00:00Z",
@@ -9953,9 +11099,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":5.6627980777,
+        "ebit":5.6627980777,
+        "ebt":5.6627980777,
+        "tax_expense":1.6988394233,
         "terminal_value":0.0,
-        "equity_cash_flow":5.6627980777,
-        "irr":0.1093631295
+        "equity_cash_flow":3.9639586544,
+        "irr":0.0859203288
     },
     {
         "date":"2056-02-01T00:00Z",
@@ -9979,9 +11128,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":2.7637890532,
+        "ebit":2.7637890532,
+        "ebt":2.7637890532,
+        "tax_expense":0.829136716,
         "terminal_value":0.0,
-        "equity_cash_flow":2.7637890532,
-        "irr":0.1093631295
+        "equity_cash_flow":1.9346523372,
+        "irr":0.0859203288
     },
     {
         "date":"2056-03-01T00:00Z",
@@ -10005,9 +11157,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":8.93051123,
+        "ebit":8.93051123,
+        "ebt":8.93051123,
+        "tax_expense":2.679153369,
         "terminal_value":0.0,
-        "equity_cash_flow":8.93051123,
-        "irr":0.1093631295
+        "equity_cash_flow":6.251357861,
+        "irr":0.0859203288
     },
     {
         "date":"2056-04-01T00:00Z",
@@ -10031,9 +11186,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":5.176537922,
+        "ebit":5.176537922,
+        "ebt":5.176537922,
+        "tax_expense":1.5529613766,
         "terminal_value":0.0,
-        "equity_cash_flow":5.176537922,
-        "irr":0.1093631295
+        "equity_cash_flow":3.6235765454,
+        "irr":0.0859203288
     },
     {
         "date":"2056-05-01T00:00Z",
@@ -10057,9 +11215,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":4.7313527406,
+        "ebit":4.7313527406,
+        "ebt":4.7313527406,
+        "tax_expense":1.4194058222,
         "terminal_value":0.0,
-        "equity_cash_flow":4.7313527406,
-        "irr":0.1093631295
+        "equity_cash_flow":3.3119469184,
+        "irr":0.0859203288
     },
     {
         "date":"2056-06-01T00:00Z",
@@ -10083,9 +11244,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":9.4400377566,
+        "ebit":9.4400377566,
+        "ebt":9.4400377566,
+        "tax_expense":2.832011327,
         "terminal_value":0.0,
-        "equity_cash_flow":9.4400377566,
-        "irr":0.1093631295
+        "equity_cash_flow":6.6080264296,
+        "irr":0.0859203288
     },
     {
         "date":"2056-07-01T00:00Z",
@@ -10109,9 +11273,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":7.4465761771,
+        "ebit":7.4465761771,
+        "ebt":7.4465761771,
+        "tax_expense":2.2339728531,
         "terminal_value":0.0,
-        "equity_cash_flow":7.4465761771,
-        "irr":0.1093631295
+        "equity_cash_flow":5.2126033239,
+        "irr":0.0859203288
     },
     {
         "date":"2056-08-01T00:00Z",
@@ -10135,9 +11302,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":4.888122845,
+        "ebit":4.888122845,
+        "ebt":4.888122845,
+        "tax_expense":1.4664368535,
         "terminal_value":0.0,
-        "equity_cash_flow":4.888122845,
-        "irr":0.1093631295
+        "equity_cash_flow":3.4216859915,
+        "irr":0.0859203288
     },
     {
         "date":"2056-09-01T00:00Z",
@@ -10161,9 +11331,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.4721607962,
+        "ebit":1.4721607962,
+        "ebt":1.4721607962,
+        "tax_expense":0.4416482389,
         "terminal_value":0.0,
-        "equity_cash_flow":1.4721607962,
-        "irr":0.1093631295
+        "equity_cash_flow":1.0305125574,
+        "irr":0.0859203288
     },
     {
         "date":"2056-10-01T00:00Z",
@@ -10187,9 +11360,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.5093569585,
+        "ebit":1.5093569585,
+        "ebt":1.5093569585,
+        "tax_expense":0.4528070875,
         "terminal_value":0.0,
-        "equity_cash_flow":1.5093569585,
-        "irr":0.1093631295
+        "equity_cash_flow":1.0565498709,
+        "irr":0.0859203288
     },
     {
         "date":"2056-11-01T00:00Z",
@@ -10213,9 +11389,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":1.0704646092,
+        "ebit":1.0704646092,
+        "ebt":1.0704646092,
+        "tax_expense":0.3211393827,
         "terminal_value":0.0,
-        "equity_cash_flow":1.0704646092,
-        "irr":0.1093631295
+        "equity_cash_flow":0.7493252264,
+        "irr":0.0859203288
     },
     {
         "date":"2056-12-01T00:00Z",
@@ -10239,9 +11418,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":2.1851651894,
+        "ebit":2.1851651894,
+        "ebt":2.1851651894,
+        "tax_expense":0.6555495568,
         "terminal_value":0.0,
-        "equity_cash_flow":2.1851651894,
-        "irr":0.1093631295
+        "equity_cash_flow":1.5296156326,
+        "irr":0.0859203288
     },
     {
         "date":"2057-01-01T00:00Z",
@@ -10265,9 +11447,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":6.2371601665,
+        "ebit":6.2371601665,
+        "ebt":6.2371601665,
+        "tax_expense":1.87114805,
         "terminal_value":0.0,
-        "equity_cash_flow":6.2371601665,
-        "irr":0.1093631295
+        "equity_cash_flow":4.3660121166,
+        "irr":0.0859203288
     },
     {
         "date":"2057-02-01T00:00Z",
@@ -10291,9 +11476,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":2.8837522308,
+        "ebit":2.8837522308,
+        "ebt":2.8837522308,
+        "tax_expense":0.8651256692,
         "terminal_value":0.0,
-        "equity_cash_flow":2.8837522308,
-        "irr":0.1093631295
+        "equity_cash_flow":2.0186265616,
+        "irr":0.0859203288
     },
     {
         "date":"2057-03-01T00:00Z",
@@ -10317,9 +11505,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":9.6490425266,
+        "ebit":9.6490425266,
+        "ebt":9.6490425266,
+        "tax_expense":2.894712758,
         "terminal_value":0.0,
-        "equity_cash_flow":9.6490425266,
-        "irr":0.1093631295
+        "equity_cash_flow":6.7543297686,
+        "irr":0.0859203288
     },
     {
         "date":"2057-04-01T00:00Z",
@@ -10343,9 +11534,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":5.8885065871,
+        "ebit":5.8885065871,
+        "ebt":5.8885065871,
+        "tax_expense":1.7665519761,
         "terminal_value":0.0,
-        "equity_cash_flow":5.8885065871,
-        "irr":0.1093631295
+        "equity_cash_flow":4.121954611,
+        "irr":0.0859203288
     },
     {
         "date":"2057-05-01T00:00Z",
@@ -10369,9 +11563,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":4.0210243164,
+        "ebit":4.0210243164,
+        "ebt":4.0210243164,
+        "tax_expense":1.2063072949,
         "terminal_value":0.0,
-        "equity_cash_flow":4.0210243164,
-        "irr":0.1093631295
+        "equity_cash_flow":2.8147170215,
+        "irr":0.0859203288
     },
     {
         "date":"2057-06-01T00:00Z",
@@ -10395,9 +11592,12 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":9.8452052784,
+        "ebit":9.8452052784,
+        "ebt":9.8452052784,
+        "tax_expense":2.9535615835,
         "terminal_value":0.0,
-        "equity_cash_flow":9.8452052784,
-        "irr":0.1093631295
+        "equity_cash_flow":6.8916436949,
+        "irr":0.0859203288
     },
     {
         "date":"2057-07-01T00:00Z",
@@ -10421,8 +11621,11 @@
         "ending_balance":0.0001225422,
         "depreciation":0.0,
         "cfads":0.0,
+        "ebit":0.0,
+        "ebt":0.0,
+        "tax_expense":0.0,
         "terminal_value":0.0,
         "equity_cash_flow":0.0,
-        "irr":0.1093631295
+        "irr":0.0859203288
     }
 ]

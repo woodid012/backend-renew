@@ -109,8 +109,8 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     output_directory = os.path.join(project_root, 'output', 'model_results')
     revenue_df = calculate_revenue_timeseries(ASSETS, MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, output_directory)
     # Save revenue data to MongoDB
-    print("\n=== SAVING REVENUE DATA TO MONGODB ===")
-    insert_dataframe_to_mongodb(revenue_df, MONGO_REVENUE_COLLECTION, scenario_id=scenario_id)
+    # print("\n=== SAVING REVENUE DATA TO MONGODB ===")
+    # insert_dataframe_to_mongodb(revenue_df, MONGO_REVENUE_COLLECTION, scenario_id=scenario_id)
 
     # 2. Calculate Expenses (initial CAPEX with assumed funding split)
     print("\n=== CALCULATING EXPENSES ===")

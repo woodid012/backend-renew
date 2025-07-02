@@ -1,0 +1,1784 @@
+[
+  {
+    "scenario_id": "sensitivity_results_base",
+    "parameter": "unknown",
+    "value": "sensitivity_results_base",
+    "portfolio_irr": 0.10887714936478941,
+    "portfolio_gearing": 0.6514718130852839,
+    "total_capex": 15583.199999999999,
+    "total_debt": 10152.015557670595,
+    "total_equity": 5431.184442329404,
+    "total_revenue": 52955.23697559999,
+    "total_opex": 8463.085070807028,
+    "total_cfads": 44492.15190479296,
+    "total_equity_cash_flow": 24607.002459420113,
+    "total_terminal_value": 3144.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431006,
+        "gearing": 0.5776664733886719,
+        "total_capex": 1431.5999999999997,
+        "total_debt": 826.9873233032225,
+        "total_revenue": 3671.711906091854,
+        "total_cfads": 2827.494231049588
+      },
+      "2": {
+        "irr": 0.1954302560728532,
+        "gearing": 0.6999973297119138,
+        "total_capex": 1249.8000000000004,
+        "total_debt": 874.85666267395,
+        "total_revenue": 8125.845366257286,
+        "total_cfads": 7259.041370677442
+      },
+      "3": {
+        "irr": 0.09625958964797618,
+        "gearing": 0.6677749633789065,
+        "total_capex": 2999.9999999999995,
+        "total_debt": 2003.3248901367192,
+        "total_revenue": 8910.777615245284,
+        "total_cfads": 6833.618372163525
+      },
+      "4": {
+        "irr": 0.09720376634440032,
+        "gearing": 0.6469104766845704,
+        "total_capex": 1480.7999999999995,
+        "total_debt": 957.9450338745114,
+        "total_revenue": 4696.360446529852,
+        "total_cfads": 4024.729143478986
+      },
+      "5": {
+        "irr": 0.10771326178744557,
+        "gearing": 0.6499975204467775,
+        "total_capex": 1779.5999999999997,
+        "total_debt": 1156.735587387085,
+        "total_revenue": 5805.617732238141,
+        "total_cfads": 4733.081023627481
+      },
+      "6": {
+        "irr": 0.10245833728820547,
+        "gearing": 0.6499987602233885,
+        "total_capex": 2716.2000000000003,
+        "total_debt": 1765.526632518768,
+        "total_revenue": 8913.963170387971,
+        "total_cfads": 7684.3690632139005
+      },
+      "7": {
+        "irr": 0.10157887969947728,
+        "gearing": 0.649998760223389,
+        "total_capex": 3076.1999999999994,
+        "total_debt": 1999.5261861991887,
+        "total_revenue": 9877.975501158906,
+        "total_cfads": 8627.715946805441
+      },
+      "8": {
+        "irr": 0.12253313317931316,
+        "gearing": 0.6679779052734375,
+        "total_capex": 849.0000000000001,
+        "total_debt": 567.1132415771485,
+        "total_revenue": 2952.9852376906956,
+        "total_cfads": 2502.102753776598
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_capex_0.9500",
+    "parameter": "capex",
+    "value": 0.95,
+    "portfolio_irr": 0.11390272943813895,
+    "portfolio_gearing": 0.6595042364782886,
+    "total_capex": 10005.713,
+    "total_debt": 6598.810112485886,
+    "total_equity": 3406.902887514114,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16618.555046985566,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06974497101910938,
+        "gearing": 0.5847889023272732,
+        "total_capex": 919.2064999999998,
+        "total_debt": 537.5417601470946,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.20293166926353598,
+        "gearing": 0.7086280560354223,
+        "total_capex": 802.4757500000001,
+        "total_debt": 568.6568307380676,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.10183093096664694,
+        "gearing": 0.6760083990078479,
+        "total_capex": 1926.2500000000002,
+        "total_debt": 1302.1611785888672,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.10182535874589375,
+        "gearing": 0.6548866603685464,
+        "total_capex": 950.7969999999999,
+        "total_debt": 622.6642720184327,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.11277228823112542,
+        "gearing": 0.6580117663186066,
+        "total_capex": 1142.6515000000002,
+        "total_debt": 751.8781318016054,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10712134213980648,
+        "gearing": 0.658013021381237,
+        "total_capex": 1744.02675,
+        "total_debt": 1147.5923111371992,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10627263803753047,
+        "gearing": 0.658013021381237,
+        "total_capex": 1975.17675,
+        "total_debt": 1299.6920210294722,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.12823522029773812,
+        "gearing": 0.6762138431061407,
+        "total_capex": 545.1287499999999,
+        "total_debt": 368.6236070251465,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_capex_1.0000",
+    "parameter": "capex",
+    "value": 1.0,
+    "portfolio_irr": 0.10887714936478922,
+    "portfolio_gearing": 0.6514718130852837,
+    "total_capex": 12986.0,
+    "total_debt": 8460.012964725494,
+    "total_equity": 4525.987035274506,
+    "total_revenue": 44129.364146333326,
+    "total_opex": 7052.570892339192,
+    "total_cfads": 37076.79325399414,
+    "total_equity_cash_flow": 20505.835382850095,
+    "total_terminal_value": 2620.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 1192.9999999999998,
+        "total_debt": 689.1561027526855,
+        "total_revenue": 3059.7599217432116,
+        "total_cfads": 2356.2451925413234
+      },
+      "2": {
+        "irr": 0.1954302560728533,
+        "gearing": 0.6999973297119141,
+        "total_capex": 1041.5,
+        "total_debt": 729.0472188949585,
+        "total_revenue": 6771.537805214405,
+        "total_cfads": 6049.201142231202
+      },
+      "3": {
+        "irr": 0.09625958964797636,
+        "gearing": 0.6677749633789066,
+        "total_capex": 2499.9999999999995,
+        "total_debt": 1669.4374084472663,
+        "total_revenue": 7425.648012704402,
+        "total_cfads": 5694.681976802938
+      },
+      "4": {
+        "irr": 0.09720376634440053,
+        "gearing": 0.6469104766845704,
+        "total_capex": 1233.9999999999998,
+        "total_debt": 798.2875282287597,
+        "total_revenue": 3913.633705441543,
+        "total_cfads": 3353.9409528991546
+      },
+      "5": {
+        "irr": 0.10771326178744574,
+        "gearing": 0.6499975204467775,
+        "total_capex": 1482.9999999999998,
+        "total_debt": 963.9463228225709,
+        "total_revenue": 4838.014776865119,
+        "total_cfads": 3944.234186356234
+      },
+      "6": {
+        "irr": 0.10245833728820544,
+        "gearing": 0.6499987602233884,
+        "total_capex": 2263.5000000000005,
+        "total_debt": 1471.27219376564,
+        "total_revenue": 7428.302641989976,
+        "total_cfads": 6403.640886011584
+      },
+      "7": {
+        "irr": 0.10157887969947724,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2563.5,
+        "total_debt": 1666.271821832657,
+        "total_revenue": 8231.646250965756,
+        "total_cfads": 7189.763289004532
+      },
+      "8": {
+        "irr": 0.12253313317931323,
+        "gearing": 0.6679779052734377,
+        "total_capex": 707.4999999999999,
+        "total_debt": 472.5943679809571,
+        "total_revenue": 2460.821031408913,
+        "total_cfads": 2085.085628147165
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_capex_1.0500",
+    "parameter": "capex",
+    "value": 1.05,
+    "portfolio_irr": 0.10398094615542801,
+    "portfolio_gearing": 0.6432352639734289,
+    "total_capex": 10784.873,
+    "total_debt": 6937.210631074906,
+    "total_equity": 3847.6623689250937,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16177.795565574583,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06169142212536693,
+        "gearing": 0.5703630441646128,
+        "total_capex": 990.7864999999999,
+        "total_debt": 565.1080042572021,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.18820914570541153,
+        "gearing": 0.6911472731652851,
+        "total_capex": 864.9657500000002,
+        "total_debt": 597.8187194938658,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.0908715683327761,
+        "gearing": 0.6593322937636401,
+        "total_capex": 2076.25,
+        "total_debt": 1368.9386749267578,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09268640691190337,
+        "gearing": 0.6387315964856687,
+        "total_capex": 1024.837,
+        "total_debt": 654.5957731475833,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10278750727782271,
+        "gearing": 0.6417796107963365,
+        "total_capex": 1231.6315,
+        "total_debt": 790.4359847145081,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.09790067622370961,
+        "gearing": 0.6417808348984692,
+        "total_capex": 1879.8367500000004,
+        "total_debt": 1206.443198887825,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.0969888404947689,
+        "gearing": 0.6417808348984692,
+        "total_capex": 2128.98675,
+        "total_debt": 1366.3428939027785,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.11700125422393383,
+        "gearing": 0.6595326698666092,
+        "total_capex": 587.5787499999999,
+        "total_debt": 387.5273817443848,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_electricity_price_-5.0000",
+    "parameter": "electricity_price",
+    "value": -5.0,
+    "portfolio_irr": 0.10443548168681419,
+    "portfolio_gearing": 0.6467418896441429,
+    "total_capex": 10388.8,
+    "total_debt": 6718.872143135071,
+    "total_equity": 3669.927856864928,
+    "total_revenue": 34461.15711346849,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 28819.10039959714,
+    "total_equity_cash_flow": 15498.594097163093,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06315538253320505,
+        "gearing": 0.5691268920898437,
+        "total_capex": 954.3999999999997,
+        "total_debt": 543.1747058105467,
+        "total_revenue": 2417.8876634553935,
+        "total_cfads": 1855.0758800938831
+      },
+      "2": {
+        "irr": 0.1840388844814875,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5015.720346112148,
+        "total_cfads": 4437.851015725586
+      },
+      "3": {
+        "irr": 0.0926439688156616,
+        "gearing": 0.6583845615386963,
+        "total_capex": 2000.0,
+        "total_debt": 1316.7691230773926,
+        "total_revenue": 5871.123430810418,
+        "total_cfads": 4486.350602089245
+      },
+      "4": {
+        "irr": 0.09280710837528797,
+        "gearing": 0.632918977737427,
+        "total_capex": 987.1999999999998,
+        "total_debt": 624.8176148223878,
+        "total_revenue": 3076.299185628892,
+        "total_cfads": 2628.544983594981
+      },
+      "5": {
+        "irr": 0.10563930857529097,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3823.700679829526,
+        "total_cfads": 3108.676207422419
+      },
+      "6": {
+        "irr": 0.09958694515654626,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5838.839576564051,
+        "total_cfads": 5019.110171781337
+      },
+      "7": {
+        "irr": 0.09868086743852918,
+        "gearing": 0.6488395690917967,
+        "total_capex": 2050.8,
+        "total_debt": 1330.640188293457,
+        "total_revenue": 6475.424447105158,
+        "total_cfads": 5641.91807753618
+      },
+      "8": {
+        "irr": 0.11835179075975066,
+        "gearing": 0.6573461532592775,
+        "total_capex": 566.0,
+        "total_debt": 372.05792274475107,
+        "total_revenue": 1942.1617839629066,
+        "total_cfads": 1641.5734613535083
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_electricity_price_0.0000",
+    "parameter": "electricity_price",
+    "value": 0.0,
+    "portfolio_irr": 0.10887714936478923,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16404.668306280073,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19543025607285328,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.09625958964797637,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09720376634440049,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10771326178744575,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10245833728820557,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10157887969947713,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.1225331331793131,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_electricity_price_5.0000",
+    "parameter": "electricity_price",
+    "value": 5.0,
+    "portfolio_irr": 0.11311562037658268,
+    "portfolio_gearing": 0.6548633376861341,
+    "total_capex": 10388.8,
+    "total_debt": 6803.24424255371,
+    "total_equity": 3585.555757446289,
+    "total_revenue": 36145.82552066483,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 30503.768806793476,
+    "total_equity_cash_flow": 17328.368582700077,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06824755986523971,
+        "gearing": 0.5862072944641115,
+        "total_capex": 954.3999999999997,
+        "total_debt": 559.4762418365478,
+        "total_revenue": 2477.728211333745,
+        "total_cfads": 1914.9164279722347
+      },
+      "2": {
+        "irr": 0.20637142380715442,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5818.740142230899,
+        "total_cfads": 5240.870811844337
+      },
+      "3": {
+        "irr": 0.10000626333703747,
+        "gearing": 0.6771653652191161,
+        "total_capex": 2000.0,
+        "total_debt": 1354.3307304382322,
+        "total_revenue": 6009.913389516629,
+        "total_cfads": 4625.140560795455
+      },
+      "4": {
+        "irr": 0.10036747929702819,
+        "gearing": 0.649225759506226,
+        "total_capex": 987.1999999999998,
+        "total_debt": 640.9156697845461,
+        "total_revenue": 3185.5147430775774,
+        "total_cfads": 2737.7605410436663
+      },
+      "5": {
+        "irr": 0.10977764707132352,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3917.122963154662,
+        "total_cfads": 3202.098490747556
+      },
+      "6": {
+        "irr": 0.105280860106687,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 6046.444650619911,
+        "total_cfads": 5226.715245837197
+      },
+      "7": {
+        "irr": 0.1042878813017893,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6695.209554440053,
+        "total_cfads": 5861.703184871074
+      },
+      "8": {
+        "irr": 0.126881181353934,
+        "gearing": 0.6786069869995117,
+        "total_capex": 566.0,
+        "total_debt": 384.09155464172363,
+        "total_revenue": 1995.1518662913545,
+        "total_cfads": 1694.5635436819557
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_green_price_-2.0000",
+    "parameter": "green_price",
+    "value": -2.0,
+    "portfolio_irr": 0.10841908759978647,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35210.416049565225,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29568.359335693873,
+    "total_equity_cash_flow": 16304.635658381929,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19204484105218136,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5324.154976670089,
+        "total_cfads": 4746.285646283526
+      },
+      "3": {
+        "irr": 0.09625958964797637,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09720376634440049,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10771326178744575,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10245833728820557,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10157887969947713,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.1225331331793131,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_green_price_0.0000",
+    "parameter": "green_price",
+    "value": 0.0,
+    "portfolio_irr": 0.10887714936478923,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16404.668306280073,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19543025607285328,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.09625958964797637,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09720376634440049,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10771326178744575,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10245833728820557,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10157887969947713,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.1225331331793131,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_green_price_2.0000",
+    "parameter": "green_price",
+    "value": 2.0,
+    "portfolio_irr": 0.10933921222582481,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35396.56658456809,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29754.509870696744,
+    "total_equity_cash_flow": 16503.685233700122,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.1988706145946943,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5510.305511672959,
+        "total_cfads": 4932.436181286396
+      },
+      "3": {
+        "irr": 0.09625958964797637,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09720376634440049,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10771326178744575,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10245833728820557,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10157887969947713,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.1225331331793131,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_interest_rate_-50.0000",
+    "parameter": "interest_rate",
+    "value": -50.0,
+    "portfolio_irr": 0.11179471476814526,
+    "portfolio_gearing": 0.6582844743775638,
+    "total_capex": 10388.8,
+    "total_debt": 6838.785747413634,
+    "total_equity": 3550.014252586365,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16852.852972406374,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06883045752314068,
+        "gearing": 0.5952049732208252,
+        "total_capex": 954.3999999999997,
+        "total_debt": 568.0636264419554,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19664763685305256,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.10177320240095093,
+        "gearing": 0.6877560615539552,
+        "total_capex": 2000.0,
+        "total_debt": 1375.5121231079104,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09961542693480363,
+        "gearing": 0.649225759506226,
+        "total_capex": 987.1999999999998,
+        "total_debt": 640.9156697845461,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10951469762567094,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10439419750870324,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10365244610331958,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.12842864881192353,
+        "gearing": 0.6888061523437501,
+        "total_capex": 566.0,
+        "total_debt": 389.8642822265625,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_interest_rate_0.0000",
+    "parameter": "interest_rate",
+    "value": 0.0,
+    "portfolio_irr": 0.10887714936478923,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16404.668306280073,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19543025607285328,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.09625958964797637,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09720376634440049,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10771326178744575,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10245833728820557,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10157887969947713,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.1225331331793131,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_interest_rate_50.0000",
+    "parameter": "interest_rate",
+    "value": 50.0,
+    "portfolio_irr": 0.10553079154967533,
+    "portfolio_gearing": 0.6409844316155447,
+    "total_capex": 10388.8,
+    "total_debt": 6659.059063167571,
+    "total_equity": 3729.740936832428,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16001.893877680879,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06286785835186529,
+        "gearing": 0.5611619472503663,
+        "total_capex": 954.3999999999997,
+        "total_debt": 535.5729624557495,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.1942187955748489,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.09150282014842147,
+        "gearing": 0.6489594459533693,
+        "total_capex": 2000.0,
+        "total_debt": 1297.9188919067385,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09277807663588598,
+        "gearing": 0.625422048568726,
+        "total_capex": 987.1999999999998,
+        "total_debt": 617.4166463470461,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10573359259474055,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.09988230053243813,
+        "gearing": 0.646390080451965,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1170.4831576824186,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.09836991440985032,
+        "gearing": 0.6418487787246702,
+        "total_capex": 2050.8,
+        "total_debt": 1316.3034754085536,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.11744814576935993,
+        "gearing": 0.6483552932739257,
+        "total_capex": 566.0,
+        "total_debt": 366.96909599304195,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_opex_0.9200",
+    "parameter": "opex",
+    "value": 0.92,
+    "portfolio_irr": 0.11112617699151808,
+    "portfolio_gearing": 0.6550923880013519,
+    "total_capex": 10388.8,
+    "total_debt": 6805.623800468445,
+    "total_equity": 3583.1761995315546,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5303.533311039072,
+    "total_cfads": 29999.958006027588,
+    "total_equity_cash_flow": 16770.169042374193,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.0685312572676788,
+        "gearing": 0.5870484828948976,
+        "total_capex": 954.3999999999997,
+        "total_debt": 560.2790720748901,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1918.7648610347494
+      },
+      "2": {
+        "irr": 0.1967581989818715,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4874.033073608156
+      },
+      "3": {
+        "irr": 0.10067979188315368,
+        "gearing": 0.6787899017333985,
+        "total_capex": 2000.0,
+        "total_debt": 1357.5798034667969,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4638.831951165621
+      },
+      "4": {
+        "irr": 0.09894777786088414,
+        "gearing": 0.649225759506226,
+        "total_capex": 987.1999999999998,
+        "total_debt": 640.9156697845461,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2710.018014441358
+      },
+      "5": {
+        "irr": 0.10967236943089685,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3198.288817429414
+      },
+      "6": {
+        "irr": 0.1038471841240813,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5172.09647309623
+      },
+      "7": {
+        "irr": 0.10285642685385392,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5801.821013377766
+      },
+      "8": {
+        "irr": 0.1256109079492115,
+        "gearing": 0.675652313232422,
+        "total_capex": 566.0,
+        "total_debt": 382.41920928955085,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1686.1038018742959
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_opex_1.0000",
+    "parameter": "opex",
+    "value": 1.0,
+    "portfolio_irr": 0.10887714936478912,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16404.668306280073,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19543025607285328,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.09625958964797637,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09720376634440049,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10771326178744575,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10245833728820557,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10157887969947713,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.1225331331793131,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_opex_1.0800",
+    "parameter": "opex",
+    "value": 1.08,
+    "portfolio_irr": 0.10659146810473588,
+    "portfolio_gearing": 0.6473859405840708,
+    "total_capex": 10388.8,
+    "total_debt": 6725.563059539795,
+    "total_equity": 3663.236940460204,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5980.580116703635,
+    "total_cfads": 29322.911200363025,
+    "total_equity_cash_flow": 16045.208098296462,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06287974713576193,
+        "gearing": 0.5682863235473635,
+        "total_capex": 954.3999999999997,
+        "total_debt": 542.3724671936036,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1851.2274470313682
+      },
+      "2": {
+        "irr": 0.19410684146018228,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4804.688753961768
+      },
+      "3": {
+        "irr": 0.09201663639752365,
+        "gearing": 0.6567600250244143,
+        "total_capex": 2000.0,
+        "total_debt": 1313.5200500488286,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4472.659211719079
+      },
+      "4": {
+        "irr": 0.09494022413568903,
+        "gearing": 0.6396968364715577,
+        "total_capex": 987.1999999999998,
+        "total_debt": 631.5087169647217,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2656.2875101972886
+      },
+      "5": {
+        "irr": 0.10574932476551278,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3112.485880740561
+      },
+      "6": {
+        "irr": 0.10107002350204095,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5073.728944522304
+      },
+      "7": {
+        "irr": 0.10029194256198329,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5701.8002490294875
+      },
+      "8": {
+        "irr": 0.11954426285183306,
+        "gearing": 0.660303497314453,
+        "total_capex": 566.0,
+        "total_debt": 373.73177947998045,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1650.033203161168
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_terminal_value_0.8500",
+    "parameter": "terminal_value",
+    "value": 0.85,
+    "portfolio_irr": 0.10838409583821679,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16090.268306280073,
+    "total_terminal_value": 1781.6,
+    "asset_details": {
+      "1": {
+        "irr": 0.06456336026752502,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19543025607285328,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.09537341836252781,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09661822262373569,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10700476134971576,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10192331960221655,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10106610784588212,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.12204699686026502,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_terminal_value_1.0000",
+    "parameter": "terminal_value",
+    "value": 1.0,
+    "portfolio_irr": 0.10887714936478923,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16404.668306280073,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19543025607285328,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.09625958964797637,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.09720376634440049,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10771326178744575,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10245833728820557,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.10157887969947713,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.1225331331793131,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_terminal_value_1.1500",
+    "parameter": "terminal_value",
+    "value": 1.15,
+    "portfolio_irr": 0.10936312953773884,
+    "portfolio_gearing": 0.6514718130852838,
+    "total_capex": 10388.8,
+    "total_debt": 6768.010371780396,
+    "total_equity": 3620.7896282196034,
+    "total_revenue": 35303.49131706666,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 29661.43460319531,
+    "total_equity_cash_flow": 16719.068306280074,
+    "total_terminal_value": 2410.3999999999996,
+    "asset_details": {
+      "1": {
+        "irr": 0.06675274708008205,
+        "gearing": 0.5776664733886719,
+        "total_capex": 954.3999999999997,
+        "total_debt": 551.3248822021484,
+        "total_revenue": 2447.8079373945693,
+        "total_cfads": 1884.996154033059
+      },
+      "2": {
+        "irr": 0.19543025607285328,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5417.230244171524,
+        "total_cfads": 4839.360913784962
+      },
+      "3": {
+        "irr": 0.0971227390723266,
+        "gearing": 0.6677749633789064,
+        "total_capex": 2000.0,
+        "total_debt": 1335.5499267578127,
+        "total_revenue": 5940.518410163522,
+        "total_cfads": 4555.74558144235
+      },
+      "4": {
+        "irr": 0.0977794315677299,
+        "gearing": 0.6469104766845704,
+        "total_capex": 987.1999999999998,
+        "total_debt": 638.6300225830078,
+        "total_revenue": 3130.906964353235,
+        "total_cfads": 2683.1527623193238
+      },
+      "5": {
+        "irr": 0.10840723130402675,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 3870.411821492094,
+        "total_cfads": 3155.3873490849874
+      },
+      "6": {
+        "irr": 0.10298506156168295,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 5942.642113591981,
+        "total_cfads": 5122.912708809267
+      },
+      "7": {
+        "irr": 0.1020840227391889,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6585.317000772604,
+        "total_cfads": 5751.810631203627
+      },
+      "8": {
+        "irr": 0.12301244707370347,
+        "gearing": 0.6679779052734376,
+        "total_capex": 566.0,
+        "total_debt": 378.0754943847657,
+        "total_revenue": 1968.6568251271306,
+        "total_cfads": 1668.068502517732
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_volume_0.9000",
+    "parameter": "volume",
+    "value": 0.9,
+    "portfolio_irr": 0.09673689305979766,
+    "portfolio_gearing": 0.6223801050130344,
+    "total_capex": 10388.8,
+    "total_debt": 6465.782434959411,
+    "total_equity": 3923.017565040588,
+    "total_revenue": 33538.31675121332,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 27896.260037341974,
+    "total_equity_cash_flow": 14749.566072964333,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.05540281153209747,
+        "gearing": 0.5409653663635255,
+        "total_capex": 954.3999999999997,
+        "total_debt": 516.2973456573486,
+        "total_revenue": 2325.4175405248407,
+        "total_cfads": 1762.6057571633305
+      },
+      "2": {
+        "irr": 0.18586392872790755,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5146.368731962948,
+        "total_cfads": 4568.499401576386
+      },
+      "3": {
+        "irr": 0.08100010575316023,
+        "gearing": 0.6252072334289551,
+        "total_capex": 2000.0,
+        "total_debt": 1250.4144668579102,
+        "total_revenue": 5643.492489655347,
+        "total_cfads": 4258.719660934174
+      },
+      "4": {
+        "irr": 0.08542707209443519,
+        "gearing": 0.6085530281066895,
+        "total_capex": 987.1999999999998,
+        "total_debt": 600.7635493469238,
+        "total_revenue": 2974.361616135573,
+        "total_cfads": 2526.6074141016625
+      },
+      "5": {
+        "irr": 0.09738797515431895,
+        "gearing": 0.639284610748291,
+        "total_capex": 1186.4,
+        "total_debt": 758.4472621917726,
+        "total_revenue": 3676.8912304174896,
+        "total_cfads": 2961.8667580103825
+      },
+      "6": {
+        "irr": 0.09155000170953637,
+        "gearing": 0.6227540493011471,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1127.6830324745174,
+        "total_revenue": 5645.510007912382,
+        "total_cfads": 4825.780603129668
+      },
+      "7": {
+        "irr": 0.09049854332842523,
+        "gearing": 0.6209216594696045,
+        "total_capex": 2050.8,
+        "total_debt": 1273.386139240265,
+        "total_revenue": 6256.051150733974,
+        "total_cfads": 5422.5447811649965
+      },
+      "8": {
+        "irr": 0.10770199579641752,
+        "gearing": 0.6281852722167969,
+        "total_capex": 566.0,
+        "total_debt": 355.55286407470703,
+        "total_revenue": 1870.2239838707742,
+        "total_cfads": 1569.6356612613754
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_volume_1.0000",
+    "parameter": "volume",
+    "value": 1.0,
+    "portfolio_irr": 0.10887714936478922,
+    "portfolio_gearing": 0.6514718130852837,
+    "total_capex": 12986.000000000002,
+    "total_debt": 8460.012964725494,
+    "total_equity": 4525.987035274507,
+    "total_revenue": 44129.364146333326,
+    "total_opex": 7052.570892339192,
+    "total_cfads": 37076.79325399414,
+    "total_equity_cash_flow": 20505.835382850095,
+    "total_terminal_value": 2620.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.06567571300431004,
+        "gearing": 0.5776664733886719,
+        "total_capex": 1192.9999999999998,
+        "total_debt": 689.1561027526855,
+        "total_revenue": 3059.7599217432116,
+        "total_cfads": 2356.2451925413234
+      },
+      "2": {
+        "irr": 0.1954302560728533,
+        "gearing": 0.6999973297119141,
+        "total_capex": 1041.5,
+        "total_debt": 729.0472188949585,
+        "total_revenue": 6771.537805214405,
+        "total_cfads": 6049.201142231202
+      },
+      "3": {
+        "irr": 0.09625958964797636,
+        "gearing": 0.6677749633789066,
+        "total_capex": 2499.9999999999995,
+        "total_debt": 1669.4374084472663,
+        "total_revenue": 7425.648012704402,
+        "total_cfads": 5694.681976802938
+      },
+      "4": {
+        "irr": 0.09720376634440053,
+        "gearing": 0.6469104766845704,
+        "total_capex": 1233.9999999999998,
+        "total_debt": 798.2875282287597,
+        "total_revenue": 3913.633705441543,
+        "total_cfads": 3353.9409528991546
+      },
+      "5": {
+        "irr": 0.10771326178744574,
+        "gearing": 0.6499975204467775,
+        "total_capex": 1482.9999999999998,
+        "total_debt": 963.9463228225709,
+        "total_revenue": 4838.014776865119,
+        "total_cfads": 3944.234186356234
+      },
+      "6": {
+        "irr": 0.10245833728820544,
+        "gearing": 0.6499987602233884,
+        "total_capex": 2263.5000000000005,
+        "total_debt": 1471.27219376564,
+        "total_revenue": 7428.302641989976,
+        "total_cfads": 6403.640886011584
+      },
+      "7": {
+        "irr": 0.10157887969947724,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2563.5,
+        "total_debt": 1666.271821832657,
+        "total_revenue": 8231.646250965756,
+        "total_cfads": 7189.763289004532
+      },
+      "8": {
+        "irr": 0.12253313317931323,
+        "gearing": 0.6679779052734377,
+        "total_capex": 707.4999999999999,
+        "total_debt": 472.5943679809571,
+        "total_revenue": 2460.821031408913,
+        "total_cfads": 2085.085628147165
+      }
+    }
+  },
+  {
+    "scenario_id": "sensitivity_results_volume_1.1000",
+    "parameter": "volume",
+    "value": 1.1,
+    "portfolio_irr": 0.11853339455236135,
+    "portfolio_gearing": 0.6589148847931581,
+    "total_capex": 10388.8,
+    "total_debt": 6845.33495513916,
+    "total_equity": 3543.465044860839,
+    "total_revenue": 37068.665882919995,
+    "total_opex": 5642.056713871352,
+    "total_cfads": 31426.609169048643,
+    "total_equity_cash_flow": 18461.715443090758,
+    "total_terminal_value": 2096.0,
+    "asset_details": {
+      "1": {
+        "irr": 0.07690758709237736,
+        "gearing": 0.6138319969177248,
+        "total_capex": 954.3999999999997,
+        "total_debt": 585.8412578582764,
+        "total_revenue": 2570.198334264298,
+        "total_cfads": 2007.3865509027873
+      },
+      "2": {
+        "irr": 0.20509235386233757,
+        "gearing": 0.6999973297119138,
+        "total_capex": 833.2000000000002,
+        "total_debt": 583.2377751159667,
+        "total_revenue": 5688.0917563801,
+        "total_cfads": 5110.222425993537
+      },
+      "3": {
+        "irr": 0.10923706717220662,
+        "gearing": 0.6838868141174318,
+        "total_capex": 2000.0,
+        "total_debt": 1367.7736282348635,
+        "total_revenue": 6237.544330671699,
+        "total_cfads": 4852.771501950527
+      },
+      "4": {
+        "irr": 0.10530888261891859,
+        "gearing": 0.6484539985656741,
+        "total_capex": 987.1999999999998,
+        "total_debt": 640.1537873840333,
+        "total_revenue": 3287.4523125708965,
+        "total_cfads": 2839.698110536986
+      },
+      "5": {
+        "irr": 0.11654810977873709,
+        "gearing": 0.6499975204467773,
+        "total_capex": 1186.4,
+        "total_debt": 771.1570582580566,
+        "total_revenue": 4063.932412566699,
+        "total_cfads": 3348.9079401595927
+      },
+      "6": {
+        "irr": 0.11019380270874872,
+        "gearing": 0.6499987602233884,
+        "total_capex": 1810.8000000000004,
+        "total_debt": 1177.017755012512,
+        "total_revenue": 6239.7742192715805,
+        "total_cfads": 5420.044814488867
+      },
+      "7": {
+        "irr": 0.10934102641696482,
+        "gearing": 0.6499987602233888,
+        "total_capex": 2050.8,
+        "total_debt": 1333.0174574661257,
+        "total_revenue": 6914.582850811235,
+        "total_cfads": 6081.076481242258
+      },
+      "8": {
+        "irr": 0.13437172696875074,
+        "gearing": 0.6839862823486329,
+        "total_capex": 566.0,
+        "total_debt": 387.1362358093262,
+        "total_revenue": 2067.0896663834874,
+        "total_cfads": 1766.5013437740886
+      }
+    }
+  }
+]

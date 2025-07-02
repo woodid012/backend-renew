@@ -1,4 +1,4 @@
-# scripts/extract_sensitivity_from_mongodb.py
+# scripts/extract_sensitivity_fixed.py
 
 import pandas as pd
 import json
@@ -113,7 +113,7 @@ def parse_scenario_id(scenario_id):
 
 def calculate_portfolio_metrics(df):
     """
-    Calculate key portfolio-level metrics
+    Calculate key portfolio-level metrics - FIXED VERSION
     """
     # Aggregate by date to get portfolio cash flows
     portfolio_cf = df.groupby('date').agg({
@@ -131,17 +131,21 @@ def calculate_portfolio_metrics(df):
     portfolio_cf_for_irr = portfolio_cf[['date', 'equity_cash_flow']].copy()
     portfolio_irr = calculate_equity_irr(portfolio_cf_for_irr)
     
-    # Calculate gearing
-    total_capex = portfolio_cf['capex'].sum()
-    total_debt = portfolio_cf['debt_capex'].sum()
-    portfolio_gearing = total_debt / total_capex if total_capex > 0 else 0
+    # FIXED: Calculate total CAPEX correctly
+    # Only sum CAPEX where it's actually occurring (non-zero values during construction)
+    # This avoids summing zeros across the entire model period
+    construction_capex = df[df['capex'] > 0]['capex'].sum()
+    construction_debt = df[df['debt_capex'] > 0]['debt_capex'].sum()
+    
+    # Calculate gearing based on actual CAPEX spent
+    portfolio_gearing = construction_debt / construction_capex if construction_capex > 0 else 0
     
     return {
         'portfolio_irr': portfolio_irr if not pd.isna(portfolio_irr) else None,
         'portfolio_gearing': portfolio_gearing,
-        'total_capex': total_capex,
-        'total_debt': total_debt,
-        'total_equity': total_capex - total_debt,
+        'total_capex': construction_capex,  # FIXED: Only actual CAPEX spent
+        'total_debt': construction_debt,    # FIXED: Only actual debt drawn
+        'total_equity': construction_capex - construction_debt,  # FIXED: Derived correctly
         'total_revenue': portfolio_cf['revenue'].sum(),
         'total_opex': portfolio_cf['opex'].sum(),
         'total_cfads': portfolio_cf['cfads'].sum(),
@@ -151,7 +155,7 @@ def calculate_portfolio_metrics(df):
 
 def calculate_asset_metrics(df):
     """
-    Calculate metrics for each asset
+    Calculate metrics for each asset - FIXED VERSION
     """
     asset_metrics = {}
     
@@ -163,16 +167,17 @@ def calculate_asset_metrics(df):
         asset_cf_for_irr = asset_df[['date', 'equity_cash_flow']].copy()
         asset_irr = calculate_equity_irr(asset_cf_for_irr)
         
-        # Calculate asset gearing
-        total_capex = asset_df['capex'].sum()
-        total_debt = asset_df['debt_capex'].sum()
-        asset_gearing = total_debt / total_capex if total_capex > 0 else 0
+        # FIXED: Calculate asset CAPEX and gearing correctly
+        # Only sum CAPEX during construction periods (where capex > 0)
+        asset_capex = asset_df[asset_df['capex'] > 0]['capex'].sum()
+        asset_debt = asset_df[asset_df['debt_capex'] > 0]['debt_capex'].sum()
+        asset_gearing = asset_debt / asset_capex if asset_capex > 0 else 0
         
         asset_metrics[str(asset_id)] = {
             'irr': asset_irr if not pd.isna(asset_irr) else None,
             'gearing': asset_gearing,
-            'total_capex': total_capex,
-            'total_debt': total_debt,
+            'total_capex': asset_capex,  # FIXED: Only construction CAPEX
+            'total_debt': asset_debt,    # FIXED: Only construction debt
             'total_revenue': asset_df['revenue'].sum(),
             'total_cfads': asset_df['cfads'].sum()
         }
@@ -242,11 +247,14 @@ def save_results(results, sensitivity_prefix):
         print(f"\nParameter: {param}")
         irrs = [r['portfolio_irr'] for r in param_results if r['portfolio_irr'] is not None]
         gearings = [r['portfolio_gearing'] for r in param_results if r['portfolio_gearing'] is not None]
+        capexs = [r['total_capex'] for r in param_results if r['total_capex'] is not None]
         
         if irrs:
             print(f"  IRR range: {min(irrs):.2%} to {max(irrs):.2%}")
         if gearings:
             print(f"  Gearing range: {min(gearings):.1%} to {max(gearings):.1%}")
+        if capexs:
+            print(f"  CAPEX range: ${min(capexs):,.0f}M to ${max(capexs):,.0f}M")
         print(f"  Scenarios: {len(param_results)}")
     
     return json_file, csv_file
@@ -264,5 +272,17 @@ if __name__ == '__main__':
     
     if results:
         print(f"\n✓ Successfully processed {len(results)} sensitivity scenarios")
+        
+        # Quick validation check
+        if results:
+            base_result = next((r for r in results if 'base' in r['scenario_id']), None)
+            if base_result:
+                print(f"\n=== VALIDATION CHECK ===")
+                print(f"Base case CAPEX: ${base_result['total_capex']:,.0f}M")
+                print(f"Expected CAPEX: ~$2,597M")
+                if 2400 <= base_result['total_capex'] <= 2700:
+                    print("✓ CAPEX looks correct!")
+                else:
+                    print("⚠ CAPEX still looks incorrect")
     else:
         print("\n✗ No sensitivity results found")

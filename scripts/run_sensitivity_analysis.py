@@ -6,6 +6,65 @@ import subprocess
 import sys
 from datetime import datetime
 
+# Add the project root and src directory to the Python path for module imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)  # Go up one level to project root
+src_dir = os.path.join(project_root, 'src')
+sys.path.insert(0, project_root)
+sys.path.insert(0, src_dir)
+
+from src.core.database import get_mongo_client
+from src.config import MONGO_ASSET_OUTPUT_COLLECTION
+
+def cleanup_sensitivity_results(sensitivity_prefix="sensitivity_results"):
+    """
+    Clean up existing sensitivity results before running new analysis
+    """
+    print(f"=== CLEANING UP EXISTING SENSITIVITY RESULTS ===")
+    
+    client = None
+    try:
+        client = get_mongo_client()
+        db = client.get_database()
+        collection = db[MONGO_ASSET_OUTPUT_COLLECTION]
+        
+        # Find all scenario_ids that start with our prefix
+        existing_scenarios = collection.distinct("scenario_id", {
+            "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
+        })
+        
+        if existing_scenarios:
+            print(f"Found {len(existing_scenarios)} existing sensitivity scenarios:")
+            for scenario in existing_scenarios:
+                print(f"  - {scenario}")
+            
+            # Count total records to be deleted
+            total_records = collection.count_documents({
+                "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
+            })
+            
+            print(f"\nDeleting {total_records} records...")
+            
+            # Delete all existing sensitivity results
+            result = collection.delete_many({
+                "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
+            })
+            
+            print(f"✓ Deleted {result.deleted_count} records")
+            
+        else:
+            print("No existing sensitivity results found")
+            
+        return True
+        
+    except Exception as e:
+        print(f"Error cleaning up: {e}")
+        return False
+    
+    finally:
+        if client:
+            client.close()
+
 def generate_scenario_file(scenario_name, overrides, output_dir="temp_scenarios"):
     """
     Generates a temporary JSON scenario file.
@@ -54,10 +113,19 @@ def run_main_model(scenario_file=None, scenario_id=None):
     
     return result.returncode == 0
 
-def run_sensitivity_analysis(config_file="config/sensitivity_config.json"):
+def run_sensitivity_analysis_with_cleanup(config_file="config/sensitivity_config.json", 
+                                        sensitivity_prefix="sensitivity_results"):
     """
-    Runs the sensitivity analysis based on the configuration file.
+    Runs the sensitivity analysis with cleanup of existing results first.
     """
+    print(f"=== SENSITIVITY ANALYSIS WITH CLEANUP ===")
+    
+    # Step 1: Clean up existing results
+    if not cleanup_sensitivity_results(sensitivity_prefix):
+        print("Failed to clean up existing results. Aborting.")
+        return
+    
+    # Step 2: Run the sensitivity analysis
     # Ensure we're working from the project root
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
@@ -71,10 +139,10 @@ def run_sensitivity_analysis(config_file="config/sensitivity_config.json"):
         config = json.load(f)
 
     base_scenario_file = config.get("base_scenario_file")
-    output_collection_prefix = config.get("output_collection_prefix", "sensitivity_results")
+    output_collection_prefix = config.get("output_collection_prefix", sensitivity_prefix)
     sensitivities = config.get("sensitivities", {})
 
-    print(f"Starting sensitivity analysis with {len(sensitivities)} parameters")
+    print(f"\nStarting fresh sensitivity analysis with {len(sensitivities)} parameters")
     print(f"Output collection prefix: {output_collection_prefix}")
 
     # Run base case first (if no base_scenario_file, it's the default model run)
@@ -155,6 +223,54 @@ def run_sensitivity_analysis(config_file="config/sensitivity_config.json"):
 
     print(f"\n=== Sensitivity Analysis Complete ===")
     print(f"Completed {current_scenario} scenarios")
+    
+    # Verify no duplicates exist
+    print(f"\n=== Verifying Results ===")
+    verify_no_duplicates(output_collection_prefix)
+
+def verify_no_duplicates(sensitivity_prefix):
+    """
+    Verify that no duplicate records exist after the sensitivity analysis
+    """
+    client = None
+    try:
+        client = get_mongo_client()
+        db = client.get_database()
+        collection = db[MONGO_ASSET_OUTPUT_COLLECTION]
+        
+        # Check for duplicates in the new results
+        scenario_data = list(collection.find({"scenario_id": {"$regex": f"^{sensitivity_prefix}"}}))
+        
+        if scenario_data:
+            df = pd.DataFrame(scenario_data)
+            
+            # Check for duplicates by scenario_id + asset_id + date
+            duplicate_check = df.groupby(['scenario_id', 'asset_id', 'date']).size().reset_index(name='count')
+            duplicates = duplicate_check[duplicate_check['count'] > 1]
+            
+            if len(duplicates) > 0:
+                print(f"⚠ WARNING: Found {len(duplicates)} duplicate combinations!")
+                print("  First few duplicates:")
+                for _, row in duplicates.head(3).iterrows():
+                    print(f"    {row['scenario_id']}, Asset {row['asset_id']}, {row['date']}: {row['count']} records")
+            else:
+                print(f"✓ No duplicates found in {len(scenario_data)} records")
+        
+    except Exception as e:
+        print(f"Error verifying: {e}")
+    finally:
+        if client:
+            client.close()
 
 if __name__ == '__main__':
-    run_sensitivity_analysis()
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="Run sensitivity analysis with cleanup")
+    parser.add_argument('--config', type=str, default='config/sensitivity_config.json',
+                       help='Path to sensitivity config file')
+    parser.add_argument('--prefix', type=str, default='sensitivity_results',
+                       help='Sensitivity results prefix for cleanup and new results')
+    
+    args = parser.parse_args()
+    
+    run_sensitivity_analysis_with_cleanup(args.config, args.prefix)
