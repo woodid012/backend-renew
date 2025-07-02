@@ -1,4 +1,4 @@
-# backend/config.py
+# src/config.py
 
 # Date and Time Settings
 DATE_FORMAT = '%Y-%m-%d'
@@ -29,13 +29,19 @@ USER_MODEL_END_DATE = None   # e.g., '2045-12-31'
 ENABLE_TERMINAL_VALUE = True # Enable or disable terminal value calculation
 
 # MongoDB Collections
-MONGO_ASSET_OUTPUT_COLLECTION = 'asset_cash_flows'
-MONGO_ASSET_INPUTS_SUMMARY_COLLECTION = 'asset_inputs_summary'
-MONGO_REVENUE_COLLECTION = 'revenue_data'
-MONGO_PRICE_SERIES_COLLECTION = 'price_series'
-MONGO_PNL_COLLECTION = 'pnl_statements'
-MONGO_CASH_FLOW_STATEMENT_COLLECTION = 'cash_flow_statements'
-MONGO_BALANCE_SHEET_COLLECTION = 'balance_sheets'
+MONGO_ASSET_OUTPUT_COLLECTION = 'ASSET_cash_flows'
+MONGO_ASSET_INPUTS_SUMMARY_COLLECTION = 'ASSET_inputs_summary'
+MONGO_REVENUE_COLLECTION = 'ASSET_revenue_data'
+MONGO_PRICE_SERIES_COLLECTION = 'PRICE_series'
+MONGO_PNL_COLLECTION = '3WAY_P&L'
+MONGO_CASH_FLOW_STATEMENT_COLLECTION = '3WAY_CASH'
+MONGO_BALANCE_SHEET_COLLECTION = '3WAY_BS'
+
+# Sensitivity Analysis Collections
+MONGO_SENSITIVITY_COLLECTION = 'SENS_Asset_Outputs'
+MONGO_SENSITIVITY_PNL_COLLECTION = 'SENS_3WAY_P&L'
+MONGO_SENSITIVITY_CASH_COLLECTION = 'SENS_3WAY_CASH'
+MONGO_SENSITIVITY_BS_COLLECTION = 'SENS_3WAY_BS'
 
 # Debt Sizing Options
 # 'dscr': Debt is sized based on Debt Service Coverage Ratio (DSCR).
@@ -48,7 +54,10 @@ MERCHANT_PRICE_ESCALATION_RATE = 0.025  # 2.5% annual escalation
 MERCHANT_PRICE_ESCALATION_REFERENCE_DATE = '2025-01-01'  # Reference date for escalation calculation
 
 # Tax Settings
-TAX_RATE = 0.30  # 30% tax rate
+TAX_RATE = 0.00  # 00% tax rate
+
+# Distribution Settings
+MIN_CASH_BALANCE_FOR_DISTRIBUTION = 2.0 # $M
 
 # Depreciation Settings
 DEFAULT_ASSET_LIFE_YEARS = 20  # Default asset life for depreciation in years

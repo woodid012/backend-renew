@@ -77,6 +77,11 @@ def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str, scenario
 
         # Convert DataFrame to a list of dictionaries (JSON-like objects)
         # Ensure datetime objects are handled correctly for MongoDB
+        
+        # Convert 'quarter' column to string if it exists, for MongoDB compatibility
+        if 'quarter' in df.columns:
+            df['quarter'] = df['quarter'].astype(str)
+
         records = df.to_dict(orient='records')
         
         # Add scenario_id to each document if provided

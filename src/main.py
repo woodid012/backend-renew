@@ -30,8 +30,8 @@ from src.calculations.revenue import calculate_revenue_timeseries
 from src.calculations.expenses import calculate_opex_timeseries, calculate_capex_timeseries
 from src.calculations.debt import calculate_debt_schedule
 from src.calculations.cashflow import aggregate_cashflows
-from src.calculations.depreciation import calculate_straight_line_depreciation
-from src.core.output_generator import generate_asset_and_platform_output
+from src.calculations.depreciation import calculate_d_and_a
+from src.core.output_generator import generate_asset_and_platform_output, export_three_way_financials_to_excel
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr
 from src.core.database import insert_dataframe_to_mongodb, get_mongo_client
@@ -132,7 +132,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
 
     # Calculate Depreciation
     print("\n=== CALCULATING DEPRECIATION ===")
-    depreciation_df = calculate_straight_line_depreciation(initial_capex_df, DEFAULT_ASSET_LIFE_YEARS, start_date, end_date)
+    d_and_a_df = calculate_d_and_a(initial_capex_df, pd.DataFrame(columns=['asset_id', 'date', 'intangible_capex']), ASSETS, DEFAULT_ASSET_LIFE_YEARS, DEFAULT_ASSET_LIFE_YEARS, start_date, end_date)
 
     # 4. Size debt based on operational cash flows and update CAPEX funding
     print("\n=== DEBT SIZING ===")
@@ -144,7 +144,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
 
     # 5. Aggregate into Final Cash Flow using updated CAPEX with correct debt/equity split
     print("\n=== AGGREGATING FINAL CASH FLOWS ===")
-    final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, depreciation_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS)
+    final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, d_and_a_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS)
 
     # Assign period type (Construction or Operations)
     def assign_period_type(df, assets_data):
@@ -321,38 +321,61 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     # Save to JSON file
     print("\n=== SAVING OUTPUTS ===")
     generate_asset_and_platform_output(final_cash_flow, irr, output_directory)
+    export_three_way_financials_to_excel(final_cash_flow, output_directory)
 
     # Save final cash flow to MongoDB
     print("\n=== SAVING FINAL CASH FLOW TO MONGODB ===")
     insert_dataframe_to_mongodb(final_cash_flow, MONGO_ASSET_OUTPUT_COLLECTION, scenario_id=scenario_id)
 
-    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir):
-        asset_summaries = []
-        for asset in assets:
-            asset_id = asset.get('id')
-            asset_name = asset.get('name')
-            
-            # Include all direct asset properties
-            asset_data = {k: v for k, v in asset.items()}
-            
-            # Include cost assumptions for the asset
-            asset_data['costAssumptions'] = asset_cost_assumptions.get(asset_name, {})
-            
-            # Include debt sizing results (calculated outcome)
-            asset_data['debtSizingResults'] = debt_summary.get(asset_id, {})
-            
-            asset_summaries.append(asset_data)
+    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value):
+        output_path = os.path.join(output_dir, "asset_inputs_summary.xlsx")
         
-        full_summary = {
-            "asset_inputs": asset_summaries,
-            "general_config": config_values,
-            "portfolio_debt_summary": debt_summary,
-            "equity_irr": irr
-        }
-        
-        output_path = os.path.join(output_dir, "asset_inputs_summary.json")
-        with open(output_path, 'w') as f:
-            json.dump(full_summary, f, indent=4, default=str)  # default=str handles datetime serialization
+        with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
+            # Sheet 1: Asset Inputs Summary
+            asset_summaries = []
+            for asset in assets:
+                asset_id = asset.get('id')
+                asset_name = asset.get('name')
+                
+                # Flatten asset data for Excel
+                flat_asset_data = {'asset_id': asset_id, 'asset_name': asset_name}
+                for k, v in asset.items():
+                    if isinstance(v, (dict, list)):
+                        flat_asset_data[k] = str(v) # Convert complex types to string
+                    else:
+                        flat_asset_data[k] = v
+                
+                # Include cost assumptions for the asset
+                cost_assumptions = asset_cost_assumptions.get(asset_name, {})
+                for k, v in cost_assumptions.items():
+                    flat_asset_data[f'cost_{k}'] = v
+                
+                # Include debt sizing results
+                debt_results = debt_summary.get(asset_id, {})
+                for k, v in debt_results.items():
+                    flat_asset_data[f'debt_{k}'] = v
+                
+                asset_summaries.append(flat_asset_data)
+            
+            if asset_summaries:
+                pd.DataFrame(asset_summaries).to_excel(writer, sheet_name='Asset Inputs', index=False)
+            else:
+                pd.DataFrame().to_excel(writer, sheet_name='Asset Inputs', index=False) # Empty DataFrame
+            
+            # Sheet 2: General Configuration
+            config_df = pd.DataFrame.from_dict(config_values, orient='index', columns=['Value'])
+            config_df.index.name = 'Parameter'
+            config_df.to_excel(writer, sheet_name='General Config')
+
+            # Sheet 3: Portfolio Debt Summary
+            portfolio_debt_df = pd.DataFrame.from_dict(debt_summary, orient='index')
+            portfolio_debt_df.index.name = 'Asset ID'
+            portfolio_debt_df.to_excel(writer, sheet_name='Portfolio Debt Summary')
+
+            # Sheet 4: Equity IRR
+            irr_df = pd.DataFrame([{'Equity IRR': irr_value}])
+            irr_df.to_excel(writer, sheet_name='Equity IRR', index=False)
+            
         print(f"Saved asset inputs summary to {output_path}")
 
     # Extract debt sizing summary
@@ -386,7 +409,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
         "MERCHANT_PRICE_ESCALATION_RATE": MERCHANT_PRICE_ESCALATION_RATE,
         "MERCHANT_PRICE_ESCALATION_REFERENCE_DATE": MERCHANT_PRICE_ESCALATION_REFERENCE_DATE
     }
-    generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory)
+    generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr)
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
     print(f"Equity XIRR: {irr:.2%}" if not pd.isna(irr) else "Equity XIRR: Could not calculate")
