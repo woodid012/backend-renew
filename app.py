@@ -9,11 +9,9 @@ load_dotenv()
 
 MONGO_DB_NAME = os.getenv('MONGODB_DB')
 
-# Add src to path
 current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(current_dir, 'src'))
 
-from main import run_cashflow_model
+from src.main import run_cashflow_model
 
 app = Flask(__name__)
 
@@ -66,7 +64,7 @@ def run_sensitivity():
             "message": str(e)
         }), 500
 
-from core.database import get_data_from_mongodb
+from src.core.database import get_mongo_client
 from bson import json_util
 import json
 
