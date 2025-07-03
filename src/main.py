@@ -35,7 +35,6 @@ from src.core.output_generator import generate_asset_and_platform_output, export
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr
 from src.core.database import insert_dataframe_to_mongodb, get_mongo_client
-from scripts.run_sensitivity_analysis import run_sensitivity_analysis_improved
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
 
 
@@ -236,7 +235,20 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     print("\n=== SAVING OUTPUTS ===")
     generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id)
     export_three_way_financials_to_excel(final_cash_flow, output_directory, scenario_id=scenario_id)
-    print("MongoDB write operations initiated for asset cash flows, price series, and asset inputs summary.")
+
+    # === CRITICAL: WRITE TO MONGODB ===
+    print("\n=== WRITING TO MONGODB ===")
+    try:
+        # Write main cash flow data
+        print("Writing main cash flow data to MongoDB...")
+        insert_dataframe_to_mongodb(final_cash_flow, MONGO_ASSET_OUTPUT_COLLECTION, scenario_id=scenario_id)
+        print(f"✓ Successfully wrote {len(final_cash_flow)} records to {MONGO_ASSET_OUTPUT_COLLECTION}")
+        
+        
+    except Exception as e:
+        print(f"❌ Error writing to MongoDB: {e}")
+        print("Model completed but data not saved to database!")
+        raise  # Re-raise the error so user knows something went wrong
 
     def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, scenario_id=None):
         # Determine the actual output directory based on scenario_id
@@ -278,7 +290,16 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
                 asset_summaries.append(flat_asset_data)
             
             if asset_summaries:
-                pd.DataFrame(asset_summaries).to_excel(writer, sheet_name='Asset Inputs', index=False)
+                asset_summary_df = pd.DataFrame(asset_summaries)
+                asset_summary_df.to_excel(writer, sheet_name='Asset Inputs', index=False)
+                
+                # Also write to MongoDB
+                try:
+                    print("Writing asset inputs summary to MongoDB...")
+                    insert_dataframe_to_mongodb(asset_summary_df, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, scenario_id=scenario_id)
+                    print(f"✓ Successfully wrote asset inputs summary to {MONGO_ASSET_INPUTS_SUMMARY_COLLECTION}")
+                except Exception as e:
+                    print(f"⚠️  Warning: Could not write asset inputs to MongoDB: {e}")
             else:
                 pd.DataFrame().to_excel(writer, sheet_name='Asset Inputs', index=False) # Empty DataFrame
             
@@ -333,6 +354,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
     print(f"Equity IRR: {irr:.2%}" if not pd.isna(irr) else "Equity IRR: Could not calculate")
+    print("✅ All data successfully written to MongoDB!")
     
     return "Cash flow model run complete. Outputs saved and summaries generated."
 
@@ -348,6 +370,7 @@ if __name__ == '__main__':
 
     if args.run_sensitivity:
         print("\n=== RUNNING SENSITIVITY ANALYSIS ===")
+        from scripts.run_sensitivity_analysis import run_sensitivity_analysis_improved
         run_sensitivity_analysis_improved()
 
     print(final_cashflows_json)

@@ -2,3 +2,8 @@ pandas
 openpyxl
 pymongo
 python-dotenv
+flask
+gunicorn
+numpy
+scipy
+python-dateutil
