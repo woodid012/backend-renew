@@ -257,7 +257,7 @@ def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_d
                 if asset['type'] in ['solar', 'wind']:
                     revenue_breakdown = calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spreads, {}) # Pass constants if needed
                 elif asset['type'] == 'storage':
-                    revenue_breakdown = calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spreads, {}) # Pass constants if needed
+                    revenue_breakdown = calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spreads, constants)
                 else:
                     # Handle unknown asset types by returning zero revenue
                     revenue_breakdown = {

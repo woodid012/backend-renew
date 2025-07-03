@@ -98,3 +98,32 @@ def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str, scenario
         if client:
             client.close()
             print("MongoDB connection closed.")
+
+def get_data_from_mongodb(collection_name: str, query: dict = None):
+    """
+    Retrieves data from a specified MongoDB collection.
+
+    Args:
+        collection_name (str): The name of the MongoDB collection.
+        query (dict, optional): A query to filter the results. Defaults to None.
+    """
+    client = None
+    try:
+        client = get_mongo_client()
+        db = client[MONGO_DB_NAME]
+        collection = db[collection_name]
+        
+        if query:
+            data = list(collection.find(query))
+        else:
+            data = list(collection.find({}))
+        
+        print(f"Successfully retrieved {len(data)} documents from '{collection_name}' collection.")
+        return data
+    except Exception as e:
+        print(f"Error retrieving data from MongoDB collection '{collection_name}': {e}")
+        return []
+    finally:
+        if client:
+            client.close()
+            print("MongoDB connection closed.")
