@@ -106,36 +106,29 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     print(f"Model period: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
 
     # 1. Calculate Revenue
-    print("\n=== CALCULATING REVENUE ===")
     output_directory = os.path.join(project_root, 'output', 'model_results')
     revenue_df = calculate_revenue_timeseries(ASSETS, MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, output_directory)
-    # Save revenue data to MongoDB
-    
 
     # 2. Calculate Expenses (initial CAPEX with assumed funding split)
-    print("\n=== CALCULATING EXPENSES ===")
     opex_df = calculate_opex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date)
     initial_capex_df = calculate_capex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date, capex_funding_type=DEFAULT_CAPEX_FUNDING_TYPE)
 
     # 2b. Apply ALL scenario overrides to calculated timeseries (NEW APPROACH)
     if scenario_file:
-        print(f"Applying scenario overrides from {scenario_file} to timeseries...")
+        print(f"Applying scenario overrides from {scenario_file}...")
         revenue_df, opex_df, initial_capex_df, ASSET_COST_ASSUMPTIONS = apply_all_scenarios_to_timeseries(
             revenue_df, opex_df, initial_capex_df, ASSETS, ASSET_COST_ASSUMPTIONS, 
             MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, scenario_data
         )
 
     # 3. Calculate preliminary CFADS for debt sizing
-    print("\n=== CALCULATING PRELIMINARY CASH FLOWS ===")
     prelim_cash_flow = pd.merge(revenue_df, opex_df, on=['asset_id', 'date'])
     prelim_cash_flow['cfads'] = prelim_cash_flow['revenue'] - prelim_cash_flow['opex']
 
     # Calculate Depreciation & Amortization (D&A)
-    print("\n=== CALCULATING DEPRECIATION ===")
     d_and_a_df = calculate_d_and_a(initial_capex_df, pd.DataFrame(columns=['asset_id', 'date', 'intangible_capex']), ASSETS, DEFAULT_ASSET_LIFE_YEARS, DEFAULT_ASSET_LIFE_YEARS, start_date, end_date)
 
     # 4. Size debt based on operational cash flows and update CAPEX funding
-    print("\n=== DEBT SIZING ===")
     debt_df, updated_capex_df = calculate_debt_schedule(ASSETS, ASSET_COST_ASSUMPTIONS, initial_capex_df, prelim_cash_flow, start_date, end_date, repayment_frequency=DEFAULT_DEBT_REPAYMENT_FREQUENCY, grace_period=DEFAULT_DEBT_GRACE_PERIOD, debt_sizing_method=DEFAULT_DEBT_SIZING_METHOD, dscr_calculation_frequency=DSCR_CALCULATION_FREQUENCY)
 
     # 4b. Apply CAPEX scenarios to debt-sized CAPEX schedule (FINAL CAPEX ADJUSTMENT)
@@ -143,7 +136,6 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         updated_capex_df = apply_post_debt_sizing_capex_scenarios(updated_capex_df, scenario_data)
 
     # 5. Aggregate into Final Cash Flow using updated CAPEX with correct debt/equity split
-    print("\n=== AGGREGATING FINAL CASH FLOWS ===")
     final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, d_and_a_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS)
 
     # Assign period type (Construction or Operations)
@@ -151,11 +143,8 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         df['period_type'] = ''
         df['date'] = pd.to_datetime(df['date'])
 
-        print("\n=== DEBUGGING PERIOD TYPE ASSIGNMENT ===")
-        
         for asset_info in assets_data:
             asset_id = asset_info['id']
-            asset_name = asset_info.get('name', f'Asset_{asset_id}')
             
             # Use consistent date field names - only OperatingStartDate
             construction_start = None
@@ -168,10 +157,6 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
             if 'OperatingStartDate' in asset_info and asset_info['OperatingStartDate']:
                 ops_start = pd.to_datetime(asset_info['OperatingStartDate'])
             
-            print(f"Asset {asset_name} (ID {asset_id}):")
-            print(f"  Construction Start: {construction_start}")
-            print(f"  Operations Start: {ops_start}")
-            
             if construction_start and ops_start:
                 # Construction period: from construction start to operations start
                 construction_mask = (df['asset_id'] == asset_id) & (df['date'] >= construction_start) & (df['date'] < ops_start)
@@ -180,29 +165,10 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
                 df.loc[construction_mask, 'period_type'] = 'C'
                 df.loc[operations_mask, 'period_type'] = 'O'
                 
-                construction_count = construction_mask.sum()
-                operations_count = operations_mask.sum()
-                
-                print(f"  Assigned {construction_count} periods to Construction")
-                print(f"  Assigned {operations_count} periods to Operations")
-                
             elif ops_start:
                 # If no construction start, assume all periods from ops start are operations
                 operations_mask = (df['asset_id'] == asset_id) & (df['date'] >= ops_start)
                 df.loc[operations_mask, 'period_type'] = 'O'
-                
-                operations_count = operations_mask.sum()
-                print(f"  Assigned {operations_count} periods to Operations (no construction data)")
-                
-            else:
-                print(f"  WARNING: No valid dates found for period assignment")
-
-        # Summary of period assignments
-        period_summary = df['period_type'].value_counts()
-        print(f"\nPERIOD TYPE SUMMARY:")
-        for period_type, count in period_summary.items():
-            period_name = {'C': 'Construction', 'O': 'Operations', '': 'Unassigned'}.get(period_type, f'Unknown ({period_type})')
-            print(f"  {period_name}: {count} periods")
 
         return df
 
@@ -222,7 +188,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         
         if total_capex > 0:
             gearing = total_debt / total_capex
-            print(f"{asset_name}: CAPEX ${total_capex:,.0f} = Debt ${total_debt:,.0f} ({gearing:.1%}) + Equity ${total_equity:,.0f} ({1-gearing:.1%})")
+            print(f"{asset_name}: CAPEX ${total_capex:,.0f}M = Debt ${total_debt:,.0f}M ({gearing:.1%}) + Equity ${total_equity:,.0f}M ({1-gearing:.1%})")
         else:
             print(f"{asset_name}: No CAPEX")
     
@@ -232,113 +198,56 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     
     if total_portfolio_capex > 0:
         portfolio_gearing = total_portfolio_debt / total_portfolio_capex
-        print(f"\nPORTFOLIO TOTAL: CAPEX ${total_portfolio_capex:,.0f} = Debt ${total_portfolio_debt:,.0f} ({portfolio_gearing:.1%}) + Equity ${total_portfolio_equity:,.0f} ({1-portfolio_gearing:.1%})")
+        print(f"\nPORTFOLIO TOTAL: CAPEX ${total_portfolio_capex:,.0f}M = Debt ${total_portfolio_debt:,.0f}M ({portfolio_gearing:.1%}) + Equity ${total_portfolio_equity:,.0f}M ({1-portfolio_gearing:.1%})")
     print("========================\n")
     
     # Calculate Equity IRR - ONLY for Construction + Operations + Terminal periods
-    print("\n=== CALCULATING EQUITY XIRR ===")
-    print("Including Construction + Operations + Terminal periods...")
-    
-    # Debug: Check what we have in the final cash flow
-    print(f"\nDEBUG - Final cash flow summary:")
-    print(f"Total rows: {len(final_cash_flow)}")
-    print(f"Unique assets: {final_cash_flow['asset_id'].nunique()}")
-    print(f"Date range: {final_cash_flow['date'].min()} to {final_cash_flow['date'].max()}")
-    
-    # Check equity cash flow statistics
-    print(f"\nDEBUG - Equity cash flow statistics:")
-    print(f"Total equity cash flow: {final_cash_flow['equity_cash_flow'].sum():.2f}")
-    print(f"Non-zero equity cash flows: {(final_cash_flow['equity_cash_flow'] != 0).sum()}")
-    print(f"Min equity cash flow: {final_cash_flow['equity_cash_flow'].min():.2f}")
-    print(f"Max equity cash flow: {final_cash_flow['equity_cash_flow'].max():.2f}")
-    
-    # Check period type distribution
-    period_counts = final_cash_flow['period_type'].value_counts()
-    print(f"\nDEBUG - Period type distribution:")
-    for period_type, count in period_counts.items():
-        period_name = {'C': 'Construction', 'O': 'Operations', '': 'Unassigned'}.get(period_type, f'Unknown ({period_type})')
-        print(f"  {period_name}: {count} periods")
+    print("=== CALCULATING EQUITY IRR ===")
     
     # Filter cash flows to include only Construction ('C') and Operations ('O') periods
     co_periods_df = final_cash_flow[final_cash_flow['period_type'].isin(['C', 'O'])].copy()
-    print(f"\nDEBUG - After filtering for C+O periods: {len(co_periods_df)} rows")
     
     if not co_periods_df.empty:
-        print(f"C+O equity cash flow sum: {co_periods_df['equity_cash_flow'].sum():.2f}")
-        print(f"C+O non-zero equity cash flows: {(co_periods_df['equity_cash_flow'] != 0).sum()}")
-    
-    # Further filter for non-zero equity cash flows
-    equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow'] != 0].copy()
-    print(f"\nDEBUG - After filtering for non-zero equity cash flows: {len(equity_irr_df)} rows")
-    
-    if not equity_irr_df.empty:
-        # Group by date to get total equity cash flows across all assets for each date
-        equity_irr_summary = equity_irr_df.groupby('date')['equity_cash_flow'].sum().reset_index()
+        # Further filter for non-zero equity cash flows
+        equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow'] != 0].copy()
         
-        print(f"\nDEBUG - After grouping by date: {len(equity_irr_summary)} periods")
-        print(f"Date range: {equity_irr_summary['date'].min()} to {equity_irr_summary['date'].max()}")
-        print(f"Cash flow range: {equity_irr_summary['equity_cash_flow'].min():.2f} to {equity_irr_summary['equity_cash_flow'].max():.2f}")
-        
-        # Show first and last few cash flows
-        print(f"\nFirst 5 equity cash flows:")
-        for _, row in equity_irr_summary.head().iterrows():
-            print(f"  {row['date'].strftime('%Y-%m-%d')}: {row['equity_cash_flow']:.2f}")
-        
-        print(f"\nLast 5 equity cash flows:")
-        for _, row in equity_irr_summary.tail().iterrows():
-            print(f"  {row['date'].strftime('%Y-%m-%d')}: {row['equity_cash_flow']:.2f}")
-        
-        # Calculate XIRR using the updated function with dates
-        irr = calculate_equity_irr(equity_irr_summary)
-        
-        if pd.isna(irr):
-            print("Warning: Could not calculate Equity XIRR")
+        if not equity_irr_df.empty:
+            # Group by date to get total equity cash flows across all assets for each date
+            equity_irr_summary = equity_irr_df.groupby('date')['equity_cash_flow'].sum().reset_index()
+            
+            # Calculate XIRR using the updated function with dates
+            irr = calculate_equity_irr(equity_irr_summary)
+            
+            if pd.isna(irr):
+                print("Warning: Could not calculate Equity IRR")
+            else:
+                print(f"Equity IRR: {irr:.2%}")
         else:
-            print(f"Calculated Equity XIRR: {irr:.2%}")
+            irr = float('nan')
+            print("Warning: No equity cash flows found")
     else:
         irr = float('nan')
-        print("Warning: No equity cash flows found for Construction + Operations periods")
-        
-        # Additional debugging - let's see what we have in different periods
-        print("\nDEBUG - Detailed period analysis:")
-        for period_type in ['C', 'O', '']:
-            period_df = final_cash_flow[final_cash_flow['period_type'] == period_type]
-            if not period_df.empty:
-                period_name = {'C': 'Construction', 'O': 'Operations', '': 'Unassigned'}.get(period_type, 'Unknown')
-                print(f"  {period_name}: {len(period_df)} periods")
-                print(f"    Equity cash flow sum: {period_df['equity_cash_flow'].sum():.2f}")
-                print(f"    Non-zero equity flows: {(period_df['equity_cash_flow'] != 0).sum()}")
-                if (period_df['equity_cash_flow'] != 0).sum() > 0:
-                    print(f"    Sample non-zero flows: {period_df[period_df['equity_cash_flow'] != 0]['equity_cash_flow'].head(3).tolist()}")
+        print("Warning: No Construction + Operations periods found")
 
     # Generate summary data
-    print("\n=== GENERATING SUMMARY DATA ===")
     summary_data = generate_summary_data(final_cash_flow)
-    print("Generated summary data:")
-    for key, df in summary_data.items():
-        print(f"  {key}: {len(df)} periods")
 
-    # Save to JSON file
+    # Save to files
     print("\n=== SAVING OUTPUTS ===")
     generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id)
     export_three_way_financials_to_excel(final_cash_flow, output_directory, scenario_id=scenario_id)
 
-    # MongoDB writing paused as per user request.
-    # insert_dataframe_to_mongodb(final_cash_flow, MONGO_ASSET_OUTPUT_COLLECTION, scenario_id=scenario_id)
-
     def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, scenario_id=None):
-        output_path = os.path.join(output_dir, "asset_inputs_summary.xlsx")
-
         # Determine the actual output directory based on scenario_id
         if scenario_id:
-            scenario_output_dir = os.path.join('output', 'sensitivity_analysis', scenario_id)
+            actual_output_dir = os.path.join(output_dir, 'scenarios', scenario_id)
         else:
-            scenario_output_dir = output_dir
+            actual_output_dir = output_dir
 
-        output_path = os.path.join(scenario_output_dir, "asset_inputs_summary.xlsx")
+        output_path = os.path.join(actual_output_dir, "asset_inputs_summary.xlsx")
 
         # Ensure output directory exists
-        os.makedirs(scenario_output_dir, exist_ok=True)
+        os.makedirs(actual_output_dir, exist_ok=True)
         
         with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
             # Sheet 1: Asset Inputs Summary
@@ -422,7 +331,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, scenario_id=scenario_id)
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
-    print(f"Equity XIRR: {irr:.2%}" if not pd.isna(irr) else "Equity XIRR: Could not calculate")
+    print(f"Equity IRR: {irr:.2%}" if not pd.isna(irr) else "Equity IRR: Could not calculate")
     
     return "Cash flow model run complete. Outputs saved and summaries generated."
 
