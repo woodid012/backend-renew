@@ -50,9 +50,11 @@ def calculate_opex_timeseries(assets, opex_assumptions, start_date, end_date):
 
     return pd.concat(all_opex_data, ignore_index=True)
 
+from .construction_capex import calculate_construction_capex_timeseries
+
 def calculate_capex_timeseries(assets, capex_assumptions, start_date, end_date, capex_funding_type=DEFAULT_CAPEX_FUNDING_TYPE):
     """
-    Creates a CAPEX schedule for each asset, splitting it into equity and debt components.
+    Aggregates CAPEX schedules for all assets.
 
     Args:
         assets (list): A list of asset dictionaries.
@@ -65,7 +67,6 @@ def calculate_capex_timeseries(assets, capex_assumptions, start_date, end_date, 
         pd.DataFrame: A DataFrame with columns for asset_id, date, capex, equity_capex, and debt_capex.
     """
     all_capex_data = []
-    date_range = pd.date_range(start=start_date, end=end_date, freq='MS')
 
     for asset in assets:
         asset_assumptions = capex_assumptions.get(asset['name'], {})
@@ -75,56 +76,18 @@ def calculate_capex_timeseries(assets, capex_assumptions, start_date, end_date, 
         construction_start = pd.to_datetime(asset['constructionStartDate'])
         construction_end = pd.to_datetime(asset['OperatingStartDate']) # Assuming OperatingStartDate is COD
 
-        capex_values = []
-        equity_capex_values = []
-        debt_capex_values = []
-
-        # Calculate total equity and debt required for the asset
-        total_debt_funding = total_capex * max_gearing
-        total_equity_funding = total_capex * (1 - max_gearing)
-
-        current_equity_funded = 0
-
-        for date in date_range:
-            monthly_capex = 0
-            monthly_equity_capex = 0
-            monthly_debt_capex = 0
-
-            if construction_start <= date < construction_end:
-                # Simple straight-line construction spend
-                construction_months = (construction_end.year - construction_start.year) * 12 + (construction_end.month - construction_start.month)
-                if construction_months > 0:
-                    monthly_capex = total_capex / construction_months
-                
-                if capex_funding_type == 'equity_first':
-                    # Fund with equity first
-                    if current_equity_funded < total_equity_funding:
-                        # Still funding with equity
-                        equity_needed = total_equity_funding - current_equity_funded
-                        monthly_equity_capex = min(monthly_capex, equity_needed)
-                        monthly_debt_capex = monthly_capex - monthly_equity_capex
-                        current_equity_funded += monthly_equity_capex
-                    else:
-                        # Equity exhausted, fund with debt
-                        monthly_debt_capex = monthly_capex
-                        
-                elif capex_funding_type == 'pari_passu':
-                    # Fund proportionally
-                    monthly_equity_capex = monthly_capex * (1 - max_gearing)
-                    monthly_debt_capex = monthly_capex * max_gearing
-
-            capex_values.append(monthly_capex)
-            equity_capex_values.append(monthly_equity_capex)
-            debt_capex_values.append(monthly_debt_capex)
-        
-        asset_capex_df = pd.DataFrame({
-            'asset_id': asset['id'],
-            'date': date_range,
-            'capex': capex_values,
-            'equity_capex': equity_capex_values,
-            'debt_capex': debt_capex_values
-        })
-        all_capex_data.append(asset_capex_df)
+        if total_capex > 0:
+            asset_capex_df = calculate_construction_capex_timeseries(
+                asset_id=asset['id'],
+                total_capex=total_capex,
+                construction_start=construction_start,
+                construction_end=construction_end,
+                start_date=start_date,
+                end_date=end_date,
+                max_gearing=max_gearing,
+                capex_funding_type=capex_funding_type
+            )
+            all_capex_data.append(asset_capex_df)
 
     if not all_capex_data:
         return pd.DataFrame(columns=['asset_id', 'date', 'capex', 'equity_capex', 'debt_capex'])

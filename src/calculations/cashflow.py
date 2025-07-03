@@ -33,9 +33,10 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     # Calculate key cash flow lines
     cash_flow['cfads'] = cash_flow['revenue'] - cash_flow['opex']
     # Calculate debt service for DSCR
-    debt_service = cash_flow['interest'] + cash_flow['principal']
+    cash_flow['debt_service'] = cash_flow['interest'] + cash_flow['principal']
+    cash_flow['debt_service'] = pd.to_numeric(cash_flow['debt_service'], errors='coerce').fillna(0)
     # Handle division by zero for DSCR
-    cash_flow['dscr'] = cash_flow.apply(lambda row: row['cfads'] / debt_service[row.name] if debt_service[row.name] != 0 else None, axis=1)
+    cash_flow['dscr'] = cash_flow.apply(lambda row: row['cfads'] / row['debt_service'] if row['debt_service'] != 0 else None, axis=1)
 
     # --- TAX CALCULATION ---
     # TODO: Implement a more sophisticated tax calculation considering tax losses carried forward.
@@ -137,12 +138,6 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     cash_flow['dividends'] = 0.0
     cash_flow['redistributed_capital'] = 0.0
 
-    # Calculate quarterly net income for distribution condition
-    cash_flow['quarter'] = cash_flow['date'].dt.to_period('Q')
-    quarterly_net_income = cash_flow.groupby(['asset_id', 'quarter'])['net_income'].sum().reset_index()
-    quarterly_net_income.rename(columns={'net_income': 'qtr_net_income'}, inplace=True)
-    cash_flow = pd.merge(cash_flow, quarterly_net_income, on=['asset_id', 'quarter'], how='left')
-
     # Sort again to ensure correct iteration order
     cash_flow = cash_flow.sort_values(by=['asset_id', 'date']).reset_index(drop=True)
 
@@ -150,7 +145,7 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
         # Distribution conditions:
         # 1. Cash balance > MIN_CASH_BALANCE_FOR_DISTRIBUTION
         # 2. Retained Earnings > 0 (for dividends) or Share Capital > 0 (for capital redistribution)
-        # 3. NPAT (Net Income) > 0 for the quarter
+        # 3. NPAT (Net Income) > 0 for the period
 
         # Only consider distributions at the end of a quarter
         if row['date'].month in [3, 6, 9, 12]:
@@ -159,13 +154,13 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
 
             # Check core conditions for any distribution
             if (distributable_from_cash > 0 and
-                    row['qtr_net_income'] > 0):
+                    row['net_income'] > 0):
 
                 # --- Attempt to pay Dividends first (from Retained Earnings) ---
                 dividend_amount = 0.0
                 if row['retained_earnings'] > 0:
-                    # Max dividend is limited by cash, retained earnings, and quarterly NPAT
-                    dividend_amount = min(distributable_from_cash, row['retained_earnings'], row['qtr_net_income'])
+                    # Max dividend is limited by cash, retained earnings, and monthly NPAT
+                    dividend_amount = min(distributable_from_cash, row['retained_earnings'], row['net_income'])
                     
                     if dividend_amount > 0:
                         cash_flow.loc[i, 'dividends'] = dividend_amount

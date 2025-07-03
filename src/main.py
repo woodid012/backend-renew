@@ -23,7 +23,7 @@ from src.config import (
     DSCR_CALCULATION_FREQUENCY, ENABLE_TERMINAL_VALUE, 
     MERCHANT_PRICE_ESCALATION_RATE, MERCHANT_PRICE_ESCALATION_REFERENCE_DATE, 
     MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, 
-    MONGO_REVENUE_COLLECTION, TAX_RATE, DEFAULT_ASSET_LIFE_YEARS
+    TAX_RATE, DEFAULT_ASSET_LIFE_YEARS
 )
 from src.core.input_processor import load_asset_data, load_price_data
 from src.calculations.revenue import calculate_revenue_timeseries
@@ -35,10 +35,11 @@ from src.core.output_generator import generate_asset_and_platform_output, export
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr
 from src.core.database import insert_dataframe_to_mongodb, get_mongo_client
+from scripts.run_sensitivity_analysis import run_sensitivity_analysis_improved
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
 
 
-def run_cashflow_model(scenario_file=None, scenario_id=None):
+def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=False):
     """
     Main function to run the cash flow model.
 
@@ -109,8 +110,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     output_directory = os.path.join(project_root, 'output', 'model_results')
     revenue_df = calculate_revenue_timeseries(ASSETS, MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, output_directory)
     # Save revenue data to MongoDB
-    # print("\n=== SAVING REVENUE DATA TO MONGODB ===")
-    # insert_dataframe_to_mongodb(revenue_df, MONGO_REVENUE_COLLECTION, scenario_id=scenario_id)
+    
 
     # 2. Calculate Expenses (initial CAPEX with assumed funding split)
     print("\n=== CALCULATING EXPENSES ===")
@@ -130,7 +130,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
     prelim_cash_flow = pd.merge(revenue_df, opex_df, on=['asset_id', 'date'])
     prelim_cash_flow['cfads'] = prelim_cash_flow['revenue'] - prelim_cash_flow['opex']
 
-    # Calculate Depreciation
+    # Calculate Depreciation & Amortization (D&A)
     print("\n=== CALCULATING DEPRECIATION ===")
     d_and_a_df = calculate_d_and_a(initial_capex_df, pd.DataFrame(columns=['asset_id', 'date', 'intangible_capex']), ASSETS, DEFAULT_ASSET_LIFE_YEARS, DEFAULT_ASSET_LIFE_YEARS, start_date, end_date)
 
@@ -320,15 +320,25 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
 
     # Save to JSON file
     print("\n=== SAVING OUTPUTS ===")
-    generate_asset_and_platform_output(final_cash_flow, irr, output_directory)
-    export_three_way_financials_to_excel(final_cash_flow, output_directory)
+    generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id)
+    export_three_way_financials_to_excel(final_cash_flow, output_directory, scenario_id=scenario_id)
 
-    # Save final cash flow to MongoDB
-    print("\n=== SAVING FINAL CASH FLOW TO MONGODB ===")
-    insert_dataframe_to_mongodb(final_cash_flow, MONGO_ASSET_OUTPUT_COLLECTION, scenario_id=scenario_id)
+    # MongoDB writing paused as per user request.
+    # insert_dataframe_to_mongodb(final_cash_flow, MONGO_ASSET_OUTPUT_COLLECTION, scenario_id=scenario_id)
 
-    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value):
+    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, scenario_id=None):
         output_path = os.path.join(output_dir, "asset_inputs_summary.xlsx")
+
+        # Determine the actual output directory based on scenario_id
+        if scenario_id:
+            scenario_output_dir = os.path.join('output', 'sensitivity_analysis', scenario_id)
+        else:
+            scenario_output_dir = output_dir
+
+        output_path = os.path.join(scenario_output_dir, "asset_inputs_summary.xlsx")
+
+        # Ensure output directory exists
+        os.makedirs(scenario_output_dir, exist_ok=True)
         
         with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
             # Sheet 1: Asset Inputs Summary
@@ -409,7 +419,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None):
         "MERCHANT_PRICE_ESCALATION_RATE": MERCHANT_PRICE_ESCALATION_RATE,
         "MERCHANT_PRICE_ESCALATION_REFERENCE_DATE": MERCHANT_PRICE_ESCALATION_REFERENCE_DATE
     }
-    generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr)
+    generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, scenario_id=scenario_id)
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
     print(f"Equity XIRR: {irr:.2%}" if not pd.isna(irr) else "Equity XIRR: Could not calculate")
@@ -421,8 +431,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Run the cash flow model with optional scenario overrides.")
     parser.add_argument('--scenario', type=str, help="Path to a JSON scenario file for overrides.")
     parser.add_argument('--scenario_id', type=str, help="A unique identifier for the scenario run.")
+    parser.add_argument('--run_sensitivity', action='store_true', help="Run sensitivity analysis after model execution.")
     args = parser.parse_args()
 
     final_cashflows_json = run_cashflow_model(scenario_file=args.scenario, scenario_id=args.scenario_id)
+
+    if args.run_sensitivity:
+        print("\n=== RUNNING SENSITIVITY ANALYSIS ===")
+        run_sensitivity_analysis_improved()
 
     print(final_cashflows_json)

@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+import numpy as np
+import numpy as np
 from ..config import OUTPUT_DATE_FORMAT
 
 def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir='output/model_results'):
@@ -49,14 +51,20 @@ def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir
 
     return platform_cash_flow_df
 
-def export_three_way_financials_to_excel(final_cash_flow_df, output_dir='output/model_results'):
+def export_three_way_financials_to_excel(final_cash_flow_df, output_dir='output/model_results', scenario_id=None):
     """
     Exports P&L, Cash Flow Statement, and Balance Sheet to a single Excel file with multiple sheets.
     """
-    output_path = os.path.join(output_dir, "three_way_financials.xlsx")
+    # Determine the actual output directory based on scenario_id
+    if scenario_id:
+        scenario_output_dir = os.path.join('output', 'sensitivity_analysis', scenario_id)
+    else:
+        scenario_output_dir = output_dir
+
+    output_path = os.path.join(scenario_output_dir, "three_way_financials.xlsx")
 
     # Ensure output directory exists
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(scenario_output_dir, exist_ok=True)
 
     # Ensure 'date' column is in datetime format
     if not pd.api.types.is_datetime64_any_dtype(final_cash_flow_df['date']):
@@ -77,6 +85,9 @@ def export_three_way_financials_to_excel(final_cash_flow_df, output_dir='output/
         # Balance Sheet
         bs_cols = ['date', 'asset_id', 'cash', 'fixed_assets', 'total_assets', 'debt', 'share_capital', 'retained_earnings', 'equity', 'total_liabilities', 'net_assets']
         bs_df = final_cash_flow_df[bs_cols].copy()
+        # Round numerical columns to 2 decimal places
+        for col in bs_df.select_dtypes(include=np.number).columns:
+            bs_df[col] = bs_df[col].round(2)
         bs_df.to_excel(writer, sheet_name='Balance Sheet', index=False)
     
     print(f"Saved 3-Way Financials to {output_path}")
