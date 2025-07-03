@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 from ..config import MERCHANT_PRICE_ESCALATION_RATE, MERCHANT_PRICE_ESCALATION_REFERENCE_DATE
 
-def get_merchant_price(profile, price_type, region, date, monthly_prices, yearly_spreads, constants):
+def get_merchant_price(profile, price_type, region, date, monthly_prices, yearly_spreads):
     # Ensure date is a datetime object
     if isinstance(date, str):
         date = datetime.strptime(date, '%Y-%m-%d')

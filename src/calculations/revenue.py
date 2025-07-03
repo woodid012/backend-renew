@@ -11,7 +11,7 @@ HOURS_IN_YEAR = 8760
 DAYS_IN_MONTH = 30.4375 # Average days in a month
 HOURS_IN_MONTH = DAYS_IN_MONTH * 24
 
-def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spreads, constants):
+def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spreads):
     asset_start_date = datetime.strptime(asset['OperatingStartDate'], '%Y-%m-%d')
     # Determine capacity factor for the current month/quarter
     capacity_factor = 0.25 # Default fallback
@@ -114,8 +114,8 @@ def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spr
     }
     profile = profile_map.get(asset['type'], asset['type'])
 
-    merchant_green_price = get_merchant_price(profile, 'green', asset['region'], current_date, monthly_prices, yearly_spreads, constants)
-    merchant_energy_price = get_merchant_price(profile, 'Energy', asset['region'], current_date, monthly_prices, yearly_spreads, constants)
+    merchant_green_price = get_merchant_price(profile, 'green', asset['region'], current_date, monthly_prices, yearly_spreads)
+    merchant_energy_price = get_merchant_price(profile, 'Energy', asset['region'], current_date, monthly_prices, yearly_spreads)
 
     merchant_green = (monthly_generation * green_merchant_percentage * merchant_green_price) / 1_000_000
     merchant_energy = (monthly_generation * energy_merchant_percentage * merchant_energy_price) / 1_000_000
@@ -140,7 +140,7 @@ def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spr
         'avgEnergyPrice': avg_energy_price
     }
 
-def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spreads, constants):
+def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spreads):
     volume = float(asset.get('volume', 0))
     capacity = float(asset.get('capacity', 0))
     volume_loss_adjustment = float(asset.get('volumeLossAdjustment', 95)) / 100
@@ -192,7 +192,7 @@ def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spread
         calculated_duration = volume / capacity if capacity > 0 else 0
         
         # Get merchant price using the helper, passing duration as price_type
-        price_spread = get_merchant_price('storage', calculated_duration, asset['region'], current_date, monthly_prices, yearly_spreads, constants)
+        price_spread = get_merchant_price('storage', calculated_duration, asset['region'], current_date, monthly_prices, yearly_spreads)
         
         revenue = monthly_volume * price_spread * merchant_percentage
         merchant_revenue = revenue / 1_000_000
@@ -255,9 +255,9 @@ def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_d
             # Only calculate revenue if the asset is operational and within its asset life
             if current_date >= asset_start_date and current_date < asset_life_end_date:
                 if asset['type'] in ['solar', 'wind']:
-                    revenue_breakdown = calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spreads, {}) # Pass constants if needed
+                    revenue_breakdown = calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spreads) # Pass constants if needed
                 elif asset['type'] == 'storage':
-                    revenue_breakdown = calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spreads, constants)
+                    revenue_breakdown = calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spreads)
                 else:
                     # Handle unknown asset types by returning zero revenue
                     revenue_breakdown = {

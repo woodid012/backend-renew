@@ -34,18 +34,35 @@ from src.calculations.depreciation import calculate_d_and_a
 from src.core.output_generator import generate_asset_and_platform_output, export_three_way_financials_to_excel
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr
-from src.core.database import insert_dataframe_to_mongodb, get_mongo_client
+from src.core.database import insert_dataframe_to_mongodb, get_mongo_client, clear_base_case_data, clear_all_scenario_data
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
 
 
-def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=False):
+def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=False, replace_data=True):
     """
     Main function to run the cash flow model.
+
+    Args:
+        scenario_file (str, optional): Path to scenario JSON file
+        scenario_id (str, optional): Unique identifier for the scenario run
+        run_sensitivity (bool): Whether to run sensitivity analysis
+        replace_data (bool): Whether to replace existing data (default: True)
 
     Returns:
         str: JSON representation of the final cash flow DataFrame.
     """
     print("=== STARTING CASHFLOW MODEL ===")
+    
+    # Handle data replacement
+    if replace_data:
+        if scenario_id:
+            print(f"🗑️  Clearing existing data for scenario: {scenario_id}")
+            clear_all_scenario_data(scenario_id)
+        else:
+            print(f"🗑️  Clearing existing base case data")
+            clear_base_case_data()
+    else:
+        print(f"📝 Appending new data (replace_data=False)")
     
     # Load real data
     # Construct the absolute path to the data directory
@@ -63,6 +80,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     scenario_data = None
     if scenario_file:
         scenario_data = load_scenario(scenario_file)
+        print(f"📋 Loaded scenario: {scenario_data.get('scenario_name', 'Unnamed')}")
 
     # Determine model start and end dates
     if USER_MODEL_START_DATE and USER_MODEL_END_DATE:
@@ -102,7 +120,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         if start_date == pd.to_datetime('2050-01-01') or end_date == pd.to_datetime('1900-01-01'):
             raise ValueError("Could not determine valid model start or end dates from asset data. Please check 'constructionStartDate', 'assetStartDate' and 'assetLife' (or 'operationsEndDate') in your asset data, or set USER_MODEL_START_DATE and USER_MODEL_END_DATE in config.py.")
 
-    print(f"Model period: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
+    print(f"📅 Model period: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
 
     # 1. Calculate Revenue
     output_directory = os.path.join(project_root, 'output', 'model_results')
@@ -114,7 +132,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
 
     # 2b. Apply ALL scenario overrides to calculated timeseries (NEW APPROACH)
     if scenario_file:
-        print(f"Applying scenario overrides from {scenario_file}...")
+        print(f"🎯 Applying scenario overrides from {scenario_file}...")
         revenue_df, opex_df, initial_capex_df, ASSET_COST_ASSUMPTIONS = apply_all_scenarios_to_timeseries(
             revenue_df, opex_df, initial_capex_df, ASSETS, ASSET_COST_ASSUMPTIONS, 
             MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, scenario_data
@@ -187,9 +205,9 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         
         if total_capex > 0:
             gearing = total_debt / total_capex
-            print(f"{asset_name}: CAPEX ${total_capex:,.0f}M = Debt ${total_debt:,.0f}M ({gearing:.1%}) + Equity ${total_equity:,.0f}M ({1-gearing:.1%})")
+            print(f"💰 {asset_name}: CAPEX ${total_capex:,.0f}M = Debt ${total_debt:,.0f}M ({gearing:.1%}) + Equity ${total_equity:,.0f}M ({1-gearing:.1%})")
         else:
-            print(f"{asset_name}: No CAPEX")
+            print(f"💰 {asset_name}: No CAPEX")
     
     total_portfolio_capex = updated_capex_df['capex'].sum()
     total_portfolio_debt = updated_capex_df['debt_capex'].sum()
@@ -197,7 +215,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     
     if total_portfolio_capex > 0:
         portfolio_gearing = total_portfolio_debt / total_portfolio_capex
-        print(f"\nPORTFOLIO TOTAL: CAPEX ${total_portfolio_capex:,.0f}M = Debt ${total_portfolio_debt:,.0f}M ({portfolio_gearing:.1%}) + Equity ${total_portfolio_equity:,.0f}M ({1-portfolio_gearing:.1%})")
+        print(f"\n🏦 PORTFOLIO TOTAL: CAPEX ${total_portfolio_capex:,.0f}M = Debt ${total_portfolio_debt:,.0f}M ({portfolio_gearing:.1%}) + Equity ${total_portfolio_equity:,.0f}M ({1-portfolio_gearing:.1%})")
     print("========================\n")
     
     # Calculate Equity IRR - ONLY for Construction + Operations + Terminal periods
@@ -218,15 +236,15 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
             irr = calculate_equity_irr(equity_irr_summary)
             
             if pd.isna(irr):
-                print("Warning: Could not calculate Equity IRR")
+                print("⚠️  Warning: Could not calculate Equity IRR")
             else:
-                print(f"Equity IRR: {irr:.2%}")
+                print(f"📈 Equity IRR: {irr:.2%}")
         else:
             irr = float('nan')
-            print("Warning: No equity cash flows found")
+            print("⚠️  Warning: No equity cash flows found")
     else:
         irr = float('nan')
-        print("Warning: No Construction + Operations periods found")
+        print("⚠️  Warning: No Construction + Operations periods found")
 
     # Generate summary data
     summary_data = generate_summary_data(final_cash_flow)
@@ -239,10 +257,15 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     # === CRITICAL: WRITE TO MONGODB ===
     print("\n=== WRITING TO MONGODB ===")
     try:
-        # Write main cash flow data
-        print("Writing main cash flow data to MongoDB...")
-        insert_dataframe_to_mongodb(final_cash_flow, MONGO_ASSET_OUTPUT_COLLECTION, scenario_id=scenario_id)
-        print(f"✓ Successfully wrote {len(final_cash_flow)} records to {MONGO_ASSET_OUTPUT_COLLECTION}")
+        # Write main cash flow data with replace option
+        print("💾 Writing main cash flow data to MongoDB...")
+        insert_dataframe_to_mongodb(
+            final_cash_flow, 
+            MONGO_ASSET_OUTPUT_COLLECTION, 
+            scenario_id=scenario_id,
+            replace_scenario=True  # Always replace for clean data
+        )
+        print(f"✅ Successfully wrote {len(final_cash_flow)} records to {MONGO_ASSET_OUTPUT_COLLECTION}")
         
         
     except Exception as e:
@@ -293,11 +316,16 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
                 asset_summary_df = pd.DataFrame(asset_summaries)
                 asset_summary_df.to_excel(writer, sheet_name='Asset Inputs', index=False)
                 
-                # Also write to MongoDB
+                # Also write to MongoDB with replace option
                 try:
-                    print("Writing asset inputs summary to MongoDB...")
-                    insert_dataframe_to_mongodb(asset_summary_df, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, scenario_id=scenario_id)
-                    print(f"✓ Successfully wrote asset inputs summary to {MONGO_ASSET_INPUTS_SUMMARY_COLLECTION}")
+                    print("💾 Writing asset inputs summary to MongoDB...")
+                    insert_dataframe_to_mongodb(
+                        asset_summary_df, 
+                        MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, 
+                        scenario_id=scenario_id,
+                        replace_scenario=True  # Always replace for clean data
+                    )
+                    print(f"✅ Successfully wrote asset inputs summary to {MONGO_ASSET_INPUTS_SUMMARY_COLLECTION}")
                 except Exception as e:
                     print(f"⚠️  Warning: Could not write asset inputs to MongoDB: {e}")
             else:
@@ -317,7 +345,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
             irr_df = pd.DataFrame([{'Equity IRR': irr_value}])
             irr_df.to_excel(writer, sheet_name='Equity IRR', index=False)
             
-        print(f"Saved asset inputs summary to {output_path}")
+        print(f"📊 Saved asset inputs summary to {output_path}")
 
     # Extract debt sizing summary
     debt_summary = {}
@@ -353,7 +381,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, scenario_id=scenario_id)
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
-    print(f"Equity IRR: {irr:.2%}" if not pd.isna(irr) else "Equity IRR: Could not calculate")
+    print(f"📈 Equity IRR: {irr:.2%}" if not pd.isna(irr) else "📈 Equity IRR: Could not calculate")
     print("✅ All data successfully written to MongoDB!")
     
     return "Cash flow model run complete. Outputs saved and summaries generated."
@@ -364,9 +392,17 @@ if __name__ == '__main__':
     parser.add_argument('--scenario', type=str, help="Path to a JSON scenario file for overrides.")
     parser.add_argument('--scenario_id', type=str, help="A unique identifier for the scenario run.")
     parser.add_argument('--run_sensitivity', action='store_true', help="Run sensitivity analysis after model execution.")
+    parser.add_argument('--append', action='store_true', help="Append to existing data instead of replacing (default: replace)")
     args = parser.parse_args()
 
-    final_cashflows_json = run_cashflow_model(scenario_file=args.scenario, scenario_id=args.scenario_id)
+    # Default behavior is to replace data, unless --append flag is used
+    replace_data = not args.append
+
+    final_cashflows_json = run_cashflow_model(
+        scenario_file=args.scenario, 
+        scenario_id=args.scenario_id,
+        replace_data=replace_data
+    )
 
     if args.run_sensitivity:
         print("\n=== RUNNING SENSITIVITY ANALYSIS ===")
