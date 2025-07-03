@@ -1,26 +1,76 @@
+# app.py
+
 from flask import Flask, request, jsonify
 import os
 import sys
 from collections import defaultdict
 from bson import json_util
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
 MONGO_DB_NAME = os.getenv('MONGODB_DB')
 
+# Add src directory to path for imports (since we're in root, src is a subdirectory)
 current_dir = os.path.dirname(os.path.abspath(__file__))
+src_dir = os.path.join(current_dir, 'src')
+sys.path.insert(0, src_dir)
+sys.path.insert(0, current_dir)
 
-from src.main import run_cashflow_model
+# Initialize with None - will be set after successful imports
+get_data_from_mongodb = None
+get_mongo_client = None
+run_cashflow_model = None
+MONGO_ASSET_OUTPUT_COLLECTION = 'ASSET_cash_flows'
+
+try:
+    from src.main import run_cashflow_model
+    print("✅ Successfully imported run_cashflow_model")
+except ImportError as e:
+    print(f"⚠️ Could not import run_cashflow_model: {e}")
+    run_cashflow_model = None
+
+try:
+    from src.core.database import get_data_from_mongodb, get_mongo_client
+    print("✅ Successfully imported database functions")
+except ImportError as e:
+    print(f"⚠️ Could not import database functions: {e}")
+    get_data_from_mongodb = None
+    get_mongo_client = None
+
+try:
+    from src.config import MONGO_ASSET_OUTPUT_COLLECTION
+    print(f"✅ Successfully imported config: {MONGO_ASSET_OUTPUT_COLLECTION}")
+except ImportError as e:
+    print(f"⚠️ Could not import config: {e}")
+    MONGO_ASSET_OUTPUT_COLLECTION = 'ASSET_cash_flows'
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def health_check():
-    return jsonify({"status": "healthy", "message": "Renewable Finance Backend API"})
+    return jsonify({
+        "status": "healthy", 
+        "message": "Renewable Finance Backend API",
+        "platform": "Render",
+        "imports": {
+            "run_cashflow_model": run_cashflow_model is not None,
+            "get_data_from_mongodb": get_data_from_mongodb is not None,
+            "get_mongo_client": get_mongo_client is not None
+        },
+        "mongo_db": MONGO_DB_NAME,
+        "collection": MONGO_ASSET_OUTPUT_COLLECTION
+    })
 
 @app.route('/api/run-model', methods=['POST'])
 def run_model():
+    if run_cashflow_model is None:
+        return jsonify({
+            "status": "error",
+            "message": "Model functionality not available - import failed"
+        }), 500
+    
     try:
         data = request.get_json() or {}
         scenario_file = data.get('scenario_file')
@@ -38,14 +88,23 @@ def run_model():
     except Exception as e:
         return jsonify({
             "status": "error", 
-            "message": str(e)
+            "message": str(e),
+            "type": type(e).__name__
         }), 500
 
 @app.route('/api/sensitivity', methods=['POST'])
 def run_sensitivity():
     try:
         # Import sensitivity runner
-        from scripts.run_sensitivity_analysis import run_sensitivity_analysis_improved
+        try:
+            scripts_dir = os.path.join(current_dir, 'scripts')
+            sys.path.insert(0, scripts_dir)
+            from run_sensitivity_analysis import run_sensitivity_analysis_improved
+        except ImportError as import_err:
+            return jsonify({
+                "status": "error",
+                "message": f"Sensitivity analysis module not available: {import_err}"
+            }), 500
         
         data = request.get_json() or {}
         config_file = data.get('config_file', 'config/sensitivity_config.json')
@@ -64,12 +123,14 @@ def run_sensitivity():
             "message": str(e)
         }), 500
 
-from src.core.database import get_mongo_client
-from bson import json_util
-import json
-
 @app.route('/api/asset-cashflows', methods=['GET'])
 def get_asset_cashflows():
+    if get_data_from_mongodb is None:
+        return jsonify({
+            "status": "error",
+            "message": "Database functionality not available - import failed"
+        }), 500
+    
     try:
         asset_id = request.args.get('asset_id')
         
@@ -79,16 +140,14 @@ def get_asset_cashflows():
                 asset_id_int = int(asset_id)
                 query = {'asset_id': asset_id_int}
             except ValueError:
-                # Fallback to string if conversion fails, though unlikely for this specific issue
                 query = {'asset_id': asset_id}
         
-        # Assuming 'ASSET_cash_flow' is the collection name
-        data = get_data_from_mongodb(collection_name='ASSET_cash_flows', query=query)
+        data = get_data_from_mongodb(collection_name=MONGO_ASSET_OUTPUT_COLLECTION, query=query)
         
         # Convert ObjectId to string for JSON serialization
         return json.loads(json_util.dumps(data)), 200
     except Exception as e:
-        print(f"Error in get_asset_cashflows: {e}") # Debug print
+        print(f"Error in get_asset_cashflows: {e}")
         return jsonify({
             "status": "error", 
             "message": str(e)
@@ -96,10 +155,22 @@ def get_asset_cashflows():
 
 @app.route('/api/asset-ids', methods=['GET'])
 def get_asset_ids():
+    if get_mongo_client is None:
+        return jsonify({
+            "status": "error",
+            "message": "Database functionality not available - import failed"
+        }), 500
+    
     try:
         client = get_mongo_client()
+        if not client:
+            return jsonify({
+                "status": "error",
+                "message": "Database connection not available"
+            }), 500
+            
         db = client[MONGO_DB_NAME]
-        collection = db['ASSET_cash_flow'] # Assuming this is the collection where asset_id is stored
+        collection = db[MONGO_ASSET_OUTPUT_COLLECTION]
         asset_ids = collection.distinct('asset_id')
         client.close()
         return jsonify(asset_ids), 200
@@ -111,8 +182,14 @@ def get_asset_ids():
 
 @app.route('/api/revenue-summary', methods=['GET'])
 def get_revenue_summary():
+    if get_data_from_mongodb is None:
+        return jsonify({
+            "status": "error",
+            "message": "Database functionality not available - import failed"
+        }), 500
+    
     try:
-        all_cashflows = get_data_from_mongodb(collection_name='ASSET_cash_flows')
+        all_cashflows = get_data_from_mongodb(collection_name=MONGO_ASSET_OUTPUT_COLLECTION)
 
         aggregated_data = defaultdict(lambda: defaultdict(float))
         periods = set()
@@ -144,6 +221,30 @@ def get_revenue_summary():
             "message": str(e)
         }), 500
 
+# Test endpoint to debug imports
+@app.route('/api/debug', methods=['GET'])
+def debug_imports():
+    return jsonify({
+        "python_path": sys.path,
+        "current_dir": current_dir,
+        "src_dir": src_dir,
+        "files_in_current": os.listdir(current_dir) if os.path.exists(current_dir) else [],
+        "files_in_src": os.listdir(src_dir) if os.path.exists(src_dir) else [],
+        "imports": {
+            "run_cashflow_model": run_cashflow_model is not None,
+            "get_data_from_mongodb": get_data_from_mongodb is not None,
+            "get_mongo_client": get_mongo_client is not None
+        },
+        "env_vars": {
+            "MONGODB_URI": "***" if os.getenv('MONGODB_URI') else None,
+            "MONGODB_DB": MONGO_DB_NAME
+        }
+    })
+
+# For development and production
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
+# For production (some platforms expect this)
+application = app
