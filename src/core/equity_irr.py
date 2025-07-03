@@ -83,10 +83,7 @@ def xirr(cash_flows, dates, guess=0.1, max_iterations=1000, tolerance=1e-6):
     cash_flows = list(cash_flows)
     dates = list(dates)
     
-    print(f"DEBUG: Processing {len(cash_flows)} cash flows")
-    print(f"DEBUG: Cash flow range: {min(cash_flows):.2f} to {max(cash_flows):.2f}")
-    print(f"DEBUG: Date range: {min(dates)} to {max(dates)}")
-    
+   
     # DON'T remove zero cash flows - they preserve timing
     # Instead, check for meaningful cash flows
     non_zero_count = sum(1 for cf in cash_flows if abs(cf) > 1e-10)
@@ -104,7 +101,6 @@ def xirr(cash_flows, dates, guess=0.1, max_iterations=1000, tolerance=1e-6):
         print("DEBUG: No sign changes in cash flows")
         return float('nan')
     
-    print(f"DEBUG: Found {len(signs)} significant cash flows with {len(set(signs))} different signs")
     
     # Define the function to find root of (XNPV = 0)
     def npv_function(rate):
@@ -121,7 +117,7 @@ def xirr(cash_flows, dates, guess=0.1, max_iterations=1000, tolerance=1e-6):
         try:
             npv = npv_function(test_rate)
             npv_values.append((test_rate, npv))
-            print(f"DEBUG: NPV at {test_rate:.1%}: {npv:.2f}")
+            #print(f"DEBUG: NPV at {test_rate:.1%}: {npv:.2f}")
         except:
             npv_values.append((test_rate, float('inf')))
     
@@ -164,8 +160,8 @@ def xirr(cash_flows, dates, guess=0.1, max_iterations=1000, tolerance=1e-6):
                 # Validate the result
                 npv_check = npv_function(irr_result)
                 if abs(npv_check) < tolerance and -0.99 < irr_result < 50:  # Expanded reasonable bounds
-                    print(f"DEBUG: Found IRR using {method_name}: {irr_result:.4f} ({irr_result:.2%})")
-                    print(f"DEBUG: NPV check: {npv_check:.6f}")
+                  #  print(f"DEBUG: Found IRR using {method_name}: {irr_result:.4f} ({irr_result:.2%})")
+                  #  print(f"DEBUG: NPV check: {npv_check:.6f}")
                     return irr_result
                 else:
                     print(f"DEBUG: {method_name} result {irr_result:.4f} failed validation (NPV: {npv_check:.6f})")
@@ -240,12 +236,7 @@ def calculate_equity_irr(cash_flow_df):
     
     dates = df_grouped['date'].tolist()
     cash_flows = df_grouped['equity_cash_flow'].tolist()
-    
-    print(f"DEBUG: Processing {len(cash_flows)} periods")
-    print(f"DEBUG: Total cash flow: {sum(cash_flows):.2f}")
-    print(f"DEBUG: First 5 cash flows: {cash_flows[:5]}")
-    print(f"DEBUG: Last 5 cash flows: {cash_flows[-5:]}")
-    
+        
     # Calculate XIRR
     irr_result = xirr(cash_flows, dates)
     

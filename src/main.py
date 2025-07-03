@@ -27,7 +27,7 @@ from src.config import (
 )
 from src.core.input_processor import load_asset_data, load_price_data
 from src.calculations.revenue import calculate_revenue_timeseries
-from src.calculations.expenses import calculate_opex_timeseries, calculate_capex_timeseries
+from src.calculations.opex import calculate_opex_timeseries, calculate_capex_timeseries
 from src.calculations.debt import calculate_debt_schedule
 from src.calculations.cashflow import aggregate_cashflows
 from src.calculations.depreciation import calculate_d_and_a
@@ -109,7 +109,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     output_directory = os.path.join(project_root, 'output', 'model_results')
     revenue_df = calculate_revenue_timeseries(ASSETS, MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, output_directory)
 
-    # 2. Calculate Expenses (initial CAPEX with assumed funding split)
+    # 2. Calculate OPEX and CAPEX (initial CAPEX with assumed funding split)
     opex_df = calculate_opex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date)
     initial_capex_df = calculate_capex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date, capex_funding_type=DEFAULT_CAPEX_FUNDING_TYPE)
 

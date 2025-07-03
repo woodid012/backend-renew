@@ -135,15 +135,7 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
     best_debt = 0
     best_schedule = None
     
-    if debug:
-        print(f"\n=== DEBT SIZING ===")
-        print(f"CAPEX: ${capex:,.0f}M")
-        print(f"Max gearing: {max_gearing:.1%}")
-        print(f"Upper bound: ${upper_bound:,.0f}M")
-        print(f"Cash flows (first 5 years): {[f'${cf:,.1f}M' for cf in cash_flows[:5]]}")
-        print(f"Target DSCRs (first 5): {[f'{d:.2f}' for d in target_dscrs[:5]]}")
-        print(f"Interest rate: {interest_rate:.2%}, Tenor: {tenor_years} years")
-    
+   
     iteration = 0
     while iteration < max_iterations and (upper_bound - lower_bound) > tolerance:
         test_debt = (lower_bound + upper_bound) / 2
@@ -318,7 +310,7 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df):
     # Solve for optimal debt
     solution = solve_maximum_debt(
         capex, annual_cash_flows, annual_target_dscrs, 
-        max_gearing, interest_rate, tenor_years, debug=True
+        max_gearing, interest_rate, tenor_years, debug=False
     )
     
     # Calculate debt service start date (from operations start)

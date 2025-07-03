@@ -1,4 +1,4 @@
-# scripts/run_sensitivity_analysis_improved.py
+# scripts/run_sensitivity_analysis.py
 
 import json
 import os
@@ -160,13 +160,45 @@ def move_to_sensitivity_collection(scenario_id):
         if client:
             client.close()
 
+def generate_sensitivity_values(base_value, min_val, max_val, steps):
+    """
+    Generate sensitivity values, excluding the base case.
+    
+    Args:
+        base_value (float): Base case value (will be excluded)
+        min_val (float): Minimum adjustment from base
+        max_val (float): Maximum adjustment from base  
+        steps (int): Total number of steps including base case
+    
+    Returns:
+        list: Values to test, excluding base case
+    """
+    if steps <= 1:
+        return []  # No variations to test
+    
+    # Generate the full range including base case
+    if steps == 2:
+        # Only test one extreme if steps=2
+        full_values = [base_value + min_val, base_value + max_val]
+    else:
+        # Generate evenly spaced values
+        full_values = [base_value + min_val + i * (max_val - min_val) / (steps - 1) for i in range(steps)]
+    
+    # Filter out the base case (allowing for small floating point differences)
+    tolerance = 1e-8
+    sensitivity_values = [v for v in full_values if abs(v - base_value) > tolerance]
+    
+    return sensitivity_values
+
 def run_sensitivity_analysis_improved(config_file="config/sensitivity_config.json", 
                                     sensitivity_prefix="sensitivity_results"):
     """
-    Run sensitivity analysis storing results in dedicated sensitivity collection
+    Run sensitivity analysis storing results in dedicated sensitivity collection.
+    OPTIMIZED: Skips base case since it already exists.
     """
-    print(f"=== IMPROVED SENSITIVITY ANALYSIS ===")
+    print(f"=== OPTIMIZED SENSITIVITY ANALYSIS ===")
     print(f"Results will be stored in: {SENSITIVITY_COLLECTION}")
+    print(f"OPTIMIZATION: Skipping base case values (assumes base case already exists)")
     
     # Step 1: Clean up existing results
     if not cleanup_sensitivity_results(sensitivity_prefix):
@@ -189,26 +221,27 @@ def run_sensitivity_analysis_improved(config_file="config/sensitivity_config.jso
     output_collection_prefix = config.get("output_collection_prefix", sensitivity_prefix)
     sensitivities = config.get("sensitivities", {})
 
-    print(f"\nStarting sensitivity analysis with {len(sensitivities)} parameters")
+    print(f"\nStarting optimized sensitivity analysis with {len(sensitivities)} parameters")
 
-    # Run base case first
-    print("\n=== Running Base Case ===")
-    base_scenario_content = None
-    if base_scenario_file and os.path.exists(os.path.join(project_root, base_scenario_file)):
-        with open(os.path.join(project_root, base_scenario_file), 'r') as f:
-            base_scenario_content = json.load(f)
+    # Track scenarios - calculate total excluding base cases
+    total_scenarios = 0
+    for param, details in sensitivities.items():
+        base_value = details["base"]
+        min_val, max_val = details["range"]
+        steps = details["steps"]
+        
+        sensitivity_values = generate_sensitivity_values(base_value, min_val, max_val, steps)
+        scenarios_for_param = len(sensitivity_values)
+        total_scenarios += scenarios_for_param
+        
+        print(f"  {param}: {scenarios_for_param} scenarios (base case {base_value} skipped)")
+
+    print(f"\nTotal sensitivity scenarios to run: {total_scenarios}")
     
-    base_success = run_main_model_with_sensitivity_storage(
-        scenario_content=base_scenario_content, 
-        scenario_id=f"{output_collection_prefix}_base"
-    )
-    
-    if not base_success:
-        print("Base case failed. Aborting sensitivity analysis.")
+    if total_scenarios == 0:
+        print("No sensitivity scenarios to run. All parameters only have base case values.")
         return
 
-    # Track scenarios
-    total_scenarios = sum(details.get("steps", 3) for details in sensitivities.values())
     current_scenario = 0
 
     for param, details in sensitivities.items():
@@ -217,15 +250,17 @@ def run_sensitivity_analysis_improved(config_file="config/sensitivity_config.jso
         min_val, max_val = details["range"]
         steps = details["steps"]
 
-        # Generate values for sensitivity
-        if steps == 1:
-            values = [base_value]
-        else:
-            values = [base_value + min_val + i * (max_val - min_val) / (steps - 1) for i in range(steps)]
+        # Generate values for sensitivity (excluding base case)
+        sensitivity_values = generate_sensitivity_values(base_value, min_val, max_val, steps)
+        
+        if not sensitivity_values:
+            print(f"  No sensitivity values to test for {param} (only base case)")
+            continue
 
-        print(f"Testing {len(values)} values for {param}: {[f'{v:.4f}' for v in values]}")
+        print(f"  Base case: {base_value:.4f} (SKIPPED - already exists)")
+        print(f"  Testing {len(sensitivity_values)} sensitivity values: {[f'{v:.4f}' for v in sensitivity_values]}")
 
-        for value in values:
+        for value in sensitivity_values:
             current_scenario += 1
             overrides = {}
             scenario_name = f"{param}_{value:.4f}"
@@ -256,8 +291,9 @@ def run_sensitivity_analysis_improved(config_file="config/sensitivity_config.jso
             else:
                 print(f"  FAILED: Scenario {scenario_name} failed")
 
-    print(f"\n=== Sensitivity Analysis Complete ===")
-    print(f"Completed {current_scenario} scenarios")
+    print(f"\n=== Optimized Sensitivity Analysis Complete ===")
+    print(f"Completed {current_scenario} sensitivity scenarios")
+    print(f"Base case scenarios skipped (assumed to exist already)")
     print(f"Results stored in MongoDB collection: {SENSITIVITY_COLLECTION}")
     
     # Verify results
@@ -291,6 +327,14 @@ def verify_sensitivity_results(sensitivity_prefix):
             
             if len(scenarios) > 5:
                 print(f"  ... and {len(scenarios) - 5} more scenarios")
+                
+            # Check for any base case scenarios that might have been created
+            base_scenarios = [s for s in scenarios if 'base' in s.lower() or '_1.0000' in s]
+            if base_scenarios:
+                print(f"\nNote: Found {len(base_scenarios)} base case scenarios:")
+                for base_scenario in base_scenarios:
+                    print(f"  {base_scenario}")
+                print("Consider removing these if base case already exists elsewhere")
         else:
             print(f"\n⚠ WARNING: No sensitivity data found in {SENSITIVITY_COLLECTION}")
         
@@ -303,7 +347,7 @@ def verify_sensitivity_results(sensitivity_prefix):
 if __name__ == '__main__':
     import argparse
     
-    parser = argparse.ArgumentParser(description="Run improved sensitivity analysis")
+    parser = argparse.ArgumentParser(description="Run optimized sensitivity analysis (skips base cases)")
     parser.add_argument('--config', type=str, default='config/sensitivity_config.json',
                        help='Path to sensitivity config file')
     parser.add_argument('--prefix', type=str, default='sensitivity_results',
