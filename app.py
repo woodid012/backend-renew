@@ -40,11 +40,12 @@ except ImportError as e:
     get_mongo_client = None
 
 try:
-    from src.config import MONGO_ASSET_OUTPUT_COLLECTION
+    from src.config import MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION
     print(f"✅ Successfully imported config: {MONGO_ASSET_OUTPUT_COLLECTION}")
 except ImportError as e:
     print(f"⚠️ Could not import config: {e}")
     MONGO_ASSET_OUTPUT_COLLECTION = 'ASSET_cash_flows'
+    MONGO_ASSET_INPUTS_SUMMARY_COLLECTION = 'ASSET_inputs_summary'
 
 app = Flask(__name__)
 
@@ -216,6 +217,34 @@ def get_revenue_summary():
 
         return jsonify(summary_list), 200
     except Exception as e:
+        return jsonify({
+            "status": "error", 
+            "message": str(e)
+        }), 500
+
+@app.route('/api/inputs-summary', methods=['GET'])
+def get_inputs_summary():
+    if get_data_from_mongodb is None:
+        return jsonify({
+            "status": "error",
+            "message": "Database functionality not available - import failed"
+        }), 500
+    
+    try:
+        asset_id = request.args.get('asset_id')
+        
+        query = {}
+        if asset_id:
+            try:
+                asset_id_int = int(asset_id)
+                query = {'asset_id': asset_id_int}
+            except ValueError:
+                query = {'asset_id': asset_id}
+
+        data = get_data_from_mongodb(collection_name=MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, query=query)
+        return json.loads(json_util.dumps(data)), 200
+    except Exception as e:
+        print(f"Error in get_inputs_summary: {e}")
         return jsonify({
             "status": "error", 
             "message": str(e)
