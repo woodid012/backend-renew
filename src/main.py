@@ -236,6 +236,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     print("\n=== SAVING OUTPUTS ===")
     generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id)
     export_three_way_financials_to_excel(final_cash_flow, output_directory, scenario_id=scenario_id)
+    print("MongoDB write operations initiated for asset cash flows, price series, and asset inputs summary.")
 
     def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, scenario_id=None):
         # Determine the actual output directory based on scenario_id

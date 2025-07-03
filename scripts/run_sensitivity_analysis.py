@@ -298,6 +298,20 @@ def run_sensitivity_analysis_improved(config_file="config/sensitivity_config.jso
     
     # Verify results
     verify_sensitivity_results(output_collection_prefix)
+    
+    # Generate summary automatically
+    print(f"\n=== GENERATING SENSITIVITY SUMMARY ===")
+    try:
+        from scripts.generate_sensitivity_summary import generate_sensitivity_summary
+        summary_df = generate_sensitivity_summary(output_collection_prefix, output_format="both")
+        if summary_df is not None:
+            print(f"✓ Sensitivity summary generated successfully")
+        else:
+            print(f"⚠ Failed to generate sensitivity summary")
+    except Exception as e:
+        print(f"⚠ Error generating summary: {e}")
+        print(f"You can generate the summary manually with:")
+        print(f"  python scripts/generate_sensitivity_summary.py --prefix {output_collection_prefix}")
 
 def verify_sensitivity_results(sensitivity_prefix):
     """
