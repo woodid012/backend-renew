@@ -27,7 +27,8 @@ from src.config import (
 )
 from src.core.input_processor import load_asset_data, load_price_data
 from src.calculations.revenue import calculate_revenue_timeseries
-from src.calculations.opex import calculate_opex_timeseries, calculate_capex_timeseries
+from src.calculations.opex import calculate_opex_timeseries
+from src.calculations.construction_capex import calculate_capex_timeseries
 from src.calculations.debt import calculate_debt_schedule
 from src.calculations.cashflow import aggregate_cashflows
 from src.calculations.depreciation import calculate_d_and_a
@@ -52,18 +53,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         str: JSON representation of the final cash flow DataFrame.
     """
     print("=== STARTING CASHFLOW MODEL ===")
-    
-    # Handle data replacement
-    if replace_data:
-        if scenario_id:
-            print(f"🗑️  Clearing existing data for scenario: {scenario_id}")
-            clear_all_scenario_data(scenario_id)
-        else:
-            print(f"🗑️  Clearing existing base case data")
-            clear_base_case_data()
-    else:
-        print(f"📝 Appending new data (replace_data=False)")
-    
+        
     # Load real data
     # Construct the absolute path to the data directory
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -257,6 +247,17 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     # === CRITICAL: WRITE TO MONGODB ===
     print("\n=== WRITING TO MONGODB ===")
     try:
+        # Handle data replacement
+        if replace_data:
+            if scenario_id:
+                print(f"🗑️  Clearing existing data for scenario: {scenario_id}")
+                clear_all_scenario_data(scenario_id)
+            else:
+                print(f"🗑️  Clearing existing base case data")
+                clear_base_case_data()
+        else:
+            print(f"📝 Appending new data (replace_data=False)")
+
         # Write main cash flow data with replace option
         print("💾 Writing main cash flow data to MongoDB...")
         insert_dataframe_to_mongodb(
@@ -382,7 +383,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
     print(f"📈 Equity IRR: {irr:.2%}" if not pd.isna(irr) else "📈 Equity IRR: Could not calculate")
-    print("✅ All data successfully written to MongoDB!")
+    print("All data successfully written to MongoDB!")
     
     return "Cash flow model run complete. Outputs saved and summaries generated."
 
