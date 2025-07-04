@@ -1,6 +1,7 @@
 # app.py
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 import sys
 from collections import defaultdict
@@ -48,6 +49,9 @@ except ImportError as e:
     MONGO_ASSET_INPUTS_SUMMARY_COLLECTION = 'ASSET_inputs_summary'
 
 app = Flask(__name__)
+
+# Enable CORS for all domains and all routes
+CORS(app, origins=["*"])
 
 @app.route('/', methods=['GET'])
 def health_check():
