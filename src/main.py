@@ -25,7 +25,7 @@ from src.config import (
     MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, 
     TAX_RATE, DEFAULT_ASSET_LIFE_YEARS
 )
-from src.core.input_processor import load_asset_data, load_price_data
+from src.core.input_processor import load_price_data
 from src.calculations.revenue import calculate_revenue_timeseries
 from src.calculations.opex import calculate_opex_timeseries
 from src.calculations.construction_capex import calculate_capex_timeseries
@@ -35,7 +35,7 @@ from src.calculations.depreciation import calculate_d_and_a
 from src.core.output_generator import generate_asset_and_platform_output, export_three_way_financials_to_excel
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr
-from src.core.database import insert_dataframe_to_mongodb, get_mongo_client, clear_base_case_data, clear_all_scenario_data
+from src.core.database import insert_dataframe_to_mongodb, get_mongo_client, clear_base_case_data, clear_all_scenario_data, get_data_from_mongodb
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
 
 
@@ -59,11 +59,19 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     current_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(current_dir)
 
-    zebre_json_path = os.path.join(project_root, 'data', 'processed_inputs', 'ZEBRE_Inputs.json')
     monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
     yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
 
-    ASSETS, ASSET_COST_ASSUMPTIONS = load_asset_data(zebre_json_path)
+    config_data = get_data_from_mongodb('CONFIG_Inputs')
+    if not config_data:
+        raise ValueError("Could not load config data from MongoDB")
+    config_data = config_data[0]  # Get the first document
+    ASSETS = config_data.get('asset_inputs', [])
+    ASSET_COST_ASSUMPTIONS = {}
+    for asset in ASSETS:
+        asset_name = asset.get('name')
+        if asset_name and 'costAssumptions' in asset:
+            ASSET_COST_ASSUMPTIONS[asset_name] = asset.get('costAssumptions')
     MONTHLY_PRICES, YEARLY_SPREADS = load_price_data(monthly_price_path, yearly_spread_path)
 
     # Load scenario data if provided
@@ -340,7 +348,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
 
             # Sheet 3: Portfolio Debt Summary
             portfolio_debt_df = pd.DataFrame.from_dict(debt_summary, orient='index')
-            portfolio_debt_df.index.name = 'Asset ID'
+            portfolio_debt_df.index.name = 'Asset Name'
             portfolio_debt_df.to_excel(writer, sheet_name='Portfolio Debt Summary')
 
             # Sheet 4: Equity IRR
@@ -358,7 +366,8 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         total_debt = asset_capex['debt_capex'].sum()
         total_equity = asset_capex['equity_capex'].sum()
         
-        debt_summary[asset_id] = {
+        asset_name = asset.get('name', f'Asset_{asset_id}')
+        debt_summary[asset_name] = {
             'total_capex': total_capex,
             'debt_amount': total_debt,
             'equity_amount': total_equity,
