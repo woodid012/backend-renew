@@ -5,12 +5,16 @@ import os
 def load_asset_data(file_path):
     with open(file_path, 'r') as f:
         data = json.load(f)
-    assets_dict = data.get('assets', {})
-    assets_list = []
-    for asset_id, asset_data in assets_dict.items():
-        asset_data['id'] = int(asset_id)
-        assets_list.append(asset_data)
-    return assets_list, data.get('constants', {}).get('assetCosts', {})
+    
+    assets_list = data.get('asset_inputs', [])
+    asset_costs = {}
+    
+    for asset in assets_list:
+        asset_name = asset.get('name')
+        if asset_name and 'costAssumptions' in asset:
+            asset_costs[asset_name] = asset.get('costAssumptions')
+            
+    return assets_list, asset_costs
 
 def load_price_data(monthly_price_path, yearly_spread_path):
     monthly_prices = pd.read_csv(monthly_price_path)

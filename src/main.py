@@ -59,7 +59,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     current_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(current_dir)
 
-    zebre_json_path = os.path.join(project_root, 'data', 'raw_inputs', 'zebre_2025-01-13.json')
+    zebre_json_path = os.path.join(project_root, 'data', 'processed_inputs', 'ZEBRE_Inputs.json')
     monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
     yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
 
