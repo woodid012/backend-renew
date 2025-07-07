@@ -18,6 +18,7 @@ sys.path.insert(0, src_dir)
 # Import main function directly to avoid subprocess Unicode issues
 from src.main import run_cashflow_model
 from src.core.database import database_lifecycle, db_manager, mongo_session
+from scripts.enhanced_sensitivity_summary import generate_enhanced_sensitivity_summary
 
 # Use separate collection for sensitivity results
 SENSITIVITY_COLLECTION = "SENS_Asset_Outputs"
@@ -236,6 +237,10 @@ def run_sensitivity_analysis_optimized(config_file="config/sensitivity_config.js
     
     # Verify results
     verify_sensitivity_results(output_collection_prefix)
+
+    # Generate enhanced sensitivity summary after analysis is complete
+    print("\n=== GENERATING ENHANCED SENSITIVITY SUMMARY ===")
+    generate_enhanced_sensitivity_summary(sensitivity_prefix=output_collection_prefix)
 
 def verify_sensitivity_results(sensitivity_prefix):
     """Verify sensitivity results in the dedicated collection using optimized connection"""

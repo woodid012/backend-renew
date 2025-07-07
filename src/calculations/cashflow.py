@@ -1,6 +1,7 @@
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 from ..config import ENABLE_TERMINAL_VALUE, TAX_RATE, MIN_CASH_BALANCE_FOR_DISTRIBUTION
+from .tax import calculate_tax_expense
 
 
 def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_date, assets_data, asset_cost_assumptions):
@@ -39,15 +40,12 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     cash_flow['dscr'] = cash_flow.apply(lambda row: row['cfads'] / row['debt_service'] if row['debt_service'] != 0 else None, axis=1)
 
     # --- TAX CALCULATION ---
-    # TODO: Implement a more sophisticated tax calculation considering tax losses carried forward.
-    # For now, a simple tax expense is calculated based on positive EBT.
-    
     # Calculate Earnings Before Tax (EBT)
     cash_flow['ebit'] = cash_flow['cfads'] - cash_flow['d_and_a'] # Note: This is a simplified EBIT for tax purposes
     cash_flow['ebt'] = cash_flow['ebit'] - cash_flow['interest']
     
-    # Calculate tax expense (only on positive EBT)
-    cash_flow['tax_expense'] = cash_flow['ebt'].apply(lambda x: x * TAX_RATE if x > 0 else 0)
+    # Calculate tax expense using the new function with accumulated tax losses
+    cash_flow = calculate_tax_expense(cash_flow, TAX_RATE)
     
     # Calculate Net Income
     cash_flow['net_income'] = cash_flow['ebt'] - cash_flow['tax_expense']
