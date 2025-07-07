@@ -1,4 +1,4 @@
-# scripts/run_sensitivity_unicode_safe.py
+# scripts/run_sensitivity_analysis.py
 
 import json
 import os
@@ -17,93 +17,65 @@ sys.path.insert(0, src_dir)
 
 # Import main function directly to avoid subprocess Unicode issues
 from src.main import run_cashflow_model
-from src.core.database import get_mongo_client
+from src.core.database import database_lifecycle, db_manager, mongo_session
 
 # Use separate collection for sensitivity results
 SENSITIVITY_COLLECTION = "SENS_Asset_Outputs"
 
 def cleanup_sensitivity_results(sensitivity_prefix="sensitivity_results"):
-    """Clean up existing sensitivity results"""
+    """Clean up existing sensitivity results using optimized connection"""
     print("=== CLEANING UP EXISTING SENSITIVITY RESULTS ===")
     
-    client = None
     try:
-        client = get_mongo_client()
-        db = client.get_database()
-        collection = db[SENSITIVITY_COLLECTION]
-        
-        existing_scenarios = collection.distinct("scenario_id", {
-            "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
-        })
-        
-        if existing_scenarios:
-            print(f"Found {len(existing_scenarios)} existing sensitivity scenarios")
-            total_records = collection.count_documents({
-                "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
-            })
-            print(f"Deleting {total_records} sensitivity records...")
-            result = collection.delete_many({
-                "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
-            })
-            print(f"Deleted {result.deleted_count} sensitivity records")
-        else:
-            print("No existing sensitivity results found")
+        with mongo_session() as db_mgr:
+            collection = db_mgr.get_collection(SENSITIVITY_COLLECTION)
             
-        return True
-        
+            existing_scenarios = collection.distinct("scenario_id", {
+                "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
+            })
+            
+            if existing_scenarios:
+                print(f"Found {len(existing_scenarios)} existing sensitivity scenarios")
+                total_records = collection.count_documents({
+                    "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
+                })
+                print(f"Deleting {total_records} sensitivity records...")
+                result = collection.delete_many({
+                    "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
+                })
+                print(f"Deleted {result.deleted_count} sensitivity records")
+            else:
+                print("No existing sensitivity results found")
+                
+            return True
+            
     except Exception as e:
         print(f"Error cleaning up: {e}")
         return False
-    finally:
-        if client:
-            client.close()
-
-def generate_sensitivity_values(base_value, min_val, max_val, steps):
-    """Generate sensitivity values, excluding the base case"""
-    if steps <= 1:
-        return []
-    
-    # Generate the full range including base case
-    if steps == 2:
-        full_values = [base_value + min_val, base_value + max_val]
-    else:
-        full_values = [base_value + min_val + i * (max_val - min_val) / (steps - 1) for i in range(steps)]
-    
-    # Filter out the base case (allowing for small floating point differences)
-    tolerance = 1e-8
-    sensitivity_values = [v for v in full_values if abs(v - base_value) > tolerance]
-    
-    return sensitivity_values
 
 def move_to_sensitivity_collection(scenario_id):
-    """Move scenario results from main collection to sensitivity collection"""
-    client = None
+    """Move scenario results from main collection to sensitivity collection using optimized connection"""
     try:
-        client = get_mongo_client()
-        db = client.get_database()
-        
-        main_collection = db["ASSET_cash_flows"]  # Your main collection
-        sens_collection = db[SENSITIVITY_COLLECTION]
-        
-        # Find records for this scenario
-        scenario_records = list(main_collection.find({"scenario_id": scenario_id}))
-        
-        if scenario_records:
-            # Insert into sensitivity collection
-            sens_collection.insert_many(scenario_records)
-            print(f"    Moved {len(scenario_records)} records to {SENSITIVITY_COLLECTION}")
+        with mongo_session() as db_mgr:
+            main_collection = db_mgr.get_collection("ASSET_cash_flows")  # Your main collection
+            sens_collection = db_mgr.get_collection(SENSITIVITY_COLLECTION)
             
-            # Remove from main collection
-            delete_result = main_collection.delete_many({"scenario_id": scenario_id})
-            print(f"    Removed {delete_result.deleted_count} records from main collection")
-        else:
-            print(f"    No records found for scenario {scenario_id}")
+            # Find records for this scenario
+            scenario_records = list(main_collection.find({"scenario_id": scenario_id}))
+            
+            if scenario_records:
+                # Insert into sensitivity collection
+                sens_collection.insert_many(scenario_records)
+                print(f"    Moved {len(scenario_records)} records to {SENSITIVITY_COLLECTION}")
+                
+                # Remove from main collection
+                delete_result = main_collection.delete_many({"scenario_id": scenario_id})
+                print(f"    Removed {delete_result.deleted_count} records from main collection")
+            else:
+                print(f"    No records found for scenario {scenario_id}")
     
     except Exception as e:
         print(f"    Error moving records: {e}")
-    finally:
-        if client:
-            client.close()
 
 def run_single_scenario_direct(scenario_content, scenario_id):
     """Run a single scenario using direct function call"""
@@ -116,6 +88,7 @@ def run_single_scenario_direct(scenario_content, scenario_id):
         print(f"  Running scenario: {scenario_id}")
         
         # Call the function directly instead of subprocess to avoid Unicode issues
+        # NOTE: Database connection is already established by the parent context
         result = run_cashflow_model(
             scenario_file=temp_file_path,
             scenario_id=scenario_id,
@@ -137,10 +110,27 @@ def run_single_scenario_direct(scenario_content, scenario_id):
             os.unlink(temp_file_path)
         return False
 
-def run_sensitivity_analysis_unicode_safe(config_file="config/sensitivity_config.json", 
-                                        sensitivity_prefix="sensitivity_results"):
-    """Run sensitivity analysis without Unicode issues"""
-    print("=== UNICODE-SAFE SENSITIVITY ANALYSIS ===")
+def generate_sensitivity_values(base_value, min_val, max_val, steps):
+    """Generate sensitivity values, excluding the base case"""
+    if steps <= 1:
+        return []
+    
+    # Generate the full range including base case
+    if steps == 2:
+        full_values = [base_value + min_val, base_value + max_val]
+    else:
+        full_values = [base_value + min_val + i * (max_val - min_val) / (steps - 1) for i in range(steps)]
+    
+    # Filter out the base case (allowing for small floating point differences)
+    tolerance = 1e-8
+    sensitivity_values = [v for v in full_values if abs(v - base_value) > tolerance]
+    
+    return sensitivity_values
+
+def run_sensitivity_analysis_optimized(config_file="config/sensitivity_config.json", 
+                                     sensitivity_prefix="sensitivity_results"):
+    """Run sensitivity analysis with optimized database connection"""
+    print("=== OPTIMIZED SENSITIVITY ANALYSIS ===")
     print(f"Results will be stored in: {SENSITIVITY_COLLECTION}")
     
     # Step 1: Clean up existing results
@@ -248,44 +238,39 @@ def run_sensitivity_analysis_unicode_safe(config_file="config/sensitivity_config
     verify_sensitivity_results(output_collection_prefix)
 
 def verify_sensitivity_results(sensitivity_prefix):
-    """Verify sensitivity results in the dedicated collection"""
-    client = None
+    """Verify sensitivity results in the dedicated collection using optimized connection"""
     try:
-        client = get_mongo_client()
-        db = client.get_database()
-        collection = db[SENSITIVITY_COLLECTION]
-        
-        # Check what we have
-        scenario_data = list(collection.find({"scenario_id": {"$regex": f"^{sensitivity_prefix}"}}))
-        
-        if scenario_data:
-            unique_scenarios = len(set(record['scenario_id'] for record in scenario_data))
-            print(f"\n=== VERIFICATION ===")
-            print(f"Total sensitivity records: {len(scenario_data)}")
-            print(f"Unique scenarios: {unique_scenarios}")
+        with mongo_session() as db_mgr:
+            collection = db_mgr.get_collection(SENSITIVITY_COLLECTION)
             
-            # Sample scenarios
-            scenarios = sorted(set(record['scenario_id'] for record in scenario_data))
-            print(f"Sample scenarios:")
-            for scenario in scenarios[:5]:
-                count = sum(1 for r in scenario_data if r['scenario_id'] == scenario)
-                print(f"  {scenario}: {count} records")
+            # Check what we have
+            scenario_data = list(collection.find({"scenario_id": {"$regex": f"^{sensitivity_prefix}"}}))
             
-            if len(scenarios) > 5:
-                print(f"  ... and {len(scenarios) - 5} more scenarios")
-        else:
-            print(f"\nWARNING: No sensitivity data found in {SENSITIVITY_COLLECTION}")
+            if scenario_data:
+                unique_scenarios = len(set(record['scenario_id'] for record in scenario_data))
+                print(f"\n=== VERIFICATION ===")
+                print(f"Total sensitivity records: {len(scenario_data)}")
+                print(f"Unique scenarios: {unique_scenarios}")
+                
+                # Sample scenarios
+                scenarios = sorted(set(record['scenario_id'] for record in scenario_data))
+                print(f"Sample scenarios:")
+                for scenario in scenarios[:5]:
+                    count = sum(1 for r in scenario_data if r['scenario_id'] == scenario)
+                    print(f"  {scenario}: {count} records")
+                
+                if len(scenarios) > 5:
+                    print(f"  ... and {len(scenarios) - 5} more scenarios")
+            else:
+                print(f"\nWARNING: No sensitivity data found in {SENSITIVITY_COLLECTION}")
         
     except Exception as e:
         print(f"Error verifying: {e}")
-    finally:
-        if client:
-            client.close()
 
 if __name__ == '__main__':
     import argparse
     
-    parser = argparse.ArgumentParser(description="Run Unicode-safe sensitivity analysis")
+    parser = argparse.ArgumentParser(description="Run optimized sensitivity analysis")
     parser.add_argument('--config', type=str, default='config/sensitivity_config.json',
                        help='Path to sensitivity config file')
     parser.add_argument('--prefix', type=str, default='sensitivity_results',
@@ -293,4 +278,6 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
-    run_sensitivity_analysis_unicode_safe(args.config, args.prefix)
+    # Use the database lifecycle context manager for the entire sensitivity analysis
+    with database_lifecycle():
+        run_sensitivity_analysis_optimized(args.config, args.prefix)

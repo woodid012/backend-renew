@@ -35,13 +35,19 @@ from src.calculations.depreciation import calculate_d_and_a
 from src.core.output_generator import generate_asset_and_platform_output, export_three_way_financials_to_excel
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr
-from src.core.database import insert_dataframe_to_mongodb, get_mongo_client, clear_base_case_data, clear_all_scenario_data, get_data_from_mongodb
+from src.core.database import (
+    insert_dataframe_to_mongodb, clear_base_case_data, clear_all_scenario_data, 
+    get_data_from_mongodb, database_lifecycle, ensure_connection
+)
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
 
 
 def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=False, replace_data=True):
     """
     Main function to run the cash flow model.
+    
+    NOTE: This function assumes database connection is already established by the caller.
+    Use database_lifecycle context manager when calling this function.
 
     Args:
         scenario_file (str, optional): Path to scenario JSON file
@@ -412,15 +418,17 @@ if __name__ == '__main__':
     # Default behavior is to replace data, unless --append flag is used
     replace_data = not args.append
 
-    final_cashflows_json = run_cashflow_model(
-        scenario_file=args.scenario, 
-        scenario_id=args.scenario_id,
-        replace_data=replace_data
-    )
+    # Use the database lifecycle context manager to manage connection efficiently
+    with database_lifecycle():
+        final_cashflows_json = run_cashflow_model(
+            scenario_file=args.scenario, 
+            scenario_id=args.scenario_id,
+            replace_data=replace_data
+        )
 
-    if args.run_sensitivity:
-        print("\n=== RUNNING SENSITIVITY ANALYSIS ===")
-        from scripts.run_sensitivity_analysis import run_sensitivity_analysis_improved
-        run_sensitivity_analysis_improved()
+        if args.run_sensitivity:
+            print("\n=== RUNNING SENSITIVITY ANALYSIS ===")
+            from scripts.run_sensitivity_analysis import run_sensitivity_analysis_improved
+            run_sensitivity_analysis_improved()
 
-    print(final_cashflows_json)
+        print(final_cashflows_json)
