@@ -153,6 +153,11 @@ def run_sensitivity_analysis_optimized(config_file="config/sensitivity_config.js
     output_collection_prefix = config.get("output_collection_prefix", sensitivity_prefix)
 
     print(f"\nStarting sensitivity analysis with {len(sensitivities)} parameters")
+    print("SENSITIVITY CONFIGURATION:")
+    for param, details in sensitivities.items():
+        print(f"  Parameter: {param}")
+        for key, value in details.items():
+            print(f"    {key}: {value}")
 
     # Calculate total scenarios
     total_scenarios = 0
