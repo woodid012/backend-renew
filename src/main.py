@@ -42,6 +42,178 @@ from src.core.database import (
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
 
 
+def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, updated_capex_df, scenario_id=None):
+    """
+    Generate Asset Output Summary with key metrics for each asset and portfolio total.
+    
+    Args:
+        final_cash_flow (pd.DataFrame): Final cash flow DataFrame
+        irr (float): Portfolio equity IRR
+        asset_irrs (dict): Dictionary of asset IRRs by asset_id
+        ASSETS (list): List of asset dictionaries
+        updated_capex_df (pd.DataFrame): Updated CAPEX DataFrame with debt/equity split
+        scenario_id (str, optional): Scenario identifier
+    
+    Returns:
+        pd.DataFrame: Summary DataFrame
+    """
+    from src.config import MONGO_ASSET_OUTPUT_SUMMARY_COLLECTION
+    from src.core.database import insert_dataframe_to_mongodb
+    import pandas as pd
+    from datetime import datetime
+    
+    print("\n=== GENERATING ASSET OUTPUT SUMMARY ===")
+    
+    summary_records = []
+    
+    # Process each asset
+    for asset in ASSETS:
+        asset_id = asset['id']
+        asset_name = asset.get('name', f'Asset_{asset_id}')
+        
+        # Get asset-specific cash flows
+        asset_cf = final_cash_flow[final_cash_flow['asset_id'] == asset_id].copy()
+        
+        # Extract key dates
+        cons_start = asset.get('constructionStartDate', '')
+        ops_start = asset.get('OperatingStartDate', '')
+        
+        # Calculate operations end date
+        ops_end = ''
+        if ops_start and asset.get('assetLife'):
+            try:
+                ops_start_date = pd.to_datetime(ops_start)
+                asset_life_years = int(asset.get('assetLife', 25))
+                ops_end_date = ops_start_date + pd.DateOffset(years=asset_life_years)
+                ops_end = ops_end_date.strftime('%Y-%m-%d')
+            except:
+                ops_end = ''
+        
+        # Get terminal value from cash flows
+        terminal_value = asset_cf['terminal_value'].sum() if 'terminal_value' in asset_cf.columns else 0.0
+        
+        # Get CAPEX breakdown
+        asset_capex = updated_capex_df[updated_capex_df['asset_id'] == asset_id]
+        total_capex = asset_capex['capex'].sum()
+        total_debt = asset_capex['debt_capex'].sum()
+        total_equity = asset_capex['equity_capex'].sum()
+        
+        # Get asset IRR
+        asset_irr = asset_irrs.get(asset_id)
+        if pd.isna(asset_irr):
+            asset_irr = None
+        
+        # Calculate totals
+        total_revenue = asset_cf['revenue'].sum() if 'revenue' in asset_cf.columns else 0.0
+        total_opex = asset_cf['opex'].sum() if 'opex' in asset_cf.columns else 0.0
+        total_cfads = asset_cf['cfads'].sum() if 'cfads' in asset_cf.columns else 0.0
+        total_equity_cash_flow = asset_cf['equity_cash_flow'].sum() if 'equity_cash_flow' in asset_cf.columns else 0.0
+        
+        summary_record = {
+            'asset_id': asset_id,
+            'asset_name': asset_name,
+            'construction_start_date': cons_start,
+            'operations_start_date': ops_start,
+            'operations_end_date': ops_end,
+            'terminal_value': terminal_value,
+            'total_capex': total_capex,
+            'total_debt': total_debt,
+            'total_equity': total_equity,
+            'equity_irr': asset_irr,
+            'total_revenue': total_revenue,
+            'total_opex': total_opex,
+            'total_cfads': total_cfads,
+            'total_equity_cash_flow': total_equity_cash_flow
+        }
+        
+        summary_records.append(summary_record)
+        print(f"  Asset {asset_name}: IRR {asset_irr:.2%}" if asset_irr else f"  Asset {asset_name}: IRR N/A")
+    
+    # Add Platform/Portfolio summary row
+    portfolio_asset_id = len(ASSETS) + 1
+    
+    # Calculate portfolio totals
+    portfolio_terminal_value = final_cash_flow['terminal_value'].sum() if 'terminal_value' in final_cash_flow.columns else 0.0
+    portfolio_capex = updated_capex_df['capex'].sum()
+    portfolio_debt = updated_capex_df['debt_capex'].sum()
+    portfolio_equity = updated_capex_df['equity_capex'].sum()
+    portfolio_revenue = final_cash_flow['revenue'].sum() if 'revenue' in final_cash_flow.columns else 0.0
+    portfolio_opex = final_cash_flow['opex'].sum() if 'opex' in final_cash_flow.columns else 0.0
+    portfolio_cfads = final_cash_flow['cfads'].sum() if 'cfads' in final_cash_flow.columns else 0.0
+    portfolio_equity_cash_flow = final_cash_flow['equity_cash_flow'].sum() if 'equity_cash_flow' in final_cash_flow.columns else 0.0
+    
+    # Get earliest construction start and latest operations end for portfolio
+    earliest_cons_start = ''
+    latest_ops_start = ''
+    latest_ops_end = ''
+    
+    try:
+        cons_dates = [pd.to_datetime(asset.get('constructionStartDate')) for asset in ASSETS 
+                     if asset.get('constructionStartDate')]
+        if cons_dates:
+            earliest_cons_start = min(cons_dates).strftime('%Y-%m-%d')
+        
+        ops_dates = [pd.to_datetime(asset.get('OperatingStartDate')) for asset in ASSETS 
+                    if asset.get('OperatingStartDate')]
+        if ops_dates:
+            latest_ops_start = max(ops_dates).strftime('%Y-%m-%d')
+        
+        # Calculate latest operations end
+        ops_end_dates = []
+        for asset in ASSETS:
+            if asset.get('OperatingStartDate') and asset.get('assetLife'):
+                ops_start_date = pd.to_datetime(asset['OperatingStartDate'])
+                asset_life_years = int(asset.get('assetLife', 25))
+                ops_end_date = ops_start_date + pd.DateOffset(years=asset_life_years)
+                ops_end_dates.append(ops_end_date)
+        
+        if ops_end_dates:
+            latest_ops_end = max(ops_end_dates).strftime('%Y-%m-%d')
+    except:
+        pass
+    
+    portfolio_record = {
+        'asset_id': portfolio_asset_id,
+        'asset_name': 'Platform',
+        'construction_start_date': earliest_cons_start,
+        'operations_start_date': latest_ops_start,
+        'operations_end_date': latest_ops_end,
+        'terminal_value': portfolio_terminal_value,
+        'total_capex': portfolio_capex,
+        'total_debt': portfolio_debt,
+        'total_equity': portfolio_equity,
+        'equity_irr': irr if not pd.isna(irr) else None,
+        'total_revenue': portfolio_revenue,
+        'total_opex': portfolio_opex,
+        'total_cfads': portfolio_cfads,
+        'total_equity_cash_flow': portfolio_equity_cash_flow
+    }
+    
+    summary_records.append(portfolio_record)
+    print(f"  Platform: IRR {irr:.2%}" if not pd.isna(irr) else f"  Platform: IRR N/A")
+    
+    # Create DataFrame
+    summary_df = pd.DataFrame(summary_records)
+    
+    # Write to MongoDB
+    try:
+        print("Writing asset output summary to MongoDB...")
+        insert_dataframe_to_mongodb(
+            summary_df, 
+            MONGO_ASSET_OUTPUT_SUMMARY_COLLECTION, 
+            scenario_id=scenario_id,
+            replace_scenario=True
+        )
+        print(f"Successfully wrote {len(summary_df)} records to {MONGO_ASSET_OUTPUT_SUMMARY_COLLECTION}")
+    except Exception as e:
+        print(f"Error writing asset output summary to MongoDB: {e}")
+        raise
+    
+    print(f"=== ASSET OUTPUT SUMMARY COMPLETE ===\n")
+    
+    return summary_df
+
+
 def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=False, replace_data=True):
     """
     Main function to run the cash flow model.
@@ -417,6 +589,9 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     # Only generate asset inputs summary if not running sensitivity analysis
     if not run_sensitivity:
         generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, asset_irrs, asset_type_map, total_portfolio_capex, total_portfolio_debt, portfolio_gearing, scenario_id=scenario_id)
+
+    # Generate Asset Output Summary
+    generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, updated_capex_df, scenario_id=scenario_id)
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
     print(f"Equity IRR: {irr:.2%}" if not pd.isna(irr) else "Equity IRR: Could not calculate")

@@ -33,6 +33,7 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
 
     # Calculate key cash flow lines
     cash_flow['cfads'] = cash_flow['revenue'] - cash_flow['opex']
+    cash_flow['ebitda'] = cash_flow['cfads']
     # Calculate debt service for DSCR
     cash_flow['debt_service'] = cash_flow['interest'] + cash_flow['principal']
     cash_flow['debt_service'] = pd.to_numeric(cash_flow['debt_service'], errors='coerce').fillna(0)
@@ -41,7 +42,7 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
 
     # --- TAX CALCULATION ---
     # Calculate Earnings Before Tax (EBT)
-    cash_flow['ebit'] = cash_flow['cfads'] - cash_flow['d_and_a'] # Note: This is a simplified EBIT for tax purposes
+    cash_flow['ebit'] = cash_flow['ebitda'] - cash_flow['d_and_a'] # Note: This is a simplified EBIT for tax purposes
     cash_flow['ebt'] = cash_flow['ebit'] - cash_flow['interest']
     
     # Calculate tax expense using the new function with accumulated tax losses
@@ -181,5 +182,10 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
                 cash_flow.loc[i, 'distributions'] = cash_flow.loc[i, 'dividends'] + cash_flow.loc[i, 'redistributed_capital']
 
     # --- END DISTRIBUTION CALCULATION ---
+
+    # --- CUMULATIVE DISTRIBUTIONS ---
+    cash_flow['total_dividends'] = cash_flow.groupby('asset_id')['dividends'].cumsum()
+    cash_flow['total_redistributed_capital'] = cash_flow.groupby('asset_id')['redistributed_capital'].cumsum()
+    cash_flow['total_distributions'] = cash_flow.groupby('asset_id')['distributions'].cumsum()
 
     return cash_flow
