@@ -34,7 +34,7 @@ from src.calculations.cashflow import aggregate_cashflows
 from src.calculations.depreciation import calculate_d_and_a
 from src.core.output_generator import generate_asset_and_platform_output, export_three_way_financials_to_excel
 from src.core.summary_generator import generate_summary_data
-from src.core.equity_irr import calculate_equity_irr
+from src.core.equity_irr import calculate_equity_irr, calculate_asset_equity_irrs
 from src.core.database import (
     insert_dataframe_to_mongodb, clear_base_case_data, clear_all_scenario_data, 
     get_data_from_mongodb, database_lifecycle, ensure_connection
@@ -220,6 +220,8 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     if total_portfolio_capex > 0:
         portfolio_gearing = total_portfolio_debt / total_portfolio_capex
         print(f"\nPORTFOLIO TOTAL: CAPEX ${total_portfolio_capex:,.0f}M = Debt ${total_portfolio_debt:,.0f}M ({portfolio_gearing:.1%}) + Equity ${total_portfolio_equity:,.0f}M ({1-portfolio_gearing:.1%})")
+    else:
+        portfolio_gearing = 0
     print("========================\n")
     
     # Calculate Equity IRR - ONLY for Construction + Operations + Terminal periods
@@ -249,6 +251,13 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     else:
         irr = float('nan')
         print("Warning: No Construction + Operations periods found")
+
+    # Calculate individual asset IRRs
+    print("=== CALCULATING INDIVIDUAL ASSET IRRs ===")
+    asset_irrs = calculate_asset_equity_irrs(final_cash_flow)
+
+    # Calculate missing variables for the summary function
+    asset_type_map = {asset['id']: asset.get('assetType', 'unknown') for asset in ASSETS}
 
     # Generate summary data
     summary_data = generate_summary_data(final_cash_flow)
@@ -289,7 +298,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         print("Model completed but data not saved to database!")
         raise  # Re-raise the error so user knows something went wrong
 
-    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, scenario_id=None):
+    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, asset_irrs, asset_type_map, total_portfolio_capex, total_portfolio_debt, portfolio_gearing, scenario_id=None):
         # Determine the actual output directory based on scenario_id
         if scenario_id:
             actual_output_dir = os.path.join(output_dir, 'scenarios', scenario_id)
@@ -322,9 +331,13 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
                     flat_asset_data[f'cost_{k}'] = v
                 
                 # Include debt sizing results
-                debt_results = debt_summary.get(asset_id, {})
+                debt_results = debt_summary.get(asset_name, {})
                 for k, v in debt_results.items():
                     flat_asset_data[f'debt_{k}'] = v
+                
+                # Include asset IRR
+                asset_irr = asset_irrs.get(asset_id, float('nan'))
+                flat_asset_data['asset_equity_irr'] = asset_irr
                 
                 asset_summaries.append(flat_asset_data)
             
@@ -358,8 +371,13 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
             portfolio_debt_df.to_excel(writer, sheet_name='Portfolio Debt Summary')
 
             # Sheet 4: Equity IRR
-            irr_df = pd.DataFrame([{'Equity IRR': irr_value}])
+            irr_df = pd.DataFrame([{'Portfolio_Equity_IRR': irr_value}])
             irr_df.to_excel(writer, sheet_name='Equity IRR', index=False)
+            
+            # Sheet 5: Asset IRRs
+            asset_irr_df = pd.DataFrame.from_dict(asset_irrs, orient='index', columns=['Asset_Equity_IRR'])
+            asset_irr_df.index.name = 'Asset ID'
+            asset_irr_df.to_excel(writer, sheet_name='Asset IRRs')
             
         print(f"Saved asset inputs summary to {output_path}")
 
@@ -398,7 +416,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     
     # Only generate asset inputs summary if not running sensitivity analysis
     if not run_sensitivity:
-        generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, scenario_id=scenario_id)
+        generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, asset_irrs, asset_type_map, total_portfolio_capex, total_portfolio_debt, portfolio_gearing, scenario_id=scenario_id)
 
     print("\n=== CASHFLOW MODEL COMPLETE ===")
     print(f"Equity IRR: {irr:.2%}" if not pd.isna(irr) else "Equity IRR: Could not calculate")

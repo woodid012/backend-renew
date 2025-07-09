@@ -138,7 +138,9 @@ def get_asset_cashflows():
     
     try:
         asset_id = request.args.get('asset_id')
-        
+        variables_str = request.args.get('variables')
+        granularity = request.args.get('granularity') # 'monthly', 'quarterly', 'yearly'
+
         query = {}
         if asset_id:
             try:
@@ -147,10 +149,53 @@ def get_asset_cashflows():
             except ValueError:
                 query = {'asset_id': asset_id}
         
+        # Fetch data from MongoDB
         data = get_data_from_mongodb(collection_name=MONGO_ASSET_OUTPUT_COLLECTION, query=query)
         
-        # Convert ObjectId to string for JSON serialization
-        return json.loads(json_util.dumps(data)), 200
+        # Convert to DataFrame for easier processing
+        df = pd.DataFrame(data)
+
+        if not df.empty:
+            # Ensure 'date' column is datetime objects
+            df['date'] = pd.to_datetime(df['date'])
+            
+            # Filter variables if specified
+            if variables_str:
+                variables = [v.strip() for v in variables_str.split(',')]
+                # Always include 'date' and 'asset_id' for grouping/identification
+                cols_to_keep = list(set(['date', 'asset_id'] + variables))
+                df = df[cols_to_keep]
+
+            # Aggregate by granularity
+            if granularity == 'quarterly':
+                df['period'] = df['date'].dt.to_period('Q').dt.start_time
+            elif granularity == 'yearly':
+                df['period'] = df['date'].dt.to_period('Y').dt.start_time
+            else: # Default to monthly or if 'monthly' is explicitly passed
+                df['period'] = df['date'].dt.to_period('M').dt.start_time
+            
+            # Group by asset_id and the new 'period' column, summing numerical values
+            # Exclude non-numeric columns from sum, like 'period_type' if it exists
+            numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
+            
+            # Ensure 'asset_id' is not summed if it's numeric
+            if 'asset_id' in numeric_cols:
+                numeric_cols.remove('asset_id')
+
+            # Group and sum only numeric columns, keep 'asset_id' and 'period' as grouping keys
+            grouped_df = df.groupby(['asset_id', 'period'])[numeric_cols].sum().reset_index()
+            
+            # Rename 'period' back to 'date' for consistency with frontend expectation
+            grouped_df = grouped_df.rename(columns={'period': 'date'})
+
+            # Convert dates back to string for JSON serialization
+            grouped_df['date'] = grouped_df['date'].dt.strftime('%Y-%m-%d')
+            
+            result_data = grouped_df.to_dict(orient='records')
+        else:
+            result_data = []
+
+        return jsonify(result_data), 200
     except Exception as e:
         print(f"Error in get_asset_cashflows: {e}")
         return jsonify({
@@ -175,10 +220,21 @@ def get_asset_ids():
             }), 500
             
         db = client[MONGO_DB_NAME]
-        collection = db[MONGO_ASSET_OUTPUT_COLLECTION]
-        asset_ids = collection.distinct('asset_id')
+        
+        # Fetch asset_id and asset_name from ASSET_inputs_summary_collection
+        inputs_collection = db[MONGO_ASSET_INPUTS_SUMMARY_COLLECTION]
+        asset_info = inputs_collection.find({}, {'asset_id': 1, 'asset_name': 1, '_id': 0}).to_list(length=None)
+        
+        # Ensure unique asset_id and name pairs
+        unique_assets = {}
+        for asset in asset_info:
+            if 'asset_id' in asset and 'asset_name' in asset:
+                unique_assets[asset['asset_id']] = {'_id': asset['asset_id'], 'name': asset['asset_name']}
+        
+        asset_list = list(unique_assets.values())
+        
         client.close()
-        return jsonify(asset_ids), 200
+        return jsonify(asset_list), 200
     except Exception as e:
         return jsonify({
             "status": "error", 

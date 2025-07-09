@@ -299,3 +299,49 @@ def calculate_project_irr(cash_flow_df):
     else:
         print("Could not calculate Project XIRR")
         return float('nan')
+
+def calculate_asset_equity_irrs(final_cash_flow_df):
+    """
+    Calculates the Equity IRR for each unique asset in the final_cash_flow_df.
+
+    Args:
+        final_cash_flow_df (pd.DataFrame): The consolidated cash flow DataFrame
+                                           with 'date', 'asset_id', and 'equity_cash_flow' columns.
+
+    Returns:
+        dict: A dictionary where keys are asset_ids and values are their Equity IRRs.
+              Returns NaN for assets where IRR cannot be calculated.
+    """
+    asset_irrs = {}
+    if 'asset_id' not in final_cash_flow_df.columns:
+        print("Warning: 'asset_id' column not found in cash flow DataFrame. Cannot calculate asset-level IRRs.")
+        return asset_irrs
+
+    unique_assets = final_cash_flow_df['asset_id'].unique()
+    print(f"Calculating asset-level IRRs for {len(unique_assets)} assets...")
+
+    for asset_id in unique_assets:
+        # Filter cash flows for the current asset
+        asset_df = final_cash_flow_df[final_cash_flow_df['asset_id'] == asset_id].copy()
+
+        # Filter for Construction ('C') and Operations ('O') periods, and non-zero equity cash flows
+        # This ensures consistency with the portfolio IRR calculation in main.py
+        if 'period_type' in asset_df.columns:
+            co_periods_df = asset_df[asset_df['period_type'].isin(['C', 'O'])].copy()
+        else:
+            # If period_type is not available, use all data for the asset
+            co_periods_df = asset_df.copy()
+
+        equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow'] != 0].copy()
+
+        if not equity_irr_df.empty:
+            # Group by date to get total equity cash flows for this asset for each date
+            equity_irr_summary = equity_irr_df.groupby('date')['equity_cash_flow'].sum().reset_index()
+            irr = calculate_equity_irr(equity_irr_summary)
+            asset_irrs[asset_id] = irr
+            print(f"  Asset {asset_id} IRR: {irr:.2%}" if not pd.isna(irr) else f"  Asset {asset_id} IRR: Could not calculate")
+        else:
+            asset_irrs[asset_id] = float('nan')
+            print(f"  Asset {asset_id} IRR: No equity cash flows found")
+
+    return asset_irrs

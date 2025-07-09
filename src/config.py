@@ -43,6 +43,9 @@ MONGO_SENSITIVITY_PNL_COLLECTION = 'SENS_3WAY_P&L'
 MONGO_SENSITIVITY_CASH_COLLECTION = 'SENS_3WAY_CASH'
 MONGO_SENSITIVITY_BS_COLLECTION = 'SENS_3WAY_BS'
 
+# New Summary Collection
+MONGO_ASSET_OUTPUT_SUMMARY_COLLECTION = 'ASSET_Output_Summary'
+
 # Debt Sizing Options
 # 'dscr': Debt is sized based on Debt Service Coverage Ratio (DSCR).
 # 'annuity': Debt is sized based on a fixed annuity payment (traditional approach).
