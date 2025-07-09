@@ -157,12 +157,19 @@ def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str, scenario
         with mongo_session() as db_mgr:
             collection = db_mgr.get_collection(collection_name)
 
-            # If replace_scenario is True and scenario_id is provided, delete existing records first
-            if replace_scenario and scenario_id:
-                existing_count = collection.count_documents({"scenario_id": scenario_id})
+            # If replace_scenario is True, delete existing records first based on scenario_id or base case
+            if replace_scenario:
+                if scenario_id:
+                    # Logic for specific scenario_id
+                    query = {"scenario_id": scenario_id}
+                else:
+                    # Logic for base case (scenario_id is None or not present)
+                    query = {"$or": [{"scenario_id": {"$exists": False}}, {"scenario_id": None}]}
+                
+                existing_count = collection.count_documents(query)
                 if existing_count > 0:
-                    print(f"Replacing {existing_count} existing records for scenario '{scenario_id}' in '{collection_name}'")
-                    delete_result = collection.delete_many({"scenario_id": scenario_id})
+                    print(f"Replacing {existing_count} existing records for {'scenario ' + scenario_id if scenario_id else 'base case'} in '{collection_name}'")
+                    delete_result = collection.delete_many(query)
                     print(f"Deleted {delete_result.deleted_count} existing records")
 
             # Convert DataFrame to records

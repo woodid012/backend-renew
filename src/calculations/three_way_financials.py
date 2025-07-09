@@ -27,7 +27,7 @@ def generate_pnl(cash_flow_df):
     pnl['EBIT'] = pnl['revenue'] - pnl['opex'] - pnl['depreciation']
     pnl['EBT'] = pnl['EBIT'] - pnl['interest']
     pnl['Net_Income'] = pnl['EBT'] - pnl['tax_expense']
-    return pnl[['date', 'asset_id', 'revenue', 'opex', 'depreciation', 'EBIT', 'interest', 'EBT', 'tax_expense', 'Net_Income']]
+    return pnl[['date', 'asset_id', 'revenue', 'opex', 'ebitda', 'depreciation', 'EBIT', 'interest', 'EBT', 'tax_expense', 'Net_Income']]
 
 def generate_cash_flow_statement(pnl_df, cash_flow_df):
     """
