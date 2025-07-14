@@ -1,3 +1,5 @@
+# src/calculations/cashflow.py
+
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 from ..config import ENABLE_TERMINAL_VALUE, TAX_RATE, MIN_CASH_BALANCE_FOR_DISTRIBUTION
@@ -56,7 +58,14 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     # Initialize terminal_value column
     cash_flow['terminal_value'] = 0.0
     
-    cash_flow['equity_cash_flow'] = cash_flow['cfads'] - cash_flow['interest'] - cash_flow['principal'] - cash_flow['equity_capex'] - cash_flow['tax_expense']
+    # Calculate Equity Cash Flow BEFORE distributions
+    cash_flow['equity_cash_flow_pre_distributions'] = (
+        cash_flow['cfads'] - 
+        cash_flow['interest'] - 
+        cash_flow['principal'] - 
+        cash_flow['equity_capex'] - 
+        cash_flow['tax_expense']
+    )
 
     # Equity Injection for Cash Flow
     cash_flow['equity_injection'] = cash_flow['equity_capex']
@@ -87,9 +96,10 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
                             (cash_flow['asset_id'] == asset_id) & (cash_flow['date'] == terminal_value_date),
                             'terminal_value'
                         ] = asset_tv
+                        # Add terminal value to pre-distributions equity cash flow
                         cash_flow.loc[
                             (cash_flow['asset_id'] == asset_id) & (cash_flow['date'] == terminal_value_date),
-                            'equity_cash_flow'
+                            'equity_cash_flow_pre_distributions'
                         ] += asset_tv
 
     # --- BALANCE SHEET CALCULATION ---
@@ -108,84 +118,131 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     # This assumes all equity_capex is share capital. Adjust if there are other equity sources.
     cash_flow['share_capital'] = cash_flow.groupby('asset_id')['equity_capex'].cumsum()
 
-    # Retained Earnings: Cumulative Net Income
-    cash_flow['retained_earnings'] = cash_flow.groupby('asset_id')['net_income'].cumsum()
+    # Retained Earnings: Cumulative Net Income minus cumulative distributions
+    cash_flow['retained_earnings'] = 0.0  # Initialize, will be calculated after distributions
 
-    # Cash: Cumulative sum of all cash movements
-    # Starting cash is assumed to be 0. Adjust if there's a different initial balance.
-    cash_flow['cash'] = (
-        cash_flow['revenue']
-        - cash_flow['opex']
-        - cash_flow['capex']
-        + cash_flow['drawdowns']
-        + cash_flow['equity_injection']
-        - cash_flow['interest']
-        - cash_flow['principal']
-        - cash_flow['tax_expense']
-    ).groupby(cash_flow['asset_id']).cumsum()
+    # --- DISTRIBUTION CALCULATION (FIXED) ---
+    cash_flow['distributions'] = 0.0
+    cash_flow['dividends'] = 0.0
+    cash_flow['redistributed_capital'] = 0.0
 
+    # Initialize cash balance calculation
+    cash_flow['cash'] = 0.0
+
+    # Process each asset separately to maintain proper cash balance tracking
+    for asset_id in cash_flow['asset_id'].unique():
+        asset_mask = cash_flow['asset_id'] == asset_id
+        asset_indices = cash_flow[asset_mask].index.tolist()
+        
+        running_cash_balance = 0.0
+        running_retained_earnings = 0.0
+        running_share_capital = 0.0
+        
+        for idx in asset_indices:
+            row = cash_flow.loc[idx]
+            
+            # Update running balances from this period's activities
+            # Cash increases from: revenue, debt drawdowns, equity injections
+            # Cash decreases from: opex, capex, interest, principal, taxes
+            period_cash_change = (
+                row['revenue'] - 
+                row['opex'] - 
+                row['capex'] + 
+                row['drawdowns'] + 
+                row['equity_injection'] - 
+                row['interest'] - 
+                row['principal'] - 
+                row['tax_expense']
+            )
+            
+            running_cash_balance += period_cash_change
+            running_retained_earnings += row['net_income']  # Add net income before distributions
+            running_share_capital += row['equity_injection']  # Track share capital
+            
+            # Distribution logic - only on quarter ends (March, June, September, December)
+            distributable_amount = 0.0
+            if row['date'].month in [3, 6, 9, 12]:
+                # Available cash for distribution (keep minimum balance)
+                available_cash = max(0, running_cash_balance - MIN_CASH_BALANCE_FOR_DISTRIBUTION)
+                
+                # Only distribute if we have positive equity cash flow for the quarter
+                # Calculate quarterly equity cash flow by looking at the last 3 months
+                quarter_start_idx = max(0, asset_indices.index(idx) - 2)  # Look back 3 months (including current)
+                quarter_indices = asset_indices[quarter_start_idx:asset_indices.index(idx) + 1]
+                quarterly_equity_cf = sum(cash_flow.loc[i, 'equity_cash_flow_pre_distributions'] for i in quarter_indices)
+                
+                if quarterly_equity_cf > 0 and available_cash > 0:
+                    # Distribute the minimum of available cash and quarterly equity cash flow
+                    distributable_amount = min(available_cash, quarterly_equity_cf)
+                    
+                    # Apply distribution hierarchy: dividends first (from retained earnings), then capital return
+                    dividend_amount = 0.0
+                    capital_return_amount = 0.0
+                    
+                    if running_retained_earnings > 0:
+                        dividend_amount = min(distributable_amount, running_retained_earnings)
+                        running_retained_earnings -= dividend_amount
+                        running_cash_balance -= dividend_amount
+                        
+                        # Remaining amount can be capital return
+                        remaining_distributable = distributable_amount - dividend_amount
+                        if remaining_distributable > 0 and running_share_capital > 0:
+                            capital_return_amount = min(remaining_distributable, running_share_capital)
+                            running_share_capital -= capital_return_amount
+                            running_cash_balance -= capital_return_amount
+                    else:
+                        # No retained earnings, distribute as capital return if available
+                        if running_share_capital > 0:
+                            capital_return_amount = min(distributable_amount, running_share_capital)
+                            running_share_capital -= capital_return_amount
+                            running_cash_balance -= capital_return_amount
+                    
+                    # Record distributions
+                    cash_flow.loc[idx, 'dividends'] = dividend_amount
+                    cash_flow.loc[idx, 'redistributed_capital'] = capital_return_amount
+                    cash_flow.loc[idx, 'distributions'] = dividend_amount + capital_return_amount
+            
+            # Update balance sheet items
+            cash_flow.loc[idx, 'cash'] = running_cash_balance
+            cash_flow.loc[idx, 'retained_earnings'] = running_retained_earnings
+            cash_flow.loc[idx, 'share_capital'] = running_share_capital
+
+    # Calculate final equity cash flow (after distributions)
+    cash_flow['equity_cash_flow'] = cash_flow['equity_cash_flow_pre_distributions'] - cash_flow['distributions']
+
+    # --- COMPLETE BALANCE SHEET ---
     # Net Assets and Equity
     cash_flow['total_assets'] = cash_flow['cash'] + cash_flow['fixed_assets']
     cash_flow['total_liabilities'] = cash_flow['debt']
     cash_flow['net_assets'] = cash_flow['total_assets'] - cash_flow['total_liabilities']
     cash_flow['equity'] = cash_flow['share_capital'] + cash_flow['retained_earnings']
 
-    # --- END BALANCE SHEET CALCULATION ---
-
-    # --- DISTRIBUTION CALCULATION ---
-    cash_flow['distributions'] = 0.0
-    cash_flow['dividends'] = 0.0
-    cash_flow['redistributed_capital'] = 0.0
-
-    # Sort again to ensure correct iteration order
-    cash_flow = cash_flow.sort_values(by=['asset_id', 'date']).reset_index(drop=True)
-
-    for i, row in cash_flow.iterrows():
-        # Distribution conditions:
-        # 1. Cash balance > MIN_CASH_BALANCE_FOR_DISTRIBUTION
-        # 2. Retained Earnings > 0 (for dividends) or Share Capital > 0 (for capital redistribution)
-        # 3. NPAT (Net Income) > 0 for the period
-
-        # Only consider distributions at the end of a quarter
-        if row['date'].month in [3, 6, 9, 12]:
-            # Calculate distributable amount from cash perspective
-            distributable_from_cash = max(0, row['cash'] - MIN_CASH_BALANCE_FOR_DISTRIBUTION)
-
-            # Check core conditions for any distribution
-            if (distributable_from_cash > 0 and
-                    row['net_income'] > 0):
-
-                # --- Attempt to pay Dividends first (from Retained Earnings) ---
-                dividend_amount = 0.0
-                if row['retained_earnings'] > 0:
-                    # Max dividend is limited by cash, retained earnings, and monthly NPAT
-                    dividend_amount = min(distributable_from_cash, row['retained_earnings'], row['net_income'])
-                    
-                    if dividend_amount > 0:
-                        cash_flow.loc[i, 'dividends'] = dividend_amount
-                        cash_flow.loc[i, 'cash'] -= dividend_amount
-                        cash_flow.loc[i, 'retained_earnings'] -= dividend_amount
-                        distributable_from_cash -= dividend_amount # Reduce cash available for further distribution
-
-                # --- Then, attempt to pay Redistributed Capital (if retained earnings are exhausted or insufficient) ---
-                redistributed_capital_amount = 0.0
-                if distributable_from_cash > 0 and row['share_capital'] > 0:
-                    # Max redistributed capital is limited by remaining cash and share capital
-                    redistributed_capital_amount = min(distributable_from_cash, row['share_capital'])
-                    
-                    if redistributed_capital_amount > 0:
-                        cash_flow.loc[i, 'redistributed_capital'] = redistributed_capital_amount
-                        cash_flow.loc[i, 'cash'] -= redistributed_capital_amount
-                        cash_flow.loc[i, 'share_capital'] -= redistributed_capital_amount
-
-                # Total distributions for the period
-                cash_flow.loc[i, 'distributions'] = cash_flow.loc[i, 'dividends'] + cash_flow.loc[i, 'redistributed_capital']
-
-    # --- END DISTRIBUTION CALCULATION ---
-
     # --- CUMULATIVE DISTRIBUTIONS ---
     cash_flow['total_dividends'] = cash_flow.groupby('asset_id')['dividends'].cumsum()
     cash_flow['total_redistributed_capital'] = cash_flow.groupby('asset_id')['redistributed_capital'].cumsum()
     cash_flow['total_distributions'] = cash_flow.groupby('asset_id')['distributions'].cumsum()
+
+    # --- CASH FLOW STATEMENT COMPONENTS ---
+    # Operating Cash Flow = CFADS - Tax
+    cash_flow['operating_cash_flow'] = cash_flow['cfads'] - cash_flow['tax_expense']
+    
+    # Investing Cash Flow = -CAPEX + Terminal Value (when received)
+    cash_flow['investing_cash_flow'] = -cash_flow['capex'] + cash_flow['terminal_value']
+    
+    # Financing Cash Flow = Debt Drawdowns - Interest - Principal + Equity Injection - Distributions
+    cash_flow['financing_cash_flow'] = (
+        cash_flow['drawdowns'] - 
+        cash_flow['interest'] - 
+        cash_flow['principal'] + 
+        cash_flow['equity_injection'] - 
+        cash_flow['distributions']
+    )
+    
+    # Net Cash Flow = Sum of all three
+    cash_flow['net_cash_flow'] = (
+        cash_flow['operating_cash_flow'] + 
+        cash_flow['investing_cash_flow'] + 
+        cash_flow['financing_cash_flow']
+    )
 
     return cash_flow

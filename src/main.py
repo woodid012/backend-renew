@@ -397,18 +397,26 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     print("========================\n")
     
     # Calculate Equity IRR - ONLY for Construction + Operations + Terminal periods
+ 
     print("=== CALCULATING EQUITY IRR ===")
     
     # Filter cash flows to include only Construction ('C') and Operations ('O') periods
     co_periods_df = final_cash_flow[final_cash_flow['period_type'].isin(['C', 'O'])].copy()
     
     if not co_periods_df.empty:
-        # Further filter for non-zero equity cash flows
-        equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow'] != 0].copy()
+        # CRITICAL FIX: Use equity_cash_flow_pre_distributions for IRR calculation
+        # This represents the cash available to equity before accounting distributions
+        # IRR should reflect investor returns, not internal distribution accounting
+        
+        # Filter for non-zero equity cash flows (pre-distributions)
+        equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow_pre_distributions'] != 0].copy()
         
         if not equity_irr_df.empty:
             # Group by date to get total equity cash flows across all assets for each date
-            equity_irr_summary = equity_irr_df.groupby('date')['equity_cash_flow'].sum().reset_index()
+            equity_irr_summary = equity_irr_df.groupby('date')['equity_cash_flow_pre_distributions'].sum().reset_index()
+            
+            # Rename column for IRR function compatibility
+            equity_irr_summary = equity_irr_summary.rename(columns={'equity_cash_flow_pre_distributions': 'equity_cash_flow'})
             
             # Calculate XIRR using the updated function with dates
             irr = calculate_equity_irr(equity_irr_summary)
@@ -417,6 +425,7 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
                 print("Warning: Could not calculate Equity IRR")
             else:
                 print(f"Equity IRR: {irr:.2%}")
+                print(f"  Based on equity_cash_flow_pre_distributions (cash available to equity)")
         else:
             irr = float('nan')
             print("Warning: No equity cash flows found")
@@ -424,9 +433,54 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
         irr = float('nan')
         print("Warning: No Construction + Operations periods found")
 
-    # Calculate individual asset IRRs
+    # Calculate individual asset IRRs - ALSO FIXED
     print("=== CALCULATING INDIVIDUAL ASSET IRRs ===")
-    asset_irrs = calculate_asset_equity_irrs(final_cash_flow)
+    
+    # Fix the asset IRR calculation function as well
+    def calculate_asset_equity_irrs_fixed(final_cash_flow_df):
+        """
+        Calculates the Equity IRR for each unique asset using equity_cash_flow_pre_distributions.
+        """
+        asset_irrs = {}
+        if 'asset_id' not in final_cash_flow_df.columns:
+            print("Warning: 'asset_id' column not found in cash flow DataFrame. Cannot calculate asset-level IRRs.")
+            return asset_irrs
+
+        unique_assets = final_cash_flow_df['asset_id'].unique()
+        print(f"Calculating asset-level IRRs for {len(unique_assets)} assets...")
+
+        for asset_id in unique_assets:
+            # Filter cash flows for the current asset
+            asset_df = final_cash_flow_df[final_cash_flow_df['asset_id'] == asset_id].copy()
+
+            # Filter for Construction ('C') and Operations ('O') periods
+            if 'period_type' in asset_df.columns:
+                co_periods_df = asset_df[asset_df['period_type'].isin(['C', 'O'])].copy()
+            else:
+                co_periods_df = asset_df.copy()
+
+            # Use equity_cash_flow_pre_distributions for consistency
+            equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow_pre_distributions'] != 0].copy()
+
+            if not equity_irr_df.empty:
+                # Group by date and sum equity cash flows (pre-distributions)
+                equity_irr_summary = equity_irr_df.groupby('date')['equity_cash_flow_pre_distributions'].sum().reset_index()
+                
+                # Rename for function compatibility
+                equity_irr_summary = equity_irr_summary.rename(columns={'equity_cash_flow_pre_distributions': 'equity_cash_flow'})
+                
+                irr = calculate_equity_irr(equity_irr_summary)
+                asset_irrs[asset_id] = irr
+                print(f"  Asset {asset_id} IRR: {irr:.2%}" if not pd.isna(irr) else f"  Asset {asset_id} IRR: Could not calculate")
+            else:
+                asset_irrs[asset_id] = float('nan')
+                print(f"  Asset {asset_id} IRR: No equity cash flows found")
+
+        return asset_irrs
+    
+    # Use the fixed function
+    asset_irrs = calculate_asset_equity_irrs_fixed(final_cash_flow)
+
 
     # Calculate missing variables for the summary function
     asset_type_map = {asset['id']: asset.get('assetType', 'unknown') for asset in ASSETS}

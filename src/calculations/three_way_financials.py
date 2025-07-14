@@ -1,3 +1,5 @@
+# src/calculations/three_way_financials.py
+
 import pandas as pd
 
 def aggregate_timeseries(df, freq='QTR'):
@@ -20,30 +22,95 @@ def aggregate_timeseries(df, freq='QTR'):
 
 def generate_pnl(cash_flow_df):
     """
-    Generates a simple Profit & Loss (P&L) statement.
-    Assumes cash_flow_df contains 'revenue', 'opex', 'depreciation', 'interest', 'tax_expense'.
+    Generates a Profit & Loss (P&L) statement.
     """
     pnl = cash_flow_df.copy()
-    pnl['EBIT'] = pnl['revenue'] - pnl['opex'] - pnl['depreciation']
-    pnl['EBT'] = pnl['EBIT'] - pnl['interest']
-    pnl['Net_Income'] = pnl['EBT'] - pnl['tax_expense']
-    return pnl[['date', 'asset_id', 'revenue', 'opex', 'ebitda', 'depreciation', 'EBIT', 'interest', 'EBT', 'tax_expense', 'Net_Income']]
+    
+    # Revenue and Operating Expenses
+    pnl['gross_profit'] = pnl['revenue'] - pnl['opex']
+    
+    # EBITDA (should be same as CFADS for this model)
+    pnl['ebitda'] = pnl['revenue'] - pnl['opex']
+    
+    # EBIT (Earnings Before Interest and Tax)
+    pnl['ebit'] = pnl['ebitda'] - pnl['d_and_a']
+    
+    # EBT (Earnings Before Tax)
+    pnl['ebt'] = pnl['ebit'] - pnl['interest']
+    
+    # Net Income
+    pnl['net_income_calc'] = pnl['ebt'] - pnl['tax_expense']
+    
+    return pnl[['date', 'asset_id', 'revenue', 'opex', 'gross_profit', 'ebitda', 'd_and_a', 'ebit', 'interest', 'ebt', 'tax_expense', 'net_income']]
 
-def generate_cash_flow_statement(pnl_df, cash_flow_df):
+def generate_cash_flow_statement(cash_flow_df):
     """
-    Generates a simple Cash Flow Statement.
-    Assumes pnl_df contains 'Net_Income' and cash_flow_df contains 'depreciation', 'capex', 'principal', 'equity_cash_flow'.
+    Generates a Cash Flow Statement using the pre-calculated components.
     """
-    cf_statement = pnl_df.copy()
-    cf_statement['Net_Income'] = pnl_df['Net_Income']
-    cf_statement['Depreciation_NonCash'] = cash_flow_df['depreciation'] # Add back non-cash depreciation
-    cf_statement['Cash_from_Operations'] = cf_statement['Net_Income'] + cf_statement['Depreciation_NonCash']
+    cf_statement = cash_flow_df.copy()
     
-    cf_statement['Cash_from_Investing'] = -cash_flow_df['capex'] # CAPEX is an outflow
+    # Operating Activities
+    cf_statement['cash_from_operations'] = cf_statement['operating_cash_flow']
     
-    cf_statement['Cash_from_Financing'] = cash_flow_df['principal'] + cash_flow_df['equity_cash_flow'] # Principal repayment is outflow, equity is inflow/outflow
+    # Investing Activities  
+    cf_statement['cash_from_investing'] = cf_statement['investing_cash_flow']
     
-    cf_statement['Net_Cash_Flow'] = cf_statement['Cash_from_Operations'] + cf_statement['Cash_from_Investing'] + cf_statement['Cash_from_Financing']
+    # Financing Activities
+    cf_statement['cash_from_financing'] = cf_statement['financing_cash_flow']
     
-    return cf_statement[['date', 'asset_id', 'Net_Income', 'Depreciation_NonCash', 'Cash_from_Operations', 'Cash_from_Investing', 'Cash_from_Financing', 'Net_Cash_Flow']]
+    # Net Cash Flow
+    cf_statement['net_cash_flow_calc'] = cf_statement['net_cash_flow']
+    
+    # Detailed breakdown for financing activities
+    cf_statement['debt_drawdowns'] = cf_statement['drawdowns']
+    cf_statement['debt_repayments'] = -(cf_statement['interest'] + cf_statement['principal'])
+    cf_statement['equity_contributions'] = cf_statement['equity_injection']
+    cf_statement['distributions_paid'] = -cf_statement['distributions']
+    
+    return cf_statement[[
+        'date', 'asset_id', 
+        # Operating
+        'net_income', 'd_and_a', 'cash_from_operations',
+        # Investing  
+        'capex', 'terminal_value', 'cash_from_investing',
+        # Financing
+        'debt_drawdowns', 'debt_repayments', 'equity_contributions', 'distributions_paid', 'cash_from_financing',
+        # Net
+        'net_cash_flow'
+    ]]
 
+def generate_balance_sheet(cash_flow_df):
+    """
+    Generates a Balance Sheet from the cash flow data.
+    """
+    bs = cash_flow_df.copy()
+    
+    # Assets
+    bs['current_assets'] = bs['cash']  # Assuming cash is the only current asset
+    bs['non_current_assets'] = bs['fixed_assets']
+    bs['total_assets_calc'] = bs['current_assets'] + bs['non_current_assets']
+    
+    # Liabilities  
+    bs['current_liabilities'] = 0.0  # No current liabilities in this model
+    bs['non_current_liabilities'] = bs['debt']
+    bs['total_liabilities_calc'] = bs['current_liabilities'] + bs['non_current_liabilities']
+    
+    # Equity
+    bs['contributed_capital'] = bs['share_capital']
+    bs['accumulated_earnings'] = bs['retained_earnings']
+    bs['total_equity_calc'] = bs['contributed_capital'] + bs['accumulated_earnings']
+    
+    # Check: Total Assets = Total Liabilities + Equity
+    bs['balance_check'] = bs['total_assets_calc'] - (bs['total_liabilities_calc'] + bs['total_equity_calc'])
+    
+    return bs[[
+        'date', 'asset_id',
+        # Assets
+        'cash', 'fixed_assets', 'total_assets',
+        # Liabilities
+        'debt', 'total_liabilities', 
+        # Equity
+        'share_capital', 'retained_earnings', 'equity',
+        # Check
+        'balance_check'
+    ]]
