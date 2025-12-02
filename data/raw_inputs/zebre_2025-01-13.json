@@ -41,11 +41,12 @@
     },
     "2": {
       "id": "2",
-      "name": "Solar River Solar",
+      "name": "Solar River (Solar)",
       "region": "SA",
       "OperatingStartDate": "2027-07-01",
       "capacity": 232,
       "type": "solar",
+      "hybridGroup": "Solar River",
       "volumeLossAdjustment": 97,
       "contracts": [
         {
@@ -78,11 +79,12 @@
     },
     "3": {
       "id": "3",
-      "name": "Solar River BESS",
+      "name": "Solar River (BESS)",
       "region": "SA",
       "OperatingStartDate": "2027-07-01",
       "capacity": 256,
       "type": "storage",
+      "hybridGroup": "Solar River",
       "volumeLossAdjustment": 97,
       "contracts": [
         {
@@ -324,7 +326,7 @@
         "calculatedGearing": 0.65,
         "debtStructure": "sculpting"
       },
-      "Solar River Solar": {
+      "Solar River (Solar)": {
         "operatingCosts": 3.25,
         "operatingCostEscalation": 2.5,
         "terminalValue": 0,
@@ -337,7 +339,7 @@
         "calculatedGearing": 0.7,
         "debtStructure": "sculpting"
       },
-      "Solar River BESS": {
+      "Solar River (BESS)": {
         "operatingCosts": 10.01,
         "operatingCostEscalation": 2.5,
         "terminalValue": 119,

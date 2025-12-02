@@ -40,6 +40,7 @@ from src.core.database import (
     get_data_from_mongodb, database_lifecycle, ensure_connection
 )
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries, apply_post_debt_sizing_capex_scenarios
+from src.core.hybrid_assets import add_hybrid_asset_summaries
 
 
 def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, updated_capex_df, scenario_id=None):
@@ -66,40 +67,109 @@ def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, upda
     
     summary_records = []
     
+    # Import hybrid assets utility
+    from src.core.hybrid_assets import get_hybrid_groups
+    
+    # Get hybrid groups
+    hybrid_groups = get_hybrid_groups(ASSETS)
+    processed_hybrid_assets = set()
+    
     # Process each asset
     for asset in ASSETS:
         asset_id = asset['id']
         asset_name = asset.get('name', f'Asset_{asset_id}')
+        hybrid_group = asset.get('hybridGroup')
+        display_asset_id = asset_id  # Default to asset_id
         
-        # Get asset-specific cash flows
-        asset_cf = final_cash_flow[final_cash_flow['asset_id'] == asset_id].copy()
-        
-        # Extract key dates
-        cons_start = asset.get('constructionStartDate', '')
-        ops_start = asset.get('OperatingStartDate', '')
-        
-        # Calculate operations end date
-        ops_end = ''
-        if ops_start and asset.get('assetLife'):
-            try:
-                ops_start_date = pd.to_datetime(ops_start)
-                asset_life_years = int(asset.get('assetLife', 25))
-                ops_end_date = ops_start_date + pd.DateOffset(years=asset_life_years)
-                ops_end = ops_end_date.strftime('%Y-%m-%d')
-            except:
-                ops_end = ''
+        # Skip if this asset is part of a hybrid group (we'll process the group separately)
+        if hybrid_group and hybrid_group in hybrid_groups:
+            if asset_id not in processed_hybrid_assets:
+                # Process the hybrid group as a combined asset
+                group_asset_ids = hybrid_groups[hybrid_group]
+                primary_asset_id = group_asset_ids[0]
+                display_asset_id = primary_asset_id
+                
+                # Get combined cash flows for the hybrid group
+                hybrid_mask = final_cash_flow['asset_id'].isin(group_asset_ids)
+                asset_cf = final_cash_flow[hybrid_mask].copy()
+                
+                # If there's a combined row (from add_hybrid_asset_summaries), use that
+                if 'hybrid_group' in final_cash_flow.columns:
+                    combined_row = final_cash_flow[
+                        (final_cash_flow['hybrid_group'] == hybrid_group) & 
+                        (final_cash_flow['asset_id'] == primary_asset_id)
+                    ]
+                    if not combined_row.empty:
+                        asset_cf = combined_row.copy()
+                
+                # Get combined asset name
+                component_names = []
+                for a in ASSETS:
+                    if a.get('id') in group_asset_ids:
+                        component_names.append(a.get('name', f'Asset_{a.get("id")}'))
+                asset_name = f"{hybrid_group} (Hybrid)"
+                
+                # Get combined CAPEX
+                asset_capex = updated_capex_df[updated_capex_df['asset_id'].isin(group_asset_ids)]
+                total_capex = asset_capex['capex'].sum()
+                total_debt = asset_capex['debt_capex'].sum()
+                total_equity = asset_capex['equity_capex'].sum()
+                
+                # For hybrid assets, use earliest/latest dates from components
+                cons_dates = []
+                ops_dates = []
+                ops_end_dates = []
+                for a in ASSETS:
+                    if a.get('id') in group_asset_ids:
+                        if a.get('constructionStartDate'):
+                            cons_dates.append(pd.to_datetime(a.get('constructionStartDate')))
+                        if a.get('OperatingStartDate'):
+                            ops_dates.append(pd.to_datetime(a.get('OperatingStartDate')))
+                            if a.get('assetLife'):
+                                ops_end_dates.append(
+                                    pd.to_datetime(a.get('OperatingStartDate')) + 
+                                    pd.DateOffset(years=int(a.get('assetLife', 25)))
+                                )
+                
+                cons_start = min(cons_dates).strftime('%Y-%m-%d') if cons_dates else ''
+                ops_start = min(ops_dates).strftime('%Y-%m-%d') if ops_dates else ''
+                ops_end = max(ops_end_dates).strftime('%Y-%m-%d') if ops_end_dates else ''
+                
+                # Mark all assets in group as processed
+                processed_hybrid_assets.update(group_asset_ids)
+            else:
+                # Skip individual asset if already processed as part of hybrid group
+                continue
+        else:
+            # Regular asset processing
+            asset_cf = final_cash_flow[final_cash_flow['asset_id'] == asset_id].copy()
+            
+            # Get CAPEX breakdown
+            asset_capex = updated_capex_df[updated_capex_df['asset_id'] == asset_id]
+            total_capex = asset_capex['capex'].sum()
+            total_debt = asset_capex['debt_capex'].sum()
+            total_equity = asset_capex['equity_capex'].sum()
+            
+            # Extract key dates
+            cons_start = asset.get('constructionStartDate', '')
+            ops_start = asset.get('OperatingStartDate', '')
+            
+            # Calculate operations end date
+            ops_end = ''
+            if ops_start and asset.get('assetLife'):
+                try:
+                    ops_start_date = pd.to_datetime(ops_start)
+                    asset_life_years = int(asset.get('assetLife', 25))
+                    ops_end_date = ops_start_date + pd.DateOffset(years=asset_life_years)
+                    ops_end = ops_end_date.strftime('%Y-%m-%d')
+                except:
+                    ops_end = ''
         
         # Get terminal value from cash flows
         terminal_value = asset_cf['terminal_value'].sum() if 'terminal_value' in asset_cf.columns else 0.0
         
-        # Get CAPEX breakdown
-        asset_capex = updated_capex_df[updated_capex_df['asset_id'] == asset_id]
-        total_capex = asset_capex['capex'].sum()
-        total_debt = asset_capex['debt_capex'].sum()
-        total_equity = asset_capex['equity_capex'].sum()
-        
         # Get asset IRR
-        asset_irr = asset_irrs.get(asset_id)
+        asset_irr = asset_irrs.get(display_asset_id)
         if pd.isna(asset_irr):
             asset_irr = None
         
@@ -110,7 +180,7 @@ def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, upda
         total_equity_cash_flow = asset_cf['equity_cash_flow'].sum() if 'equity_cash_flow' in asset_cf.columns else 0.0
         
         summary_record = {
-            'asset_id': asset_id,
+            'asset_id': display_asset_id,
             'asset_name': asset_name,
             'construction_start_date': cons_start,
             'operations_start_date': ops_start,
@@ -214,7 +284,7 @@ def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, upda
     return summary_df
 
 
-def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=False, replace_data=True):
+def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=None, scenario_id=None, run_sensitivity=False, replace_data=True):
     """
     Main function to run the cash flow model.
     
@@ -222,6 +292,9 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     Use database_lifecycle context manager when calling this function.
 
     Args:
+        assets (list): List of asset dictionaries
+        monthly_prices (pd.DataFrame): Monthly price data
+        yearly_spreads (pd.DataFrame): Yearly spread data
         scenario_file (str, optional): Path to scenario JSON file
         scenario_id (str, optional): Unique identifier for the scenario run
         run_sensitivity (bool): Whether to run sensitivity analysis
@@ -232,25 +305,21 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     """
     print("=== STARTING CASHFLOW MODEL ===")
         
-    # Load real data
     # Construct the absolute path to the data directory
     current_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(current_dir)
 
-    monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
-    yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
-
-    config_data = get_data_from_mongodb('CONFIG_Inputs')
-    if not config_data:
-        raise ValueError("Could not load config data from MongoDB")
-    config_data = config_data[0]  # Get the first document
-    ASSETS = config_data.get('asset_inputs', [])
+    # Use provided assets
+    ASSETS = assets
     ASSET_COST_ASSUMPTIONS = {}
     for asset in ASSETS:
         asset_name = asset.get('name')
         if asset_name and 'costAssumptions' in asset:
             ASSET_COST_ASSUMPTIONS[asset_name] = asset.get('costAssumptions')
-    MONTHLY_PRICES, YEARLY_SPREADS = load_price_data(monthly_price_path, yearly_spread_path)
+    
+    # Use provided price data
+    MONTHLY_PRICES = monthly_prices
+    YEARLY_SPREADS = yearly_spreads
 
     # Load scenario data if provided
     scenario_data = None
@@ -481,6 +550,8 @@ def run_cashflow_model(scenario_file=None, scenario_id=None, run_sensitivity=Fal
     # Use the fixed function
     asset_irrs = calculate_asset_equity_irrs_fixed(final_cash_flow)
 
+    # Add hybrid asset combinations to cashflow
+    final_cash_flow = add_hybrid_asset_summaries(final_cash_flow, ASSETS, asset_irrs)
 
     # Calculate missing variables for the summary function
     asset_type_map = {asset['id']: asset.get('assetType', 'unknown') for asset in ASSETS}
@@ -667,7 +738,23 @@ if __name__ == '__main__':
 
     # Use the database lifecycle context manager to manage connection efficiently
     with database_lifecycle():
+        # Fetch data for standalone run
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(current_dir)
+        monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
+        yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
+        
+        monthly_prices, yearly_spreads = load_price_data(monthly_price_path, yearly_spread_path)
+        
+        config_data = get_data_from_mongodb('CONFIG_Inputs')
+        if not config_data:
+            raise ValueError("Could not load config data from MongoDB")
+        assets = config_data[0].get('asset_inputs', [])
+
         final_cashflows_json = run_cashflow_model(
+            assets=assets,
+            monthly_prices=monthly_prices,
+            yearly_spreads=yearly_spreads,
             scenario_file=args.scenario, 
             scenario_id=args.scenario_id,
             replace_data=replace_data

@@ -128,9 +128,15 @@ def generate_sensitivity_values(base_value, min_val, max_val, steps):
     
     return sensitivity_values
 
-def run_sensitivity_analysis_optimized(config_file="config/sensitivity_config.json", 
+def run_sensitivity_analysis_optimized(config_file=None, config=None, 
                                      sensitivity_prefix="sensitivity_results"):
-    """Run sensitivity analysis with optimized database connection"""
+    """Run sensitivity analysis with optimized database connection
+    
+    Args:
+        config_file: Path to config file (relative to project root)
+        config: Config dictionary object (takes precedence over config_file)
+        sensitivity_prefix: Prefix for sensitivity results
+    """
     print("=== OPTIMIZED SENSITIVITY ANALYSIS ===")
     print(f"Results will be stored in: {SENSITIVITY_COLLECTION}")
     
@@ -139,15 +145,31 @@ def run_sensitivity_analysis_optimized(config_file="config/sensitivity_config.js
         print("Failed to clean up existing results. Aborting.")
         return
     
-    # Step 2: Load config
-    config_path = os.path.join(project_root, config_file)
-    
-    if not os.path.exists(config_path):
-        print(f"Configuration file not found: {config_path}")
-        return
-    
-    with open(config_path, 'r') as f:
-        config = json.load(f)
+    # Step 2: Load config - use config object if provided, otherwise load from file
+    if config is not None:
+        # Use provided config object
+        print("Using provided config object")
+    elif config_file:
+        # Load from file
+        config_path = os.path.join(project_root, config_file)
+        
+        if not os.path.exists(config_path):
+            print(f"Configuration file not found: {config_path}")
+            return
+        
+        with open(config_path, 'r') as f:
+            config = json.load(f)
+    else:
+        # Default to config file
+        config_file = "config/sensitivity_config.json"
+        config_path = os.path.join(project_root, config_file)
+        
+        if not os.path.exists(config_path):
+            print(f"Configuration file not found: {config_path}")
+            return
+        
+        with open(config_path, 'r') as f:
+            config = json.load(f)
 
     sensitivities = config.get("sensitivities", {})
     output_collection_prefix = config.get("output_collection_prefix", sensitivity_prefix)

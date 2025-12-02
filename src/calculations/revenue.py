@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from .price_curves import get_merchant_price
+from .contracts import calculate_contract_revenue, calculate_storage_contract_revenue
 
 HOURS_IN_YEAR = 8760
 DAYS_IN_MONTH = 30.4375 # Average days in a month
@@ -54,54 +55,30 @@ def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spr
 
     for contract in active_contracts:
         buyers_percentage = float(contract.get('buyersPercentage', 0)) / 100
-        contract_start_date = datetime.strptime(contract['startDate'], '%Y-%m-%d')
-        years_in_contract = (current_date.year - contract_start_date.year) + (current_date.month - contract_start_date.month) / 12
-        indexation = float(contract.get('indexation', 0)) / 100
-        indexation_factor = (1 + indexation) ** max(0, years_in_contract)
-
-        if contract['type'] == 'fixed':
-            annual_revenue = float(contract.get('strikePrice', 0))
-            contract_revenue = annual_revenue / 12 * indexation_factor * degradation_factor
-            contracted_energy += contract_revenue
+        
+        # Use the new modular contract calculator
+        revenue_components = calculate_contract_revenue(
+            contract, 
+            current_date, 
+            monthly_generation, 
+            buyers_percentage, 
+            degradation_factor
+        )
+        
+        contracted_green += revenue_components['contracted_green']
+        contracted_energy += revenue_components['contracted_energy']
+        
+        # Update percentages based on contract type
+        contract_type = contract.get('type')
+        if contract_type == 'fixed':
             total_energy_percentage += buyers_percentage * 100
-
-        elif contract['type'] == 'bundled':
-            green_price = float(contract.get('greenPrice', 0) or 0)
-            energy_price = float(contract.get('EnergyPrice', 0) or 0)
-
-            green_price *= indexation_factor
-            energy_price *= indexation_factor
-
-            if contract.get('hasFloor') and (green_price + energy_price) < float(contract.get('floorValue', 0)):
-                floor_value = float(contract['floorValue'])
-                total_price = green_price + energy_price
-                if total_price > 0:
-                    green_price = (green_price / total_price) * floor_value
-                    energy_price = (energy_price / total_price) * floor_value
-                else:
-                    green_price = floor_value / 2
-                    energy_price = floor_value / 2
-
-            contracted_green += (monthly_generation * buyers_percentage * green_price) / 1_000_000
-            contracted_energy += (monthly_generation * buyers_percentage * energy_price) / 1_000_000
+        elif contract_type == 'bundled':
             total_green_percentage += buyers_percentage * 100
             total_energy_percentage += buyers_percentage * 100
-
-        else: # Single product contracts (green or Energy)
-            price = float(contract.get('strikePrice', 0))
-            price *= indexation_factor
-
-            if contract.get('hasFloor') and price < float(contract.get('floorValue', 0)):
-                price = float(contract['floorValue'])
-
-            contract_revenue = (monthly_generation * buyers_percentage * price) / 1_000_000
-
-            if contract['type'] == 'green':
-                contracted_green += contract_revenue
-                total_green_percentage += buyers_percentage * 100
-            elif contract['type'] == 'Energy':
-                contracted_energy += contract_revenue
-                total_energy_percentage += buyers_percentage * 100
+        elif contract_type == 'green':
+            total_green_percentage += buyers_percentage * 100
+        elif contract_type == 'Energy':
+            total_energy_percentage += buyers_percentage * 100
 
     # Calculate merchant revenue (moved outside the contract loop)
     green_merchant_percentage = max(0, 100 - total_green_percentage) / 100
@@ -161,38 +138,40 @@ def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spread
 
     for contract in active_contracts:
         buyers_percentage = float(contract.get('buyersPercentage', 0)) / 100
-        contract_start_date = datetime.strptime(contract['startDate'], '%Y-%m-%d')
-        years_in_contract = (current_date.year - contract_start_date.year) + (current_date.month - contract_start_date.month) / 12
-        indexation = float(contract.get('indexation', 0)) / 100
-        indexation_factor = (1 + indexation) ** max(0, years_in_contract)
-
-        if contract['type'] == 'fixed':
-            annual_revenue = float(contract.get('strikePrice', 0))
-            contracted_revenue += (annual_revenue / 12 * indexation_factor * degradation_factor)
-            total_contracted_percentage += buyers_percentage * 100
-
-        elif contract['type'] == 'cfd':
-            price_spread = float(contract.get('strikePrice', 0))
-            adjusted_spread = price_spread * indexation_factor
-            revenue = monthly_volume * adjusted_spread * buyers_percentage
-            contracted_revenue += revenue / 1_000_000
-            total_contracted_percentage += buyers_percentage * 100
-
-        elif contract['type'] == 'tolling':
-            hourly_rate = float(contract.get('strikePrice', 0))
-            adjusted_rate = hourly_rate * indexation_factor
-            revenue = capacity * HOURS_IN_MONTH * adjusted_rate * degradation_factor * volume_loss_adjustment
-            contracted_revenue += (revenue / 1_000_000)
-            total_contracted_percentage += buyers_percentage * 100
+        
+        # Use the new modular contract calculator
+        revenue = calculate_storage_contract_revenue(
+            contract,
+            current_date,
+            monthly_volume,
+            capacity,
+            buyers_percentage,
+            degradation_factor,
+            volume_loss_adjustment,
+            HOURS_IN_MONTH
+        )
+        
+        contracted_revenue += revenue
+        total_contracted_percentage += buyers_percentage * 100
 
     merchant_percentage = max(0, 100 - total_contracted_percentage) / 100
     merchant_revenue = 0
 
     if merchant_percentage > 0:
-        calculated_duration = volume / capacity if capacity > 0 else 0
+        # Use durationHours from asset if set, otherwise calculate from volume/capacity
+        if 'durationHours' in asset and asset.get('durationHours') not in ['', None]:
+            duration = float(asset['durationHours'])
+        else:
+            # Fallback: calculate duration from volume and capacity
+            duration = volume / capacity if capacity > 0 else 0
+            if duration == 0:
+                # If still 0, try to get default from asset defaults
+                from ..core.asset_defaults import get_asset_default_config
+                storage_defaults = get_asset_default_config('storage')
+                duration = storage_defaults.get('durationHours', 2)  # Default to 2 hours
         
         # Get merchant price using the helper, passing duration as price_type
-        price_spread = get_merchant_price('storage', calculated_duration, asset['region'], current_date, monthly_prices, yearly_spreads)
+        price_spread = get_merchant_price('storage', duration, asset['region'], current_date, monthly_prices, yearly_spreads)
         
         revenue = monthly_volume * price_spread * merchant_percentage
         merchant_revenue = revenue / 1_000_000
@@ -216,8 +195,6 @@ def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spread
         'avgGreenPrice': 0,
         'avgEnergyPrice': avg_energy_price
     }
-
-
 
 def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_date, end_date, output_dir='output/model_results'):
     """
@@ -281,13 +258,7 @@ def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_d
                 'avgEnergyPrice': revenue_breakdown['avgEnergyPrice']
             })
             
-            # Store for detailed export
-            
-            
         all_revenue_data.append(pd.DataFrame(asset_revenues))
-
-    # Export detailed revenue data
-    
 
     if not all_revenue_data:
         return pd.DataFrame(columns=['asset_id', 'date', 'revenue', 'contractedGreenRevenue', 'contractedEnergyRevenue', 'merchantGreenRevenue', 'merchantEnergyRevenue', 'monthlyGeneration', 'avgGreenPrice', 'avgEnergyPrice'])
