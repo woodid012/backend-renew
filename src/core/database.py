@@ -164,13 +164,29 @@ def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str, scenario
                     query = {"scenario_id": scenario_id}
                 else:
                     # Logic for base case (scenario_id is None or not present)
-                    query = {"$or": [{"scenario_id": {"$exists": False}}, {"scenario_id": None}]}
+                    # Also filter by asset_ids in the DataFrame to only delete records for assets being written
+                    base_case_query = {"$or": [{"scenario_id": {"$exists": False}}, {"scenario_id": None}, {"scenario_id": ""}]}
+                    
+                    # If DataFrame has asset_id column, filter by those asset_ids to avoid deleting other assets' data
+                    if 'asset_id' in df.columns:
+                        asset_ids = df['asset_id'].unique().tolist()
+                        query = {
+                            "$and": [
+                                base_case_query,
+                                {"asset_id": {"$in": asset_ids}}
+                            ]
+                        }
+                        print(f"Deleting base case records for asset_ids: {asset_ids}")
+                    else:
+                        query = base_case_query
                 
                 existing_count = collection.count_documents(query)
                 if existing_count > 0:
                     print(f"Replacing {existing_count} existing records for {'scenario ' + scenario_id if scenario_id else 'base case'} in '{collection_name}'")
                     delete_result = collection.delete_many(query)
                     print(f"Deleted {delete_result.deleted_count} existing records")
+                else:
+                    print(f"No existing records found to replace for {'scenario ' + scenario_id if scenario_id else 'base case'} in '{collection_name}'")
 
             # Convert DataFrame to records
             if 'quarter' in df.columns:
