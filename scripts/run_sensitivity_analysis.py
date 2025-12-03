@@ -17,7 +17,8 @@ sys.path.insert(0, src_dir)
 
 # Import main function directly to avoid subprocess Unicode issues
 from src.main import run_cashflow_model
-from src.core.database import database_lifecycle, db_manager, mongo_session
+from src.core.database import database_lifecycle, db_manager, mongo_session, get_data_from_mongodb
+from src.core.input_processor import load_price_data
 from scripts.enhanced_sensitivity_summary import generate_enhanced_sensitivity_summary
 
 # Use separate collection for sensitivity results
@@ -78,7 +79,7 @@ def move_to_sensitivity_collection(scenario_id):
     except Exception as e:
         print(f"    Error moving records: {e}")
 
-def run_single_scenario_direct(scenario_content, scenario_id):
+def run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads):
     """Run a single scenario using direct function call"""
     try:
         # Create temporary file for scenario
@@ -91,6 +92,9 @@ def run_single_scenario_direct(scenario_content, scenario_id):
         # Call the function directly instead of subprocess to avoid Unicode issues
         # NOTE: Database connection is already established by the parent context
         result = run_cashflow_model(
+            assets=assets,
+            monthly_prices=monthly_prices,
+            yearly_spreads=yearly_spreads,
             scenario_file=temp_file_path,
             scenario_id=scenario_id,
             replace_data=True
@@ -128,14 +132,13 @@ def generate_sensitivity_values(base_value, min_val, max_val, steps):
     
     return sensitivity_values
 
-def run_sensitivity_analysis_optimized(config_file=None, config=None, 
-                                     sensitivity_prefix="sensitivity_results"):
+def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sensitivity_results", config=None):
     """Run sensitivity analysis with optimized database connection
     
     Args:
         config_file: Path to config file (relative to project root)
-        config: Config dictionary object (takes precedence over config_file)
         sensitivity_prefix: Prefix for sensitivity results
+        config: Config dictionary object (takes precedence over config_file)
     """
     print("=== OPTIMIZED SENSITIVITY ANALYSIS ===")
     print(f"Results will be stored in: {SENSITIVITY_COLLECTION}")
@@ -173,6 +176,23 @@ def run_sensitivity_analysis_optimized(config_file=None, config=None,
 
     sensitivities = config.get("sensitivities", {})
     output_collection_prefix = config.get("output_collection_prefix", sensitivity_prefix)
+
+    # Load assets and prices ONCE
+    print("Loading assets and price data...")
+    config_data = get_data_from_mongodb('CONFIG_Inputs')
+    if not config_data:
+        print("Error: Could not load config data from MongoDB")
+        return
+    assets = config_data[0].get('asset_inputs', [])
+    
+    monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
+    yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
+    
+    if not os.path.exists(monthly_price_path) or not os.path.exists(yearly_spread_path):
+        print(f"Error: Price files not found at {monthly_price_path} or {yearly_spread_path}")
+        return
+        
+    monthly_prices, yearly_spreads = load_price_data(monthly_price_path, yearly_spread_path)
 
     print(f"\nStarting sensitivity analysis with {len(sensitivities)} parameters")
     print("SENSITIVITY CONFIGURATION:")
@@ -246,7 +266,7 @@ def run_sensitivity_analysis_optimized(config_file=None, config=None,
             print(f"  [{current_scenario}/{total_scenarios}] {scenario_name}")
             
             # Run scenario using direct call
-            success = run_single_scenario_direct(scenario_content, scenario_id)
+            success = run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads)
             
             if success:
                 successful_scenarios += 1
@@ -298,6 +318,10 @@ def verify_sensitivity_results(sensitivity_prefix):
         
     except Exception as e:
         print(f"Error verifying: {e}")
+
+
+# Alias for backward compatibility
+run_sensitivity_analysis_improved = run_sensitivity_analysis_optimized
 
 if __name__ == '__main__':
     import argparse

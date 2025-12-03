@@ -8,6 +8,8 @@ from collections import defaultdict
 from bson import json_util
 from dotenv import load_dotenv
 import json
+import pandas as pd
+import numpy as np
 
 load_dotenv()
 
@@ -23,6 +25,8 @@ sys.path.insert(0, current_dir)
 get_data_from_mongodb = None
 get_mongo_client = None
 run_cashflow_model = None
+database_lifecycle = None
+load_price_data = None
 MONGO_ASSET_OUTPUT_COLLECTION = 'ASSET_cash_flows'
 
 try:
@@ -33,12 +37,20 @@ except ImportError as e:
     run_cashflow_model = None
 
 try:
-    from src.core.database import get_data_from_mongodb, get_mongo_client
+    from src.core.database import get_data_from_mongodb, get_mongo_client, database_lifecycle
     print("✅ Successfully imported database functions")
 except ImportError as e:
     print(f"⚠️ Could not import database functions: {e}")
     get_data_from_mongodb = None
     get_mongo_client = None
+    database_lifecycle = None
+
+try:
+    from src.core.input_processor import load_price_data
+    print("✅ Successfully imported load_price_data")
+except ImportError as e:
+    print(f"⚠️ Could not import load_price_data: {e}")
+    load_price_data = None
 
 try:
     from src.config import MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION
@@ -76,15 +88,80 @@ def run_model():
             "message": "Model functionality not available - import failed"
         }), 500
     
+    if get_data_from_mongodb is None or database_lifecycle is None:
+        return jsonify({
+            "status": "error",
+            "message": "Database functionality not available - import failed"
+        }), 500
+    
+    if load_price_data is None:
+        return jsonify({
+            "status": "error",
+            "message": "Price data loading functionality not available - import failed"
+        }), 500
+    
     try:
         data = request.get_json() or {}
         scenario_file = data.get('scenario_file')
         scenario_id = data.get('scenario_id')
         
-        result = run_cashflow_model(
-            scenario_file=scenario_file, 
-            scenario_id=scenario_id
-        )
+        # Use database_lifecycle context manager to manage connection
+        with database_lifecycle():
+            # Load assets from MongoDB
+            config_data = get_data_from_mongodb('CONFIG_Inputs')
+            if not config_data:
+                return jsonify({
+                    "status": "error",
+                    "message": "Could not load config data from MongoDB"
+                }), 500
+            assets = config_data[0].get('asset_inputs', [])
+            
+            if not assets:
+                return jsonify({
+                    "status": "error",
+                    "message": "No assets found in CONFIG_Inputs collection"
+                }), 500
+            
+            # Load price data from CSV files
+            monthly_price_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
+            yearly_spread_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
+            
+            if not os.path.exists(monthly_price_path):
+                return jsonify({
+                    "status": "error",
+                    "message": f"Monthly price file not found: {monthly_price_path}"
+                }), 500
+            
+            if not os.path.exists(yearly_spread_path):
+                return jsonify({
+                    "status": "error",
+                    "message": f"Yearly spread file not found: {yearly_spread_path}"
+                }), 500
+            
+            monthly_prices, yearly_spreads = load_price_data(monthly_price_path, yearly_spread_path)
+            
+            # Validate that price data was loaded correctly
+            if monthly_prices is None or yearly_spreads is None:
+                return jsonify({
+                    "status": "error",
+                    "message": "Failed to load price data - load_price_data returned None"
+                }), 500
+            
+            if not isinstance(monthly_prices, pd.DataFrame) or not isinstance(yearly_spreads, pd.DataFrame):
+                return jsonify({
+                    "status": "error",
+                    "message": f"Price data loaded incorrectly - monthly_prices type: {type(monthly_prices)}, yearly_spreads type: {type(yearly_spreads)}"
+                }), 500
+            
+            # Call run_cashflow_model with all required arguments
+            # Pass required arguments positionally, optional as keywords
+            result = run_cashflow_model(
+                assets,
+                monthly_prices,
+                yearly_spreads,
+                scenario_file=scenario_file, 
+                scenario_id=scenario_id
+            )
         
         return jsonify({
             "status": "success",

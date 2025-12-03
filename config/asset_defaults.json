@@ -44,8 +44,8 @@
                 }
             },
             "costAssumptions": {
-                "capexPerMW": 0.9,
-                "opexPerMWPerYear": 0.01,
+                "capexPerMW": 1.344,
+                "opexPerMWPerYear": 0.055,
                 "operatingCostEscalation": 2.5,
                 "terminalValuePerMW": 0,
                 "maxGearing": 0.7,
@@ -100,8 +100,8 @@
                 }
             },
             "costAssumptions": {
-                "capexPerMW": 1.5,
-                "opexPerMWPerYear": 0.02,
+                "capexPerMW": 3.221,
+                "opexPerMWPerYear": 0.045,
                 "operatingCostEscalation": 2.5,
                 "terminalValuePerMW": 0,
                 "maxGearing": 0.65,
