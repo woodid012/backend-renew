@@ -523,16 +523,41 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
     print(f"\n  [STEP 6] Calculating Equity IRR")
     print(f"     → Function: calculate_equity_irr() from src/core/equity_irr.py")
     
-    # Filter cash flows to include only Construction ('C') and Operations ('O') periods
+    # Filter cash flows to include Construction ('C') and Operations ('O') periods
+    # Also include any periods with terminal value (even if period_type is not set)
     co_periods_df = final_cash_flow[final_cash_flow['period_type'].isin(['C', 'O'])].copy()
+    
+    # Include periods with terminal value (to ensure terminal value is captured in IRR)
+    terminal_value_periods = final_cash_flow[
+        (final_cash_flow['terminal_value'] > 0) & 
+        (~final_cash_flow.index.isin(co_periods_df.index))
+    ].copy()
+    
+    if not terminal_value_periods.empty:
+        print(f"  Including {len(terminal_value_periods)} terminal value period(s) in IRR calculation")
+        co_periods_df = pd.concat([co_periods_df, terminal_value_periods], ignore_index=True)
     
     if not co_periods_df.empty:
         # CRITICAL FIX: Use equity_cash_flow_pre_distributions for IRR calculation
         # This represents the cash available to equity before accounting distributions
         # IRR should reflect investor returns, not internal distribution accounting
         
-        # Filter for non-zero equity cash flows (pre-distributions)
-        equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow_pre_distributions'] != 0].copy()
+        # Filter for periods with meaningful cash flows:
+        # 1. Non-zero equity_cash_flow_pre_distributions (includes all equity contributions and returns)
+        # 2. Periods with terminal value (even if net cash flow is zero)
+        # 3. Periods with equity_capex (to ensure all equity contributions are captured)
+        equity_irr_df = co_periods_df[
+            (co_periods_df['equity_cash_flow_pre_distributions'] != 0) | 
+            (co_periods_df['terminal_value'] > 0) |
+            (co_periods_df.get('equity_capex', 0) != 0)
+        ].copy()
+        
+        # Validation: Verify equity contributions are included
+        if 'equity_capex' in co_periods_df.columns:
+            total_equity_capex = co_periods_df['equity_capex'].sum()
+            equity_capex_in_irr = equity_irr_df['equity_capex'].sum() if 'equity_capex' in equity_irr_df.columns else 0
+            if abs(total_equity_capex - equity_capex_in_irr) > 0.01:
+                print(f"  ⚠️  WARNING: Equity CAPEX mismatch - Total: ${total_equity_capex:,.2f}M, In IRR: ${equity_capex_in_irr:,.2f}M")
         
         if not equity_irr_df.empty:
             # Group by date to get total equity cash flows across all assets for each date
@@ -540,6 +565,13 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
             
             # Rename column for IRR function compatibility
             equity_irr_summary = equity_irr_summary.rename(columns={'equity_cash_flow_pre_distributions': 'equity_cash_flow'})
+            
+            # Validate cash flow components
+            if 'equity_capex' in equity_irr_df.columns:
+                total_equity_invested = equity_irr_df['equity_capex'].sum()
+                total_equity_cf = equity_irr_summary['equity_cash_flow'].sum()
+                print(f"  Equity invested (CAPEX): ${total_equity_invested:,.2f}M")
+                print(f"  Net equity cash flow: ${total_equity_cf:,.2f}M")
             
             # Calculate XIRR using the updated function with dates
             irr = calculate_equity_irr(equity_irr_summary)
@@ -582,9 +614,26 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
                 co_periods_df = asset_df[asset_df['period_type'].isin(['C', 'O'])].copy()
             else:
                 co_periods_df = asset_df.copy()
+            
+            # Include periods with terminal value for this asset
+            terminal_value_periods = asset_df[
+                (asset_df['terminal_value'] > 0) & 
+                (~asset_df.index.isin(co_periods_df.index))
+            ].copy()
+            
+            if not terminal_value_periods.empty:
+                co_periods_df = pd.concat([co_periods_df, terminal_value_periods], ignore_index=True)
 
             # Use equity_cash_flow_pre_distributions for consistency
-            equity_irr_df = co_periods_df[co_periods_df['equity_cash_flow_pre_distributions'] != 0].copy()
+            # Include periods with:
+            # 1. Non-zero equity_cash_flow_pre_distributions
+            # 2. Terminal value (even if net cash flow is zero)
+            # 3. Equity CAPEX (to ensure all equity contributions are captured)
+            equity_irr_df = co_periods_df[
+                (co_periods_df['equity_cash_flow_pre_distributions'] != 0) | 
+                (co_periods_df['terminal_value'] > 0) |
+                (co_periods_df.get('equity_capex', 0) != 0)
+            ].copy()
 
             if not equity_irr_df.empty:
                 # Group by date and sum equity cash flows (pre-distributions)
@@ -592,6 +641,16 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
                 
                 # Rename for function compatibility
                 equity_irr_summary = equity_irr_summary.rename(columns={'equity_cash_flow_pre_distributions': 'equity_cash_flow'})
+                
+                # Validation: Check if equity contributions are properly included
+                if 'equity_capex' in equity_irr_df.columns:
+                    asset_equity_capex = equity_irr_df['equity_capex'].sum()
+                    if asset_equity_capex > 0.01:  # Only warn if significant equity investment
+                        asset_net_cf = equity_irr_summary['equity_cash_flow'].sum()
+                        # Equity cash flow should be negative during construction (equity contributions)
+                        # and positive during operations (returns)
+                        if asset_net_cf > asset_equity_capex * 0.5:  # If net CF is more than 50% of equity invested
+                            print(f"    ⚠️  Asset {asset_id}: Net CF (${asset_net_cf:,.2f}M) seems high vs equity invested (${asset_equity_capex:,.2f}M)")
                 
                 irr = calculate_equity_irr(equity_irr_summary)
                 asset_irrs[asset_id] = irr

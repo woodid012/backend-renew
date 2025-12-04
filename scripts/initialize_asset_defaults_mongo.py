@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Initialize MongoDB CONFIG_Asset_Defaults collection with current defaults from JSON file.
+Initialize MongoDB CONFIG_assetDefaults collection with current defaults from JSON file.
 This script should be run once to migrate from file-based to MongoDB-based defaults.
 """
 
@@ -33,7 +33,7 @@ def load_json_defaults():
 
 def initialize_mongodb_defaults():
     """Initialize MongoDB with defaults from JSON file."""
-    print("\n=== Initializing MongoDB CONFIG_Asset_Defaults ===\n")
+    print("\n=== Initializing MongoDB CONFIG_assetDefaults ===\n")
     
     # Load defaults from JSON
     defaults = load_json_defaults()
@@ -46,13 +46,13 @@ def initialize_mongodb_defaults():
     
     try:
         with mongo_session() as db_mgr:
-            collection = db_mgr.get_collection('CONFIG_Asset_Defaults')
+            collection = db_mgr.get_collection('CONFIG_assetDefaults')
             
             # Check if document already exists
             existing = collection.find_one({})
             
             if existing:
-                print("⚠️  CONFIG_Asset_Defaults already exists in MongoDB")
+                print("⚠️  CONFIG_assetDefaults already exists in MongoDB")
                 # Check for non-interactive mode (for automation)
                 import sys
                 if '--force' in sys.argv or '--overwrite' in sys.argv:
@@ -68,11 +68,11 @@ def initialize_mongodb_defaults():
                     {},
                     {'$set': defaults}
                 )
-                print(f"✅ Updated existing CONFIG_Asset_Defaults document")
+                print(f"✅ Updated existing CONFIG_assetDefaults document")
             else:
                 # Insert new document
                 result = collection.insert_one(defaults)
-                print(f"✅ Inserted new CONFIG_Asset_Defaults document with ID: {result.inserted_id}")
+                print(f"✅ Inserted new CONFIG_assetDefaults document with ID: {result.inserted_id}")
             
             # Verify the document
             verify_doc = collection.find_one({})

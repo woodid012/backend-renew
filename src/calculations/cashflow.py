@@ -79,6 +79,9 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     cash_flow['terminal_value'] = 0.0
     
     # Calculate Equity Cash Flow BEFORE distributions
+    # Formula: CFADS - interest - principal - equity_capex - tax_expense
+    # Note: equity_capex is subtracted (negative cash flow for equity investors)
+    # This represents cash available to equity holders before distributions
     cash_flow['equity_cash_flow_pre_distributions'] = (
         cash_flow['cfads'] - 
         cash_flow['interest'] - 

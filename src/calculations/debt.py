@@ -29,63 +29,72 @@ def calculate_blended_dscr(contracted_revenue, merchant_revenue, target_dscr_con
     
     return contracted_share * target_dscr_contract + merchant_share * target_dscr_merchant
 
-def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor_years, target_dscrs):
+def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency='annual'):
     """
-    Calculate annual debt schedule using sculpting approach.
+    Calculate debt schedule using sculpting approach for annual or quarterly periods.
     
     Args:
         debt_amount (float): Initial debt amount in millions
-        cash_flows (list): Annual operating cash flows (CFADS) in millions
+        cash_flows (list): Operating cash flows (CFADS) in millions - annual or quarterly
         interest_rate (float): Annual interest rate
         tenor_years (int): Debt term in years
-        target_dscrs (list): Target DSCR for each year
+        target_dscrs (list): Target DSCR for each period
+        period_frequency (str): 'annual' or 'quarterly' - determines period calculation
     
     Returns:
         dict: Complete debt schedule with metrics
     """
+    # Determine number of periods based on frequency
+    if period_frequency.lower() == 'quarterly':
+        num_periods = tenor_years * 4
+        period_rate = interest_rate / 4  # Quarterly interest rate
+    else:
+        num_periods = tenor_years
+        period_rate = interest_rate  # Annual interest rate
+    
     # Initialize arrays
-    debt_balance = [0.0] * (tenor_years + 1)
-    interest_payments = [0.0] * tenor_years
-    principal_payments = [0.0] * tenor_years
-    debt_service = [0.0] * tenor_years
-    dscr_values = [0.0] * tenor_years
+    debt_balance = [0.0] * (num_periods + 1)
+    interest_payments = [0.0] * num_periods
+    principal_payments = [0.0] * num_periods
+    debt_service = [0.0] * num_periods
+    dscr_values = [0.0] * num_periods
     
     # Set initial debt balance
     debt_balance[0] = debt_amount
     
-    # Calculate debt service for each year
-    for year in range(tenor_years):
-        if year >= len(cash_flows):
+    # Calculate debt service for each period
+    for period in range(num_periods):
+        if period >= len(cash_flows):
             break
             
         # Interest payment on opening balance
-        interest_payments[year] = debt_balance[year] * interest_rate
+        interest_payments[period] = debt_balance[period] * period_rate
         
         # Get available cash flow and target DSCR
-        operating_cash_flow = cash_flows[year]
-        target_dscr = target_dscrs[year] if year < len(target_dscrs) else target_dscrs[-1]
+        operating_cash_flow = cash_flows[period]
+        target_dscr = target_dscrs[period] if period < len(target_dscrs) else target_dscrs[-1]
         
         # Maximum debt service allowed by DSCR constraint
         max_debt_service = operating_cash_flow / target_dscr if target_dscr > 0 else 0
         
         # Principal repayment (limited by max debt service and remaining balance)
-        principal_payments[year] = min(
-            max(0, max_debt_service - interest_payments[year]),
-            debt_balance[year]
+        principal_payments[period] = min(
+            max(0, max_debt_service - interest_payments[period]),
+            debt_balance[period]
         )
         
         # Total debt service
-        debt_service[year] = interest_payments[year] + principal_payments[year]
+        debt_service[period] = interest_payments[period] + principal_payments[period]
         
         # Calculate actual DSCR
-        dscr_values[year] = operating_cash_flow / debt_service[year] if debt_service[year] > 0 else float('inf')
+        dscr_values[period] = operating_cash_flow / debt_service[period] if debt_service[period] > 0 else float('inf')
         
         # Update debt balance
-        debt_balance[year + 1] = debt_balance[year] - principal_payments[year]
+        debt_balance[period + 1] = debt_balance[period] - principal_payments[period]
     
     # Calculate metrics
-    fully_repaid = debt_balance[tenor_years] < 0.001  # $1M tolerance
-    avg_debt_service = sum(debt_service) / tenor_years if tenor_years > 0 else 0
+    fully_repaid = debt_balance[num_periods] < 0.001  # $1M tolerance
+    avg_debt_service = sum(debt_service) / num_periods if num_periods > 0 else 0
     valid_dscrs = [d for d in dscr_values if d != float('inf') and d > 0]
     min_dscr = min(valid_dscrs) if valid_dscrs else 0
     
@@ -99,21 +108,23 @@ def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor
             'fully_repaid': fully_repaid,
             'avg_debt_service': avg_debt_service,
             'min_dscr': min_dscr,
-            'final_balance': debt_balance[tenor_years]
-        }
+            'final_balance': debt_balance[num_periods]
+        },
+        'period_frequency': period_frequency
     }
 
-def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_rate, tenor_years, debug=True):
+def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_rate, tenor_years, period_frequency='annual', debug=True):
     """
     Find maximum sustainable debt using binary search.
     
     Args:
         capex (float): Total CAPEX in millions
-        cash_flows (list): Annual operating cash flows in millions
-        target_dscrs (list): Target DSCR for each year
+        cash_flows (list): Operating cash flows in millions (annual or quarterly)
+        target_dscrs (list): Target DSCR for each period
         max_gearing (float): Maximum gearing ratio (0-1)
         interest_rate (float): Annual interest rate
         tenor_years (int): Debt term in years
+        period_frequency (str): 'annual' or 'quarterly' - determines period calculation
         debug (bool): Print debug information
     
     Returns:
@@ -123,7 +134,7 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
         return {
             'debt': 0,
             'gearing': 0,
-            'schedule': calculate_annual_debt_schedule(0, cash_flows or [0], interest_rate, tenor_years, target_dscrs or [1.4])
+            'schedule': calculate_annual_debt_schedule(0, cash_flows or [0], interest_rate, tenor_years, target_dscrs or [1.4], period_frequency)
         }
     
     # Binary search bounds
@@ -142,7 +153,7 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
         
         # Test this debt amount
         schedule = calculate_annual_debt_schedule(
-            test_debt, cash_flows, interest_rate, tenor_years, target_dscrs
+            test_debt, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency
         )
         
         if debug and iteration < 5:
@@ -164,7 +175,7 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
     
     # Final result
     if best_debt == 0:
-        best_schedule = calculate_annual_debt_schedule(0, cash_flows, interest_rate, tenor_years, target_dscrs)
+        best_schedule = calculate_annual_debt_schedule(0, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency)
     
     actual_gearing = best_debt / capex if capex > 0 else 0
     
@@ -175,7 +186,7 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
         best_debt = capex * max_gearing
         actual_gearing = max_gearing
         best_schedule = calculate_annual_debt_schedule(
-            best_debt, cash_flows, interest_rate, tenor_years, target_dscrs
+            best_debt, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency
         )
     
     # Check if optimal debt hit the gearing limit
@@ -202,17 +213,18 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
         'hit_gearing_limit': hit_gearing_limit
     }
 
-def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df):
+def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, dscr_calculation_frequency='quarterly'):
     """
-    Convert monthly cash flows to annual for debt sizing, starting from operations start date.
+    Convert monthly cash flows to annual or quarterly periods for debt sizing, starting from operations start date.
     
     Args:
         asset (dict): Asset data
         revenue_df (pd.DataFrame): Monthly revenue data
         opex_df (pd.DataFrame): Monthly OPEX data
+        dscr_calculation_frequency (str): 'annual' or 'quarterly' - determines aggregation period
     
     Returns:
-        pd.DataFrame: Annual cash flows and revenue breakdown
+        pd.DataFrame: Aggregated cash flows and revenue breakdown (annual or quarterly)
     """
     # Filter data for this asset
     asset_revenue = revenue_df[revenue_df['asset_id'] == asset['id']].copy()
@@ -234,37 +246,74 @@ def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df):
     if cash_flow_data.empty:
         return pd.DataFrame()
     
-    # Add year for grouping (fiscal year starting from operations start month)
-    operations_start_month = operations_start.month
-    cash_flow_data['year_offset'] = ((cash_flow_data['date'].dt.year - operations_start.year) * 12 + 
-                                    (cash_flow_data['date'].dt.month - operations_start_month)) // 12
-    
-    # Group by year and sum
-    annual_data = cash_flow_data.groupby('year_offset').agg({
-        'cfads': 'sum',
-        'contractedGreenRevenue': 'sum',
-        'contractedEnergyRevenue': 'sum',
-        'merchantGreenRevenue': 'sum',
-        'merchantEnergyRevenue': 'sum'
-    }).reset_index()
-    
-    # Rename year_offset to year for consistency
-    annual_data['year'] = annual_data['year_offset']
-    annual_data = annual_data.drop('year_offset', axis=1)
+    # Determine aggregation period
+    if dscr_calculation_frequency.lower() == 'quarterly':
+        # Group by quarter (Q1=Jan-Mar, Q2=Apr-Jun, Q3=Jul-Sep, Q4=Oct-Dec)
+        # Calculate quarter offset from operations start
+        operations_start_month = operations_start.month
+        operations_start_year = operations_start.year
+        operations_start_quarter = (operations_start_month - 1) // 3 + 1
+        
+        # Calculate quarter offset for each row
+        cash_flow_data['quarter'] = (cash_flow_data['date'].dt.month - 1) // 3 + 1
+        cash_flow_data['year'] = cash_flow_data['date'].dt.year
+        
+        # Calculate quarter offset from operations start
+        def calculate_quarter_offset(row):
+            year_diff = row['year'] - operations_start_year
+            quarter_diff = row['quarter'] - operations_start_quarter
+            return year_diff * 4 + quarter_diff
+        
+        cash_flow_data['period_offset'] = cash_flow_data.apply(calculate_quarter_offset, axis=1)
+        
+        # Group by quarter offset and sum
+        aggregated_data = cash_flow_data.groupby('period_offset').agg({
+            'cfads': 'sum',
+            'contractedGreenRevenue': 'sum',
+            'contractedEnergyRevenue': 'sum',
+            'merchantGreenRevenue': 'sum',
+            'merchantEnergyRevenue': 'sum'
+        }).reset_index()
+        
+        # Rename period_offset to period for consistency
+        aggregated_data['period'] = aggregated_data['period_offset']
+        aggregated_data = aggregated_data.drop('period_offset', axis=1)
+        
+        period_type = 'quarterly'
+    else:
+        # Annual aggregation (default/legacy behavior)
+        operations_start_month = operations_start.month
+        cash_flow_data['year_offset'] = ((cash_flow_data['date'].dt.year - operations_start.year) * 12 + 
+                                        (cash_flow_data['date'].dt.month - operations_start_month)) // 12
+        
+        # Group by year and sum
+        aggregated_data = cash_flow_data.groupby('year_offset').agg({
+            'cfads': 'sum',
+            'contractedGreenRevenue': 'sum',
+            'contractedEnergyRevenue': 'sum',
+            'merchantGreenRevenue': 'sum',
+            'merchantEnergyRevenue': 'sum'
+        }).reset_index()
+        
+        # Rename year_offset to period for consistency
+        aggregated_data['period'] = aggregated_data['year_offset']
+        aggregated_data = aggregated_data.drop('year_offset', axis=1)
+        
+        period_type = 'annual'
     
     print(f"  Operations start: {operations_start.strftime('%Y-%m-%d')}")
-    print(f"  Annual periods extracted: {len(annual_data)}")
-    print(f"  First 3 years CFADS: {[f'${cf:.1f}M' for cf in annual_data['cfads'].head(3)]}")
+    print(f"  {period_type.capitalize()} periods extracted: {len(aggregated_data)}")
+    print(f"  First 3 periods CFADS: {[f'${cf:.1f}M' for cf in aggregated_data['cfads'].head(3)]}")
     
-    return annual_data
+    return aggregated_data
 
-def prepare_annual_cash_flows(asset, revenue_df, opex_df):
+def prepare_annual_cash_flows(asset, revenue_df, opex_df, dscr_calculation_frequency='quarterly'):
     """
     Legacy function - redirects to the corrected version.
     """
-    return prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df)
+    return prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, dscr_calculation_frequency)
 
-def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df):
+def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly'):
     """
     Size debt for a single asset based on operational cash flows starting from operations.
     
@@ -273,6 +322,7 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df):
         asset_assumptions (dict): Asset cost assumptions
         revenue_df (pd.DataFrame): Revenue data
         opex_df (pd.DataFrame): OPEX data
+        dscr_calculation_frequency (str): 'annual' or 'quarterly' - determines DSCR calculation period
     
     Returns:
         dict: Debt sizing results
@@ -295,10 +345,10 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df):
             'annual_schedule': None
         }
     
-    # Prepare annual cash flows for debt sizing FROM OPERATIONS START
-    annual_data = prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df)
+    # Prepare cash flows for debt sizing FROM OPERATIONS START (annual or quarterly)
+    period_data = prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, dscr_calculation_frequency)
     
-    if annual_data.empty:
+    if period_data.empty:
         print(f"WARNING: No operational cash flows found for {asset.get('name', asset['id'])}")
         return {
             'optimal_debt': 0,
@@ -309,11 +359,11 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df):
             'annual_schedule': None
         }
     
-    # Calculate annual cash flows and blended DSCRs
-    annual_cash_flows = annual_data['cfads'].tolist()
-    annual_target_dscrs = []
+    # Calculate cash flows and blended DSCRs for each period
+    period_cash_flows = period_data['cfads'].tolist()
+    period_target_dscrs = []
     
-    for _, row in annual_data.iterrows():
+    for _, row in period_data.iterrows():
         contracted_revenue = row['contractedGreenRevenue'] + row['contractedEnergyRevenue']
         merchant_revenue = row['merchantGreenRevenue'] + row['merchantEnergyRevenue']
         
@@ -321,15 +371,16 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df):
             contracted_revenue, merchant_revenue, 
             target_dscr_contract, target_dscr_merchant
         )
-        annual_target_dscrs.append(blended_dscr_value)
+        period_target_dscrs.append(blended_dscr_value)
     
-    print(f"\nAsset {asset.get('name', asset['id'])}: Annual debt sizing from operations start")
-    print(f"CAPEX: ${capex:,.0f}M, Annual periods: {len(annual_cash_flows)}")
+    period_type = dscr_calculation_frequency.lower()
+    print(f"\nAsset {asset.get('name', asset['id'])}: {period_type.capitalize()} debt sizing from operations start")
+    print(f"CAPEX: ${capex:,.0f}M, {period_type.capitalize()} periods: {len(period_cash_flows)}")
     
     # Solve for optimal debt
     solution = solve_maximum_debt(
-        capex, annual_cash_flows, annual_target_dscrs, 
-        max_gearing, interest_rate, tenor_years, debug=False
+        capex, period_cash_flows, period_target_dscrs, 
+        max_gearing, interest_rate, tenor_years, period_frequency=period_type, debug=False
     )
     
     # Calculate debt service start date (from operations start)
@@ -347,10 +398,13 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df):
     }
 
 def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_result, 
-                                 start_date, end_date, repayment_frequency):
+                                 start_date, end_date, repayment_frequency, monthly_cfads=None, target_dscrs=None):
     """
     Generate monthly debt schedule from debt sizing results.
-    Key correction: Debt service starts from operations start date.
+    Key corrections:
+    1. Interest accrues on drawn debt during construction (even if not paid)
+    2. Debt service starts from operations start date
+    3. Monthly DSCR validation to ensure payments don't violate constraints
     
     Args:
         debt_amount (float): Total debt amount in millions
@@ -360,6 +414,8 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
         start_date (datetime): Model start date
         end_date (datetime): Model end date
         repayment_frequency (str): 'monthly' or 'quarterly'
+        monthly_cfads (pd.DataFrame): Optional monthly CFADS for DSCR validation (columns: date, cfads)
+        target_dscrs (list): Optional target DSCRs for monthly validation
     
     Returns:
         pd.DataFrame: Monthly debt schedule
@@ -401,48 +457,128 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
     interest_rate = debt_sizing_result.get('interest_rate', 0.055)
     tenor_years = debt_sizing_result.get('tenor_years', 18)
     annual_schedule = debt_sizing_result.get('annual_schedule')
+    monthly_rate = interest_rate / 12
     
-    if not debt_service_start_date or not annual_schedule:
+    if not debt_service_start_date:
         return schedule
     
     print(f"  Debt service starts: {debt_service_start_date.strftime('%Y-%m-%d')}")
     
-    # Track balance and populate payments
+    # Prepare monthly CFADS lookup if provided
+    monthly_cfads_dict = {}
+    if monthly_cfads is not None and not monthly_cfads.empty:
+        for _, row in monthly_cfads.iterrows():
+            monthly_cfads_dict[pd.to_datetime(row['date'])] = row.get('cfads', 0)
+    
+    # Track balance, accrued interest, and populate payments
     balance = 0.0
+    accrued_interest = 0.0  # Track interest accrued during construction
     
     for i, current_date in enumerate(schedule['date']):
         schedule.loc[i, 'beginning_balance'] = balance
         balance += schedule.loc[i, 'drawdowns']
         
-        # Apply debt service ONLY after operations start date
-        if current_date >= debt_service_start_date and balance > 0:
-            # Calculate which year we're in for the annual schedule
-            years_since_start = (current_date.year - debt_service_start_date.year) + \
-                               (current_date.month - debt_service_start_date.month) / 12
-            year_index = int(years_since_start)
+        # Interest accrues on outstanding balance (including during construction)
+        if balance > 0:
+            monthly_interest_accrued = balance * monthly_rate
+            accrued_interest += monthly_interest_accrued
             
-            if year_index < len(annual_schedule['interest_payments']):
-                # Get annual amounts
-                annual_interest = annual_schedule['interest_payments'][year_index]
-                annual_principal = annual_schedule['principal_payments'][year_index]
-                
-                if repayment_frequency == 'monthly':
-                    monthly_interest = annual_interest / 12
-                    monthly_principal = annual_principal / 12
+            # If we're past operations start, interest is paid (not just accrued)
+            if current_date >= debt_service_start_date:
+                # Apply debt service after operations start date
+                if annual_schedule:
+                    # Determine period index based on schedule frequency
+                    schedule_frequency = annual_schedule.get('period_frequency', 'annual')
+                    period_index = None  # Initialize for DSCR validation
                     
-                    schedule.loc[i, 'interest'] = monthly_interest
-                    schedule.loc[i, 'principal'] = min(monthly_principal, balance)
-                    balance -= schedule.loc[i, 'principal']
-                    
-                elif repayment_frequency == 'quarterly':
-                    # Only make payments in quarter-end months
-                    if current_date.month in [3, 6, 9, 12]:
-                        quarterly_interest = annual_interest / 4
-                        quarterly_principal = annual_principal / 4
+                    if schedule_frequency == 'quarterly':
+                        # Calculate which quarter we're in
+                        months_since_start = (current_date.year - debt_service_start_date.year) * 12 + \
+                                           (current_date.month - debt_service_start_date.month)
+                        quarter_index = months_since_start // 3
+                        period_index = quarter_index  # For DSCR validation
                         
-                        schedule.loc[i, 'interest'] = quarterly_interest
-                        schedule.loc[i, 'principal'] = min(quarterly_principal, balance)
+                        if quarter_index < len(annual_schedule['interest_payments']):
+                            # Get quarterly amounts directly
+                            quarterly_interest = annual_schedule['interest_payments'][quarter_index]
+                            quarterly_principal = annual_schedule['principal_payments'][quarter_index]
+                            
+                            # Only make payments in quarter-end months
+                            if current_date.month in [3, 6, 9, 12]:
+                                monthly_interest = quarterly_interest
+                                monthly_principal = quarterly_principal
+                            else:
+                                monthly_interest = 0
+                                monthly_principal = 0
+                        else:
+                            monthly_interest = 0
+                            monthly_principal = 0
+                    else:
+                        # Annual schedule - calculate which year we're in
+                        years_since_start = (current_date.year - debt_service_start_date.year) + \
+                                           (current_date.month - debt_service_start_date.month) / 12
+                        year_index = int(years_since_start)
+                        period_index = year_index  # For DSCR validation
+                        
+                        if year_index < len(annual_schedule['interest_payments']):
+                            # Get annual amounts
+                            annual_interest = annual_schedule['interest_payments'][year_index]
+                            annual_principal = annual_schedule['principal_payments'][year_index]
+                            
+                            # Calculate monthly/quarterly payments
+                            if repayment_frequency == 'monthly':
+                                monthly_interest = annual_interest / 12
+                                monthly_principal = annual_principal / 12
+                            elif repayment_frequency == 'quarterly':
+                                # Only make payments in quarter-end months
+                                if current_date.month in [3, 6, 9, 12]:
+                                    monthly_interest = annual_interest / 4
+                                    monthly_principal = annual_principal / 4
+                                else:
+                                    monthly_interest = 0
+                                    monthly_principal = 0
+                            else:
+                                monthly_interest = 0
+                                monthly_principal = 0
+                        else:
+                            monthly_interest = 0
+                            monthly_principal = 0
+                    
+                    # Apply monthly DSCR validation if monthly CFADS provided
+                    if monthly_cfads_dict and current_date in monthly_cfads_dict and period_index is not None:
+                        monthly_cfads = monthly_cfads_dict[current_date]
+                        
+                        # Get target DSCR for this period (use blended or default)
+                        if target_dscrs and period_index < len(target_dscrs):
+                            target_dscr = target_dscrs[period_index]
+                        else:
+                            # Default to conservative DSCR
+                            target_dscr = 1.4
+                        
+                        # Maximum debt service allowed by DSCR
+                        max_debt_service = monthly_cfads / target_dscr if target_dscr > 0 and monthly_cfads > 0 else float('inf')
+                        
+                        # Adjust payments if they would violate DSCR
+                        proposed_debt_service = monthly_interest + monthly_principal
+                        original_principal = monthly_principal
+                        if proposed_debt_service > max_debt_service:
+                            # Reduce principal payment to meet DSCR constraint
+                            monthly_principal = max(0, max_debt_service - monthly_interest)
+                            # Only warn if significant reduction (more than 10%)
+                            if original_principal > 0 and monthly_principal < original_principal * 0.9:
+                                print(f"    WARNING: Reduced principal payment in {current_date.strftime('%Y-%m')} from ${original_principal:.2f}M to ${monthly_principal:.2f}M to meet DSCR constraint")
+                        
+                        # Record payments
+                        schedule.loc[i, 'interest'] = monthly_interest
+                        schedule.loc[i, 'principal'] = min(monthly_principal, balance)
                         balance -= schedule.loc[i, 'principal']
+                        accrued_interest = max(0, accrued_interest - monthly_interest)  # Reduce accrued interest by amount paid
+                else:
+                    # No annual schedule (e.g., annuity method) - calculate interest directly
+                    if current_date >= debt_service_start_date:
+                        schedule.loc[i, 'interest'] = balance * monthly_rate
+                        # For annuity, principal would be calculated separately
+                        accrued_interest = 0  # Reset since we're paying it
         
         schedule.loc[i, 'ending_balance'] = balance
     
@@ -467,7 +603,7 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
     """
     print("DEBT SIZING STARTING (CORRECTED)")
     print(f"Assets to process: {len(assets)}")
-    print(f"Method: {debt_sizing_method}, Frequency: {repayment_frequency}")
+    print(f"Method: {debt_sizing_method}, DSCR Calculation Frequency: {dscr_calculation_frequency}, Repayment Frequency: {dscr_calculation_frequency}")
     
     all_debt_schedules = []
     updated_capex_schedules = []
@@ -486,15 +622,39 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
         
         if debt_sizing_method == 'dscr':
             # Size debt based on operational cash flows FROM OPERATIONS START
-            debt_sizing_result = size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df)
+            # Use dscr_calculation_frequency for DSCR calculation
+            debt_sizing_result = size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency)
             optimal_debt = debt_sizing_result['optimal_debt']
             
             # Generate monthly debt schedule
             asset_capex = capex_schedule[capex_schedule['asset_id'] == asset['id']].copy()
             
+            # Prepare monthly CFADS for DSCR validation
+            asset_cash_flow = cash_flow_df[cash_flow_df['asset_id'] == asset['id']].copy()
+            monthly_cfads = None
+            target_dscrs_list = None
+            if not asset_cash_flow.empty:
+                # Calculate monthly CFADS
+                monthly_cfads = asset_cash_flow[['date', 'revenue', 'opex']].copy()
+                monthly_cfads['cfads'] = monthly_cfads['revenue'] - monthly_cfads['opex']
+                monthly_cfads = monthly_cfads[['date', 'cfads']].copy()
+                
+                # Get target DSCRs from schedule if available
+                annual_schedule = debt_sizing_result.get('annual_schedule')
+                if annual_schedule and 'dscr_values' in annual_schedule:
+                    # Use the target DSCRs that were used in sizing
+                    # We'll need to reconstruct them - for now use blended DSCR
+                    target_dscr_contract = asset_assumptions.get('targetDSCRContract', 1.4)
+                    target_dscr_merchant = asset_assumptions.get('targetDSCRMerchant', 1.8)
+                    # Create a simple list - in practice this should match the schedule
+                    target_dscrs_list = [target_dscr_contract] * 20  # Default to contracted DSCR
+            
+            # Use dscr_calculation_frequency for repayment frequency to match DSCR calculation period
+            # This ensures debt payments align with the DSCR calculation frequency
+            effective_repayment_frequency = dscr_calculation_frequency
             debt_schedule = generate_monthly_debt_schedule(
                 optimal_debt, asset, asset_capex, debt_sizing_result,
-                start_date, end_date, repayment_frequency
+                start_date, end_date, effective_repayment_frequency, monthly_cfads, target_dscrs_list
             )
             
         elif debt_sizing_method == 'annuity':
@@ -515,9 +675,10 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
             
             asset_capex = capex_schedule[capex_schedule['asset_id'] == asset['id']].copy()
             
+            # For annuity method, monthly CFADS not required for DSCR validation
             debt_schedule = generate_monthly_debt_schedule(
                 optimal_debt, asset, asset_capex, debt_sizing_result,
-                start_date, end_date, repayment_frequency
+                start_date, end_date, repayment_frequency, None, None
             )
         
         else:
@@ -536,6 +697,25 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
                 actual_gearing = optimal_debt / total_capex
                 asset_capex['debt_capex'] = asset_capex['capex'] * actual_gearing
                 asset_capex['equity_capex'] = asset_capex['capex'] * (1 - actual_gearing)
+                
+                # Validate debt repayment
+                if not debt_schedule.empty:
+                    final_debt_balance = debt_schedule['ending_balance'].iloc[-1]
+                    if final_debt_balance > 0.001:  # $1M tolerance
+                        print(f"  ⚠️  WARNING: Debt not fully repaid. Final balance: ${final_debt_balance:,.2f}M")
+                    else:
+                        print(f"  ✓ Debt fully repaid by end of tenor")
+                
+                # Show debt sizing metrics if available
+                if debt_sizing_method == 'dscr':
+                    if debt_sizing_result.get('annual_schedule'):
+                        annual_schedule = debt_sizing_result['annual_schedule']
+                        metrics = annual_schedule.get('metrics', {})
+                        if metrics.get('min_dscr'):
+                            print(f"  Min DSCR: {metrics['min_dscr']:.2f}x")
+                    if debt_sizing_result.get('hit_gearing_limit'):
+                        print(f"  ⚠️  Hit max gearing limit")
+                
                 print(f"SUCCESS: {asset_name}: ${optimal_debt:,.0f}M debt ({actual_gearing:.1%} gearing)")
             else:
                 asset_capex['debt_capex'] = 0

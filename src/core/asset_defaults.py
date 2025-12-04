@@ -7,7 +7,7 @@ from .database import db_manager, mongo_session
 
 def load_asset_defaults() -> Dict[str, Any]:
     """
-    Load asset defaults from MongoDB CONFIG_Asset_Defaults collection.
+    Load asset defaults from MongoDB CONFIG_assetDefaults collection.
     Falls back to JSON file if MongoDB is not available or document doesn't exist.
     
     Returns:
@@ -16,13 +16,13 @@ def load_asset_defaults() -> Dict[str, Any]:
     # Try MongoDB first
     try:
         with mongo_session() as db_mgr:
-            collection = db_mgr.get_collection('CONFIG_Asset_Defaults')
+            collection = db_mgr.get_collection('CONFIG_assetDefaults')
             defaults = collection.find_one({})
             
             if defaults:
                 # Remove MongoDB _id field
                 defaults.pop('_id', None)
-                print(f"✅ Loaded asset defaults from MongoDB CONFIG_Asset_Defaults")
+                print(f"✅ Loaded asset defaults from MongoDB CONFIG_assetDefaults")
                 return defaults
             else:
                 print(f"⚠️ No defaults found in MongoDB, falling back to JSON file")
