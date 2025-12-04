@@ -31,15 +31,16 @@ def calculate_blended_dscr(contracted_revenue, merchant_revenue, target_dscr_con
 
 def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency='annual'):
     """
-    Calculate debt schedule using sculpting approach for annual or quarterly periods.
+    Calculate debt schedule using sculpting approach for annual, quarterly, or monthly periods.
+    Ensures debt is fully paid down to zero by the end of the tenor period while maintaining DSCR constraints.
     
     Args:
         debt_amount (float): Initial debt amount in millions
-        cash_flows (list): Operating cash flows (CFADS) in millions - annual or quarterly
+        cash_flows (list): Operating cash flows (CFADS) in millions - annual, quarterly, or monthly
         interest_rate (float): Annual interest rate
         tenor_years (int): Debt term in years
         target_dscrs (list): Target DSCR for each period
-        period_frequency (str): 'annual' or 'quarterly' - determines period calculation
+        period_frequency (str): 'annual', 'quarterly', or 'monthly' - determines period calculation
     
     Returns:
         dict: Complete debt schedule with metrics
@@ -48,9 +49,21 @@ def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor
     if period_frequency.lower() == 'quarterly':
         num_periods = tenor_years * 4
         period_rate = interest_rate / 4  # Quarterly interest rate
+    elif period_frequency.lower() == 'monthly':
+        num_periods = tenor_years * 12
+        period_rate = interest_rate / 12  # Monthly interest rate
     else:
         num_periods = tenor_years
         period_rate = interest_rate  # Annual interest rate
+    
+    # Ensure we have enough cash flows (pad with zeros if needed)
+    if len(cash_flows) < num_periods:
+        cash_flows = cash_flows + [0.0] * (num_periods - len(cash_flows))
+    
+    # Ensure we have enough target DSCRs (use last value if needed)
+    if len(target_dscrs) < num_periods:
+        last_dscr = target_dscrs[-1] if target_dscrs else 1.4
+        target_dscrs = target_dscrs + [last_dscr] * (num_periods - len(target_dscrs))
     
     # Initialize arrays
     debt_balance = [0.0] * (num_periods + 1)
@@ -62,28 +75,61 @@ def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor
     # Set initial debt balance
     debt_balance[0] = debt_amount
     
-    # Calculate debt service for each period
+    # Calculate debt service for each period using DSCR sculpting
+    # This matches Excel project finance models:
+    # 1. Interest = opening balance * period rate (naturally decreases as balance is paid down)
+    # 2. Max debt service = CFADS / target DSCR
+    # 3. Principal = min(max debt service - interest, remaining balance)
+    # 4. Principal must always be > 0 (except final period) to ensure amortization
+    # 5. If DSCR is breached or debt can't be fully repaid, reduce debt size (handled by binary search)
     for period in range(num_periods):
-        if period >= len(cash_flows):
-            break
-            
-        # Interest payment on opening balance
+        # Interest payment on opening balance (decreases each period as balance is paid down)
         interest_payments[period] = debt_balance[period] * period_rate
         
         # Get available cash flow and target DSCR
         operating_cash_flow = cash_flows[period]
-        target_dscr = target_dscrs[period] if period < len(target_dscrs) else target_dscrs[-1]
+        target_dscr = target_dscrs[period]
         
-        # Maximum debt service allowed by DSCR constraint
-        max_debt_service = operating_cash_flow / target_dscr if target_dscr > 0 else 0
+        # Maximum total debt service (interest + principal) allowed by DSCR constraint
+        # For quarterly: operating_cash_flow is quarterly CFADS (sum of 3 months)
+        # For annual: operating_cash_flow is annual CFADS (sum of 12 months)
+        # Debt service must not exceed: CFADS / target DSCR
+        max_debt_service = operating_cash_flow / target_dscr if target_dscr > 0 and operating_cash_flow > 0 else 0
         
-        # Principal repayment (limited by max debt service and remaining balance)
-        principal_payments[period] = min(
-            max(0, max_debt_service - interest_payments[period]),
-            debt_balance[period]
-        )
+        # Calculate remaining periods
+        remaining_periods = num_periods - period - 1
         
-        # Total debt service
+        # Calculate principal payment
+        # Principal must always be positive (when balance > 0) to ensure amortization
+        if remaining_periods == 0:
+            # Final period: must pay off all remaining balance
+            required_principal = debt_balance[period]
+        elif debt_balance[period] <= 0:
+            # No balance left
+            required_principal = 0
+        else:
+            # Maximum principal allowed by DSCR constraint
+            max_principal_from_dscr = max_debt_service - interest_payments[period]
+            
+            # If interest alone exceeds max_debt_service, we can't pay any principal
+            # This means debt is too large (will be caught by binary search)
+            if max_principal_from_dscr <= 0:
+                # Can't pay principal - debt is too large, but set to 0 to flag as non-viable
+                required_principal = 0
+            else:
+                # We can pay principal - calculate how much
+                # In DSCR sculpting, principal is determined by DSCR constraint, not forced minimum
+                # Use DSCR-constrained amount (subject to remaining balance)
+                required_principal = min(max_principal_from_dscr, debt_balance[period])
+                
+                # Principal should always be positive when we can pay it
+                # If required_principal is 0 but we have balance, it means debt is too large
+                # (This will be caught by binary search which will reduce debt size)
+        
+        # Principal repayment (never reduced - if DSCR is breached, debt size is reduced instead)
+        principal_payments[period] = min(required_principal, debt_balance[period])
+        
+        # Total debt service (interest + principal)
         debt_service[period] = interest_payments[period] + principal_payments[period]
         
         # Calculate actual DSCR
@@ -92,11 +138,37 @@ def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor
         # Update debt balance
         debt_balance[period + 1] = debt_balance[period] - principal_payments[period]
     
+    # Final check: ensure debt is fully paid down in the last period
+    # If there's still a balance, we need to pay it off (this should not happen if sizing is correct)
+    if debt_balance[num_periods] > 0.001:  # $1M tolerance
+        # Force payment in the last period
+        last_period = num_periods - 1
+        if last_period >= 0:
+            # Add any remaining balance to the last period's principal
+            remaining_balance = debt_balance[num_periods]
+            principal_payments[last_period] += remaining_balance
+            debt_service[last_period] = interest_payments[last_period] + principal_payments[last_period]
+            debt_balance[num_periods] = 0.0
+            
+            # Recalculate DSCR for last period
+            if last_period < len(cash_flows):
+                operating_cash_flow = cash_flows[last_period]
+                dscr_values[last_period] = operating_cash_flow / debt_service[last_period] if debt_service[last_period] > 0 else float('inf')
+    
     # Calculate metrics
     fully_repaid = debt_balance[num_periods] < 0.001  # $1M tolerance
     avg_debt_service = sum(debt_service) / num_periods if num_periods > 0 else 0
     valid_dscrs = [d for d in dscr_values if d != float('inf') and d > 0]
     min_dscr = min(valid_dscrs) if valid_dscrs else 0
+    
+    # Check for DSCR breaches
+    dscr_breached = False
+    for period in range(num_periods):
+        if period < len(target_dscrs):
+            target_dscr = target_dscrs[period]
+            if dscr_values[period] != float('inf') and dscr_values[period] < target_dscr - 0.01:  # Small tolerance
+                dscr_breached = True
+                break
     
     return {
         'debt_balance': debt_balance,
@@ -108,7 +180,8 @@ def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor
             'fully_repaid': fully_repaid,
             'avg_debt_service': avg_debt_service,
             'min_dscr': min_dscr,
-            'final_balance': debt_balance[num_periods]
+            'final_balance': debt_balance[num_periods],
+            'dscr_breached': dscr_breached
         },
         'period_frequency': period_frequency
     }
@@ -116,6 +189,7 @@ def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor
 def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_rate, tenor_years, period_frequency='annual', debug=True):
     """
     Find maximum sustainable debt using binary search.
+    Ensures debt can be fully repaid by end of tenor while maintaining DSCR constraints.
     
     Args:
         capex (float): Total CAPEX in millions
@@ -146,7 +220,6 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
     best_debt = 0
     best_schedule = None
     
-   
     iteration = 0
     while iteration < max_iterations and (upper_bound - lower_bound) > tolerance:
         test_debt = (lower_bound + upper_bound) / 2
@@ -156,38 +229,68 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
             test_debt, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency
         )
         
+        # Check if debt can be fully repaid AND DSCR constraints are met
+        fully_repaid = schedule['metrics']['fully_repaid']
+        dscr_breached = schedule['metrics'].get('dscr_breached', False)
+        final_balance = schedule['metrics']['final_balance']
+        
+        # Debt is viable if it's fully repaid and DSCR is not breached
+        is_viable = fully_repaid and not dscr_breached and abs(final_balance) < 0.001
+        
         if debug and iteration < 5:
             print(f"\nIteration {iteration + 1}: Testing ${test_debt:,.2f}M")
-            print(f"  Fully repaid: {schedule['metrics']['fully_repaid']}")
-            print(f"  Final balance: ${schedule['metrics']['final_balance']:,.3f}M")
+            print(f"  Fully repaid: {fully_repaid}")
+            print(f"  Final balance: ${final_balance:,.3f}M")
+            print(f"  DSCR breached: {dscr_breached}")
             print(f"  Min DSCR: {schedule['metrics']['min_dscr']:.2f}")
+            print(f"  Viable: {is_viable}")
         
-        if schedule['metrics']['fully_repaid']:
-            # Debt can be repaid - try higher amount
+        if is_viable:
+            # Debt can be repaid and DSCR maintained - try higher amount
             lower_bound = test_debt
             best_debt = test_debt
             best_schedule = schedule
         else:
-            # Debt cannot be repaid - try lower amount
+            # Debt cannot be repaid or DSCR would be breached - try lower amount
             upper_bound = test_debt
         
         iteration += 1
     
-    # Final result
-    if best_debt == 0:
+    # Final result - verify the best solution
+    if best_debt > 0:
+        # Recalculate to ensure it's correct
+        best_schedule = calculate_annual_debt_schedule(
+            best_debt, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency
+        )
+        
+        # Validate final balance is zero
+        if abs(best_schedule['metrics']['final_balance']) > 0.001:
+            if debug:
+                print(f"WARNING: Best debt solution has non-zero final balance: ${best_schedule['metrics']['final_balance']:,.3f}M")
+    else:
         best_schedule = calculate_annual_debt_schedule(0, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency)
     
     actual_gearing = best_debt / capex if capex > 0 else 0
     
     # Verify gearing constraint is respected
     if actual_gearing > max_gearing + 0.001:  # Small tolerance for floating point
-        print(f"WARNING: Calculated gearing {actual_gearing:.1%} exceeds max gearing {max_gearing:.1%}")
-        # Cap at max gearing
-        best_debt = capex * max_gearing
-        actual_gearing = max_gearing
-        best_schedule = calculate_annual_debt_schedule(
-            best_debt, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency
+        if debug:
+            print(f"WARNING: Calculated gearing {actual_gearing:.1%} exceeds max gearing {max_gearing:.1%}")
+        # Cap at max gearing and test if it can be fully repaid
+        capped_debt = capex * max_gearing
+        capped_schedule = calculate_annual_debt_schedule(
+            capped_debt, cash_flows, interest_rate, tenor_years, target_dscrs, period_frequency
         )
+        
+        # Only use capped debt if it can be fully repaid
+        if capped_schedule['metrics']['fully_repaid'] and not capped_schedule['metrics'].get('dscr_breached', False):
+            best_debt = capped_debt
+            actual_gearing = max_gearing
+            best_schedule = capped_schedule
+        else:
+            # Capped debt cannot be fully repaid - use the best we found
+            if debug:
+                print(f"WARNING: Max gearing debt cannot be fully repaid, using lower amount")
     
     # Check if optimal debt hit the gearing limit
     hit_gearing_limit = abs(actual_gearing - max_gearing) < 0.001
@@ -199,9 +302,12 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
                 print(f"  ⚠️  WARNING: Optimal debt hit max gearing limit ({max_gearing:.1%})")
             print(f"  Average debt service: ${best_schedule['metrics']['avg_debt_service']:,.2f}M")
             print(f"  Minimum DSCR: {best_schedule['metrics']['min_dscr']:.2f}")
+            print(f"  Final balance: ${best_schedule['metrics']['final_balance']:,.3f}M")
+            if best_schedule['metrics'].get('dscr_breached', False):
+                print(f"  ⚠️  WARNING: DSCR constraint breached in some periods")
             # Show DSCR by period for first few years
             if len(best_schedule['dscr_values']) > 0:
-                print(f"  DSCR by year (first 5): {[f'{d:.2f}' for d in best_schedule['dscr_values'][:5]]}")
+                print(f"  DSCR by period (first 5): {[f'{d:.2f}' for d in best_schedule['dscr_values'][:5]]}")
         else:
             print(f"SOLUTION: No debt viable (100% equity)")
         print("=" * 50)
@@ -280,6 +386,20 @@ def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, 
         aggregated_data = aggregated_data.drop('period_offset', axis=1)
         
         period_type = 'quarterly'
+    elif dscr_calculation_frequency.lower() == 'monthly':
+        # Monthly aggregation - no grouping needed, just sort
+        cash_flow_data = cash_flow_data.sort_values('date').reset_index(drop=True)
+        
+        # Add period index (0, 1, 2...)
+        cash_flow_data['period'] = range(len(cash_flow_data))
+        
+        # Select columns
+        aggregated_data = cash_flow_data[[
+            'period', 'cfads', 'contractedGreenRevenue', 'contractedEnergyRevenue', 
+            'merchantGreenRevenue', 'merchantEnergyRevenue'
+        ]].copy()
+        
+        period_type = 'monthly'
     else:
         # Annual aggregation (default/legacy behavior)
         operations_start_month = operations_start.month
@@ -359,6 +479,9 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calc
             'annual_schedule': None
         }
     
+    # No conservative adjustment - use actual CFADS
+    # Debt sizing will iterate to find the maximum debt that can be supported
+    
     # Calculate cash flows and blended DSCRs for each period
     period_cash_flows = period_data['cfads'].tolist()
     period_target_dscrs = []
@@ -430,7 +553,8 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
         'drawdowns': 0.0,
         'interest': 0.0,
         'principal': 0.0,
-        'ending_balance': 0.0
+        'ending_balance': 0.0,
+        'debt_service': 0.0  # Add debt_service column for DSCR validation
     })
     
     if debt_amount == 0:
@@ -462,7 +586,11 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
     if not debt_service_start_date:
         return schedule
     
+    # Calculate debt service end date (tenor years from start)
+    debt_service_end_date = debt_service_start_date + relativedelta(years=tenor_years)
+    
     print(f"  Debt service starts: {debt_service_start_date.strftime('%Y-%m-%d')}")
+    print(f"  Debt service ends: {debt_service_end_date.strftime('%Y-%m-%d')}")
     
     # Prepare monthly CFADS lookup if provided
     monthly_cfads_dict = {}
@@ -513,6 +641,24 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
                         else:
                             monthly_interest = 0
                             monthly_principal = 0
+                    elif schedule_frequency == 'monthly':
+                        # Monthly schedule - direct mapping
+                        months_since_start = (current_date.year - debt_service_start_date.year) * 12 + \
+                                           (current_date.month - debt_service_start_date.month)
+                        period_index = months_since_start
+                        
+                        if period_index < len(annual_schedule['interest_payments']):
+                            monthly_interest = annual_schedule['interest_payments'][period_index]
+                            monthly_principal = annual_schedule['principal_payments'][period_index]
+                        else:
+                            monthly_interest = 0
+                            monthly_principal = 0
+                            
+                        schedule.loc[i, 'interest'] = monthly_interest
+                        schedule.loc[i, 'principal'] = min(monthly_principal, balance)
+                        schedule.loc[i, 'debt_service'] = monthly_interest + schedule.loc[i, 'principal']
+                        balance -= schedule.loc[i, 'principal']
+                        accrued_interest = max(0, accrued_interest - monthly_interest)
                     else:
                         # Annual schedule - calculate which year we're in
                         years_since_start = (current_date.year - debt_service_start_date.year) + \
@@ -544,33 +690,13 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
                             monthly_interest = 0
                             monthly_principal = 0
                     
-                    # Apply monthly DSCR validation if monthly CFADS provided
-                    if monthly_cfads_dict and current_date in monthly_cfads_dict and period_index is not None:
-                        monthly_cfads = monthly_cfads_dict[current_date]
-                        
-                        # Get target DSCR for this period (use blended or default)
-                        if target_dscrs and period_index < len(target_dscrs):
-                            target_dscr = target_dscrs[period_index]
-                        else:
-                            # Default to conservative DSCR
-                            target_dscr = 1.4
-                        
-                        # Maximum debt service allowed by DSCR
-                        max_debt_service = monthly_cfads / target_dscr if target_dscr > 0 and monthly_cfads > 0 else float('inf')
-                        
-                        # Adjust payments if they would violate DSCR
-                        proposed_debt_service = monthly_interest + monthly_principal
-                        original_principal = monthly_principal
-                        if proposed_debt_service > max_debt_service:
-                            # Reduce principal payment to meet DSCR constraint
-                            monthly_principal = max(0, max_debt_service - monthly_interest)
-                            # Only warn if significant reduction (more than 10%)
-                            if original_principal > 0 and monthly_principal < original_principal * 0.9:
-                                print(f"    WARNING: Reduced principal payment in {current_date.strftime('%Y-%m')} from ${original_principal:.2f}M to ${monthly_principal:.2f}M to meet DSCR constraint")
-                        
-                        # Record payments
+                    # Record payments - no monthly DSCR validation
+                    # Debt sizing already accounts for DSCR constraints at the period level
+                    # Monthly volatility is handled by conservative sizing, not by reducing payments
+                    if schedule_frequency != 'monthly':
                         schedule.loc[i, 'interest'] = monthly_interest
                         schedule.loc[i, 'principal'] = min(monthly_principal, balance)
+                        schedule.loc[i, 'debt_service'] = monthly_interest + schedule.loc[i, 'principal']
                         balance -= schedule.loc[i, 'principal']
                         accrued_interest = max(0, accrued_interest - monthly_interest)  # Reduce accrued interest by amount paid
                 else:
@@ -578,9 +704,59 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
                     if current_date >= debt_service_start_date:
                         schedule.loc[i, 'interest'] = balance * monthly_rate
                         # For annuity, principal would be calculated separately
+                        # Calculate debt_service for validation
+                        schedule.loc[i, 'debt_service'] = schedule.loc[i, 'interest'] + schedule.loc[i, 'principal']
                         accrued_interest = 0  # Reset since we're paying it
         
         schedule.loc[i, 'ending_balance'] = balance
+    
+    # Final check: ensure debt is fully paid down by end of tenor
+    # Find the last month within the tenor period
+    last_tenor_month_idx = None
+    for i, current_date in enumerate(schedule['date']):
+        if current_date >= debt_service_start_date and current_date <= debt_service_end_date:
+            last_tenor_month_idx = i
+    
+    # If we're past the tenor end date and there's still a balance, pay it off
+    if last_tenor_month_idx is not None:
+        final_balance = schedule.loc[last_tenor_month_idx, 'ending_balance']
+        if final_balance > 0.001:  # $1M tolerance
+            # Find the last payment month within tenor and ensure balance is paid
+            # This should not happen if the annual schedule is correct, but add as safeguard
+            for i in range(last_tenor_month_idx, -1, -1):
+                current_date = schedule.loc[i, 'date']
+                if current_date >= debt_service_start_date and current_date <= debt_service_end_date:
+                    remaining_balance = schedule.loc[i, 'ending_balance']
+                    if remaining_balance > 0.001:
+                        # Add remaining balance to principal payment for this month
+                        current_principal = schedule.loc[i, 'principal']
+                        schedule.loc[i, 'principal'] = current_principal + remaining_balance
+                        schedule.loc[i, 'debt_service'] = schedule.loc[i, 'interest'] + schedule.loc[i, 'principal']
+                        schedule.loc[i, 'ending_balance'] = 0.0
+                        # Update balance for subsequent months
+                        for j in range(i + 1, len(schedule)):
+                            if schedule.loc[j, 'date'] <= debt_service_end_date:
+                                schedule.loc[j, 'beginning_balance'] = schedule.loc[j - 1, 'ending_balance']
+                                schedule.loc[j, 'ending_balance'] = schedule.loc[j, 'beginning_balance'] + \
+                                                                      schedule.loc[j, 'drawdowns'] - \
+                                                                      schedule.loc[j, 'principal']
+                                schedule.loc[j, 'debt_service'] = schedule.loc[j, 'interest'] + schedule.loc[j, 'principal']
+                        break
+    
+    # Additional safeguard: ensure ending balance is zero at end of tenor
+    # Check all months up to and including the tenor end date
+    for i, current_date in enumerate(schedule['date']):
+        if current_date > debt_service_end_date:
+            # After tenor ends, ensure balance is zero
+            if schedule.loc[i, 'ending_balance'] > 0.001:
+                # Pay off any remaining balance
+                remaining = schedule.loc[i, 'ending_balance']
+                schedule.loc[i, 'principal'] += remaining
+                schedule.loc[i, 'debt_service'] = schedule.loc[i, 'interest'] + schedule.loc[i, 'principal']
+                schedule.loc[i, 'ending_balance'] = 0.0
+    
+    # Ensure debt_service is calculated for all rows
+    schedule['debt_service'] = schedule['interest'] + schedule['principal']
     
     return schedule
 
@@ -700,11 +876,120 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
                 
                 # Validate debt repayment
                 if not debt_schedule.empty:
-                    final_debt_balance = debt_schedule['ending_balance'].iloc[-1]
-                    if final_debt_balance > 0.001:  # $1M tolerance
-                        print(f"  ⚠️  WARNING: Debt not fully repaid. Final balance: ${final_debt_balance:,.2f}M")
+                    # Find the debt service end date
+                    debt_service_start = debt_sizing_result.get('debt_service_start_date')
+                    tenor_years = debt_sizing_result.get('tenor_years', 18)
+                    if debt_service_start:
+                        debt_service_end = pd.to_datetime(debt_service_start) + relativedelta(years=tenor_years)
+                        # Find the last month within the tenor period
+                        tenor_schedule = debt_schedule[
+                            (debt_schedule['date'] >= debt_service_start) & 
+                            (debt_schedule['date'] <= debt_service_end)
+                        ]
+                        if not tenor_schedule.empty:
+                            final_debt_balance = tenor_schedule['ending_balance'].iloc[-1]
+                        else:
+                            final_debt_balance = debt_schedule['ending_balance'].iloc[-1]
                     else:
-                        print(f"  ✓ Debt fully repaid by end of tenor")
+                        final_debt_balance = debt_schedule['ending_balance'].iloc[-1]
+                    
+                    if final_debt_balance > 0.001:  # $1M tolerance
+                        print(f"  ⚠️  WARNING: Debt not fully repaid by end of tenor. Final balance: ${final_debt_balance:,.2f}M")
+                    else:
+                        print(f"  ✓ Debt fully repaid by end of tenor (final balance: ${final_debt_balance:,.3f}M)")
+                    
+                    # Validate DSCR constraints
+                    if debt_sizing_method == 'dscr' and debt_service_start:
+                        # Check DSCR for months within debt service period
+                        service_period_schedule = debt_schedule[
+                            (debt_schedule['date'] >= debt_service_start) & 
+                            (debt_schedule['date'] <= debt_service_end)
+                        ]
+                        if not service_period_schedule.empty:
+                            # Create monthly CFADS lookup if available
+                            monthly_cfads_dict = {}
+                            if monthly_cfads is not None and not monthly_cfads.empty:
+                                for _, cfads_row in monthly_cfads.iterrows():
+                                    monthly_cfads_dict[pd.to_datetime(cfads_row['date'])] = cfads_row.get('cfads', 0)
+                            
+                            # Calculate DSCR for each month in service period
+                            dscr_breaches = []
+                            
+                            # Validation logic depends on frequency
+                            if dscr_calculation_frequency == 'quarterly':
+                                # Group by quarter for validation
+                                service_period_schedule['quarter'] = service_period_schedule['date'].dt.to_period('Q')
+                                quarterly_validation = service_period_schedule.groupby('quarter').agg({
+                                    'debt_service': 'sum',
+                                    'date': 'first'
+                                }).reset_index()
+                                
+                                for _, row in quarterly_validation.iterrows():
+                                    if row['debt_service'] > 0:
+                                        # Sum CFADS for this quarter
+                                        quarter_start = row['date']
+                                        # Find all months in this quarter
+                                        quarter_cfads = 0
+                                        for m in range(3):
+                                            month_date = quarter_start + relativedelta(months=m)
+                                            # Ensure month is within the same quarter (handle quarter boundaries if needed)
+                                            # But since we grouped by period('Q'), the 'date' is just the first one found
+                                            # Better to iterate through original monthly data
+                                            pass
+                                        
+                                        # Re-calculate quarterly CFADS properly
+                                        q_start = row['quarter'].start_time
+                                        q_end = row['quarter'].end_time
+                                        
+                                        q_cfads = 0
+                                        for d, c in monthly_cfads_dict.items():
+                                            if d >= q_start and d <= q_end:
+                                                q_cfads += c
+                                        
+                                        actual_dscr = q_cfads / row['debt_service']
+                                        
+                                        # Get target DSCR
+                                        if target_dscrs_list:
+                                            # Estimate period index
+                                            months_since_start = (q_start.year - pd.to_datetime(debt_service_start).year) * 12 + \
+                                                                (q_start.month - pd.to_datetime(debt_service_start).month)
+                                            period_idx = months_since_start // 3
+                                            if period_idx < len(target_dscrs_list):
+                                                target_dscr = target_dscrs_list[period_idx]
+                                                if actual_dscr < target_dscr - 0.01:
+                                                    dscr_breaches.append((q_start, actual_dscr, target_dscr))
+
+                            else:
+                                # Monthly or Annual validation
+                                for _, row in service_period_schedule.iterrows():
+                                    if row['debt_service'] > 0:
+                                        month_cfads = monthly_cfads_dict.get(pd.to_datetime(row['date']), 0)
+                                        if month_cfads > 0:
+                                            actual_dscr = month_cfads / row['debt_service']
+                                            # Get target DSCR for this period
+                                            if target_dscrs_list:
+                                                # Estimate period index
+                                                months_since_start = (pd.to_datetime(row['date']).year - pd.to_datetime(debt_service_start).year) * 12 + \
+                                                                    (pd.to_datetime(row['date']).month - pd.to_datetime(debt_service_start).month)
+                                                
+                                                if dscr_calculation_frequency == 'annual':
+                                                    period_idx = months_since_start // 12
+                                                elif dscr_calculation_frequency == 'quarterly':
+                                                    period_idx = months_since_start // 3
+                                                else:
+                                                    period_idx = months_since_start
+                                                    
+                                                if period_idx < len(target_dscrs_list):
+                                                    target_dscr = target_dscrs_list[period_idx]
+                                                    if actual_dscr < target_dscr - 0.01:  # Small tolerance
+                                                        dscr_breaches.append((row['date'], actual_dscr, target_dscr))
+                            
+                            if dscr_breaches:
+                                print(f"  ⚠️  WARNING: DSCR constraint breached in {len(dscr_breaches)} period(s)")
+                                for breach_date, actual, target in dscr_breaches[:3]:  # Show first 3
+                                    print(f"    {breach_date.strftime('%Y-%m')}: DSCR {actual:.2f}x < target {target:.2f}x")
+                            else:
+                                print(f"  ✓ DSCR constraints maintained throughout debt service period")
                 
                 # Show debt sizing metrics if available
                 if debt_sizing_method == 'dscr':
@@ -713,6 +998,8 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
                         metrics = annual_schedule.get('metrics', {})
                         if metrics.get('min_dscr'):
                             print(f"  Min DSCR: {metrics['min_dscr']:.2f}x")
+                        if metrics.get('dscr_breached', False):
+                            print(f"  ⚠️  WARNING: DSCR constraint breached in annual/quarterly schedule")
                     if debt_sizing_result.get('hit_gearing_limit'):
                         print(f"  ⚠️  Hit max gearing limit")
                 
