@@ -161,22 +161,46 @@ def insert_dataframe_to_mongodb(df: pd.DataFrame, collection_name: str, scenario
             if replace_scenario:
                 if scenario_id:
                     # Logic for specific scenario_id
-                    query = {"scenario_id": scenario_id}
+                    filters = [{"scenario_id": scenario_id}]
+                    
+                    # If DataFrame has portfolio column, filter by that portfolio
+                    if 'portfolio' in df.columns:
+                        portfolios = df['portfolio'].unique().tolist()
+                        filters.append({"portfolio": {"$in": portfolios}})
+                        print(f"Deleting scenario '{scenario_id}' records for portfolios: {portfolios}")
+                    
+                    # If DataFrame has asset_id column, filter by those asset_ids
+                    if 'asset_id' in df.columns:
+                        asset_ids = df['asset_id'].unique().tolist()
+                        filters.append({"asset_id": {"$in": asset_ids}})
+                        print(f"Deleting scenario '{scenario_id}' records for asset_ids: {asset_ids}")
+                    
+                    if len(filters) > 1:
+                        query = {"$and": filters}
+                    else:
+                        query = filters[0]
                 else:
                     # Logic for base case (scenario_id is None or not present)
                     # Also filter by asset_ids in the DataFrame to only delete records for assets being written
                     base_case_query = {"$or": [{"scenario_id": {"$exists": False}}, {"scenario_id": None}, {"scenario_id": ""}]}
                     
-                    # If DataFrame has asset_id column, filter by those asset_ids to avoid deleting other assets' data
+                    filters = [base_case_query]
+                    
+                    # If DataFrame has asset_id column, filter by those asset_ids
                     if 'asset_id' in df.columns:
                         asset_ids = df['asset_id'].unique().tolist()
-                        query = {
-                            "$and": [
-                                base_case_query,
-                                {"asset_id": {"$in": asset_ids}}
-                            ]
-                        }
+                        filters.append({"asset_id": {"$in": asset_ids}})
                         print(f"Deleting base case records for asset_ids: {asset_ids}")
+                        
+                    # If DataFrame has portfolio column, filter by that portfolio
+                    if 'portfolio' in df.columns:
+                        portfolios = df['portfolio'].unique().tolist()
+                        # Assuming usually one portfolio per dataframe, but handling list just in case
+                        filters.append({"portfolio": {"$in": portfolios}})
+                        print(f"Deleting base case records for portfolios: {portfolios}")
+                    
+                    if len(filters) > 1:
+                        query = {"$and": filters}
                     else:
                         query = base_case_query
                 
@@ -214,9 +238,16 @@ def replace_scenario_data(collection_name: str, scenario_id: str, df: pd.DataFra
     """
     insert_dataframe_to_mongodb(df, collection_name, scenario_id, replace_scenario=True)
 
-def clear_all_scenario_data(scenario_id: str, collections: list = None):
+def clear_all_scenario_data(scenario_id: str, collections: list = None, portfolio_name: str = None):
     """
     Optimized version that uses the persistent connection.
+    
+    Args:
+        scenario_id: Scenario identifier to clear
+        collections: List of collection names to clear. If None, uses default collections.
+        portfolio_name: Optional portfolio name to filter deletions. If provided, only deletes
+                       records for this specific portfolio and scenario. If None, deletes all
+                       records for the scenario across all portfolios.
     """
     if collections is None:
         collections = [
@@ -235,23 +266,30 @@ def clear_all_scenario_data(scenario_id: str, collections: list = None):
     
     try:
         with mongo_session() as db_mgr:
-            print(f"Clearing scenario '{scenario_id}' from {len(collections)} collections...")
+            portfolio_filter = f" for portfolio '{portfolio_name}'" if portfolio_name else ""
+            print(f"Clearing scenario '{scenario_id}'{portfolio_filter} from {len(collections)} collections...")
             
             for collection_name in collections:
                 collection = db_mgr.get_collection(collection_name)
                 
+                # Build query with scenario_id and optional portfolio filter
+                query = {"scenario_id": scenario_id}
+                if portfolio_name:
+                    query["portfolio"] = portfolio_name
+                    print(f"  {collection_name}: Filtering by portfolio '{portfolio_name}'")
+                
                 # Count existing records
-                existing_count = collection.count_documents({"scenario_id": scenario_id})
+                existing_count = collection.count_documents(query)
                 
                 if existing_count > 0:
-                    # Delete records for this scenario
-                    delete_result = collection.delete_many({"scenario_id": scenario_id})
-                    print(f"  {collection_name}: Deleted {delete_result.deleted_count} records")
+                    # Delete records for this scenario (and portfolio if specified)
+                    delete_result = collection.delete_many(query)
+                    print(f"  {collection_name}: Deleted {delete_result.deleted_count} records{portfolio_filter}")
                     total_deleted += delete_result.deleted_count
                 else:
-                    print(f"  {collection_name}: No records found")
+                    print(f"  {collection_name}: No records found{portfolio_filter}")
             
-            print(f"Total records deleted: {total_deleted}")
+            print(f"Total records deleted{portfolio_filter}: {total_deleted}")
             
     except Exception as e:
         print(f"Error clearing scenario data: {e}")
@@ -277,9 +315,14 @@ def get_data_from_mongodb(collection_name: str, query: dict = None) -> List[Dict
         print(f"Error retrieving data from MongoDB collection '{collection_name}': {e}")
         return []
 
-def clear_base_case_data(collections: list = None):
+def clear_base_case_data(collections: list = None, portfolio_name: str = None):
     """
     Optimized version that uses the persistent connection.
+    
+    Args:
+        collections: List of collection names to clear. If None, uses default collections.
+        portfolio_name: Optional portfolio name to filter deletions. If provided, only deletes
+                       records for this specific portfolio. If None, deletes all base case records.
     """
     if collections is None:
         collections = [
@@ -294,23 +337,32 @@ def clear_base_case_data(collections: list = None):
     
     try:
         with mongo_session() as db_mgr:
-            print(f"Clearing base case data from {len(collections)} collections...")
+            portfolio_filter = f" for portfolio '{portfolio_name}'" if portfolio_name else ""
+            print(f"Clearing base case data{portfolio_filter} from {len(collections)} collections...")
             
             for collection_name in collections:
                 collection = db_mgr.get_collection(collection_name)
                 
                 # Query for records without scenario_id or with scenario_id = None
-                query = {"$or": [{"scenario_id": {"$exists": False}}, {"scenario_id": None}]}
+                base_case_query = {"$or": [{"scenario_id": {"$exists": False}}, {"scenario_id": None}]}
+                
+                # If portfolio_name is provided, filter by portfolio
+                if portfolio_name:
+                    query = {"$and": [base_case_query, {"portfolio": portfolio_name}]}
+                    print(f"  {collection_name}: Filtering by portfolio '{portfolio_name}'")
+                else:
+                    query = base_case_query
+                
                 existing_count = collection.count_documents(query)
                 
                 if existing_count > 0:
                     delete_result = collection.delete_many(query)
-                    print(f"  {collection_name}: Deleted {delete_result.deleted_count} base case records")
+                    print(f"  {collection_name}: Deleted {delete_result.deleted_count} base case records{portfolio_filter}")
                     total_deleted += delete_result.deleted_count
                 else:
-                    print(f"  {collection_name}: No base case records found")
+                    print(f"  {collection_name}: No base case records found{portfolio_filter}")
             
-            print(f"Total base case records deleted: {total_deleted}")
+            print(f"Total base case records deleted{portfolio_filter}: {total_deleted}")
             
     except Exception as e:
         print(f"Error clearing base case data: {e}")

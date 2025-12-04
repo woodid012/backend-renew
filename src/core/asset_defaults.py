@@ -3,28 +3,47 @@
 import json
 import os
 from typing import Dict, Any
+from .database import db_manager, mongo_session
 
 def load_asset_defaults() -> Dict[str, Any]:
     """
-    Load asset defaults from config file.
+    Load asset defaults from MongoDB CONFIG_Asset_Defaults collection.
+    Falls back to JSON file if MongoDB is not available or document doesn't exist.
     
     Returns:
         Dictionary containing asset defaults for all asset types and platform settings.
     """
-    config_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-        'config',
-        'asset_defaults.json'
-    )
-    
+    # Try MongoDB first
     try:
-        with open(config_path, 'r') as f:
-            defaults = json.load(f)
-        print(f"✅ Loaded asset defaults from {config_path}")
-        return defaults
+        with mongo_session() as db_mgr:
+            collection = db_mgr.get_collection('CONFIG_Asset_Defaults')
+            defaults = collection.find_one({})
+            
+            if defaults:
+                # Remove MongoDB _id field
+                defaults.pop('_id', None)
+                print(f"✅ Loaded asset defaults from MongoDB CONFIG_Asset_Defaults")
+                return defaults
+            else:
+                print(f"⚠️ No defaults found in MongoDB, falling back to JSON file")
+                raise ValueError("No document in MongoDB")
     except Exception as e:
-        print(f"⚠️ Error loading asset defaults: {e}")
-        return get_fallback_defaults()
+        print(f"⚠️ MongoDB load failed ({e}), falling back to JSON file")
+        # Fallback to JSON file
+        config_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+            'config',
+            'asset_defaults.json'
+        )
+        
+        try:
+            with open(config_path, 'r') as f:
+                defaults = json.load(f)
+            print(f"✅ Loaded asset defaults from {config_path}")
+            return defaults
+        except Exception as json_error:
+            print(f"⚠️ Error loading asset defaults from JSON: {json_error}")
+            return get_fallback_defaults()
 
 
 def get_asset_default_config(asset_type: str) -> Dict[str, Any]:

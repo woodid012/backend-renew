@@ -65,6 +65,14 @@ def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, upda
     
     print("\n=== GENERATING ASSET OUTPUT SUMMARY ===")
     
+    # Extract portfolio name from final_cash_flow (should be consistent across all rows)
+    portfolio_name = None
+    if 'portfolio' in final_cash_flow.columns and not final_cash_flow['portfolio'].empty:
+        portfolio_name = final_cash_flow['portfolio'].iloc[0]
+        print(f"Portfolio name from cash flows: {portfolio_name}")
+    else:
+        print("Warning: No portfolio field found in final_cash_flow")
+    
     summary_records = []
     
     # Import hybrid assets utility
@@ -193,13 +201,15 @@ def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, upda
             'total_revenue': total_revenue,
             'total_opex': total_opex,
             'total_cfads': total_cfads,
-            'total_equity_cash_flow': total_equity_cash_flow
+            'total_equity_cash_flow': total_equity_cash_flow,
+            'portfolio': portfolio_name  # Add portfolio field
         }
         
         summary_records.append(summary_record)
         print(f"  Asset {asset_name}: IRR {asset_irr:.2%}" if asset_irr else f"  Asset {asset_name}: IRR N/A")
     
     # Add Platform/Portfolio summary row
+    # Only add portfolio row if there's more than 1 asset (otherwise it's redundant)
     portfolio_asset_id = len(ASSETS) + 1
     
     # Calculate portfolio totals
@@ -242,25 +252,31 @@ def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, upda
     except:
         pass
     
-    portfolio_record = {
-        'asset_id': portfolio_asset_id,
-        'asset_name': 'Platform',
-        'construction_start_date': earliest_cons_start,
-        'operations_start_date': latest_ops_start,
-        'operations_end_date': latest_ops_end,
-        'terminal_value': portfolio_terminal_value,
-        'total_capex': portfolio_capex,
-        'total_debt': portfolio_debt,
-        'total_equity': portfolio_equity,
-        'equity_irr': irr if not pd.isna(irr) else None,
-        'total_revenue': portfolio_revenue,
-        'total_opex': portfolio_opex,
-        'total_cfads': portfolio_cfads,
-        'total_equity_cash_flow': portfolio_equity_cash_flow
-    }
-    
-    summary_records.append(portfolio_record)
-    print(f"  Platform: IRR {irr:.2%}" if not pd.isna(irr) else f"  Platform: IRR N/A")
+    # Only add portfolio summary row if there's more than 1 asset
+    # For single-asset portfolios, the portfolio row is redundant (same as the asset)
+    if len(ASSETS) > 1:
+        portfolio_record = {
+            'asset_id': portfolio_asset_id,
+            'asset_name': 'Platform',
+            'construction_start_date': earliest_cons_start,
+            'operations_start_date': latest_ops_start,
+            'operations_end_date': latest_ops_end,
+            'terminal_value': portfolio_terminal_value,
+            'total_capex': portfolio_capex,
+            'total_debt': portfolio_debt,
+            'total_equity': portfolio_equity,
+            'equity_irr': irr if not pd.isna(irr) else None,
+            'total_revenue': portfolio_revenue,
+            'total_opex': portfolio_opex,
+            'total_cfads': portfolio_cfads,
+            'total_equity_cash_flow': portfolio_equity_cash_flow,
+            'portfolio': portfolio_name  # Add portfolio field
+        }
+        
+        summary_records.append(portfolio_record)
+        print(f"  Platform: IRR {irr:.2%}" if not pd.isna(irr) else f"  Platform: IRR N/A")
+    else:
+        print(f"  Single asset portfolio - skipping redundant portfolio summary row")
     
     # Create DataFrame
     summary_df = pd.DataFrame(summary_records)
@@ -284,7 +300,7 @@ def generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, upda
     return summary_df
 
 
-def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=None, scenario_id=None, run_sensitivity=False, replace_data=True):
+def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, scenario_file=None, scenario_id=None, run_sensitivity=False, replace_data=True):
     """
     Main function to run the cash flow model.
     
@@ -295,6 +311,7 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
         assets (list): List of asset dictionaries
         monthly_prices (pd.DataFrame): Monthly price data
         yearly_spreads (pd.DataFrame): Yearly spread data
+        portfolio_name (str): Portfolio name to tag results in database
         scenario_file (str, optional): Path to scenario JSON file
         scenario_id (str, optional): Unique identifier for the scenario run
         run_sensitivity (bool): Whether to run sensitivity analysis
@@ -303,7 +320,18 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
     Returns:
         str: JSON representation of the final cash flow DataFrame.
     """
-    print("=== STARTING CASHFLOW MODEL ===")
+    print("\n" + "="*80)
+    print("📊 STARTING CASHFLOW MODEL")
+    print("="*80)
+    print(f"  📍 Function: run_cashflow_model() in src/main.py (line 287)")
+    print(f"  📦 Inputs:")
+    print(f"     - Number of assets: {len(assets)}")
+    print(f"     - Monthly prices shape: {monthly_prices.shape}")
+    print(f"     - Yearly spreads shape: {yearly_spreads.shape}")
+    print(f"     - Scenario file: {scenario_file}")
+    print(f"     - Scenario ID: {scenario_id}")
+    print(f"     - Portfolio name: {portfolio_name}")
+    print("="*80)
         
     # Construct the absolute path to the data directory
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -365,40 +393,66 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
         if start_date == pd.to_datetime('2050-01-01') or end_date == pd.to_datetime('1900-01-01'):
             raise ValueError("Could not determine valid model start or end dates from asset data. Please check 'constructionStartDate', 'assetStartDate' and 'assetLife' (or 'operationsEndDate') in your asset data, or set USER_MODEL_START_DATE and USER_MODEL_END_DATE in config.py.")
 
-    print(f"Model period: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
+    print(f"  📅 Model period: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
 
     # 1. Calculate Revenue
+    print(f"\n  [STEP 1] Calculating Revenue Timeseries")
+    print(f"     → Function: calculate_revenue_timeseries() from src/calculations/revenue.py")
     output_directory = os.path.join(project_root, 'output', 'model_results')
     revenue_df = calculate_revenue_timeseries(ASSETS, MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, output_directory)
+    print(f"     ✅ Revenue calculated: {len(revenue_df)} rows")
 
     # 2. Calculate OPEX and CAPEX (initial CAPEX with assumed funding split)
+    print(f"\n  [STEP 2] Calculating OPEX and CAPEX")
+    print(f"     → Function: calculate_opex_timeseries() from src/calculations/opex.py")
     opex_df = calculate_opex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date)
+    print(f"     ✅ OPEX calculated: {len(opex_df)} rows")
+    print(f"     → Function: calculate_capex_timeseries() from src/calculations/construction_capex.py")
     initial_capex_df = calculate_capex_timeseries(ASSETS, ASSET_COST_ASSUMPTIONS, start_date, end_date, capex_funding_type=DEFAULT_CAPEX_FUNDING_TYPE)
+    print(f"     ✅ CAPEX calculated: {len(initial_capex_df)} rows")
 
     # 2b. Apply ALL scenario overrides to calculated timeseries (NEW APPROACH)
     if scenario_file:
-        print(f"Applying scenario overrides from {scenario_file}...")
+        print(f"\n  [STEP 2b] Applying Scenario Overrides")
+        print(f"     → Function: apply_all_scenarios_to_timeseries() from src/core/scenario_manager.py")
+        print(f"     → Scenario file: {scenario_file}")
         revenue_df, opex_df, initial_capex_df, ASSET_COST_ASSUMPTIONS = apply_all_scenarios_to_timeseries(
             revenue_df, opex_df, initial_capex_df, ASSETS, ASSET_COST_ASSUMPTIONS, 
             MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, scenario_data
         )
+        print(f"     ✅ Scenario overrides applied")
 
     # 3. Calculate preliminary CFADS for debt sizing
+    print(f"\n  [STEP 3] Calculating Preliminary CFADS")
+    print(f"     → Merging revenue and OPEX dataframes")
     prelim_cash_flow = pd.merge(revenue_df, opex_df, on=['asset_id', 'date'])
     prelim_cash_flow['cfads'] = prelim_cash_flow['revenue'] - prelim_cash_flow['opex']
+    print(f"     ✅ Preliminary CFADS calculated: {len(prelim_cash_flow)} rows")
 
     # Calculate Depreciation & Amortization (D&A)
+    print(f"\n  [STEP 3b] Calculating Depreciation & Amortization")
+    print(f"     → Function: calculate_d_and_a() from src/calculations/depreciation.py")
     d_and_a_df = calculate_d_and_a(initial_capex_df, pd.DataFrame(columns=['asset_id', 'date', 'intangible_capex']), ASSETS, DEFAULT_ASSET_LIFE_YEARS, DEFAULT_ASSET_LIFE_YEARS, start_date, end_date)
+    print(f"     ✅ D&A calculated: {len(d_and_a_df)} rows")
 
     # 4. Size debt based on operational cash flows and update CAPEX funding
+    print(f"\n  [STEP 4] Calculating Debt Schedule")
+    print(f"     → Function: calculate_debt_schedule() from src/calculations/debt.py")
     debt_df, updated_capex_df = calculate_debt_schedule(ASSETS, ASSET_COST_ASSUMPTIONS, initial_capex_df, prelim_cash_flow, start_date, end_date, repayment_frequency=DEFAULT_DEBT_REPAYMENT_FREQUENCY, grace_period=DEFAULT_DEBT_GRACE_PERIOD, debt_sizing_method=DEFAULT_DEBT_SIZING_METHOD, dscr_calculation_frequency=DSCR_CALCULATION_FREQUENCY)
+    print(f"     ✅ Debt schedule calculated: {len(debt_df)} rows")
 
     # 4b. Apply CAPEX scenarios to debt-sized CAPEX schedule (FINAL CAPEX ADJUSTMENT)
     if scenario_file:
+        print(f"\n  [STEP 4b] Applying Post-Debt CAPEX Scenarios")
+        print(f"     → Function: apply_post_debt_sizing_capex_scenarios() from src/core/scenario_manager.py")
         updated_capex_df = apply_post_debt_sizing_capex_scenarios(updated_capex_df, scenario_data)
+        print(f"     ✅ Post-debt CAPEX scenarios applied")
 
     # 5. Aggregate into Final Cash Flow using updated CAPEX with correct debt/equity split
+    print(f"\n  [STEP 5] Aggregating Final Cash Flow")
+    print(f"     → Function: aggregate_cashflows() from src/calculations/cashflow.py")
     final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, d_and_a_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS)
+    print(f"     ✅ Final cash flow aggregated: {len(final_cash_flow)} rows")
 
     # Assign period type (Construction or Operations)
     def assign_period_type(df, assets_data):
@@ -466,8 +520,8 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
     print("========================\n")
     
     # Calculate Equity IRR - ONLY for Construction + Operations + Terminal periods
- 
-    print("=== CALCULATING EQUITY IRR ===")
+    print(f"\n  [STEP 6] Calculating Equity IRR")
+    print(f"     → Function: calculate_equity_irr() from src/core/equity_irr.py")
     
     # Filter cash flows to include only Construction ('C') and Operations ('O') periods
     co_periods_df = final_cash_flow[final_cash_flow['period_type'].isin(['C', 'O'])].copy()
@@ -503,7 +557,8 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
         print("Warning: No Construction + Operations periods found")
 
     # Calculate individual asset IRRs - ALSO FIXED
-    print("=== CALCULATING INDIVIDUAL ASSET IRRs ===")
+    print(f"\n  [STEP 7] Calculating Individual Asset IRRs")
+    print(f"     → Function: calculate_asset_equity_irrs_fixed() (internal function)")
     
     # Fix the asset IRR calculation function as well
     def calculate_asset_equity_irrs_fixed(final_cash_flow_df):
@@ -560,27 +615,34 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
     summary_data = generate_summary_data(final_cash_flow)
 
     # Save to files
-    print("\n=== SAVING OUTPUTS ===")
+    print(f"\n  [STEP 8] Saving Outputs to Files")
+    print(f"     → Function: generate_asset_and_platform_output() from src/core/output_generator.py")
     generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id)
+    print(f"     → Function: export_three_way_financials_to_excel() from src/core/output_generator.py")
     export_three_way_financials_to_excel(final_cash_flow, output_directory, scenario_id=scenario_id)
+    print(f"     ✅ Outputs saved to: {output_directory}")
 
     # === CRITICAL: WRITE TO MONGODB ===
-    print("\n=== WRITING TO MONGODB ===")
+    print(f"\n  [STEP 9] Writing to MongoDB")
+    print(f"     → Function: insert_dataframe_to_mongodb() from src/core/database.py")
     print(f"Debug: replace_data={replace_data}, scenario_id={scenario_id}")
     try:
         # Handle data replacement
         if replace_data:
             if scenario_id:
-                print(f"Clearing existing data for scenario: {scenario_id}")
-                clear_all_scenario_data(scenario_id)
+                print(f"Clearing existing data for scenario: {scenario_id}, portfolio: {portfolio_name}")
+                clear_all_scenario_data(scenario_id, portfolio_name=portfolio_name)
             else:
-                print(f"Clearing existing base case data")
-                clear_base_case_data()
+                print(f"Clearing existing base case data for portfolio: {portfolio_name}")
+                clear_base_case_data(portfolio_name=portfolio_name)
         else:
             print(f"Appending new data (replace_data=False)")
 
         # Write main cash flow data with replace option
         print("Writing main cash flow data to MongoDB...")
+        # Add portfolio_name to DataFrame
+        final_cash_flow['portfolio'] = portfolio_name
+        print(f"Tagging results with portfolio: {portfolio_name}")
         insert_dataframe_to_mongodb(
             final_cash_flow, 
             MONGO_ASSET_OUTPUT_COLLECTION, 
@@ -595,7 +657,7 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
         print("Model completed but data not saved to database!")
         raise  # Re-raise the error so user knows something went wrong
 
-    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, asset_irrs, asset_type_map, total_portfolio_capex, total_portfolio_debt, portfolio_gearing, scenario_id=None):
+    def generate_asset_inputs_summary(assets, asset_cost_assumptions, config_values, debt_summary, output_dir, irr_value, asset_irrs, asset_type_map, total_portfolio_capex, total_portfolio_debt, portfolio_gearing, portfolio_name=None, scenario_id=None):
         # Determine the actual output directory based on scenario_id
         if scenario_id:
             actual_output_dir = os.path.join(output_dir, 'scenarios', scenario_id)
@@ -635,6 +697,10 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
                 # Include asset IRR
                 asset_irr = asset_irrs.get(asset_id, float('nan'))
                 flat_asset_data['asset_equity_irr'] = asset_irr
+                
+                # Add portfolio field (use 'portfolio' for consistency with database operations)
+                if portfolio_name:
+                    flat_asset_data['portfolio'] = portfolio_name
                 
                 asset_summaries.append(flat_asset_data)
             
@@ -713,14 +779,18 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, scenario_file=Non
     
     # Only generate asset inputs summary if not running sensitivity analysis
     if not run_sensitivity:
-        generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, asset_irrs, asset_type_map, total_portfolio_capex, total_portfolio_debt, portfolio_gearing, scenario_id=scenario_id)
+        generate_asset_inputs_summary(ASSETS, ASSET_COST_ASSUMPTIONS, config_values, debt_summary, output_directory, irr, asset_irrs, asset_type_map, total_portfolio_capex, total_portfolio_debt, portfolio_gearing, portfolio_name=portfolio_name, scenario_id=scenario_id)
 
     # Generate Asset Output Summary
     generate_asset_output_summary(final_cash_flow, irr, asset_irrs, ASSETS, updated_capex_df, scenario_id=scenario_id)
 
-    print("\n=== CASHFLOW MODEL COMPLETE ===")
-    print(f"Equity IRR: {irr:.2%}" if not pd.isna(irr) else "Equity IRR: Could not calculate")
-    print("All data successfully written to MongoDB!")
+    print("\n" + "="*80)
+    print("✅ CASHFLOW MODEL COMPLETE")
+    print("="*80)
+    print(f"  📊 Equity IRR: {irr:.2%}" if not pd.isna(irr) else "  ⚠️  Equity IRR: Could not calculate")
+    print(f"  💾 All data successfully written to MongoDB!")
+    print(f"  📁 Output files saved to: {output_directory}")
+    print("="*80 + "\n")
     
     return "Cash flow model run complete. Outputs saved and summaries generated."
 
@@ -750,11 +820,15 @@ if __name__ == '__main__':
         if not config_data:
             raise ValueError("Could not load config data from MongoDB")
         assets = config_data[0].get('asset_inputs', [])
+        portfolio_name = config_data[0].get('PlatformName')
+        if not portfolio_name:
+            raise ValueError("Could not find PlatformName in config data from MongoDB")
 
         final_cashflows_json = run_cashflow_model(
             assets=assets,
             monthly_prices=monthly_prices,
             yearly_spreads=yearly_spreads,
+            portfolio_name=portfolio_name,
             scenario_file=args.scenario, 
             scenario_id=args.scenario_id,
             replace_data=replace_data

@@ -65,8 +65,20 @@ app = Flask(__name__)
 # Enable CORS for all domains and all routes
 CORS(app, origins=["*"])
 
+# Print server startup information
+print("\n" + "="*80)
+print("🚀 FLASK SERVER STARTING UP")
+print("="*80)
+print(f"📁 Working Directory: {current_dir}")
+print(f"📁 Source Directory: {src_dir}")
+print(f"🗄️  MongoDB Database: {MONGO_DB_NAME}")
+print(f"📦 MongoDB Collection: {MONGO_ASSET_OUTPUT_COLLECTION}")
+print("="*80 + "\n")
+
 @app.route('/', methods=['GET'])
 def health_check():
+    print("\n[HEALTH CHECK] Route: GET /")
+    print(f"  → Executing: health_check() function in app.py")
     return jsonify({
         "status": "healthy", 
         "message": "Renewable Finance Backend API",
@@ -82,6 +94,11 @@ def health_check():
 
 @app.route('/api/run-model', methods=['POST'])
 def run_model():
+    print("\n" + "="*80)
+    print("[RUN MODEL] Route: POST /api/run-model")
+    print(f"  → Executing: run_model() function in app.py (line 84)")
+    print("="*80)
+    
     if run_cashflow_model is None:
         return jsonify({
             "status": "error",
@@ -104,17 +121,44 @@ def run_model():
         data = request.get_json() or {}
         scenario_file = data.get('scenario_file')
         scenario_id = data.get('scenario_id')
+        portfolio_name = data.get('portfolio')
+        
+        print(f"  📥 Request Data:")
+        print(f"     - scenario_file: {scenario_file}")
+        print(f"     - scenario_id: {scenario_id}")
+        print(f"     - portfolio: {portfolio_name}")
+        print(f"  🔄 Setting up database connection...")
         
         # Use database_lifecycle context manager to manage connection
         with database_lifecycle():
-            # Load assets from MongoDB
-            config_data = get_data_from_mongodb('CONFIG_Inputs')
+            print(f"  ✅ Database connection established")
+            print(f"  📊 Loading assets from MongoDB collection: CONFIG_Inputs")
+            
+            # Load assets from MongoDB with portfolio filter
+            query = {}
+            if portfolio_name:
+                query['PlatformName'] = portfolio_name
+                print(f"     - Filtering by PlatformName: {portfolio_name}")
+            
+            config_data = get_data_from_mongodb('CONFIG_Inputs', query=query)
+            
             if not config_data:
+                msg = f"Could not load config data from MongoDB for portfolio: {portfolio_name}" if portfolio_name else "Could not load config data from MongoDB"
                 return jsonify({
                     "status": "error",
-                    "message": "Could not load config data from MongoDB"
+                    "message": msg
                 }), 500
-            assets = config_data[0].get('asset_inputs', [])
+            
+            # If multiple documents found, use the most recently updated one (assuming _id is ObjectId which has timestamp)
+            # MongoDB returns in natural order, but let's be safe.
+            # Actually, without explicit sort, it's not guaranteed. 
+            # But for now, taking the last one might be better if they are appended? 
+            # Or just the first one if we assume unique names?
+            # The user mentioned "history revisions", so there might be multiple.
+            # Let's take the last one (most recent) if multiple exist.
+            selected_config = config_data[-1]
+            assets = selected_config.get('asset_inputs', [])
+            print(f"  ✅ Loaded {len(assets)} assets from MongoDB")
             
             if not assets:
                 return jsonify({
@@ -125,6 +169,9 @@ def run_model():
             # Load price data from CSV files
             monthly_price_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
             yearly_spread_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
+            print(f"  📄 Loading price data:")
+            print(f"     - Monthly prices: {monthly_price_path}")
+            print(f"     - Yearly spreads: {yearly_spread_path}")
             
             if not os.path.exists(monthly_price_path):
                 return jsonify({
@@ -139,6 +186,9 @@ def run_model():
                 }), 500
             
             monthly_prices, yearly_spreads = load_price_data(monthly_price_path, yearly_spread_path)
+            print(f"  ✅ Price data loaded successfully")
+            print(f"     - Monthly prices shape: {monthly_prices.shape if monthly_prices is not None else 'None'}")
+            print(f"     - Yearly spreads shape: {yearly_spreads.shape if yearly_spreads is not None else 'None'}")
             
             # Validate that price data was loaded correctly
             if monthly_prices is None or yearly_spreads is None:
@@ -155,13 +205,29 @@ def run_model():
             
             # Call run_cashflow_model with all required arguments
             # Pass required arguments positionally, optional as keywords
+            print(f"\n  🎯 CALLING MAIN MODEL FUNCTION:")
+            print(f"     → Function: run_cashflow_model() from src/main.py (line 287)")
+            print(f"     → Arguments:")
+            print(f"        - assets: {len(assets)} assets")
+            print(f"        - monthly_prices: DataFrame with shape {monthly_prices.shape}")
+            print(f"        - yearly_spreads: DataFrame with shape {yearly_spreads.shape}")
+            print(f"        - scenario_file: {scenario_file}")
+            print(f"        - scenario_id: {scenario_id}")
+            print(f"        - portfolio_name: {portfolio_name}")
+            print(f"  " + "-"*76)
+            
             result = run_cashflow_model(
                 assets,
                 monthly_prices,
                 yearly_spreads,
+                portfolio_name,
                 scenario_file=scenario_file, 
                 scenario_id=scenario_id
             )
+            
+            print(f"  ✅ Model execution completed")
+            print(f"  📤 Returning result to client")
+            print("="*80 + "\n")
         
         return jsonify({
             "status": "success",
@@ -176,6 +242,10 @@ def run_model():
 
 @app.route('/api/sensitivity', methods=['POST'])
 def run_sensitivity():
+    print("\n" + "="*80)
+    print("[SENSITIVITY] Route: POST /api/sensitivity")
+    print(f"  → Executing: run_sensitivity() function in app.py (line 177)")
+    print("="*80)
     try:
         # Import sensitivity runner
         try:
@@ -191,9 +261,15 @@ def run_sensitivity():
         data = request.get_json() or {}
         config_file = data.get('config_file', 'config/sensitivity_config.json')
         prefix = data.get('prefix', 'sensitivity_results')
+        portfolio_name = data.get('portfolio')
+        
+        print(f"  📥 Request Data:")
+        print(f"     - config_file: {config_file}")
+        print(f"     - prefix: {prefix}")
+        print(f"     - portfolio: {portfolio_name}")
         
         # Run sensitivity analysis
-        run_sensitivity_analysis_improved(config_file, prefix)
+        run_sensitivity_analysis_improved(config_file, prefix, portfolio_name=portfolio_name)
         
         return jsonify({
             "status": "success",
@@ -207,6 +283,13 @@ def run_sensitivity():
 
 @app.route('/api/asset-cashflows', methods=['GET'])
 def get_asset_cashflows():
+    print("\n[ASSET CASHFLOWS] Route: GET /api/asset-cashflows")
+    print(f"  → Executing: get_asset_cashflows() function in app.py (line 208)")
+    asset_id = request.args.get('asset_id')
+    variables_str = request.args.get('variables')
+    granularity = request.args.get('granularity')
+    print(f"  📥 Query Parameters: asset_id={asset_id}, variables={variables_str}, granularity={granularity}")
+    
     if get_data_from_mongodb is None:
         return jsonify({
             "status": "error",
@@ -282,6 +365,9 @@ def get_asset_cashflows():
 
 @app.route('/api/asset-ids', methods=['GET'])
 def get_asset_ids():
+    print("\n[ASSET IDS] Route: GET /api/asset-ids")
+    print(f"  → Executing: get_asset_ids() function in app.py (line 283)")
+    
     if get_mongo_client is None:
         return jsonify({
             "status": "error",
@@ -320,6 +406,9 @@ def get_asset_ids():
 
 @app.route('/api/revenue-summary', methods=['GET'])
 def get_revenue_summary():
+    print("\n[REVENUE SUMMARY] Route: GET /api/revenue-summary")
+    print(f"  → Executing: get_revenue_summary() function in app.py (line 321)")
+    
     if get_data_from_mongodb is None:
         return jsonify({
             "status": "error",
@@ -361,6 +450,11 @@ def get_revenue_summary():
 
 @app.route('/api/inputs-summary', methods=['GET'])
 def get_inputs_summary():
+    print("\n[INPUTS SUMMARY] Route: GET /api/inputs-summary")
+    print(f"  → Executing: get_inputs_summary() function in app.py (line 362)")
+    asset_id = request.args.get('asset_id')
+    print(f"  📥 Query Parameter: asset_id={asset_id}")
+    
     if get_data_from_mongodb is None:
         return jsonify({
             "status": "error",
@@ -410,6 +504,16 @@ def debug_imports():
 # For development and production
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
+    print("\n" + "="*80)
+    print("🌐 STARTING FLASK SERVER")
+    print("="*80)
+    print(f"  📍 Host: 0.0.0.0 (all interfaces)")
+    print(f"  🔌 Port: {port}")
+    print(f"  🐛 Debug Mode: False")
+    print(f"  📡 Server will be available at: http://localhost:{port}")
+    print("="*80)
+    print("✅ Server is ready to accept requests!")
+    print("="*80 + "\n")
     app.run(host='0.0.0.0', port=port, debug=False)
 
 # For production (some platforms expect this)

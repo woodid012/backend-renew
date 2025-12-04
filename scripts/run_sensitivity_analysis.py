@@ -79,7 +79,7 @@ def move_to_sensitivity_collection(scenario_id):
     except Exception as e:
         print(f"    Error moving records: {e}")
 
-def run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads):
+def run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads, portfolio_name):
     """Run a single scenario using direct function call"""
     try:
         # Create temporary file for scenario
@@ -95,6 +95,7 @@ def run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_pr
             assets=assets,
             monthly_prices=monthly_prices,
             yearly_spreads=yearly_spreads,
+            portfolio_name=portfolio_name,
             scenario_file=temp_file_path,
             scenario_id=scenario_id,
             replace_data=True
@@ -132,13 +133,14 @@ def generate_sensitivity_values(base_value, min_val, max_val, steps):
     
     return sensitivity_values
 
-def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sensitivity_results", config=None):
+def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sensitivity_results", config=None, portfolio_name=None):
     """Run sensitivity analysis with optimized database connection
     
     Args:
         config_file: Path to config file (relative to project root)
         sensitivity_prefix: Prefix for sensitivity results
         config: Config dictionary object (takes precedence over config_file)
+        portfolio_name: Optional portfolio name to filter assets
     """
     print("=== OPTIMIZED SENSITIVITY ANALYSIS ===")
     print(f"Results will be stored in: {SENSITIVITY_COLLECTION}")
@@ -179,11 +181,25 @@ def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sen
 
     # Load assets and prices ONCE
     print("Loading assets and price data...")
-    config_data = get_data_from_mongodb('CONFIG_Inputs')
+    query = {}
+    if portfolio_name:
+        query['PlatformName'] = portfolio_name
+        print(f"Filtering by portfolio: {portfolio_name}")
+    
+    config_data = get_data_from_mongodb('CONFIG_Inputs', query=query)
     if not config_data:
-        print("Error: Could not load config data from MongoDB")
+        error_msg = f"Could not load config data from MongoDB for portfolio: {portfolio_name}" if portfolio_name else "Could not load config data from MongoDB"
+        print(f"Error: {error_msg}")
         return
     assets = config_data[0].get('asset_inputs', [])
+    # Use provided portfolio_name or extract from config
+    if not portfolio_name:
+        portfolio_name = config_data[0].get('PlatformName')
+    if not portfolio_name:
+        print("Error: Could not find PlatformName in config data from MongoDB")
+        return
+    
+    print(f"Using portfolio: {portfolio_name}")
     
     monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
     yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
@@ -266,7 +282,7 @@ def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sen
             print(f"  [{current_scenario}/{total_scenarios}] {scenario_name}")
             
             # Run scenario using direct call
-            success = run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads)
+            success = run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads, portfolio_name)
             
             if success:
                 successful_scenarios += 1
