@@ -168,11 +168,29 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
     
     actual_gearing = best_debt / capex if capex > 0 else 0
     
+    # Verify gearing constraint is respected
+    if actual_gearing > max_gearing + 0.001:  # Small tolerance for floating point
+        print(f"WARNING: Calculated gearing {actual_gearing:.1%} exceeds max gearing {max_gearing:.1%}")
+        # Cap at max gearing
+        best_debt = capex * max_gearing
+        actual_gearing = max_gearing
+        best_schedule = calculate_annual_debt_schedule(
+            best_debt, cash_flows, interest_rate, tenor_years, target_dscrs
+        )
+    
+    # Check if optimal debt hit the gearing limit
+    hit_gearing_limit = abs(actual_gearing - max_gearing) < 0.001
+    
     if debug:
         if best_debt > 0:
             print(f"SOLUTION: ${best_debt:,.2f}M ({actual_gearing:.1%} gearing)")
+            if hit_gearing_limit:
+                print(f"  ⚠️  WARNING: Optimal debt hit max gearing limit ({max_gearing:.1%})")
             print(f"  Average debt service: ${best_schedule['metrics']['avg_debt_service']:,.2f}M")
             print(f"  Minimum DSCR: {best_schedule['metrics']['min_dscr']:.2f}")
+            # Show DSCR by period for first few years
+            if len(best_schedule['dscr_values']) > 0:
+                print(f"  DSCR by year (first 5): {[f'{d:.2f}' for d in best_schedule['dscr_values'][:5]]}")
         else:
             print(f"SOLUTION: No debt viable (100% equity)")
         print("=" * 50)
@@ -180,7 +198,8 @@ def solve_maximum_debt(capex, cash_flows, target_dscrs, max_gearing, interest_ra
     return {
         'debt': best_debt,
         'gearing': actual_gearing,
-        'schedule': best_schedule
+        'schedule': best_schedule,
+        'hit_gearing_limit': hit_gearing_limit
     }
 
 def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df):

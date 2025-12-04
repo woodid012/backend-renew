@@ -209,6 +209,33 @@ def apply_all_scenarios_to_timeseries(
     else:
         print(f"  No modifications applied")
     
+    # SAFEGUARD: Ensure revenue is zero before OperatingStartDate for each asset
+    # This prevents scenarios from accidentally adding revenue before operations start
+    print(f"  Applying safeguard: Zeroing revenue before OperatingStartDate...")
+    from datetime import datetime
+    import pandas as pd
+    
+    for asset in assets:
+        asset_id = asset.get('id')
+        if 'OperatingStartDate' not in asset or not asset['OperatingStartDate']:
+            continue
+        
+        asset_start_date = pd.to_datetime(asset['OperatingStartDate'])
+        
+        # Zero out all revenue-related fields before OperatingStartDate
+        mask = (modified_revenue_df['asset_id'] == asset_id) & (modified_revenue_df['date'] < asset_start_date)
+        
+        if mask.any():
+            revenue_fields = ['revenue', 'contractedGreenRevenue', 'contractedEnergyRevenue', 
+                            'merchantGreenRevenue', 'merchantEnergyRevenue', 'monthlyGeneration']
+            
+            for field in revenue_fields:
+                if field in modified_revenue_df.columns:
+                    count = mask.sum()
+                    modified_revenue_df.loc[mask, field] = 0
+            
+            print(f"    Asset {asset_id}: Zeroed revenue for {mask.sum()} periods before {asset_start_date.strftime('%Y-%m-%d')}")
+    
     print(f"=== PRE-DEBT-SIZING SCENARIO OVERRIDES COMPLETE ===\n")
     
     return modified_revenue_df, modified_opex_df, modified_capex_df, modified_asset_cost_assumptions

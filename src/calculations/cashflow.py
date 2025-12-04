@@ -33,6 +33,26 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     # Fill NaNs for assets that might not have all components
     cash_flow.fillna(0, inplace=True)
 
+    # SAFEGUARD: Ensure revenue is zero before OperatingStartDate for each asset
+    # This is a final check to prevent any revenue before operations start
+    for asset_info in assets_data:
+        asset_id = asset_info.get('id')
+        if 'OperatingStartDate' not in asset_info or not asset_info['OperatingStartDate']:
+            continue
+        
+        asset_start_date = pd.to_datetime(asset_info['OperatingStartDate'])
+        
+        # Zero out revenue-related fields before OperatingStartDate
+        mask = (cash_flow['asset_id'] == asset_id) & (cash_flow['date'] < asset_start_date)
+        
+        if mask.any():
+            revenue_fields = ['revenue', 'contractedGreenRevenue', 'contractedEnergyRevenue', 
+                            'merchantGreenRevenue', 'merchantEnergyRevenue', 'monthlyGeneration']
+            
+            for field in revenue_fields:
+                if field in cash_flow.columns:
+                    cash_flow.loc[mask, field] = 0
+
     # Calculate key cash flow lines
     cash_flow['cfads'] = cash_flow['revenue'] - cash_flow['opex']
     cash_flow['ebitda'] = cash_flow['cfads']
