@@ -451,7 +451,7 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
     # 5. Aggregate into Final Cash Flow using updated CAPEX with correct debt/equity split
     print(f"\n  [STEP 5] Aggregating Final Cash Flow")
     print(f"     → Function: aggregate_cashflows() from src/calculations/cashflow.py")
-    final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, d_and_a_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS)
+    final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, d_and_a_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS, repayment_frequency=DEFAULT_DEBT_REPAYMENT_FREQUENCY)
     print(f"     ✅ Final cash flow aggregated: {len(final_cash_flow)} rows")
 
     # Assign period type (Construction or Operations)

@@ -6,7 +6,7 @@ from ..config import ENABLE_TERMINAL_VALUE, TAX_RATE, MIN_CASH_BALANCE_FOR_DISTR
 from .tax import calculate_tax_expense
 
 
-def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_date, assets_data, asset_cost_assumptions):
+def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_date, assets_data, asset_cost_assumptions, repayment_frequency='annual'):
     """
     Aggregates all financial components into a final cash flow statement for each asset.
 

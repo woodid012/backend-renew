@@ -305,3 +305,4 @@ if __name__ == '__main__':
     
     analyze_irr_cashflows(scenario_id=args.scenario, asset_id=args.asset)
 
+
