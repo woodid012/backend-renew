@@ -1,0 +1,4 @@
+assetId,name,state,capacity,type,volumeLossAdjustment,contractId,contractCounterparty,contractType,contractBuyersPercentage,contractShape,contractStrikePrice,contractGreenPrice,contractEnergyPrice,contractIndexation,contractHasFloor,contractFloorValue,contractStartDate,contractEndDate,contractTerm
+1,Solar Farm Alpha,NSW,100,solar,95,1,Corporate PPA 1,bundled,40,solar,75,30,45,2.5,TRUE,0,1/01/2024,2034-06-31,5
+1,Solar Farm Alpha,NSW,100,solar,95,2,Retail PPA,bundled,30,solar,85,45,40,2,FALSE,,1/01/2024,2034-06-31,3
+2,Wind Farm Beta,VIC,150,wind,95,1,Corporate PPA 1,bundled,80,wind,100,28,72,2.5,TRUE,0,1/07/2024,2034-06-31,10

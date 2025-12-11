@@ -1,0 +1,222 @@
+{
+    "assetDefaults": {
+        "solar": {
+            "assetLife": 25,
+            "volumeLossAdjustment": 95,
+            "annualDegradation": 0.5,
+            "constructionDuration": 18,
+            "capacityFactors": {
+                "NSW": {
+                    "q1": 28,
+                    "q2": 25,
+                    "q3": 27,
+                    "q4": 30
+                },
+                "VIC": {
+                    "q1": 25,
+                    "q2": 22,
+                    "q3": 23,
+                    "q4": 27
+                },
+                "QLD": {
+                    "q1": 29,
+                    "q2": 26,
+                    "q3": 28,
+                    "q4": 31
+                },
+                "SA": {
+                    "q1": 27,
+                    "q2": 24,
+                    "q3": 26,
+                    "q4": 29
+                },
+                "WA": {
+                    "q1": 26,
+                    "q2": 23,
+                    "q3": 25,
+                    "q4": 28
+                },
+                "TAS": {
+                    "q1": 23,
+                    "q2": 20,
+                    "q3": 22,
+                    "q4": 25
+                }
+            },
+            "costAssumptions": {
+                "capexPerMW": 1.344,
+                "opexPerMWPerYear": 0.055,
+                "operatingCostEscalation": 2.5,
+                "terminalValuePerMW": 0,
+                "maxGearing": 0.7,
+                "targetDSCRContract": 1.4,
+                "targetDSCRMerchant": 1.8,
+                "interestRate": 0.06,
+                "tenorYears": 20,
+                "debtStructure": "sculpting"
+            }
+        },
+        "wind": {
+            "assetLife": 25,
+            "volumeLossAdjustment": 95,
+            "annualDegradation": 0.5,
+            "constructionDuration": 24,
+            "capacityFactors": {
+                "NSW": {
+                    "q1": 35,
+                    "q2": 32,
+                    "q3": 34,
+                    "q4": 38
+                },
+                "VIC": {
+                    "q1": 38,
+                    "q2": 35,
+                    "q3": 37,
+                    "q4": 41
+                },
+                "QLD": {
+                    "q1": 32,
+                    "q2": 29,
+                    "q3": 31,
+                    "q4": 35
+                },
+                "SA": {
+                    "q1": 40,
+                    "q2": 37,
+                    "q3": 39,
+                    "q4": 43
+                },
+                "WA": {
+                    "q1": 37,
+                    "q2": 34,
+                    "q3": 36,
+                    "q4": 40
+                },
+                "TAS": {
+                    "q1": 42,
+                    "q2": 39,
+                    "q3": 41,
+                    "q4": 45
+                }
+            },
+            "costAssumptions": {
+                "capexPerMW": 3.221,
+                "opexPerMWPerYear": 0.045,
+                "operatingCostEscalation": 2.5,
+                "terminalValuePerMW": 0,
+                "maxGearing": 0.65,
+                "targetDSCRContract": 1.4,
+                "targetDSCRMerchant": 1.8,
+                "interestRate": 0.06,
+                "tenorYears": 20,
+                "debtStructure": "sculpting"
+            }
+        },
+        "storage": {
+            "assetLife": 15,
+            "volumeLossAdjustment": 95,
+            "annualDegradation": 1.0,
+            "constructionDuration": 12,
+            "durationHours": 2,
+            "roundTripEfficiency": 85,
+            "costAssumptions": {
+                "capexPerMW": 2.0,
+                "opexPerMWPerYear": 0.03,
+                "operatingCostEscalation": 2.5,
+                "terminalValuePerMW": 0.5,
+                "maxGearing": 0.6,
+                "targetDSCRContract": 1.5,
+                "targetDSCRMerchant": 2.0,
+                "interestRate": 0.065,
+                "tenorYears": 15,
+                "debtStructure": "sculpting"
+            }
+        }
+    },
+    "contractDefaults": {
+        "fixed": {
+            "indexation": 2.5,
+            "indexationReferenceYear": 2024,
+            "buyersPercentage": 100
+        },
+        "bundled": {
+            "indexation": 2.5,
+            "indexationReferenceYear": 2024,
+            "buyersPercentage": 100,
+            "hasFloor": false
+        },
+        "green": {
+            "indexation": 2.5,
+            "indexationReferenceYear": 2024,
+            "buyersPercentage": 100
+        },
+        "Energy": {
+            "indexation": 2.5,
+            "indexationReferenceYear": 2024,
+            "buyersPercentage": 100,
+            "hasFloor": false
+        },
+        "tolling": {
+            "indexation": 2.5,
+            "indexationReferenceYear": 2024,
+            "buyersPercentage": 100,
+            "chargingEfficiency": 85,
+            "dischargingEfficiency": 95
+        }
+    },
+    "platformDefaults": {
+        "taxRate": 0.30,
+        "fiscalYearStartMonth": 7,
+        "defaultCurrency": "AUD",
+        "inflationRate": 2.5,
+        "merchantPriceEscalationRate": 2.5,
+        "debtSizingMethod": "dscr",
+        "dscrCalculationFrequency": "quarterly",
+        "debtRepaymentFrequency": "quarterly",
+        "debtGracePeriodMonths": 0,
+        "enableTerminalValue": true
+    },
+    "validationRules": {
+        "assetLife": {
+            "min": 10,
+            "max": 30,
+            "unit": "years"
+        },
+        "volumeLossAdjustment": {
+            "min": 80,
+            "max": 100,
+            "unit": "%"
+        },
+        "annualDegradation": {
+            "min": 0,
+            "max": 2,
+            "unit": "%"
+        },
+        "capacityFactor": {
+            "min": 5,
+            "max": 60,
+            "unit": "%"
+        },
+        "indexation": {
+            "min": 0,
+            "max": 10,
+            "unit": "%"
+        },
+        "interestRate": {
+            "min": 2,
+            "max": 15,
+            "unit": "%"
+        },
+        "maxGearing": {
+            "min": 0,
+            "max": 90,
+            "unit": "%"
+        }
+    },
+    "metadata": {
+        "version": "1.0.0",
+        "lastUpdated": "2024-12-02",
+        "description": "Default configuration values for renewable energy asset modeling",
+        "compatibleWith": "backend-renew refactored architecture"
+    }
+}

@@ -1,0 +1,8 @@
+assetId,name,state,capacity,type,volumeLossAdjustment,assetStartDate
+1,Waubra WF,VIC,192,wind,91,4/07/2021
+2,Cathedral Rocks WF,SA,64,wind,93,1/01/2022
+3,Gunning WF,NSW,47,wind,93,31/01/2012
+4,Mt Gellibrand WF,VIC,100,wind,99,1/12/2022
+5,Mortlake South WF,VIC,158,wind,94,1/01/2021
+6,MacIntyre WF,QLD,646,wind,97,6/06/2024
+7,Aldoga SF,QLD,387,solar,91,1/07/2026

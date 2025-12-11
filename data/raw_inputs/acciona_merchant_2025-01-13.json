@@ -1,0 +1,83 @@
+{
+  "assets": {
+    "1": {
+      "id": "1",
+      "name": "Waubra WF",
+      "region": "VIC",
+      "OperatingStartDate": "2021-07-04",
+      "capacity": 192,
+      "type": "wind",
+      "volumeLossAdjustment": 91,
+      "annualDegradation": 0.6,
+      "contracts": [],
+      "qtrCapacityFactor_q1": "35",
+      "qtrCapacityFactor_q2": "38",
+      "qtrCapacityFactor_q3": "42",
+      "qtrCapacityFactor_q4": "37",
+      "capacityFactor": "38"
+    },
+    "2": {
+      "id": "2",
+      "name": "Cathedral Rocks WF",
+      "region": "SA",
+      "OperatingStartDate": "2022-01-01",
+      "capacity": 64,
+      "type": "wind",
+      "volumeLossAdjustment": 93,
+      "contracts": []
+    },
+    "3": {
+      "id": "3",
+      "name": "Gunning WF",
+      "region": "NSW",
+      "OperatingStartDate": "2012-01-31",
+      "capacity": 47,
+      "type": "wind",
+      "volumeLossAdjustment": 93,
+      "contracts": []
+    },
+    "4": {
+      "id": "4",
+      "name": "Mt Gellibrand WF",
+      "region": "VIC",
+      "OperatingStartDate": "2022-12-01",
+      "capacity": 100,
+      "type": "wind",
+      "volumeLossAdjustment": 99,
+      "contracts": []
+    },
+    "5": {
+      "id": "5",
+      "name": "Mortlake South WF",
+      "region": "VIC",
+      "OperatingStartDate": "2021-01-01",
+      "capacity": 158,
+      "type": "wind",
+      "volumeLossAdjustment": 94,
+      "contracts": []
+    },
+    "6": {
+      "id": "6",
+      "name": "MacIntyre WF",
+      "region": "QLD",
+      "OperatingStartDate": "2024-06-06",
+      "capacity": 646,
+      "type": "wind",
+      "volumeLossAdjustment": 97,
+      "contracts": []
+    },
+    "7": {
+      "id": "7",
+      "name": "Aldoga SF",
+      "region": "QLD",
+      "OperatingStartDate": "2026-07-01",
+      "capacity": 387,
+      "type": "solar",
+      "volumeLossAdjustment": 91,
+      "contracts": []
+    }
+  },
+  "portfolioName": "Acciona Merchant",
+  "exportDate": "2025-01-13T23:09:03.978Z",
+  "version": "1.0"
+}

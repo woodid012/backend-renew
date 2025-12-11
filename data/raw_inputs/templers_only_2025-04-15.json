@@ -1,0 +1,84 @@
+{
+  "version": "2.0",
+  "exportDate": "2025-04-15T10:00:00Z",
+  "portfolioName": "Templers BESS",
+  "assets": {
+    "1": {
+      "id": "1",
+      "name": "Templers BESS",
+      "region": "SA",
+      "OperatingStartDate": "2025-07-01",
+      "capacity": 111,
+      "type": "storage",
+      "volumeLossAdjustment": 95,
+      "annualDegradation": 1.6,
+      "contracts": [
+        {
+          "id": "1",
+          "counterparty": "ZEN Tolling",
+          "type": "tolling",
+          "buyersPercentage": 100,
+          "strikePrice": 23,
+          "greenPrice": null,
+          "EnergyPrice": null,
+          "indexation": 2.5,
+          "hasFloor": true,
+          "floorValue": "0",
+          "startDate": "2025-07-01",
+          "endDate": "2035-06-30",
+          "indexationReferenceYear": 2025
+        }
+      ],
+      "qtrCapacityFactor_q1": "",
+      "qtrCapacityFactor_q2": "",
+      "qtrCapacityFactor_q3": "",
+      "qtrCapacityFactor_q4": "",
+      "capacityFactor": "",
+      "volume": 293,
+      "assetLife": 25
+    }
+  },
+  "constants": {
+    "discountRates": {
+      "contract": 0.08,
+      "merchant": 0.1
+    },
+    "assetCosts": {
+      "Templers BESS": {
+        "operatingCosts": 4.06,
+        "operatingCostEscalation": 2.5,
+        "terminalValue": 0,
+        "capex": 226.04,
+        "maxGearing": 0.65,
+        "targetDSCRContract": 1.4,
+        "targetDSCRMerchant": 1.8,
+        "interestRate": 0.06,
+        "tenorYears": 20,
+        "calculatedGearing": 0.65,
+        "debtStructure": "sculpting"
+      }
+    },
+    "volumeVariation": 20,
+    "greenPriceVariation": 20,
+    "EnergyPriceVariation": 20,
+    "escalation": 2.5,
+    "referenceYear": 2025,
+    "priceAggregation": "yearly",
+    "analysisStartYear": 2025,
+    "analysisEndYear": 2055,
+    "platformOpex": 4.2,
+    "platformOpexEscalation": 2.5,
+    "dividendPolicy": 85,
+    "minimumCashBalance": 5.0,
+    "corporateTaxRate": 30,
+    "deprecationPeriods": {
+      "solar": 30,
+      "wind": 30,
+      "storage": 20
+    }
+  },
+  "analysisMode": "simple",
+  "activePortfolio": "templers",
+  "portfolioSource": "templers_only_2025-04-15.json",
+  "priceSource": "merchant_price_monthly.csv"
+}

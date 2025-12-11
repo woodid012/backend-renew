@@ -1,0 +1,10 @@
+pandas
+openpyxl
+pymongo
+python-dotenv
+flask
+flask-cors
+gunicorn
+numpy
+scipy
+python-dateutil

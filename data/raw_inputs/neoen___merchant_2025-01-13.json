@@ -1,0 +1,123 @@
+{
+  "assets": {
+    "1": {
+      "id": "1",
+      "name": "Bulgana Green Power Hub",
+      "region": "VIC",
+      "OperatingStartDate": "2021-11-01",
+      "capacity": 204,
+      "type": "wind",
+      "volumeLossAdjustment": 87.33,
+      "annualDegradation": 0.6,
+      "contracts": [],
+      "qtrCapacityFactor_q1": "35",
+      "qtrCapacityFactor_q2": "38",
+      "qtrCapacityFactor_q3": "42",
+      "qtrCapacityFactor_q4": "37",
+      "capacityFactor": "38"
+    },
+    "2": {
+      "id": "2",
+      "name": "Coleambally Solar Farm",
+      "region": "NSW",
+      "OperatingStartDate": "2022-01-01",
+      "capacity": 180,
+      "type": "solar",
+      "volumeLossAdjustment": 83.67,
+      "contracts": []
+    },
+    "3": {
+      "id": "3",
+      "name": "Goyder South Wind Farm 1A",
+      "region": "SA",
+      "OperatingStartDate": "2024-12-01",
+      "capacity": 209,
+      "type": "wind",
+      "volumeLossAdjustment": 96.43,
+      "contracts": []
+    },
+    "4": {
+      "id": "4",
+      "name": "Goyder South Wind Farm 1B",
+      "region": "SA",
+      "OperatingStartDate": "2024-12-01",
+      "capacity": 203,
+      "type": "wind",
+      "volumeLossAdjustment": 96.41,
+      "contracts": []
+    },
+    "5": {
+      "id": "5",
+      "name": "Griffith Solar Farm",
+      "region": "NSW",
+      "OperatingStartDate": "2022-01-01",
+      "capacity": 27.2,
+      "type": "solar",
+      "volumeLossAdjustment": 84.24,
+      "contracts": []
+    },
+    "6": {
+      "id": "6",
+      "name": "Hornsdale Wind Farm",
+      "region": "SA",
+      "OperatingStartDate": "2022-01-01",
+      "capacity": 102.4,
+      "type": "wind",
+      "volumeLossAdjustment": 94.23,
+      "contracts": []
+    },
+    "8": {
+      "id": "8",
+      "name": "Hornsdale Wind Farm 3",
+      "region": "SA",
+      "OperatingStartDate": "2022-01-01",
+      "capacity": 112,
+      "type": "wind",
+      "volumeLossAdjustment": 94.23,
+      "contracts": []
+    },
+    "9": {
+      "id": "9",
+      "name": "Kaban Wind Farm",
+      "region": "QLD",
+      "OperatingStartDate": "2023-04-01",
+      "capacity": 156,
+      "type": "wind",
+      "volumeLossAdjustment": 96.05,
+      "contracts": []
+    },
+    "11": {
+      "id": "11",
+      "name": "Numurkah Solar Farm",
+      "region": "VIC",
+      "OperatingStartDate": "2019-08-01",
+      "capacity": 112,
+      "type": "solar",
+      "volumeLossAdjustment": 94.77,
+      "contracts": []
+    },
+    "12": {
+      "id": "12",
+      "name": "Parkes Solar Farm",
+      "region": "NSW",
+      "OperatingStartDate": "2022-01-01",
+      "capacity": 55,
+      "type": "solar",
+      "volumeLossAdjustment": 89.69,
+      "contracts": []
+    },
+    "13": {
+      "id": "13",
+      "name": "Western Downs GPH",
+      "region": "QLD",
+      "OperatingStartDate": "2023-01-01",
+      "capacity": 501,
+      "type": "solar",
+      "volumeLossAdjustment": 97.01,
+      "contracts": []
+    }
+  },
+  "portfolioName": "Neoen - Merchant",
+  "exportDate": "2025-01-13T23:02:18.890Z",
+  "version": "1.0"
+}
