@@ -1,5 +1,83 @@
 from datetime import datetime
 
+def _safe_float(v, default=0.0):
+    try:
+        if v is None:
+            return default
+        if isinstance(v, str) and v.strip() == "":
+            return default
+        return float(v)
+    except Exception:
+        return default
+
+
+def get_contract_strikes_used_timeseries(contract: dict, current_date: datetime) -> dict:
+    """
+    Returns the contract strike price(s) used for the period, by curve bucket.
+
+    - green: renewable green curve strikes
+    - black: renewable Energy curve strikes (what UI calls Black)
+    - storage: storage contract strike/spread/rate (asset is storage)
+
+    Notes:
+    - Mirrors indexation + floor logic in calculate_contract_revenue() / calculate_storage_contract_revenue().
+    - Values are returned as $/MWh (or relevant storage strike units) as entered/used by the model.
+    """
+    contract_start_date = datetime.strptime(contract["startDate"], "%Y-%m-%d")
+    years_in_contract = (current_date.year - contract_start_date.year) + (current_date.month - contract_start_date.month) / 12
+    indexation = _safe_float(contract.get("indexation", 0)) / 100
+    indexation_factor = (1 + indexation) ** max(0, years_in_contract)
+
+    contract_type = contract.get("type")
+
+    strike_green = None
+    strike_black = None
+    strike_storage = None
+
+    if contract_type == "bundled":
+        green_price = _safe_float(contract.get("greenPrice", 0))
+        energy_price = _safe_float(contract.get("EnergyPrice", 0))
+
+        green_price *= indexation_factor
+        energy_price *= indexation_factor
+
+        if contract.get("hasFloor") and (green_price + energy_price) < _safe_float(contract.get("floorValue", 0)):
+            floor_value = _safe_float(contract.get("floorValue", 0))
+            total_price = green_price + energy_price
+            if total_price > 0:
+                green_price = (green_price / total_price) * floor_value
+                energy_price = (energy_price / total_price) * floor_value
+            else:
+                green_price = floor_value / 2
+                energy_price = floor_value / 2
+
+        strike_green = green_price
+        strike_black = energy_price
+
+    elif contract_type in ("green", "Energy", "fixed"):
+        price = _safe_float(contract.get("strikePrice", 0))
+        price *= indexation_factor
+
+        if contract.get("hasFloor") and price < _safe_float(contract.get("floorValue", 0)):
+            price = _safe_float(contract.get("floorValue", 0))
+
+        if contract_type == "green":
+            strike_green = price
+        else:
+            # Energy + fixed are treated as black side in the renewables model
+            strike_black = price
+
+    elif contract_type in ("cfd", "tolling"):
+        # Storage: strikePrice is used as spread/rate, with indexation applied
+        strike_storage = _safe_float(contract.get("strikePrice", 0)) * indexation_factor
+
+    return {
+        "indexation_factor": indexation_factor,
+        "strike_green_used_$": strike_green,
+        "strike_black_used_$": strike_black,
+        "strike_storage_used_$": strike_storage,
+    }
+
 def calculate_contract_revenue(contract, current_date, monthly_generation, buyers_percentage, degradation_factor):
     """
     Calculates revenue for a single contract based on its type and terms.

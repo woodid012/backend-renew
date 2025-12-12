@@ -564,6 +564,34 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
         )
         print(f"     ✅ Scenario overrides applied")
 
+    # 2c. Build auditable per-period inputs table (fast path)
+    # We now export the exact market prices used during revenue calculation, captured on revenue_df.
+    print(f"\n  [STEP 2c] Building Inputs Audit Timeseries (from revenue calculation)")
+    inputs_audit_cols = [
+        'asset_id',
+        'date',
+        'market_price_green_used_$',
+        'market_price_black_used_$',
+        'storage_market_price_used_$',
+        'pct_green_contracted',
+        'pct_black_contracted',
+        'pct_green_merchant',
+        'pct_black_merchant',
+        'vol_green_contracted_mwh',
+        'vol_black_contracted_mwh',
+        'vol_green_merchant_mwh',
+        'vol_black_merchant_mwh',
+        'monthlyGeneration',
+    ]
+    # Include dynamic contract columns (contract_1..N...) if present
+    contract_cols = [c for c in revenue_df.columns if c.startswith('contract_')]
+    existing_cols = [c for c in inputs_audit_cols if c in revenue_df.columns] + contract_cols
+    inputs_audit_df = revenue_df[existing_cols].copy() if existing_cols else None
+    if inputs_audit_df is None:
+        print(f"     ⚠️  Inputs audit skipped (no price columns on revenue_df)")
+    else:
+        print(f"     ✅ Inputs audit built: {len(inputs_audit_df)} rows")
+
     # 3. Calculate preliminary CFADS for debt sizing
     print(f"\n  [STEP 3] Calculating Preliminary CFADS")
     print(f"     → Merging revenue and OPEX dataframes")
@@ -823,7 +851,7 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
     log_progress("Saving outputs to files...", 'info')
     print(f"\n  [STEP 8] Saving Outputs to Files")
     print(f"     → Function: generate_asset_and_platform_output() from src/core/output_generator.py")
-    generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id)
+    generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id, inputs_audit_df=inputs_audit_df)
     print(f"     → Function: export_three_way_financials_to_excel() from src/core/output_generator.py")
     export_three_way_financials_to_excel(final_cash_flow, output_directory, scenario_id=scenario_id)
     print(f"     ✅ Outputs saved to: {output_directory}")

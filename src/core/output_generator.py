@@ -6,7 +6,7 @@ import numpy as np
 import numpy as np
 from ..config import OUTPUT_DATE_FORMAT
 
-def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir='output/model_results', scenario_id=None):
+def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir='output/model_results', scenario_id=None, inputs_audit_df=None):
     """
     Generates asset-specific and aggregated platform cash flow outputs.
 
@@ -15,6 +15,7 @@ def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir
         irr_value (float): The calculated IRR value.
         output_dir (str): The base directory where output files will be saved.
         scenario_id (str, optional): Scenario identifier for organizing outputs into subdirectories.
+        inputs_audit_df (pd.DataFrame, optional): Monthly audit table of raw + used inputs by period.
     """
     # Determine the actual output directory based on scenario_id
     if scenario_id:
@@ -33,6 +34,10 @@ def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir
     if not pd.api.types.is_datetime64_any_dtype(final_cash_flow_df['date']):
         final_cash_flow_df['date'] = pd.to_datetime(final_cash_flow_df['date'])
 
+    if inputs_audit_df is not None and not inputs_audit_df.empty:
+        if 'date' in inputs_audit_df.columns and not pd.api.types.is_datetime64_any_dtype(inputs_audit_df['date']):
+            inputs_audit_df['date'] = pd.to_datetime(inputs_audit_df['date'])
+
     # Get unique asset IDs
     asset_ids = final_cash_flow_df['asset_id'].unique()
 
@@ -40,7 +45,22 @@ def generate_asset_and_platform_output(final_cash_flow_df, irr_value, output_dir
     for asset_id in asset_ids:
         asset_df = final_cash_flow_df[final_cash_flow_df['asset_id'] == asset_id].copy()
         asset_output_path = os.path.join(actual_output_dir, f"asset_{asset_id}.xlsx")
-        asset_df.to_excel(asset_output_path, index=False)
+        with pd.ExcelWriter(asset_output_path, engine='openpyxl') as writer:
+            asset_df.to_excel(writer, sheet_name='Cash Flow', index=False)
+
+            if inputs_audit_df is not None and not inputs_audit_df.empty:
+                inputs_df = inputs_audit_df[inputs_audit_df['asset_id'] == asset_id].copy()
+                if not inputs_df.empty:
+                    # Keep audit table friendly: date first, then market, then contracts
+                    date_cols = [c for c in ['asset_id', 'date', 'profile', 'region'] if c in inputs_df.columns]
+                    market_cols = [c for c in inputs_df.columns if c.startswith('market_price_')]
+                    contract_cols = [c for c in inputs_df.columns if c.startswith('contract_')]
+                    other_cols = [c for c in inputs_df.columns if c not in set(date_cols + market_cols + contract_cols)]
+                    ordered_cols = date_cols + market_cols + contract_cols + other_cols
+                    inputs_df = inputs_df.reindex(columns=ordered_cols)
+
+                inputs_df.to_excel(writer, sheet_name='Inputs by Period', index=False)
+
         print(f"Saved cash flow for asset {asset_id} to {asset_output_path}")
 
     # 2. Create and save combined platform cash flow

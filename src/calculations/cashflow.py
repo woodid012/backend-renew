@@ -137,6 +137,30 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
     # Sort by asset_id and date to ensure correct cumulative sums
     cash_flow = cash_flow.sort_values(by=['asset_id', 'date']).reset_index(drop=True)
 
+    # Qualifying CFADS (expected by tests and used for repayment-frequency style rollups)
+    # - monthly: equals CFADS
+    # - quarterly: cumulative CFADS within each quarter
+    # - annual: cumulative CFADS within each calendar year
+    if repayment_frequency == 'monthly':
+        cash_flow['qualifying_cfads'] = cash_flow['cfads']
+    elif repayment_frequency == 'quarterly':
+        cash_flow['qualifying_cfads'] = cash_flow.groupby(
+            ['asset_id', cash_flow['date'].dt.to_period('Q')]
+        )['cfads'].cumsum()
+    elif repayment_frequency == 'annual':
+        cash_flow['qualifying_cfads'] = cash_flow.groupby(
+            ['asset_id', cash_flow['date'].dt.to_period('Y')]
+        )['cfads'].cumsum()
+    else:
+        cash_flow['qualifying_cfads'] = cash_flow['cfads']
+
+    # DSCR: for non-monthly repayment frequencies, tests expect DSCR to be based on qualifying CFADS.
+    if repayment_frequency in ('quarterly', 'annual'):
+        cash_flow['dscr'] = cash_flow.apply(
+            lambda row: row['qualifying_cfads'] / row['debt_service'] if row['debt_service'] != 0 else None,
+            axis=1
+        )
+
     # Calculate cumulative CAPEX and Depreciation for Fixed Assets
     cash_flow['cumulative_capex'] = cash_flow.groupby('asset_id')['capex'].cumsum()
     cash_flow['cumulative_d_and_a'] = cash_flow.groupby('asset_id')['d_and_a'].cumsum()

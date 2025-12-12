@@ -6,7 +6,7 @@ import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from .price_curves import get_merchant_price
-from .contracts import calculate_contract_revenue, calculate_storage_contract_revenue
+from .contracts import calculate_contract_revenue, calculate_storage_contract_revenue, get_contract_strikes_used_timeseries
 
 HOURS_IN_YEAR = 8760
 DAYS_IN_MONTH = 30.4375 # Average days in a month
@@ -53,6 +53,7 @@ def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spr
     active_contracts = [c for c in asset.get('contracts', []) if
                         datetime.strptime(c['startDate'], '%Y-%m-%d') <= current_date <= datetime.strptime(c['endDate'], '%Y-%m-%d')]
 
+    contract_strikes = []
     for contract in active_contracts:
         buyers_percentage = float(contract.get('buyersPercentage', 0)) / 100
         
@@ -67,6 +68,9 @@ def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spr
         
         contracted_green += revenue_components['contracted_green']
         contracted_energy += revenue_components['contracted_energy']
+
+        # Capture contract strike(s) used this month for audit/export
+        contract_strikes.append(get_contract_strikes_used_timeseries(contract, current_date))
         
         # Update percentages based on contract type
         contract_type = contract.get('type')
@@ -94,6 +98,13 @@ def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spr
     merchant_green_price = get_merchant_price(profile, 'green', asset['region'], current_date, monthly_prices, yearly_spreads)
     merchant_energy_price = get_merchant_price(profile, 'Energy', asset['region'], current_date, monthly_prices, yearly_spreads)
 
+    # Volumes by product / exposure
+    # NOTE: "black" maps to Energy in this model.
+    contracted_green_volume_mwh = monthly_generation * (total_green_percentage / 100)
+    contracted_black_volume_mwh = monthly_generation * (total_energy_percentage / 100)
+    merchant_green_volume_mwh = monthly_generation * green_merchant_percentage
+    merchant_black_volume_mwh = monthly_generation * energy_merchant_percentage
+
     merchant_green = (monthly_generation * green_merchant_percentage * merchant_green_price) / 1_000_000
     merchant_energy = (monthly_generation * energy_merchant_percentage * merchant_energy_price) / 1_000_000
 
@@ -110,6 +121,22 @@ def calculate_renewables_revenue(asset, current_date, monthly_prices, yearly_spr
         'contractedEnergy': contracted_energy,
         'merchantGreen': merchant_green,
         'merchantEnergy': merchant_energy,
+        # Audit: the exact market prices used by revenue calc for this month
+        # (Green maps to 'green' curve, Black maps to 'Energy' curve)
+        'market_price_green_used_$': merchant_green_price,
+        'market_price_black_used_$': merchant_energy_price,
+        # Storage-only market spread (kept as NaN for non-storage)
+        'storage_market_price_used_$': np.nan,
+        # Audit: exposure splits (percentages are 0-100, volumes in MWh)
+        'pct_green_contracted': total_green_percentage,
+        'pct_black_contracted': total_energy_percentage,
+        'pct_green_merchant': green_merchant_percentage * 100,
+        'pct_black_merchant': energy_merchant_percentage * 100,
+        'vol_green_contracted_mwh': contracted_green_volume_mwh,
+        'vol_black_contracted_mwh': contracted_black_volume_mwh,
+        'vol_green_merchant_mwh': merchant_green_volume_mwh,
+        'vol_black_merchant_mwh': merchant_black_volume_mwh,
+        'contract_strikes_used_timeseries': contract_strikes,
         'greenPercentage': total_green_percentage,
         'EnergyPercentage': total_energy_percentage,
         'monthlyGeneration': monthly_generation,
@@ -136,6 +163,7 @@ def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spread
     active_contracts = [c for c in asset.get('contracts', []) if
                         datetime.strptime(c['startDate'], '%Y-%m-%d') <= current_date <= datetime.strptime(c['endDate'], '%Y-%m-%d')]
 
+    contract_strikes = []
     for contract in active_contracts:
         buyers_percentage = float(contract.get('buyersPercentage', 0)) / 100
         
@@ -154,8 +182,12 @@ def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spread
         contracted_revenue += revenue
         total_contracted_percentage += buyers_percentage * 100
 
+        # Capture contract strike(s) used this month for audit/export
+        contract_strikes.append(get_contract_strikes_used_timeseries(contract, current_date))
+
     merchant_percentage = max(0, 100 - total_contracted_percentage) / 100
     merchant_revenue = 0
+    price_spread = 0
 
     if merchant_percentage > 0:
         # Use durationHours from asset if set, otherwise calculate from volume/capacity
@@ -189,6 +221,20 @@ def calculate_storage_revenue(asset, current_date, monthly_prices, yearly_spread
         'contractedEnergy': contracted_revenue,
         'merchantGreen': 0, # Storage typically doesn't have green revenue
         'merchantEnergy': merchant_revenue,
+        # Audit: treat the storage merchant spread as the "black" market input used
+        'market_price_green_used_$': 0,
+        'market_price_black_used_$': price_spread,
+        # Storage-only market spread (this is what you mean by "price spread")
+        'storage_market_price_used_$': price_spread,
+        'pct_green_contracted': 0,
+        'pct_black_contracted': total_contracted_percentage,
+        'pct_green_merchant': 0,
+        'pct_black_merchant': max(0, 100 - total_contracted_percentage),
+        'vol_green_contracted_mwh': 0,
+        'vol_black_contracted_mwh': monthly_volume * (total_contracted_percentage / 100),
+        'vol_green_merchant_mwh': 0,
+        'vol_black_merchant_mwh': monthly_volume * merchant_percentage,
+        'contract_strikes_used_timeseries': contract_strikes,
         'greenPercentage': 0,
         'EnergyPercentage': total_contracted_percentage,
         'monthlyGeneration': monthly_volume,
@@ -214,6 +260,8 @@ def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_d
     all_revenue_data = []
     date_range = pd.date_range(start=start_date, end=end_date, freq='MS')
 
+    max_contracts = max((len(a.get('contracts', []) or []) for a in assets), default=0)
+
     for asset in assets:
         asset_id = asset['id']
         asset_revenues = []
@@ -226,7 +274,13 @@ def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_d
             revenue_breakdown = {
                 'total': 0, 'contractedGreen': 0, 'contractedEnergy': 0,
                 'merchantGreen': 0, 'merchantEnergy': 0, 'greenPercentage': 0,
-                'EnergyPercentage': 0, 'monthlyGeneration': 0, 'avgGreenPrice': 0, 'avgEnergyPrice': 0
+                'EnergyPercentage': 0, 'monthlyGeneration': 0, 'avgGreenPrice': 0, 'avgEnergyPrice': 0,
+                'market_price_green_used_$': 0, 'market_price_black_used_$': 0,
+                'storage_market_price_used_$': 0,
+                'pct_green_contracted': 0, 'pct_black_contracted': 0,
+                'pct_green_merchant': 0, 'pct_black_merchant': 0,
+                'vol_green_contracted_mwh': 0, 'vol_black_contracted_mwh': 0,
+                'vol_green_merchant_mwh': 0, 'vol_black_merchant_mwh': 0
             }
 
             # Only calculate revenue if the asset is operational and within its asset life
@@ -240,12 +294,18 @@ def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_d
                     revenue_breakdown = {
                         'total': 0, 'contractedGreen': 0, 'contractedEnergy': 0,
                         'merchantGreen': 0, 'merchantEnergy': 0, 'greenPercentage': 0,
-                        'EnergyPercentage': 0, 'monthlyGeneration': 0, 'avgGreenPrice': 0, 'avgEnergyPrice': 0
+                        'EnergyPercentage': 0, 'monthlyGeneration': 0, 'avgGreenPrice': 0, 'avgEnergyPrice': 0,
+                        'market_price_green_used_$': 0, 'market_price_black_used_$': 0,
+                        'storage_market_price_used_$': 0,
+                        'pct_green_contracted': 0, 'pct_black_contracted': 0,
+                        'pct_green_merchant': 0, 'pct_black_merchant': 0,
+                        'vol_green_contracted_mwh': 0, 'vol_black_contracted_mwh': 0,
+                        'vol_green_merchant_mwh': 0, 'vol_black_merchant_mwh': 0
                     }
             # If current_date < asset_start_date, revenue_breakdown remains the initialized zero-revenue dict
 
             # Store for main output
-            asset_revenues.append({
+            row = {
                 'asset_id': asset_id,
                 'date': current_date,
                 'revenue': revenue_breakdown['total'],
@@ -253,14 +313,86 @@ def calculate_revenue_timeseries(assets, monthly_prices, yearly_spreads, start_d
                 'contractedEnergyRevenue': revenue_breakdown['contractedEnergy'],
                 'merchantGreenRevenue': revenue_breakdown['merchantGreen'],
                 'merchantEnergyRevenue': revenue_breakdown['merchantEnergy'],
+                'market_price_green_used_$': revenue_breakdown.get('market_price_green_used_$', 0),
+                'market_price_black_used_$': revenue_breakdown.get('market_price_black_used_$', 0),
+                'storage_market_price_used_$': revenue_breakdown.get('storage_market_price_used_$', 0),
+                'pct_green_contracted': revenue_breakdown.get('pct_green_contracted', 0),
+                'pct_black_contracted': revenue_breakdown.get('pct_black_contracted', 0),
+                'pct_green_merchant': revenue_breakdown.get('pct_green_merchant', 0),
+                'pct_black_merchant': revenue_breakdown.get('pct_black_merchant', 0),
+                'vol_green_contracted_mwh': revenue_breakdown.get('vol_green_contracted_mwh', 0),
+                'vol_black_contracted_mwh': revenue_breakdown.get('vol_black_contracted_mwh', 0),
+                'vol_green_merchant_mwh': revenue_breakdown.get('vol_green_merchant_mwh', 0),
+                'vol_black_merchant_mwh': revenue_breakdown.get('vol_black_merchant_mwh', 0),
                 'monthlyGeneration': revenue_breakdown['monthlyGeneration'],
                 'avgGreenPrice': revenue_breakdown['avgGreenPrice'],
                 'avgEnergyPrice': revenue_breakdown['avgEnergyPrice']
-            })
+            }
+
+            # Contract time series columns (1..max_contracts, stable order from asset['contracts'])
+            # Note: We export "used strike" values for the current month if the contract is active; else blank.
+            contracts = asset.get('contracts', []) or []
+            for idx in range(max_contracts):
+                n = idx + 1
+                prefix = f'contract_{n}'
+
+                if idx < len(contracts):
+                    c = contracts[idx]
+                    c_start = datetime.strptime(c['startDate'], '%Y-%m-%d')
+                    c_end = datetime.strptime(c['endDate'], '%Y-%m-%d')
+                    is_active = c_start <= current_date.to_pydatetime() <= c_end
+
+                    strikes = get_contract_strikes_used_timeseries(c, current_date.to_pydatetime()) if is_active else {
+                        'indexation_factor': None,
+                        'strike_green_used_$': None,
+                        'strike_black_used_$': None,
+                        'strike_storage_used_$': None,
+                    }
+
+                    contract_name = c.get('name') or c.get('contractName') or c.get('buyer') or c.get('buyerName')
+
+                    row.update({
+                        f'{prefix}_name': contract_name,
+                        f'{prefix}_type': c.get('type'),
+                        f'{prefix}_buyers_percentage': c.get('buyersPercentage'),
+                        f'{prefix}_start_date': c_start,
+                        f'{prefix}_end_date': c_end,
+                        f'{prefix}_is_active': bool(is_active),
+                        f'{prefix}_indexation_factor': strikes.get('indexation_factor'),
+                        f'{prefix}_strike_green_used_$': strikes.get('strike_green_used_$'),
+                        f'{prefix}_strike_black_used_$': strikes.get('strike_black_used_$'),
+                        f'{prefix}_strike_storage_used_$': strikes.get('strike_storage_used_$'),
+                    })
+                else:
+                    row.update({
+                        f'{prefix}_name': None,
+                        f'{prefix}_type': None,
+                        f'{prefix}_buyers_percentage': None,
+                        f'{prefix}_start_date': pd.NaT,
+                        f'{prefix}_end_date': pd.NaT,
+                        f'{prefix}_is_active': False,
+                        f'{prefix}_indexation_factor': None,
+                        f'{prefix}_strike_green_used_$': None,
+                        f'{prefix}_strike_black_used_$': None,
+                        f'{prefix}_strike_storage_used_$': None,
+                    })
+
+            asset_revenues.append(row)
             
         all_revenue_data.append(pd.DataFrame(asset_revenues))
 
     if not all_revenue_data:
-        return pd.DataFrame(columns=['asset_id', 'date', 'revenue', 'contractedGreenRevenue', 'contractedEnergyRevenue', 'merchantGreenRevenue', 'merchantEnergyRevenue', 'monthlyGeneration', 'avgGreenPrice', 'avgEnergyPrice'])
+        return pd.DataFrame(columns=[
+            'asset_id', 'date', 'revenue',
+            'contractedGreenRevenue', 'contractedEnergyRevenue',
+            'merchantGreenRevenue', 'merchantEnergyRevenue',
+            'market_price_green_used_$', 'market_price_black_used_$',
+            'storage_market_price_used_$',
+            'pct_green_contracted', 'pct_black_contracted',
+            'pct_green_merchant', 'pct_black_merchant',
+            'vol_green_contracted_mwh', 'vol_black_contracted_mwh',
+            'vol_green_merchant_mwh', 'vol_black_merchant_mwh',
+            'monthlyGeneration', 'avgGreenPrice', 'avgEnergyPrice'
+        ])
         
     return pd.concat(all_revenue_data, ignore_index=True)

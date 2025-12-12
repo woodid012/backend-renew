@@ -145,6 +145,18 @@ def apply_all_scenarios_to_timeseries(
                     
                     print(f"    {field}: {old_total:.2f} -> {new_total:.2f}")
                     changes_made.append(f"Energy Price: {field}")
+
+            # Also adjust any captured "used market price" audit columns if present.
+            if 'market_price_black_used_$' in modified_revenue_df.columns:
+                modified_revenue_df['market_price_black_used_$'] = (
+                    pd.to_numeric(modified_revenue_df['market_price_black_used_$'], errors='coerce').fillna(0)
+                    + global_electricity_price_adjustment_per_mwh
+                )
+            if 'storage_market_price_used_$' in modified_revenue_df.columns:
+                modified_revenue_df['storage_market_price_used_$'] = (
+                    pd.to_numeric(modified_revenue_df['storage_market_price_used_$'], errors='coerce').fillna(0)
+                    + global_electricity_price_adjustment_per_mwh
+                )
         
         if global_green_price_adjustment_per_mwh != 0.0:
             # Adjust green-based revenue (both contracted and merchant green)
@@ -170,6 +182,14 @@ def apply_all_scenarios_to_timeseries(
                     
                     print(f"    {field}: {old_total:.2f} -> {new_total:.2f}")
                     changes_made.append(f"Green Price: {field}")
+
+            # Also adjust any captured "used market price" audit columns if present.
+            if 'market_price_green_used_$' in modified_revenue_df.columns:
+                modified_revenue_df['market_price_green_used_$'] = (
+                    pd.to_numeric(modified_revenue_df['market_price_green_used_$'], errors='coerce').fillna(0)
+                    + global_green_price_adjustment_per_mwh
+                )
+            # No change to storage spread from green-price adjustment.
         
         # Recalculate total revenue
         revenue_components = ['contractedGreenRevenue', 'contractedEnergyRevenue', 
