@@ -45,41 +45,63 @@ def calculate_construction_capex_timeseries(
 
     current_equity_funded = 0
 
+    # Normalize dates to first of month for consistent comparison (date_range uses 'MS' frequency)
+    construction_start_normalized = construction_start.replace(day=1)
+    construction_end_normalized = construction_end.replace(day=1)
+    start_date_normalized = start_date.replace(day=1) if hasattr(start_date, 'replace') else pd.to_datetime(start_date).replace(day=1)
+    
     # Calculate construction months
-    construction_months = (construction_end.year - construction_start.year) * 12 + \
-                          (construction_end.month - construction_start.month)
+    construction_months = (construction_end_normalized.year - construction_start_normalized.year) * 12 + \
+                          (construction_end_normalized.month - construction_start_normalized.month)
     
     # Calculate how many construction months occurred before the model start_date
     # This ensures we capture the full CAPEX even if construction starts before model start
     months_before_model_start = 0
-    if construction_start < start_date.replace(day=1):
+    if construction_start_normalized < start_date_normalized:
         # Calculate months from construction_start to start_date
-        months_before_model_start = (start_date.year - construction_start.year) * 12 + \
-                                     (start_date.month - construction_start.month)
+        months_before_model_start = (start_date_normalized.year - construction_start_normalized.year) * 12 + \
+                                     (start_date_normalized.month - construction_start_normalized.month)
         # Ensure we don't count more months than the total construction period
         months_before_model_start = min(months_before_model_start, construction_months)
 
     # Handle operating assets (construction_start == construction_end, construction_months == 0)
     # For operating assets, allocate full capex as single equity outflow at construction_start
     if construction_months == 0:
-        # Normalize construction_start to first of month for comparison with date_range (which uses 'MS' freq)
-        construction_start_normalized = construction_start.replace(day=1)
-        
-        for date in date_range:
-            monthly_capex = 0
-            monthly_equity_capex = 0
-            monthly_debt_capex = 0
-
-            # Allocate full capex at construction_start date (which equals ops start for operating assets)
-            if date.year == construction_start_normalized.year and date.month == construction_start_normalized.month:
-                monthly_capex = total_capex
-                # For operating assets, treat as acquisition - full equity outflow
-                monthly_equity_capex = total_capex
+        # If operating asset start is before model start, allocate at first model date
+        if construction_start_normalized < start_date_normalized:
+            # Allocate all CAPEX at first model date
+            for date in date_range:
+                monthly_capex = 0
+                monthly_equity_capex = 0
+                monthly_debt_capex = 0
+                
+                # Allocate at first date in model period
+                if date == date_range[0]:
+                    monthly_capex = total_capex
+                    # For operating assets, treat as acquisition - full equity outflow
+                    monthly_equity_capex = total_capex
+                    monthly_debt_capex = 0
+                
+                capex_values.append(monthly_capex)
+                equity_capex_values.append(monthly_equity_capex)
+                debt_capex_values.append(monthly_debt_capex)
+        else:
+            # Operating asset starts in model period - allocate at its start date
+            for date in date_range:
+                monthly_capex = 0
+                monthly_equity_capex = 0
                 monthly_debt_capex = 0
 
-            capex_values.append(monthly_capex)
-            equity_capex_values.append(monthly_equity_capex)
-            debt_capex_values.append(monthly_debt_capex)
+                # Allocate full capex at construction_start date (which equals ops start for operating assets)
+                if date.year == construction_start_normalized.year and date.month == construction_start_normalized.month:
+                    monthly_capex = total_capex
+                    # For operating assets, treat as acquisition - full equity outflow
+                    monthly_equity_capex = total_capex
+                    monthly_debt_capex = 0
+
+                capex_values.append(monthly_capex)
+                equity_capex_values.append(monthly_equity_capex)
+                debt_capex_values.append(monthly_debt_capex)
     elif distribution_method == 'linear':
         monthly_capex_linear = 0
         if construction_months > 0:
@@ -149,9 +171,12 @@ def calculate_construction_capex_timeseries(
                     monthly_debt_capex = pre_model_debt
                 # Reset pre_model_capex so we don't add it again
                 pre_model_capex = 0
-            elif construction_start <= date < construction_end:
-                # Regular monthly CAPEX allocation
-                monthly_capex = monthly_capex_linear
+            else:
+                # Normalize date to first of month for comparison
+                date_normalized = date.replace(day=1) if hasattr(date, 'replace') else pd.to_datetime(date).replace(day=1)
+                if construction_start_normalized <= date_normalized < construction_end_normalized:
+                    # Regular monthly CAPEX allocation
+                    monthly_capex = monthly_capex_linear
                 
                 if capex_funding_type == 'equity_first':
                     if current_equity_funded < total_equity_funding:
@@ -202,11 +227,11 @@ def calculate_construction_capex_timeseries(
 
         # Find the first date in date_range that falls within or after the construction period
         first_model_date_in_construction = None
-        construction_completed_before_model = construction_end <= start_date.replace(day=1)
+        construction_completed_before_model = construction_end_normalized <= start_date_normalized
         
         if construction_completed_before_model:
             # Construction already completed before model start - add all CAPEX at first model date
-            first_model_date_in_construction = date_range[0] if len(date_range) > 0 else start_date
+            first_model_date_in_construction = date_range[0] if len(date_range) > 0 else start_date_normalized
             # If we haven't calculated pre_model_capex yet, it should be the full CAPEX
             if pre_model_capex == 0:
                 pre_model_capex = total_capex
@@ -220,13 +245,15 @@ def calculate_construction_capex_timeseries(
         else:
             # Construction is ongoing or hasn't started yet
             for date in date_range:
-                if construction_start <= date < construction_end:
+                # Normalize date to first of month for comparison
+                date_normalized = date.replace(day=1) if hasattr(date, 'replace') else pd.to_datetime(date).replace(day=1)
+                if construction_start_normalized <= date_normalized < construction_end_normalized:
                     first_model_date_in_construction = date
                     break
             
             # If construction hasn't started yet in model period, use first date
-            if first_model_date_in_construction is None and construction_end > start_date:
-                first_model_date_in_construction = date_range[0] if len(date_range) > 0 else start_date
+            if first_model_date_in_construction is None and construction_end_normalized > start_date_normalized:
+                first_model_date_in_construction = date_range[0] if len(date_range) > 0 else start_date_normalized
 
         percentage_index = percentage_index_start
         for date in date_range:
@@ -248,11 +275,14 @@ def calculate_construction_capex_timeseries(
                     monthly_debt_capex = pre_model_debt
                 # Reset pre_model_capex so we don't add it again
                 pre_model_capex = 0
-            elif construction_start <= date < construction_end:
-                # Regular monthly CAPEX allocation based on percentage
-                if percentage_index < len(percentage_distribution):
-                    monthly_capex = total_capex * percentage_distribution[percentage_index]
-                    percentage_index += 1
+            else:
+                # Normalize date to first of month for comparison
+                date_normalized = date.replace(day=1) if hasattr(date, 'replace') else pd.to_datetime(date).replace(day=1)
+                if construction_start_normalized <= date_normalized < construction_end_normalized:
+                    # Regular monthly CAPEX allocation based on percentage
+                    if percentage_index < len(percentage_distribution):
+                        monthly_capex = total_capex * percentage_distribution[percentage_index]
+                        percentage_index += 1
                 
                 if capex_funding_type == 'equity_first':
                     if current_equity_funded < total_equity_funding:

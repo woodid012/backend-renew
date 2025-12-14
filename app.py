@@ -515,8 +515,8 @@ def run_sensitivity():
                     db = client[MONGO_DB_NAME]
                     collection = db['SENSITIVITY_Config']
                     
-                    # First try portfolio-specific config if portfolio_name provided
-                    if portfolio_name:
+                    # First try portfolio-specific config if portfolio_name provided and is a string
+                    if portfolio_name and isinstance(portfolio_name, str):
                         config_doc = collection.find_one(
                             {'portfolio_name': portfolio_name},
                             sort=[('_id', -1)]
@@ -624,8 +624,8 @@ def run_sensitivity_stream():
                                     db = client[MONGO_DB_NAME]
                                     collection = db['SENSITIVITY_Config']
                                     
-                                    # First try portfolio-specific config if portfolio_name provided
-                                    if portfolio_name:
+                                    # First try portfolio-specific config if portfolio_name provided and is a string
+                                    if portfolio_name and isinstance(portfolio_name, str):
                                         config_doc = collection.find_one(
                                             {'portfolio_name': portfolio_name},
                                             sort=[('_id', -1)]

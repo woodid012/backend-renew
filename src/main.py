@@ -620,13 +620,19 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
     log_progress("Aggregating final cash flow...", 'info')
     print(f"\n  [STEP 5] Aggregating Final Cash Flow")
     print(f"     → Function: aggregate_cashflows() from src/calculations/cashflow.py")
-    final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, d_and_a_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS, repayment_frequency=default_debt_repayment_frequency, tax_rate=tax_rate, enable_terminal_value=enable_terminal_value, min_cash_balance_for_distribution=min_cash_balance_for_distribution)
+    final_cash_flow = aggregate_cashflows(revenue_df, opex_df, updated_capex_df, debt_df, d_and_a_df, end_date, ASSETS, ASSET_COST_ASSUMPTIONS, repayment_frequency=default_debt_repayment_frequency, tax_rate=tax_rate, enable_terminal_value=enable_terminal_value, min_cash_balance_for_distribution=min_cash_balance_for_distribution, start_date=start_date)
     print(f"     ✅ Final cash flow aggregated: {len(final_cash_flow)} rows")
 
     # Assign period type (Construction or Operations)
-    def assign_period_type(df, assets_data):
+    def assign_period_type(df, assets_data, model_start_date):
+        """
+        Assigns period types ('C' for Construction, 'O' for Operations) to cash flow periods.
+        Normalizes asset dates to model_start_date if they are before it, ensuring all
+        periods in the model date range are properly classified.
+        """
         df['period_type'] = ''
         df['date'] = pd.to_datetime(df['date'])
+        model_start = pd.to_datetime(model_start_date)
 
         for asset_info in assets_data:
             asset_id = asset_info['id']
@@ -637,18 +643,31 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
             
             if 'constructionStartDate' in asset_info and asset_info['constructionStartDate']:
                 construction_start = pd.to_datetime(asset_info['constructionStartDate'])
+                # Normalize to model start date if before it
+                if construction_start < model_start:
+                    construction_start = model_start
             
             # Only use OperatingStartDate
             if 'OperatingStartDate' in asset_info and asset_info['OperatingStartDate']:
                 ops_start = pd.to_datetime(asset_info['OperatingStartDate'])
+                # Normalize to model start date if before it
+                if ops_start < model_start:
+                    ops_start = model_start
             
             if construction_start and ops_start:
-                # Construction period: from construction start to operations start
-                construction_mask = (df['asset_id'] == asset_id) & (df['date'] >= construction_start) & (df['date'] < ops_start)
-                operations_mask = (df['asset_id'] == asset_id) & (df['date'] >= ops_start)
-                
-                df.loc[construction_mask, 'period_type'] = 'C'
-                df.loc[operations_mask, 'period_type'] = 'O'
+                # If construction was completed before model start, treat as if it ended at model start
+                # and operations begin at model start
+                if construction_start >= ops_start:
+                    # Construction already completed - all periods from model start are operations
+                    operations_mask = (df['asset_id'] == asset_id) & (df['date'] >= model_start)
+                    df.loc[operations_mask, 'period_type'] = 'O'
+                else:
+                    # Construction period: from construction start to operations start
+                    construction_mask = (df['asset_id'] == asset_id) & (df['date'] >= construction_start) & (df['date'] < ops_start)
+                    operations_mask = (df['asset_id'] == asset_id) & (df['date'] >= ops_start)
+                    
+                    df.loc[construction_mask, 'period_type'] = 'C'
+                    df.loc[operations_mask, 'period_type'] = 'O'
                 
             elif ops_start:
                 # If no construction start, assume all periods from ops start are operations
@@ -657,7 +676,7 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
 
         return df
 
-    final_cash_flow = assign_period_type(final_cash_flow, ASSETS)
+    final_cash_flow = assign_period_type(final_cash_flow, ASSETS, start_date)
 
     # Print debt sizing summary
     print("\n=== DEBT SIZING SUMMARY ===")

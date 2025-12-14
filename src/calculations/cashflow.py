@@ -6,7 +6,7 @@ from ..config import ENABLE_TERMINAL_VALUE, TAX_RATE, MIN_CASH_BALANCE_FOR_DISTR
 from .tax import calculate_tax_expense
 
 
-def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_date, assets_data, asset_cost_assumptions, repayment_frequency='annual', tax_rate=None, enable_terminal_value=None, min_cash_balance_for_distribution=None):
+def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_date, assets_data, asset_cost_assumptions, repayment_frequency='annual', tax_rate=None, enable_terminal_value=None, min_cash_balance_for_distribution=None, start_date=None):
     """
     Aggregates all financial components into a final cash flow statement for each asset.
 
@@ -43,6 +43,9 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
 
     # SAFEGUARD: Ensure revenue is zero before OperatingStartDate for each asset
     # This is a final check to prevent any revenue before operations start
+    # Normalize OperatingStartDate to model start_date if it's before it
+    model_start = pd.to_datetime(start_date) if start_date else None
+    
     for asset_info in assets_data:
         asset_id = asset_info.get('id')
         if 'OperatingStartDate' not in asset_info or not asset_info['OperatingStartDate']:
@@ -50,7 +53,11 @@ def aggregate_cashflows(revenue, opex, capex, debt_schedule, d_and_a_df, end_dat
         
         asset_start_date = pd.to_datetime(asset_info['OperatingStartDate'])
         
-        # Zero out revenue-related fields before OperatingStartDate
+        # Normalize to model start date if before it (ensures revenue starts from model start)
+        if model_start and asset_start_date < model_start:
+            asset_start_date = model_start
+        
+        # Zero out revenue-related fields before normalized OperatingStartDate
         mask = (cash_flow['asset_id'] == asset_id) & (cash_flow['date'] < asset_start_date)
         
         if mask.any():

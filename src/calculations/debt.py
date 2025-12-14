@@ -223,7 +223,7 @@ def calculate_annual_debt_schedule(debt_amount, cash_flows, interest_rate, tenor
         'period_frequency': period_frequency
     }
 
-def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, dscr_calculation_frequency='quarterly'):
+def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, dscr_calculation_frequency='quarterly', start_date=None):
     """
     Convert monthly cash flows to annual or quarterly periods for debt sizing, starting from operations start date.
     
@@ -232,6 +232,7 @@ def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, 
         revenue_df (pd.DataFrame): Monthly revenue data
         opex_df (pd.DataFrame): Monthly OPEX data
         dscr_calculation_frequency (str): 'annual' or 'quarterly' - determines aggregation period
+        start_date (datetime): Model start date - used to normalize OperatingStartDate if it's before model start
     
     Returns:
         pd.DataFrame: Aggregated cash flows and revenue breakdown (annual or quarterly)
@@ -250,7 +251,12 @@ def prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, 
     cash_flow_data['cfads'] = cash_flow_data['revenue'] - cash_flow_data['opex']
     
     # CRITICAL: Filter to only include periods from operations start date onwards
+    # Normalize OperatingStartDate to model start_date if it's before it
     operations_start = pd.to_datetime(asset['OperatingStartDate'])
+    if start_date:
+        model_start = pd.to_datetime(start_date)
+        if operations_start < model_start:
+            operations_start = model_start
     cash_flow_data = cash_flow_data[cash_flow_data['date'] >= operations_start].copy()
     
     if cash_flow_data.empty:
@@ -785,7 +791,7 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
         'hit_gearing_limit': hit_gearing_limit
     }
 
-def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly'):
+def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly', start_date=None):
     """
     Size debt for a single asset based on CFADS by cashflow type (merchant vs contracted).
     
@@ -804,6 +810,7 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
         revenue_df (pd.DataFrame): Revenue data
         opex_df (pd.DataFrame): OPEX data
         dscr_calculation_frequency (str): 'annual', 'quarterly', or 'monthly' - determines DSCR calculation period
+        start_date (datetime): Model start date - used to normalize OperatingStartDate if it's before model start
     
     Returns:
         dict: Debt sizing results
@@ -827,7 +834,7 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
         }
     
     # Prepare cash flows for debt sizing FROM OPERATIONS START
-    period_data = prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, dscr_calculation_frequency)
+    period_data = prepare_annual_cash_flows_from_operations_start(asset, revenue_df, opex_df, dscr_calculation_frequency, start_date)
     
     if period_data.empty:
         print(f"WARNING: No operational cash flows found for {asset.get('name', asset['id'])}")
@@ -903,7 +910,12 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
     )
     
     # Calculate debt service start date (from operations start)
+    # Normalize OperatingStartDate to model start_date if it's before it
     operations_start = pd.to_datetime(asset['OperatingStartDate'])
+    if start_date:
+        model_start = pd.to_datetime(start_date)
+        if operations_start < model_start:
+            operations_start = model_start
     
     return {
         'optimal_debt': solution['debt'],
@@ -916,7 +928,7 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
         'tenor_years': tenor_years
     }
 
-def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly'):
+def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly', start_date=None):
     """
     Size debt for a single asset based on CFADS by cashflow type (merchant vs contracted).
     
@@ -929,11 +941,12 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calc
         revenue_df (pd.DataFrame): Revenue data
         opex_df (pd.DataFrame): OPEX data
         dscr_calculation_frequency (str): 'annual', 'quarterly', or 'monthly' - determines DSCR calculation period
+        start_date (datetime): Model start date - used to normalize OperatingStartDate if it's before model start
     
     Returns:
         dict: Debt sizing results
     """
-    return size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency)
+    return size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency, start_date)
 
 def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_result, 
                                  start_date, end_date, repayment_frequency, monthly_cfads=None, target_dscrs=None, grace_period='prorate'):
@@ -1247,7 +1260,7 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
         if debt_sizing_method == 'dscr':
             # Size debt based on operational cash flows FROM OPERATIONS START
             # Use dscr_calculation_frequency for DSCR calculation
-            debt_sizing_result = size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency)
+            debt_sizing_result = size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency, start_date)
             optimal_debt = debt_sizing_result['optimal_debt']
             
             # Generate monthly debt schedule
@@ -1288,7 +1301,11 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
             optimal_debt = capex * max_gearing
             
             # Create simple debt sizing result for annuity
-            operations_start = pd.to_datetime(asset['assetStartDate']) if asset.get('assetStartDate') else start_date
+            # Normalize OperatingStartDate to model start_date if it's before it
+            operations_start = pd.to_datetime(asset.get('OperatingStartDate') or asset.get('assetStartDate') or start_date)
+            model_start = pd.to_datetime(start_date)
+            if operations_start < model_start:
+                operations_start = model_start
             debt_sizing_result = {
                 'optimal_debt': optimal_debt,
                 'debt_service_start_date': operations_start,
