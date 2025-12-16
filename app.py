@@ -192,11 +192,11 @@ def run_model():
             selected_config = config_data[-1]
             assets = selected_config.get('asset_inputs', [])
             
-            # Use the PlatformName from the config document for portfolio_name in results
-            # This ensures the portfolio name stored in results matches what's in CONFIG_Inputs
-            if selected_config.get('PlatformName'):
-                portfolio_name = selected_config.get('PlatformName')
-                print(f"     - Using PlatformName from config: {portfolio_name}", flush=True)
+            # Use PortfolioTitle (or fallback to PlatformName) from the config document for display
+            # PortfolioTitle is the user-editable display name
+            portfolio_name = selected_config.get('PortfolioTitle') or selected_config.get('PlatformName')
+            if portfolio_name:
+                print(f"     - Using PortfolioTitle from config: {portfolio_name}", flush=True)
             
             # Read portfolio unique_id from CONFIG_Inputs document
             portfolio_unique_id = selected_config.get('unique_id')
@@ -378,10 +378,11 @@ def run_model_stream():
                         selected_config = config_data[-1]
                         assets = selected_config.get('asset_inputs', [])
                         
-                        # Use the PlatformName from the config document for portfolio_name in results
+                        # Use PortfolioTitle (or fallback to PlatformName) for display
                         actual_portfolio_name = portfolio_name
-                        if selected_config.get('PlatformName'):
-                            actual_portfolio_name = selected_config.get('PlatformName')
+                        portfolio_title = selected_config.get('PortfolioTitle') or selected_config.get('PlatformName')
+                        if portfolio_title:
+                            actual_portfolio_name = portfolio_title
                         
                         portfolio_unique_id = selected_config.get('unique_id')
                         
@@ -1010,9 +1011,11 @@ def sensitivity_inputs():
             else:
                 # Try to get unique_id from portfolio_name if not provided
                 if not unique_id and portfolio_name:
-                    # Look up unique_id from CONFIG_Inputs
+                    # Look up unique_id from CONFIG_Inputs - try PortfolioTitle first, then PlatformName
                     config_collection = db['CONFIG_Inputs']
-                    config_doc = config_collection.find_one({'PlatformName': portfolio_name})
+                    config_doc = config_collection.find_one({'PortfolioTitle': portfolio_name})
+                    if not config_doc:
+                        config_doc = config_collection.find_one({'PlatformName': portfolio_name})
                     if config_doc:
                         unique_id = config_doc.get('unique_id')
                         print(f"  → Found unique_id from CONFIG_Inputs: {unique_id} for portfolio_name: {portfolio_name}", flush=True)

@@ -273,13 +273,7 @@ def clear_all_scenario_data(scenario_id: str, collections: list = None, portfoli
         collections = [
             'ASSET_cash_flows',
             'ASSET_inputs_summary',
-            '3WAY_P&L',
-            '3WAY_CASH',
-            '3WAY_BS',
-            'SENS_Asset_Outputs',
-            'SENS_3WAY_P&L',
-            'SENS_3WAY_CASH',
-            'SENS_3WAY_BS'
+            'SENS_Asset_Outputs'
         ]
     
     total_deleted = 0
@@ -347,10 +341,7 @@ def clear_base_case_data(collections: list = None, portfolio_unique_id: str = No
     if collections is None:
         collections = [
             'ASSET_cash_flows',
-            'ASSET_inputs_summary',
-            '3WAY_P&L',
-            '3WAY_CASH',
-            '3WAY_BS'
+            'ASSET_inputs_summary'
         ]
     
     total_deleted = 0

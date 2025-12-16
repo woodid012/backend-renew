@@ -27,11 +27,6 @@
     *   For each variation, it dynamically creates a temporary scenario JSON file.
     *   It then calls `main.py` for each of these scenarios, passing the temporary scenario file and a unique `scenario_id`. This allows you to run a full sensitivity analysis and have all results tagged in MongoDB.
 
-4.  **3-Way Financials (`run_three_way_model.py`):**
-    *   This is a separate script that takes the *output* of `main.py` (specifically, the `final_cash_flow` data stored in MongoDB).
-    *   It uses `calculations/three_way_financials.py` to generate the P&L, Cash Flow Statement, and Balance Sheet.
-    *   These generated financial statements are then saved to separate collections in your MongoDB database.
-
 ### How to Run a Single Case:
 
 If you just want to run a single case (not a full sensitivity analysis), you have two main options:

@@ -157,9 +157,9 @@ def xirr(cash_flows, dates, guess=0.1, max_iterations=1000, tolerance=1e-6):
                     result = fsolve(npv_function, method_params, maxfev=max_iterations, xtol=tolerance)
                     irr_result = result[0]
                 
-                # Validate the result
+                # Validate the result - use looser tolerance for NPV validation (0.0001 is acceptable for financial calculations)
                 npv_check = npv_function(irr_result)
-                if abs(npv_check) < tolerance and -0.99 < irr_result < 50:  # Expanded reasonable bounds
+                if abs(npv_check) < 0.0001 and -0.99 < irr_result < 50:  # Expanded reasonable bounds
                   #  print(f"DEBUG: Found IRR using {method_name}: {irr_result:.4f} ({irr_result:.2%})")
                   #  print(f"DEBUG: NPV check: {npv_check:.6f}")
                     return irr_result

@@ -253,8 +253,6 @@ def apply_all_scenarios_to_timeseries(
     # SAFEGUARD: Ensure revenue is zero before OperatingStartDate for each asset
     # This prevents scenarios from accidentally adding revenue before operations start
     print(f"  Applying safeguard: Zeroing revenue before OperatingStartDate...")
-    from datetime import datetime
-    import pandas as pd
     
     for asset in assets:
         asset_id = asset.get('id')

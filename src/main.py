@@ -32,7 +32,7 @@ from src.calculations.construction_capex import calculate_capex_timeseries
 from src.calculations.debt import calculate_debt_schedule
 from src.calculations.cashflow import aggregate_cashflows
 from src.calculations.depreciation import calculate_d_and_a
-from src.core.output_generator import generate_asset_and_platform_output, export_three_way_financials_to_excel
+from src.core.output_generator import generate_asset_and_platform_output
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr, calculate_asset_equity_irrs
 from src.core.database import (
@@ -871,8 +871,6 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
     print(f"\n  [STEP 8] Saving Outputs to Files")
     print(f"     → Function: generate_asset_and_platform_output() from src/core/output_generator.py")
     generate_asset_and_platform_output(final_cash_flow, irr, output_directory, scenario_id=scenario_id, inputs_audit_df=inputs_audit_df)
-    print(f"     → Function: export_three_way_financials_to_excel() from src/core/output_generator.py")
-    export_three_way_financials_to_excel(final_cash_flow, output_directory, scenario_id=scenario_id)
     print(f"     ✅ Outputs saved to: {output_directory}")
 
     # === CRITICAL: WRITE TO MONGODB ===
@@ -1090,9 +1088,10 @@ if __name__ == '__main__':
         if not config_data:
             raise ValueError("Could not load config data from MongoDB")
         assets = config_data[0].get('asset_inputs', [])
-        portfolio_name = config_data[0].get('PlatformName')
+        # Use PortfolioTitle (user-editable display name) with fallback to PlatformName
+        portfolio_name = config_data[0].get('PortfolioTitle') or config_data[0].get('PlatformName')
         if not portfolio_name:
-            raise ValueError("Could not find PlatformName in config data from MongoDB")
+            raise ValueError("Could not find PortfolioTitle or PlatformName in config data from MongoDB")
 
         final_cashflows_json = run_cashflow_model(
             assets=assets,

@@ -17,11 +17,11 @@ from src.core.database import get_mongo_client
 from src.config import MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION
 from src.core.equity_irr import calculate_equity_irr
 
-def extract_sensitivity_summary(sensitivity_prefix="sensitivity_results"):
+def extract_sensitivity_summary(sensitivity_prefix="sensitivity_results", unique_id=None):
     """
     Extract key metrics from all sensitivity scenarios in MongoDB
     """
-    print(f"=== EXTRACTING SENSITIVITY RESULTS FROM MONGODB ===")
+    print(f"=== EXTRACTING SENSITIVITY RESULTS FROM MONGODB (Prefix: {sensitivity_prefix}, Unique ID: {unique_id}) ===")
     
     client = None
     results = []
@@ -31,10 +31,13 @@ def extract_sensitivity_summary(sensitivity_prefix="sensitivity_results"):
         db = client.get_database()
         collection = db[MONGO_ASSET_OUTPUT_COLLECTION]
         
-        # Find all scenario_ids that start with our prefix
-        scenario_ids = collection.distinct("scenario_id", {
-            "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
-        })
+        # Find all scenario_ids that start with our prefix using aggregation to filter by unique_id first if possible
+        # Or just use distinct with query
+        query = {"scenario_id": {"$regex": f"^{sensitivity_prefix}"}}
+        if unique_id:
+            query["unique_id"] = unique_id
+            
+        scenario_ids = collection.distinct("scenario_id", query)
         
         print(f"Found {len(scenario_ids)} sensitivity scenarios")
         
@@ -42,7 +45,11 @@ def extract_sensitivity_summary(sensitivity_prefix="sensitivity_results"):
             print(f"\nProcessing: {scenario_id}")
             
             # Get all data for this scenario
-            scenario_data = list(collection.find({"scenario_id": scenario_id}))
+            query = {"scenario_id": scenario_id}
+            if unique_id:
+                query["unique_id"] = unique_id
+                
+            scenario_data = list(collection.find(query))
             
             if not scenario_data:
                 print(f"  No data found for {scenario_id}")
@@ -265,10 +272,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Extract sensitivity analysis results from MongoDB")
     parser.add_argument('--prefix', type=str, default='sensitivity_results',
                        help='Scenario ID prefix to search for (default: sensitivity_results)')
+    parser.add_argument('--unique_id', type=str, help='Portfolio Unique ID to filter by')
     
     args = parser.parse_args()
     
-    results = extract_sensitivity_summary(args.prefix)
+    results = extract_sensitivity_summary(args.prefix, args.unique_id)
     
     if results:
         print(f"\n✓ Successfully processed {len(results)} sensitivity scenarios")

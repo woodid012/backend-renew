@@ -24,30 +24,34 @@ from scripts.enhanced_sensitivity_summary import generate_enhanced_sensitivity_s
 # Use separate collection for sensitivity results
 SENSITIVITY_COLLECTION = "SENS_Asset_Outputs"
 
-def cleanup_sensitivity_results(sensitivity_prefix="sensitivity_results"):
+def cleanup_sensitivity_results(sensitivity_prefix="sensitivity_results", unique_id=None):
     """Clean up existing sensitivity results using optimized connection"""
-    print("=== CLEANING UP EXISTING SENSITIVITY RESULTS ===")
+    print(f"=== CLEANING UP EXISTING SENSITIVITY RESULTS (Prefix: {sensitivity_prefix}, Unique ID: {unique_id}) ===")
     
+    if not unique_id:
+        print("Error: No unique_id provided for cleanup. Aborting to prevent data loss.")
+        return False
+        
     try:
         with mongo_session() as db_mgr:
             collection = db_mgr.get_collection(SENSITIVITY_COLLECTION)
             
-            existing_scenarios = collection.distinct("scenario_id", {
-                "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
-            })
+            # Filter by both prefix AND unique_id
+            query = {
+                "scenario_id": {"$regex": f"^{sensitivity_prefix}"},
+                "unique_id": unique_id
+            }
+            
+            existing_scenarios = collection.distinct("scenario_id", query)
             
             if existing_scenarios:
-                print(f"Found {len(existing_scenarios)} existing sensitivity scenarios")
-                total_records = collection.count_documents({
-                    "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
-                })
+                print(f"Found {len(existing_scenarios)} existing sensitivity scenarios for this portfolio")
+                total_records = collection.count_documents(query)
                 print(f"Deleting {total_records} sensitivity records...")
-                result = collection.delete_many({
-                    "scenario_id": {"$regex": f"^{sensitivity_prefix}"}
-                })
+                result = collection.delete_many(query)
                 print(f"Deleted {result.deleted_count} sensitivity records")
             else:
-                print("No existing sensitivity results found")
+                print("No existing sensitivity results found for this portfolio")
                 
             return True
             
@@ -55,15 +59,20 @@ def cleanup_sensitivity_results(sensitivity_prefix="sensitivity_results"):
         print(f"Error cleaning up: {e}")
         return False
 
-def move_to_sensitivity_collection(scenario_id):
+def move_to_sensitivity_collection(scenario_id, unique_id):
     """Move scenario results from main collection to sensitivity collection using optimized connection"""
+    if not unique_id:
+        print(f"Error: No unique_id provided for moving results for scenario {scenario_id}")
+        return
+
     try:
         with mongo_session() as db_mgr:
             main_collection = db_mgr.get_collection("ASSET_cash_flows")  # Your main collection
             sens_collection = db_mgr.get_collection(SENSITIVITY_COLLECTION)
             
-            # Find records for this scenario
-            scenario_records = list(main_collection.find({"scenario_id": scenario_id}))
+            # Find records for this scenario AND unique_id
+            query = {"scenario_id": scenario_id, "unique_id": unique_id}
+            scenario_records = list(main_collection.find(query))
             
             if scenario_records:
                 # Insert into sensitivity collection
@@ -71,16 +80,30 @@ def move_to_sensitivity_collection(scenario_id):
                 print(f"    Moved {len(scenario_records)} records to {SENSITIVITY_COLLECTION}")
                 
                 # Remove from main collection
-                delete_result = main_collection.delete_many({"scenario_id": scenario_id})
+                delete_result = main_collection.delete_many(query)
                 print(f"    Removed {delete_result.deleted_count} records from main collection")
             else:
-                print(f"    No records found for scenario {scenario_id}")
+                print(f"    No records found for scenario {scenario_id} and unique_id {unique_id}")
     
     except Exception as e:
         print(f"    Error moving records: {e}")
 
-def run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads, portfolio_name, portfolio_unique_id):
-    """Run a single scenario using direct function call"""
+def run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads, portfolio_name, portfolio_unique_id, progress_callback=None):
+    """Run a single scenario using direct function call
+    
+    Args:
+        progress_callback: Optional function to call with progress updates (message, type='info')
+    
+    Returns:
+        tuple: (success: bool, error_message: str or None)
+    """
+    def log_progress(message, progress_type='info'):
+        """Helper to log progress via callback or print"""
+        if progress_callback:
+            progress_callback(message, progress_type)
+        else:
+            print(message, flush=True)
+    
     try:
         # Create temporary file for scenario
         with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp_file:
@@ -106,16 +129,18 @@ def run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_pr
         os.unlink(temp_file_path)
         
         # Move results to sensitivity collection
-        move_to_sensitivity_collection(scenario_id)
+        move_to_sensitivity_collection(scenario_id, portfolio_unique_id)
         
-        return True
+        return True, None
         
     except Exception as e:
-        print(f"  ERROR in scenario {scenario_id}: {e}")
+        error_msg = f"ERROR in scenario {scenario_id}: {e}"
+        print(f"  {error_msg}")
+        log_progress(error_msg, 'error')
         # Clean up temp file if it exists
         if 'temp_file_path' in locals() and os.path.exists(temp_file_path):
             os.unlink(temp_file_path)
-        return False
+        return False, str(e)
 
 def generate_sensitivity_values(base_value, min_val, max_val, steps):
     """Generate sensitivity values, excluding the base case"""
@@ -155,11 +180,12 @@ def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sen
     log_progress(f"Results will be stored in: {SENSITIVITY_COLLECTION}", 'info')
     
     # Step 1: Clean up existing results
-    log_progress("Cleaning up existing sensitivity results...", 'info')
-    if not cleanup_sensitivity_results(sensitivity_prefix):
-        log_progress("Failed to clean up existing results. Aborting.", 'error')
-        return
-    log_progress("Cleanup complete", 'success')
+    # Step 1: Clean up existing results will be done AFTER loading config to get unique_id
+    # log_progress("Cleaning up existing sensitivity results...", 'info')
+    # if not cleanup_sensitivity_results(sensitivity_prefix):
+    #     log_progress("Failed to clean up existing results. Aborting.", 'error')
+    #     return
+    # log_progress("Cleanup complete", 'success')
     
     # Step 2: Load config - use config object if provided, otherwise load from file
     log_progress("Loading sensitivity configuration...", 'info')
@@ -215,6 +241,13 @@ def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sen
         return
     
     log_progress(f"Using portfolio unique_id: {portfolio_unique_id} (display name: {platform_name_display})", 'info')
+
+    # Step 1 (Delayed): Clean up existing results now that we have unique_id
+    log_progress("Cleaning up existing sensitivity results...", 'info')
+    if not cleanup_sensitivity_results(output_collection_prefix, portfolio_unique_id):
+        log_progress("Failed to clean up existing results. Aborting.", 'error')
+        return
+    log_progress("Cleanup complete", 'success')
     
     log_progress("Loading price data files...", 'info')
     monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
@@ -300,8 +333,8 @@ def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sen
             log_progress(f"Running scenario: {scenario_name} ({current_scenario}/{total_scenarios})", 'info')
             print(f"  [{current_scenario}/{total_scenarios}] {scenario_name}")
             
-            # Run scenario using direct call
-            success = run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads, platform_name_display, portfolio_unique_id)
+            # Run scenario using direct call - pass progress callback for error reporting
+            success, error_msg = run_single_scenario_direct(scenario_content, scenario_id, assets, monthly_prices, yearly_spreads, platform_name_display, portfolio_unique_id, progress_callback=log_progress)
             
             if success:
                 successful_scenarios += 1
@@ -309,8 +342,9 @@ def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sen
                 print(f"    SUCCESS")
             else:
                 failed_scenarios += 1
-                log_progress(f"Scenario {scenario_name} failed", 'error')
-                print(f"    FAILED")
+                # Error details were already logged by run_single_scenario_direct
+                log_progress(f"Scenario {scenario_name} failed: {error_msg}", 'error')
+                print(f"    FAILED: {error_msg}")
 
     log_progress("Sensitivity analysis complete!", 'success')
     print(f"\n=== SENSITIVITY ANALYSIS COMPLETE ===")
@@ -321,20 +355,24 @@ def run_sensitivity_analysis_optimized(config_file=None, sensitivity_prefix="sen
     print(f"Results stored in MongoDB collection: {SENSITIVITY_COLLECTION}")
     
     # Verify results
-    verify_sensitivity_results(output_collection_prefix)
+    verify_sensitivity_results(output_collection_prefix, portfolio_unique_id)
 
     # Generate enhanced sensitivity summary after analysis is complete
     print("\n=== GENERATING ENHANCED SENSITIVITY SUMMARY ===")
     generate_enhanced_sensitivity_summary(sensitivity_prefix=output_collection_prefix)
 
-def verify_sensitivity_results(sensitivity_prefix):
+def verify_sensitivity_results(sensitivity_prefix, unique_id=None):
     """Verify sensitivity results in the dedicated collection using optimized connection"""
     try:
         with mongo_session() as db_mgr:
             collection = db_mgr.get_collection(SENSITIVITY_COLLECTION)
             
             # Check what we have
-            scenario_data = list(collection.find({"scenario_id": {"$regex": f"^{sensitivity_prefix}"}}))
+            query = {"scenario_id": {"$regex": f"^{sensitivity_prefix}"}}
+            if unique_id:
+                query["unique_id"] = unique_id
+                
+            scenario_data = list(collection.find(query))
             
             if scenario_data:
                 unique_scenarios = len(set(record['scenario_id'] for record in scenario_data))
