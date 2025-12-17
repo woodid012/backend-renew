@@ -25,7 +25,7 @@ from src.config import (
     MONGO_ASSET_OUTPUT_COLLECTION, MONGO_ASSET_INPUTS_SUMMARY_COLLECTION, 
     TAX_RATE, DEFAULT_ASSET_LIFE_YEARS
 )
-from src.core.input_processor import load_price_data
+from src.core.price_curve_manager import load_price_data_from_mongo, get_price_curves_list
 from src.calculations.revenue import calculate_revenue_timeseries
 from src.calculations.opex import calculate_opex_timeseries
 from src.calculations.construction_capex import calculate_capex_timeseries
@@ -36,8 +36,8 @@ from src.core.output_generator import generate_asset_and_platform_output
 from src.core.summary_generator import generate_summary_data
 from src.core.equity_irr import calculate_equity_irr, calculate_asset_equity_irrs
 from src.core.database import (
-    insert_dataframe_to_mongodb, clear_base_case_data, clear_all_scenario_data, 
-    get_data_from_mongodb, database_lifecycle, ensure_connection
+    insert_dataframe_to_mongodb, clear_base_case_data, clear_all_scenario_data,
+    get_data_from_mongodb, database_lifecycle, ensure_connection, get_mongo_client
 )
 from src.core.scenario_manager import load_scenario, apply_all_scenarios_to_timeseries
 from src.core.hybrid_assets import add_hybrid_asset_summaries
@@ -1076,14 +1076,34 @@ if __name__ == '__main__':
 
     # Use the database lifecycle context manager to manage connection efficiently
     with database_lifecycle():
-        # Fetch data for standalone run
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(current_dir)
-        monthly_price_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
-        yearly_spread_path = os.path.join(project_root, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
-        
-        monthly_prices, yearly_spreads = load_price_data(monthly_price_path, yearly_spread_path)
-        
+        # Fetch price data from MongoDB instead of legacy CSV files
+        client = get_mongo_client()
+        if client is None:
+            raise ValueError("Could not obtain MongoDB client. Check MONGODB_URI / MONGODB_DB in .env.local.")
+
+        # Determine database name from environment (loaded by src.core.database)
+        mongo_db_name = os.getenv('MONGODB_DB')
+        if not mongo_db_name:
+            raise ValueError("MONGODB_DB not set in environment. Please configure it in .env.local.")
+
+        db = client[mongo_db_name]
+
+        # Choose a price curve: prefer AC Nov 2024 if present, otherwise fall back to the latest name
+        available_curves = get_price_curves_list(db)
+        if not available_curves:
+            raise ValueError("No price curves found in MongoDB collection PRICE_Curves_2.")
+
+        preferred_curve = 'AC Nov 2024'
+        if preferred_curve in available_curves:
+            curve_name = preferred_curve
+        else:
+            available_curves_sorted = sorted(available_curves)
+            curve_name = available_curves_sorted[-1]
+
+        print(f"Using price curve for CLI run: {curve_name}")
+        monthly_prices, yearly_spreads = load_price_data_from_mongo(db, curve_name)
+
+        # Load asset configuration from MongoDB
         config_data = get_data_from_mongodb('CONFIG_Inputs')
         if not config_data:
             raise ValueError("Could not load config data from MongoDB")

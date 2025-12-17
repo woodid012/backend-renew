@@ -7,6 +7,8 @@ import pandas as pd
 from contextlib import contextmanager
 import threading
 from typing import Optional, Dict, Any, List
+import time
+import json
 
 # Find and load environment variables from .env.local
 # Look for .env.local starting from current file location up to project root
@@ -71,17 +73,88 @@ class DatabaseManager:
         if self._client is None:
             with self._connection_lock:
                 if self._client is None:
+                    # region agent log
+                    try:
+                        with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                            _f.write(json.dumps({
+                                "sessionId": "debug-session",
+                                "runId": "upload-price-curve",
+                                "hypothesisId": "H1",
+                                "location": "src/core/database.py:connect",
+                                "message": "connect_enter",
+                                "data": {
+                                    "has_client": self._client is not None,
+                                    "has_uri": bool(MONGO_URI),
+                                },
+                                "timestamp": int(time.time() * 1000),
+                            }) + "\n")
+                    except Exception:
+                        pass
+                    # endregion
                     if not MONGO_URI:
                         raise ValueError("MONGODB_URI not found in environment variables. Please set it in .env.local")
                     
                     try:
-                        self._client = MongoClient(MONGO_URI)
+                        # Use explicit, reasonably short timeouts so failures don't appear to "hang" indefinitely
+                        # region agent log
+                        try:
+                            with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                                _f.write(json.dumps({
+                                    "sessionId": "debug-session",
+                                    "runId": "upload-price-curve",
+                                    "hypothesisId": "H2",
+                                    "location": "src/core/database.py:connect",
+                                    "message": "creating_mongo_client",
+                                    "data": {},
+                                    "timestamp": int(time.time() * 1000),
+                                }) + "\n")
+                        except Exception:
+                            pass
+                        # endregion
+                        self._client = MongoClient(
+                            MONGO_URI,
+                            serverSelectionTimeoutMS=5000,  # 5 seconds
+                            connectTimeoutMS=5000,          # 5 seconds
+                        )
                         # Test connection
                         self._client.admin.command('ping')
                         self._db = self._client[MONGO_DB_NAME]
+                        # region agent log
+                        try:
+                            with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                                _f.write(json.dumps({
+                                    "sessionId": "debug-session",
+                                    "runId": "upload-price-curve",
+                                    "hypothesisId": "H3",
+                                    "location": "src/core/database.py:connect",
+                                    "message": "mongo_connected",
+                                    "data": {"db_name": MONGO_DB_NAME},
+                                    "timestamp": int(time.time() * 1000),
+                                }) + "\n")
+                        except Exception:
+                            pass
+                        # endregion
                         print("MongoDB connection established!")
                     except Exception as e:
                         print(f"MongoDB connection error: {e}")
+                        # Ensure we don't leave a half-initialised client lying around
+                        self._client = None
+                        self._db = None
+                        # region agent log
+                        try:
+                            with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                                _f.write(json.dumps({
+                                    "sessionId": "debug-session",
+                                    "runId": "upload-price-curve",
+                                    "hypothesisId": "H4",
+                                    "location": "src/core/database.py:connect",
+                                    "message": "mongo_connect_error",
+                                    "data": {"error": str(e)},
+                                    "timestamp": int(time.time() * 1000),
+                                }) + "\n")
+                        except Exception:
+                            pass
+                        # endregion
                         raise
     
     def disconnect(self):
@@ -104,10 +177,68 @@ class DatabaseManager:
     
     def get_client(self):
         """Get the MongoDB client, connecting if necessary."""
+        # region agent log
+        try:
+            with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                _f.write(json.dumps({
+                    "sessionId": "debug-session",
+                    "runId": "upload-price-curve",
+                    "hypothesisId": "H8",
+                    "location": "src/core/database.py:get_client",
+                    "message": "get_client_enter",
+                    "data": {"has_client": self._client is not None},
+                    "timestamp": int(time.time() * 1000),
+                }) + "\n")
+        except Exception:
+            pass
+        # endregion
         if self._client is None:
-            with self._connection_lock:
-                if self._client is None:
-                    self.connect()
+            # region agent log
+            try:
+                with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                    _f.write(json.dumps({
+                        "sessionId": "debug-session",
+                        "runId": "upload-price-curve",
+                        "hypothesisId": "H9",
+                        "location": "src/core/database.py:get_client",
+                        "message": "acquired_connection_lock",
+                        "data": {"has_client": self._client is not None},
+                        "timestamp": int(time.time() * 1000),
+                    }) + "\n")
+            except Exception:
+                pass
+            # endregion
+            # region agent log
+            try:
+                with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                    _f.write(json.dumps({
+                        "sessionId": "debug-session",
+                        "runId": "upload-price-curve",
+                        "hypothesisId": "H10",
+                        "location": "src/core/database.py:get_client",
+                        "message": "calling_connect",
+                        "data": {},
+                        "timestamp": int(time.time() * 1000),
+                    }) + "\n")
+            except Exception:
+                pass
+            # endregion
+            self.connect()
+        # region agent log
+        try:
+            with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                _f.write(json.dumps({
+                    "sessionId": "debug-session",
+                    "runId": "upload-price-curve",
+                    "hypothesisId": "H11",
+                    "location": "src/core/database.py:get_client",
+                    "message": "get_client_exit",
+                    "data": {"has_client": self._client is not None},
+                    "timestamp": int(time.time() * 1000),
+                }) + "\n")
+        except Exception:
+            pass
+        # endregion
         return self._client
     
     def get_database(self):
@@ -146,6 +277,21 @@ def get_mongo_client():
     Legacy function for backward compatibility.
     Returns the managed client instead of creating new connections.
     """
+    # region agent log
+    try:
+        with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+            _f.write(json.dumps({
+                "sessionId": "debug-session",
+                "runId": "upload-price-curve",
+                "hypothesisId": "H5",
+                "location": "src/core/database.py:get_mongo_client",
+                "message": "get_mongo_client_called",
+                "data": {},
+                "timestamp": int(time.time() * 1000),
+            }) + "\n")
+    except Exception:
+        pass
+    # endregion
     return db_manager.get_client()
 
 def ensure_connection():

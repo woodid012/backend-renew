@@ -18,7 +18,7 @@ import queue
 sys.stdout.reconfigure(line_buffering=True) if hasattr(sys.stdout, 'reconfigure') else None
 sys.stderr.reconfigure(line_buffering=True) if hasattr(sys.stderr, 'reconfigure') else None
 
-load_dotenv()
+load_dotenv('.env.local')
 
 MONGO_DB_NAME = os.getenv('MONGODB_DB')
 
@@ -119,11 +119,141 @@ def health_check():
     except Exception as e:
         print(f"  ❌ Health check error: {e}", flush=True)
         traceback.print_exc()
-        return jsonify({
-            "status": "error",
-            "message": str(e),
-            "type": type(e).__name__
-        }), 500
+    return jsonify({
+        "status": "error",
+        "message": str(e),
+        "type": type(e).__name__
+    }), 500
+
+# Import Price Curve Manager
+try:
+    from src.core.price_curve_manager import analyze_excel_file, ingest_excel_file, get_price_curves_list, load_price_data_from_mongo
+    print("✅ Successfully imported price_curve_manager", flush=True)
+except ImportError as e:
+    print(f"⚠️ Could not import price_curve_manager: {e}", flush=True)
+    traceback.print_exc()
+    analyze_excel_file = None
+    ingest_excel_file = None
+    get_price_curves_list = None
+    load_price_data_from_mongo = None
+
+@app.route('/api/list-price-curves', methods=['GET'])
+def list_price_curves():
+    print("[PRICE] List curves request received", flush=True)
+    try:
+        if get_mongo_client:
+            client = get_mongo_client()
+            db = client[MONGO_DB_NAME]
+            curves = get_price_curves_list(db)
+            # define a sort key to sort by date if possible (assuming format "AC Mon Year")
+            # For now just alphabetical or simple sort
+            curves.sort()
+            return jsonify({"status": "success", "curves": curves})
+        else:
+            return jsonify({"status": "error", "message": "DB Connection not available"}), 500
+    except Exception as e:
+        print(f"List Curves Error: {e}")
+        traceback.print_exc()
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/price-curves/analyze', methods=['POST'])
+def analyze_price_curve():
+    print("[PRICE] Analyze request received", flush=True)
+    if 'file' not in request.files:
+        return jsonify({"status": "error", "message": "No file part"}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"status": "error", "message": "No selected file"}), 400
+        
+    try:
+        # Save temp file
+        import tempfile
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx") as tmp:
+            file.save(tmp.name)
+            tmp_path = tmp.name
+            
+        result = analyze_excel_file(tmp_path, file.filename)
+        
+        # Clean up
+        os.unlink(tmp_path)
+        
+        return jsonify({"status": "success", "data": result})
+    except Exception as e:
+        print(f"Analyze Error: {e}")
+        traceback.print_exc()
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/price-curves/upload', methods=['POST'])
+def upload_price_curve():
+    print("[PRICE] Upload request received", flush=True)
+    if 'file' not in request.files:
+        return jsonify({"status": "error", "message": "No file part"}), 400
+    file = request.files['file']
+    curve_name = request.form.get('curve_name')
+    
+    if not curve_name:
+         return jsonify({"status": "error", "message": "Curve name is required"}), 400
+         
+    try:
+        # Save temp file
+        import tempfile
+        import json as _json
+        import time as _time
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx") as tmp:
+            file.save(tmp.name)
+            tmp_path = tmp.name
+        
+        print(f"[PRICE] Upload starting for curve '{curve_name}' using temp file {tmp_path}", flush=True)
+            
+        # Get DB connection
+        if get_mongo_client:
+            print("[PRICE] Obtaining MongoDB client for price curve ingest...", flush=True)
+            # region agent log
+            try:
+                with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                    _f.write(_json.dumps({
+                        "sessionId": "debug-session",
+                        "runId": "upload-price-curve",
+                        "hypothesisId": "H6",
+                        "location": "app.py:upload_price_curve",
+                        "message": "before_get_mongo_client",
+                        "data": {"curve_name": curve_name},
+                        "timestamp": int(_time.time() * 1000),
+                    }) + "\n")
+            except Exception:
+                pass
+            # endregion
+            client = get_mongo_client()
+            # region agent log
+            try:
+                with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
+                    _f.write(_json.dumps({
+                        "sessionId": "debug-session",
+                        "runId": "upload-price-curve",
+                        "hypothesisId": "H7",
+                        "location": "app.py:upload_price_curve",
+                        "message": "after_get_mongo_client",
+                        "data": {"client_is_none": client is None},
+                        "timestamp": int(_time.time() * 1000),
+                    }) + "\n")
+            except Exception:
+                pass
+            # endregion
+            print("[PRICE] MongoDB client obtained, selecting database...", flush=True)
+            db = client[MONGO_DB_NAME]
+            print(f"[PRICE] Calling ingest_excel_file for curve '{curve_name}'", flush=True)
+            count = ingest_excel_file(tmp_path, curve_name, db)
+            print(f"[PRICE] ingest_excel_file completed for '{curve_name}' with {count} records", flush=True)
+        else:
+            raise Exception("DB Connection not available")
+        
+        os.unlink(tmp_path)
+        
+        return jsonify({"status": "success", "message": f"Ingested {count} records for {curve_name}"})
+    except Exception as e:
+        print(f"Upload Error: {e}")
+        traceback.print_exc()
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route('/api/run-model', methods=['POST'])
 def run_model():
@@ -144,7 +274,7 @@ def run_model():
             "message": "Database functionality not available - import failed"
         }), 500
     
-    if load_price_data is None:
+    if load_price_data_from_mongo is None:
         return jsonify({
             "status": "error",
             "message": "Price data loading functionality not available - import failed"
@@ -155,19 +285,21 @@ def run_model():
         scenario_file = data.get('scenario_file')
         scenario_id = data.get('scenario_id')
         portfolio_name = data.get('portfolio')
+        price_curve_name = data.get('price_curve')
         
         print(f"  📥 Request Data:", flush=True)
         print(f"     - scenario_file: {scenario_file}", flush=True)
         print(f"     - scenario_id: {scenario_id}", flush=True)
         print(f"     - portfolio: {portfolio_name}", flush=True)
+        print(f"     - price_curve: {price_curve_name}", flush=True)
         print(f"  🔄 Setting up database connection...", flush=True)
         
         # Use database_lifecycle context manager to manage connection
         with database_lifecycle():
             print(f"  ✅ Database connection established", flush=True)
-            print(f"  📊 Loading assets from MongoDB collection: CONFIG_Inputs", flush=True)
             
-            # Load assets from MongoDB with portfolio filter
+            # --- Load Assets ---
+            print(f"  📊 Loading assets from MongoDB collection: CONFIG_Inputs", flush=True)
             query = {}
             if portfolio_name:
                 query['unique_id'] = portfolio_name
@@ -182,23 +314,14 @@ def run_model():
                     "message": msg
                 }), 500
             
-            # If multiple documents found, use the most recently updated one (assuming _id is ObjectId which has timestamp)
-            # MongoDB returns in natural order, but let's be safe. 
-            # Actually, without explicit sort, it's not guaranteed. 
-            # But for now, taking the last one might be better if they are appended? 
-            # Or just the first one if we assume unique names?
-            # The user mentioned "history revisions", so there might be multiple.
-            # Let's take the last one (most recent) if multiple exist.
             selected_config = config_data[-1]
             assets = selected_config.get('asset_inputs', [])
             
             # Use PortfolioTitle (or fallback to PlatformName) from the config document for display
-            # PortfolioTitle is the user-editable display name
             portfolio_name = selected_config.get('PortfolioTitle') or selected_config.get('PlatformName')
             if portfolio_name:
                 print(f"     - Using PortfolioTitle from config: {portfolio_name}", flush=True)
             
-            # Read portfolio unique_id from CONFIG_Inputs document
             portfolio_unique_id = selected_config.get('unique_id')
             if portfolio_unique_id:
                 print(f"     - Portfolio unique_id: {portfolio_unique_id}", flush=True)
@@ -206,11 +329,6 @@ def run_model():
                 print(f"     - ⚠️  Warning: Portfolio unique_id not found in CONFIG_Inputs", flush=True)
             
             print(f"  ✅ Loaded {len(assets)} assets from MongoDB", flush=True)
-            # Print asset summary
-            for asset in assets:
-                asset_id = asset.get('id', 'unknown')
-                asset_name = asset.get('name', f'Asset_{asset_id}')
-                print(f"     - Asset ID {asset_id} ({asset_name})", flush=True)
             
             if not assets:
                 return jsonify({
@@ -218,42 +336,54 @@ def run_model():
                     "message": "No assets found in CONFIG_Inputs collection"
                 }), 500
             
-            # Load price data from CSV files
-            monthly_price_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
-            yearly_spread_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
-            print(f"  📄 Loading price data:", flush=True)
-            print(f"     - Monthly prices: {monthly_price_path}", flush=True)
-            print(f"     - Yearly spreads: {yearly_spread_path}", flush=True)
+            # --- Load Price Data from MongoDB ---
+            print(f"  📄 Loading price data from MongoDB...", flush=True)
             
-            if not os.path.exists(monthly_price_path):
+            client = get_mongo_client()
+            db = client[MONGO_DB_NAME]
+            
+            # If no curve name provided, find the default (most recent or alphabetical?)
+            # The client said: "old data (AC Nov 2024), new data (AC Oct 2025)"
+            # Let's verify what curves exist first
+            available_curves = get_price_curves_list(db)
+            
+            if not price_curve_name:
+                if not available_curves:
+                    return jsonify({
+                        "status": "error",
+                        "message": "No price curves found in database. Please upload a price curve first."
+                    }), 500
+                
+                # Default to the "default" logic - maybe the last one sorted alphabetically?
+                # "AC Oct 2025" comes after "AC Nov 2024". 
+                # Sort descending to get "Oct 2025" (O) after "Nov 2024" (N)? No.
+                # Actually "AC O..." < "AC N..."
+                # Let's rely on simple string sort for now, or just pick the first one and warn.
+                # Ideally the frontend forces a selection.
+                # Let's sort and pick the last one (assuming YYYY or useful naming)
+                # But naming is "AC Oct 2025".
+                # Let's just pick the last one in the list for now.
+                available_curves.sort()
+                price_curve_name = available_curves[-1] # Pick last
+                print(f"     - ⚠️  No price curve specified. Defaulting to: {price_curve_name}", flush=True)
+            
+            if price_curve_name not in available_curves:
                 return jsonify({
                     "status": "error",
-                    "message": f"Monthly price file not found: {monthly_price_path}"
-                }), 500
+                    "message": f"Price curve '{price_curve_name}' not found. Available: {available_curves}"
+                }), 400
             
-            if not os.path.exists(yearly_spread_path):
-                return jsonify({
-                    "status": "error",
-                    "message": f"Yearly spread file not found: {yearly_spread_path}"
-                }), 500
+            print(f"     - Using price curve: {price_curve_name}", flush=True)
             
-            monthly_prices, yearly_spreads = load_price_data(monthly_price_path, yearly_spread_path)
-            print(f"  ✅ Price data loaded successfully", flush=True)
+            monthly_prices, yearly_spreads = load_price_data_from_mongo(db, price_curve_name)
+            
+            print(f"  ✅ Price data loaded successfully from MongoDB", flush=True)
             print(f"     - Monthly prices shape: {monthly_prices.shape if monthly_prices is not None else 'None'}", flush=True)
             print(f"     - Yearly spreads shape: {yearly_spreads.shape if yearly_spreads is not None else 'None'}", flush=True)
             
             # Validate that price data was loaded correctly
-            if monthly_prices is None or yearly_spreads is None:
-                return jsonify({
-                    "status": "error",
-                    "message": "Failed to load price data - load_price_data returned None"
-                }), 500
-            
-            if not isinstance(monthly_prices, pd.DataFrame) or not isinstance(yearly_spreads, pd.DataFrame):
-                return jsonify({
-                    "status": "error",
-                    "message": f"Price data loaded incorrectly - monthly_prices type: {type(monthly_prices)}, yearly_spreads type: {type(yearly_spreads)}"
-                }), 500
+            if monthly_prices.empty and yearly_spreads.empty:
+                print("     ⚠️  Warning: Loaded Empty Price Dataframes")
             
             # Load model settings from MongoDB
             print(f"  ⚙️  Loading model settings from MongoDB...", flush=True)
@@ -284,7 +414,6 @@ def run_model():
             print(f"        - portfolio_unique_id: {portfolio_unique_id}", flush=True)
             print(f"        - model_settings: {'Loaded from MongoDB' if model_settings else 'Using config.py defaults'}", flush=True)
             print(f"  " + "-"*76, flush=True)
-            
             result = run_cashflow_model(
                 assets,
                 monthly_prices,
@@ -333,7 +462,7 @@ def run_model_stream():
             yield f"data: {json.dumps({'type': 'error', 'message': 'Database functionality not available - import failed'})}\n\n"
         return Response(error_gen(), mimetype='text/event-stream')
     
-    if load_price_data is None:
+    if load_price_data_from_mongo is None:
         def error_gen():
             yield f"data: {json.dumps({'type': 'error', 'message': 'Price data loading functionality not available - import failed'})}\n\n"
         return Response(error_gen(), mimetype='text/event-stream')
@@ -349,6 +478,7 @@ def run_model_stream():
             scenario_file = data.get('scenario_file')
             scenario_id = data.get('scenario_id')
             portfolio_name = data.get('portfolio')
+            price_curve_name = data.get('price_curve')
             
             # Create a queue for progress updates
             progress_queue = queue.Queue()
@@ -393,18 +523,32 @@ def run_model_stream():
                             progress_queue.put({'type': 'done', 'status': 'error'})
                             return
                         
-                        # Load price data
-                        monthly_price_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_price_monthly.csv')
-                        yearly_spread_path = os.path.join(current_dir, 'data', 'raw_inputs', 'merchant_yearly_spreads.csv')
+                        # --- Load Price Data ---
+                        progress_callback("Loading price data from MongoDB...", 'info')
                         
-                        if not os.path.exists(monthly_price_path) or not os.path.exists(yearly_spread_path):
-                            progress_callback("Error: Price files not found", 'error')
-                            progress_queue.put({'type': 'done', 'status': 'error'})
-                            return
+                        client = get_mongo_client()
+                        db = client[MONGO_DB_NAME]
+                        available_curves = get_price_curves_list(db)
                         
-                        progress_callback("Loading price data...", 'info')
-                        monthly_prices, yearly_spreads = load_price_data(monthly_price_path, yearly_spread_path)
-                        progress_callback("Price data loaded successfully", 'info')
+                        # Handle curve name
+                        selected_curve = price_curve_name
+                        if not selected_curve:
+                            if not available_curves:
+                                progress_callback("Error: No price curves in database", 'error')
+                                progress_queue.put({'type': 'done', 'status': 'error'})
+                                return
+                            
+                            available_curves.sort()
+                            selected_curve = available_curves[-1]
+                            progress_callback(f"No curve selected, using default: {selected_curve}", 'warning')
+                        
+                        if selected_curve not in available_curves:
+                             progress_callback(f"Error: Price curve '{selected_curve}' not found", 'error')
+                             progress_queue.put({'type': 'done', 'status': 'error'})
+                             return
+                             
+                        monthly_prices, yearly_spreads = load_price_data_from_mongo(db, selected_curve)
+                        progress_callback(f"Price data loaded ({selected_curve})", 'info')
                         
                         # Load model settings
                         model_settings_data = get_data_from_mongodb('CONFIG_modelSettings', query={})
@@ -427,9 +571,6 @@ def run_model_stream():
                             portfolio_unique_id=portfolio_unique_id,
                             progress_callback=progress_callback
                         )
-                        
-                        progress_callback("Base case complete!", 'success')
-                        progress_queue.put({'type': 'done', 'status': 'success', 'result': result})
                         
                         progress_callback("Base case complete!", 'success')
                         progress_queue.put({'type': 'done', 'status': 'success', 'result': result})
@@ -1096,17 +1237,20 @@ def debug_imports():
 # For development and production
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
+    # Determine debug mode from environment (default to True for local development)
+    debug_env = os.environ.get('FLASK_DEBUG', '1')
+    debug_mode = not (debug_env in ['0', 'false', 'False'])
     print("\n" + "="*80, flush=True)
     print("🌐 STARTING FLASK SERVER", flush=True)
     print("="*80, flush=True)
     print(f"  📍 Host: 0.0.0.0 (all interfaces)", flush=True)
     print(f"  🔌 Port: {port}", flush=True)
-    print(f"  🐛 Debug Mode: False", flush=True)
+    print(f"  🐛 Debug Mode: {debug_mode}", flush=True)
     print(f"  📡 Server will be available at: http://localhost:{port}", flush=True)
     print("="*80, flush=True)
     print("✅ Server is ready to accept requests!", flush=True)
     print("="*80 + "\n", flush=True)
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
 
 # For production (some platforms expect this)
 application = app
