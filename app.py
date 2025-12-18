@@ -145,10 +145,24 @@ def list_price_curves():
             client = get_mongo_client()
             db = client[MONGO_DB_NAME]
             curves = get_price_curves_list(db)
-            # define a sort key to sort by date if possible (assuming format "AC Mon Year")
-            # For now just alphabetical or simple sort
             curves.sort()
-            return jsonify({"status": "success", "curves": curves})
+            
+            # Fetch metadata
+            meta_collection = db['PRICE_Curves_Metadata']
+            meta_docs = meta_collection.find({})
+            metadata_map = {}
+            for doc in meta_docs:
+                c_name = doc.get('curve_name')
+                if c_name:
+                    # Clean up: remove _id, updated_at
+                    meta_payload = doc.get('metadata', [])
+                    metadata_map[c_name] = meta_payload
+            
+            return jsonify({
+                "status": "success", 
+                "curves": curves,
+                "metadata": metadata_map
+            })
         else:
             return jsonify({"status": "error", "message": "DB Connection not available"}), 500
     except Exception as e:
@@ -171,8 +185,17 @@ def analyze_price_curve():
         with tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx") as tmp:
             file.save(tmp.name)
             tmp_path = tmp.name
-            
-        result = analyze_excel_file(tmp_path, file.filename)
+        
+        # Parse config if present
+        parser_config = None
+        if 'config' in request.form:
+            try:
+                parser_config = json.loads(request.form['config'])
+                print(f"[PRICE] Using custom config for analysis: {parser_config}", flush=True)
+            except Exception as e:
+                print(f"[PRICE] Warning: Failed to parse config JSON: {e}", flush=True)
+
+        result = analyze_excel_file(tmp_path, file.filename, parser_config)
         
         # Clean up
         os.unlink(tmp_path)
@@ -203,46 +226,25 @@ def upload_price_curve():
             file.save(tmp.name)
             tmp_path = tmp.name
         
+        # Parse config if present
+        parser_config = None
+        if 'config' in request.form:
+            try:
+                parser_config = json.loads(request.form['config'])
+                print(f"[PRICE] Using custom config for upload: {parser_config}", flush=True)
+            except Exception as e:
+                print(f"[PRICE] Warning: Failed to parse config JSON: {e}", flush=True)
+        
         print(f"[PRICE] Upload starting for curve '{curve_name}' using temp file {tmp_path}", flush=True)
             
         # Get DB connection
         if get_mongo_client:
             print("[PRICE] Obtaining MongoDB client for price curve ingest...", flush=True)
-            # region agent log
-            try:
-                with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
-                    _f.write(_json.dumps({
-                        "sessionId": "debug-session",
-                        "runId": "upload-price-curve",
-                        "hypothesisId": "H6",
-                        "location": "app.py:upload_price_curve",
-                        "message": "before_get_mongo_client",
-                        "data": {"curve_name": curve_name},
-                        "timestamp": int(_time.time() * 1000),
-                    }) + "\n")
-            except Exception:
-                pass
-            # endregion
             client = get_mongo_client()
-            # region agent log
-            try:
-                with open(r'c:\Projects\renew\.cursor\debug.log', 'a', encoding='utf-8') as _f:
-                    _f.write(_json.dumps({
-                        "sessionId": "debug-session",
-                        "runId": "upload-price-curve",
-                        "hypothesisId": "H7",
-                        "location": "app.py:upload_price_curve",
-                        "message": "after_get_mongo_client",
-                        "data": {"client_is_none": client is None},
-                        "timestamp": int(_time.time() * 1000),
-                    }) + "\n")
-            except Exception:
-                pass
-            # endregion
             print("[PRICE] MongoDB client obtained, selecting database...", flush=True)
             db = client[MONGO_DB_NAME]
             print(f"[PRICE] Calling ingest_excel_file for curve '{curve_name}'", flush=True)
-            count = ingest_excel_file(tmp_path, curve_name, db)
+            count = ingest_excel_file(tmp_path, curve_name, db, parser_config)
             print(f"[PRICE] ingest_excel_file completed for '{curve_name}' with {count} records", flush=True)
         else:
             raise Exception("DB Connection not available")
