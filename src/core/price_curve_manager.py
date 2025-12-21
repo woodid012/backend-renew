@@ -53,9 +53,10 @@ def detect_lgc_params(file_path):
                 val_b_clean = val_b.strip().lower()
                 # Match exactly "lgc" or contains "lgc value"
                 if val_b_clean == "lgc" or "lgc value" in val_b_clean:
-                    print(f"[PRICE][DETECT] Found LGC row at row {r_idx} (Excel {r_idx+1}), cell value: '{val_b}'")
-                    overrides['lgc_row'] = r_idx
-                    overrides['lgc_fy_header_row'] = r_idx - 1 # Assume header is above
+                    excel_row = r_idx + 1  # Excel row number (1-based) for reference
+                    print(f"[PRICE][DETECT] Found LGC row at Excel row {excel_row} (0-indexed {r_idx}), cell value: '{val_b}'")
+                    overrides['lgc_row'] = r_idx  # Store as 0-indexed to match preview/ingestion iloc usage
+                    overrides['lgc_fy_header_row'] = r_idx - 1 if r_idx > 0 else r_idx  # Header row (0-indexed, usually one above)
                     
                     # Check for Year Type in Col E (index 4)
                     # Check header row above for "Calendar Year" text
@@ -265,7 +266,7 @@ def expand_year_to_monthly(price_val, year, year_type, region_val, profile, type
             "REGION": region_val,
             "PRICE": float(price_val) if pd.notna(price_val) else 0.0,
             "PROFILE": profile,
-            "type": type_val
+            "TYPE": type_val
         }
         docs.append(doc)
         
@@ -391,28 +392,51 @@ def process_spreads(df, start_row, end_row, col_year_map, curve_name):
     return documents
 
 def process_lgc(df, start_row, end_row, col_year_map, curve_name, year_type="FY"):
-    """Specific processing for LGC (Row 110 Only). Duplicates to all profiles."""
-    subset = df.iloc[start_row-1 : end_row]
+    """Specific processing for LGC (Row 110 Only). Duplicates to all profiles.
+    
+    Note: start_row and end_row should be the same (single row to process).
+    This matches the preview/analysis approach which directly accesses the row.
+    start_row is expected to be 0-indexed (matching config convention).
+    """
+    # Directly access the single row, matching the preview approach
+    # start_row is already 0-indexed (from config)
+    lgc_row_idx = start_row
+    row_lgc = df.iloc[lgc_row_idx]
+    
     documents = []
     regions = ['NSW', 'VIC', 'QLD', 'SA', 'TAS']
     target_profiles = ['green', 'baseload', 'solar', 'wind']
     
-    for _, row in subset.iterrows():
-        for col_idx, year in col_year_map.items():
-            price = row.iloc[col_idx]
-            if pd.isna(price): continue
-            
-            # Expand to monthly 
-            monthly_docs = expand_year_to_monthly(price, year, year_type, "PLACEHOLDER", "GREEN", "placeholder", curve_name)
-            
-            # Duplicate for all regions AND all profiles
-            for doc in monthly_docs:
-                for r in regions:
-                    for prof in target_profiles:
-                        new_doc = doc.copy()
-                        new_doc['REGION'] = r
-                        new_doc['PROFILE'] = prof
-                        documents.append(new_doc)
+    # Process each year column, matching the preview approach exactly
+    for col_idx, year in col_year_map.items():
+        price = row_lgc.iloc[col_idx]
+        if pd.isna(price): continue
+        
+        # Validate that price is not accidentally the year value
+        # If price exactly matches the year, it's likely a column/row reading error
+        try:
+            price_float = float(price)
+            if abs(price_float - year) < 0.1:  # Price exactly matches year (within 0.1)
+                print(f"[PRICE][INGEST] ERROR: Price value {price_float} exactly matches year {year} at Excel row {start_row}, col {col_idx}. This indicates a data reading error - skipping.", flush=True)
+                continue
+        except (ValueError, TypeError):
+            pass
+        
+        # Debug logging for first few values
+        if len(documents) < 5:
+            print(f"[PRICE][INGEST] LGC: Excel row={start_row}, col={col_idx}, year={year}, price={price}", flush=True)
+        
+        # Expand to monthly 
+        monthly_docs = expand_year_to_monthly(price, year, year_type, "PLACEHOLDER", "placeholder", "GREEN", curve_name)
+        
+        # Duplicate for all regions AND all profiles
+        for doc in monthly_docs:
+            for r in regions:
+                for prof in target_profiles:
+                    new_doc = doc.copy()
+                    new_doc['REGION'] = r
+                    new_doc['PROFILE'] = prof
+                    documents.append(new_doc)
                     
     return documents
 
@@ -661,6 +685,12 @@ def ingest_excel_file(file_path, curve_name, db, parser_config=None):
         parser_config = DEFAULT_PARSER_CONFIG.copy()
     config = DEFAULT_PARSER_CONFIG.copy()
     config.update(parser_config)
+
+    # Detect LGC params (same as preview/analysis) to ensure we use the correct rows
+    lgc_overrides = detect_lgc_params(file_path)
+    if lgc_overrides:
+        config.update(lgc_overrides)
+        print(f"[PRICE][INGEST] Applied LGC auto-detection overrides: {lgc_overrides}", flush=True)
 
     print(f"[PRICE][INGEST] Using Config: {config}", flush=True)
 
