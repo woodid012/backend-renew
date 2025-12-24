@@ -157,6 +157,9 @@ def calculate_construction_capex_timeseries(
             monthly_equity_capex = 0
             monthly_debt_capex = 0
 
+            # Normalize date to first of month for comparison
+            date_normalized = date.replace(day=1) if hasattr(date, 'replace') else pd.to_datetime(date).replace(day=1)
+
             # If this is the first date in the model period that falls within construction,
             # add the pre-model CAPEX as a lump sum
             if pre_model_capex > 0 and first_model_date_in_construction is not None and \
@@ -171,24 +174,25 @@ def calculate_construction_capex_timeseries(
                     monthly_debt_capex = pre_model_debt
                 # Reset pre_model_capex so we don't add it again
                 pre_model_capex = 0
-            else:
-                # Normalize date to first of month for comparison
-                date_normalized = date.replace(day=1) if hasattr(date, 'replace') else pd.to_datetime(date).replace(day=1)
-                if construction_start_normalized <= date_normalized < construction_end_normalized:
-                    # Regular monthly CAPEX allocation
-                    monthly_capex = monthly_capex_linear
-                
+            
+            # Also add regular monthly CAPEX if this month is within construction period
+            # (This applies to both the first model month AND subsequent months)
+            if construction_start_normalized <= date_normalized < construction_end_normalized:
+                # Regular monthly CAPEX allocation
+                monthly_capex += monthly_capex_linear
+            
                 if capex_funding_type == 'equity_first':
                     if current_equity_funded < total_equity_funding:
                         equity_needed = total_equity_funding - current_equity_funded
-                        monthly_equity_capex = min(monthly_capex, equity_needed)
-                        monthly_debt_capex = monthly_capex - monthly_equity_capex
-                        current_equity_funded += monthly_equity_capex
+                        monthly_equity_to_add = min(monthly_capex_linear, equity_needed)
+                        monthly_equity_capex += monthly_equity_to_add
+                        monthly_debt_capex += monthly_capex_linear - monthly_equity_to_add
+                        current_equity_funded += monthly_equity_to_add
                     else:
-                        monthly_debt_capex = monthly_capex
+                        monthly_debt_capex += monthly_capex_linear
                 elif capex_funding_type == 'pari_passu':
-                    monthly_equity_capex = monthly_capex * (1 - max_gearing)
-                    monthly_debt_capex = monthly_capex * max_gearing
+                    monthly_equity_capex += monthly_capex_linear * (1 - max_gearing)
+                    monthly_debt_capex += monthly_capex_linear * max_gearing
 
             capex_values.append(monthly_capex)
             equity_capex_values.append(monthly_equity_capex)
@@ -261,6 +265,9 @@ def calculate_construction_capex_timeseries(
             monthly_equity_capex = 0
             monthly_debt_capex = 0
 
+            # Normalize date to first of month for comparison
+            date_normalized = date.replace(day=1) if hasattr(date, 'replace') else pd.to_datetime(date).replace(day=1)
+
             # If this is the first date in the model period that falls within construction,
             # add the pre-model CAPEX as a lump sum
             if pre_model_capex > 0 and first_model_date_in_construction is not None and \
@@ -275,26 +282,28 @@ def calculate_construction_capex_timeseries(
                     monthly_debt_capex = pre_model_debt
                 # Reset pre_model_capex so we don't add it again
                 pre_model_capex = 0
-            else:
-                # Normalize date to first of month for comparison
-                date_normalized = date.replace(day=1) if hasattr(date, 'replace') else pd.to_datetime(date).replace(day=1)
-                if construction_start_normalized <= date_normalized < construction_end_normalized:
-                    # Regular monthly CAPEX allocation based on percentage
-                    if percentage_index < len(percentage_distribution):
-                        monthly_capex = total_capex * percentage_distribution[percentage_index]
-                        percentage_index += 1
-                
-                if capex_funding_type == 'equity_first':
-                    if current_equity_funded < total_equity_funding:
-                        equity_needed = total_equity_funding - current_equity_funded
-                        monthly_equity_capex = min(monthly_capex, equity_needed)
-                        monthly_debt_capex = monthly_capex - monthly_equity_capex
-                        current_equity_funded += monthly_equity_capex
-                    else:
-                        monthly_debt_capex = monthly_capex
-                elif capex_funding_type == 'pari_passu':
-                    monthly_equity_capex = monthly_capex * (1 - max_gearing)
-                    monthly_debt_capex = monthly_capex * max_gearing
+            
+            # Also add regular monthly CAPEX if this month is within construction period
+            # (This applies to both the first model month AND subsequent months)
+            if construction_start_normalized <= date_normalized < construction_end_normalized:
+                # Regular monthly CAPEX allocation based on percentage
+                if percentage_index < len(percentage_distribution):
+                    monthly_pct_capex = total_capex * percentage_distribution[percentage_index]
+                    monthly_capex += monthly_pct_capex
+                    percentage_index += 1
+                    
+                    if capex_funding_type == 'equity_first':
+                        if current_equity_funded < total_equity_funding:
+                            equity_needed = total_equity_funding - current_equity_funded
+                            monthly_equity_to_add = min(monthly_pct_capex, equity_needed)
+                            monthly_equity_capex += monthly_equity_to_add
+                            monthly_debt_capex += monthly_pct_capex - monthly_equity_to_add
+                            current_equity_funded += monthly_equity_to_add
+                        else:
+                            monthly_debt_capex += monthly_pct_capex
+                    elif capex_funding_type == 'pari_passu':
+                        monthly_equity_capex += monthly_pct_capex * (1 - max_gearing)
+                        monthly_debt_capex += monthly_pct_capex * max_gearing
 
             capex_values.append(monthly_capex)
             equity_capex_values.append(monthly_equity_capex)
