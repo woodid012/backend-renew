@@ -70,13 +70,15 @@ def get_capacity_factor_defaults(asset_type: str, region: str) -> Dict[str, floa
     Get default capacity factors for an asset type and region.
     
     Args:
-        asset_type: Type of asset ('solar' or 'wind')
+        asset_type: Type of asset ('solar', 'wind', or 'hybrid_solar_bess')
         region: Region code (e.g., 'NSW', 'VIC')
     
     Returns:
         Dictionary with quarterly capacity factors (q1, q2, q3, q4)
     """
-    asset_config = get_asset_default_config(asset_type)
+    # For hybrid assets, use solar capacity factors
+    type_for_factors = 'solar' if asset_type == 'hybrid_solar_bess' else asset_type
+    asset_config = get_asset_default_config(type_for_factors)
     
     if 'capacityFactors' not in asset_config:
         print(f"⚠️ No capacity factors for {asset_type}")
@@ -202,6 +204,25 @@ def get_fallback_defaults() -> Dict[str, Any]:
                     'opexPerMWPerYear': 0.03,
                     'maxGearing': 0.6,
                     'interestRate': 0.065
+                }
+            },
+            'hybrid_solar_bess': {
+                'assetLife': 25,  # Use solar asset life
+                'volumeLossAdjustment': 95,
+                'annualDegradation': 0.5,  # Use solar degradation
+                'costAssumptions': {
+                    'capexPerMW': 1.2,  # Weighted average between solar (0.9) and storage (2.0)
+                    'opexPerMWPerYear': 0.015,  # Weighted average between solar (0.01) and storage (0.03)
+                    'maxGearing': 0.7,  # Use solar max gearing
+                    'interestRate': 0.06
+                },
+                'capacityFactors': {
+                    'NSW': {'q1': 28, 'q2': 25, 'q3': 28, 'q4': 30},
+                    'VIC': {'q1': 25, 'q2': 22, 'q3': 25, 'q4': 28},
+                    'QLD': {'q1': 29, 'q2': 26, 'q3': 29, 'q4': 32},
+                    'SA': {'q1': 27, 'q2': 24, 'q3': 27, 'q4': 30},
+                    'WA': {'q1': 26, 'q2': 23, 'q3': 26, 'q4': 29},
+                    'TAS': {'q1': 23, 'q2': 20, 'q3': 23, 'q4': 26}
                 }
             }
         },

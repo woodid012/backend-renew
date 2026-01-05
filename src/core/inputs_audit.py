@@ -81,7 +81,8 @@ def _find_monthly_price_base(
 
 
 def _profile_for_asset(asset_type: str) -> str:
-    profile_map = {"solar": "solar", "wind": "wind", "storage": "storage"}
+    profile_map = {"solar": "solar", "wind": "wind", "storage": "storage", "hybrid_solar_bess": "solar"}
+    # For hybrid assets, return solar profile (primary component for price curve lookup)
     return profile_map.get(asset_type, asset_type)
 
 
@@ -256,6 +257,7 @@ def build_inputs_audit_timeseries(
 
     df = df.sort_values(["asset_id", "date"]).reset_index(drop=True)
     return df
+
 
 
 

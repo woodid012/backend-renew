@@ -562,11 +562,19 @@ def run_cashflow_model(assets, monthly_prices, yearly_spreads, portfolio_name, s
             revenue_df, opex_df, initial_capex_df, ASSETS, ASSET_COST_ASSUMPTIONS, 
             MONTHLY_PRICES, YEARLY_SPREADS, start_date, end_date, scenario_data
         )
-        print(f"     ✅ Scenario overrides applied")
+    print(f"     ✅ Scenario overrides applied")
 
-    # 2c. Build auditable per-period inputs table (fast path)
-    # We now export the exact market prices used during revenue calculation, captured on revenue_df.
-    print(f"\n  [STEP 2c] Building Inputs Audit Timeseries (from revenue calculation)")
+    # 2c. Build auditable per-period inputs table (check later)
+    print(f"\n  [STEP 2c] Building Inputs Audit Timeseries (Skipped)")
+    # from glassbox.api import router as glassbox_router
+    # app.include_router(glassbox_router)
+
+    # Configure CORS
+    origins = [
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "https://renew-front.vercel.app"
+    ]
     inputs_audit_cols = [
         'asset_id',
         'date',
