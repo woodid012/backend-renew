@@ -569,9 +569,79 @@ def calculate_debt_schedule_from_cfads_by_type(debt_amount, debt_service_capacit
         'period_frequency': period_frequency
     }
 
-def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearing, interest_rate, tenor_years, period_frequency='annual', period_fractions=None, debug=True):
+def calculate_idc_during_construction(base_debt, capex_schedule, construction_start, operations_start, interest_rate, total_capex):
+    """
+    Calculate total Interest During Construction (IDC) for a given base debt amount.
+    
+    IDC is calculated by:
+    1. Drawing down debt proportionally to CAPEX
+    2. Capitalizing interest monthly on the outstanding balance
+    3. Interest-on-interest (compound interest) is included
+    
+    This function must match exactly how IDC is capitalized in generate_monthly_debt_schedule
+    to ensure consistency between debt sizing and monthly schedule generation.
+    
+    Args:
+        base_debt (float): Base debt amount (pre-IDC) in millions
+        capex_schedule (pd.DataFrame): CAPEX schedule with columns: date, capex
+        construction_start (datetime): Construction start date
+        operations_start (datetime): Operations start date (end of construction)
+        interest_rate (float): Annual interest rate
+        total_capex (float): Total CAPEX amount in millions
+    
+    Returns:
+        float: Total IDC in millions
+    """
+    if base_debt == 0 or total_capex == 0:
+        return 0.0
+    
+    monthly_rate = interest_rate / 12
+    actual_gearing = base_debt / total_capex
+    balance = 0.0
+    
+    # Normalize dates to first of month for consistency
+    construction_start = pd.to_datetime(construction_start).replace(day=1)
+    operations_start = pd.to_datetime(operations_start).replace(day=1)
+    
+    # Iterate through construction months
+    construction_months = pd.date_range(
+        start=construction_start, 
+        end=operations_start - relativedelta(months=1), 
+        freq='MS'
+    )
+    
+    for month in construction_months:
+        # Normalize month to first of month for matching
+        month_normalized = month.replace(day=1)
+        
+        # Get CAPEX for this month (match by date)
+        month_capex_rows = capex_schedule[
+            pd.to_datetime(capex_schedule['date']).dt.to_period('M') == month_normalized.to_period('M')
+        ]
+        month_capex = month_capex_rows['capex'].sum() if not month_capex_rows.empty else 0.0
+        
+        if month_capex > 0:
+            # Draw down debt proportional to CAPEX
+            debt_drawdown = month_capex * actual_gearing
+            balance += debt_drawdown
+        
+        # Calculate and capitalize interest on current balance
+        # This happens AFTER the drawdown for the month
+        if balance > 0:
+            monthly_interest = balance * monthly_rate
+            balance += monthly_interest  # Capitalize (compound interest)
+    
+    # Total IDC = final balance - base debt
+    total_idc = balance - base_debt
+    return total_idc
+
+def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearing, interest_rate, tenor_years, period_frequency='annual', period_fractions=None, debug=True, 
+                                        capex_schedule=None, construction_start=None, operations_start=None):
     """
     Solve for optimal debt amount from period-by-period debt service capacity.
+    
+    Accounts for Interest During Construction (IDC) by calculating the IDC that will accrue
+    for each test debt amount and ensuring the total debt (base + IDC) can be serviced.
     
     Args:
         capex (float): Total CAPEX in millions
@@ -580,10 +650,14 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
         interest_rate (float): Annual interest rate
         tenor_years (int): Debt term in years
         period_frequency (str): 'annual', 'quarterly', or 'monthly'
+        period_fractions (list): Optional list of period fractions
         debug (bool): Print debug information
+        capex_schedule (pd.DataFrame): Optional CAPEX schedule for IDC calculation (columns: date, capex)
+        construction_start (datetime): Optional construction start date for IDC calculation
+        operations_start (datetime): Optional operations start date for IDC calculation
     
     Returns:
-        dict: Optimal debt solution
+        dict: Optimal debt solution (base debt amount, before IDC)
     """
     if capex == 0 or not debt_service_capacity:
         return {
@@ -613,9 +687,20 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
     while iteration < max_iterations and (upper_bound - lower_bound) > tolerance:
         test_debt = (lower_bound + upper_bound) / 2
         
-        # Test this debt amount
+        # Calculate IDC for this base debt amount if construction info is provided
+        total_debt = test_debt
+        idc = 0.0
+        if (capex_schedule is not None and construction_start is not None and 
+            operations_start is not None and capex > 0):
+            idc = calculate_idc_during_construction(
+                test_debt, capex_schedule, construction_start, operations_start,
+                interest_rate, capex
+            )
+            total_debt = test_debt + idc
+        
+        # Test if total debt (base + IDC) can be serviced
         schedule = calculate_debt_schedule_from_cfads_by_type(
-            test_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
+            total_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
         )
         
         # Check if debt can be fully repaid
@@ -648,7 +733,9 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
                     not pays_off_early)
         
         if debug and iteration < 5:
-            print(f"\nIteration {iteration + 1}: Testing ${test_debt:,.2f}M")
+            print(f"\nIteration {iteration + 1}: Testing ${test_debt:,.2f}M base debt")
+            if idc > 0:
+                print(f"  IDC: ${idc:,.2f}M, Total debt: ${total_debt:,.2f}M")
             print(f"  Fully repaid: {fully_repaid}")
             print(f"  Final balance: ${final_balance:,.3f}M")
             print(f"  Has negative principal: {has_negative_principal}")
@@ -681,9 +768,17 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
     
     # Final result - verify the best solution
     if best_debt > 0:
-        # Recalculate to ensure it's correct
+        # Recalculate to ensure it's correct (using total debt including IDC)
+        best_total_debt = best_debt
+        if (capex_schedule is not None and construction_start is not None and 
+            operations_start is not None and capex > 0):
+            best_idc = calculate_idc_during_construction(
+                best_debt, capex_schedule, construction_start, operations_start,
+                interest_rate, capex
+            )
+            best_total_debt = best_debt + best_idc
         best_schedule = calculate_debt_schedule_from_cfads_by_type(
-            best_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
+            best_total_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
         )
         
         # Secondary optimization: if best debt pays off early, try to find higher debt that pays off at right time
@@ -708,8 +803,17 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
                     break
                     
                 test_debt = (secondary_lower + secondary_upper) / 2
+                # Calculate IDC for this test debt
+                total_debt = test_debt
+                if (capex_schedule is not None and construction_start is not None and 
+                    operations_start is not None and capex > 0):
+                    test_idc = calculate_idc_during_construction(
+                        test_debt, capex_schedule, construction_start, operations_start,
+                        interest_rate, capex
+                    )
+                    total_debt = test_debt + test_idc
                 schedule = calculate_debt_schedule_from_cfads_by_type(
-                    test_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
+                    total_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
                 )
                 
                 payoff_period = schedule['metrics'].get('payoff_period')
@@ -744,8 +848,17 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
             print(f"WARNING: Calculated gearing {actual_gearing:.1%} exceeds max gearing {max_gearing:.1%}")
         # Cap at max gearing and test if it can be fully repaid
         capped_debt = capex * max_gearing
+        # Calculate IDC for capped debt
+        capped_total_debt = capped_debt
+        if (capex_schedule is not None and construction_start is not None and 
+            operations_start is not None and capex > 0):
+            capped_idc = calculate_idc_during_construction(
+                capped_debt, capex_schedule, construction_start, operations_start,
+                interest_rate, capex
+            )
+            capped_total_debt = capped_debt + capped_idc
         capped_schedule = calculate_debt_schedule_from_cfads_by_type(
-            capped_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
+            capped_total_debt, debt_service_capacity, interest_rate, tenor_years, period_frequency, period_fractions
         )
         
         # Only use capped debt if it can be fully repaid, doesn't breach DSCR, and pays off at correct time
@@ -791,7 +904,7 @@ def solve_debt_amount_from_debt_service(capex, debt_service_capacity, max_gearin
         'hit_gearing_limit': hit_gearing_limit
     }
 
-def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly', start_date=None):
+def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly', start_date=None, capex_schedule=None):
     """
     Size debt for a single asset based on CFADS by cashflow type (merchant vs contracted).
     
@@ -802,7 +915,8 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
     4. Divide each apportioned CFADS by its DSCR to get max debt service capacity
     5. Total debt service = merchant debt service + contracted debt service
     6. Work backwards from debt service to determine optimal debt amount
-    7. Recalculate if debt exceeds max gearing cap
+    7. Account for Interest During Construction (IDC) when sizing debt
+    8. Recalculate if debt exceeds max gearing cap
     
     Args:
         asset (dict): Asset data
@@ -811,6 +925,7 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
         opex_df (pd.DataFrame): OPEX data
         dscr_calculation_frequency (str): 'annual', 'quarterly', or 'monthly' - determines DSCR calculation period
         start_date (datetime): Model start date - used to normalize OperatingStartDate if it's before model start
+        capex_schedule (pd.DataFrame): Optional CAPEX schedule for IDC calculation (columns: asset_id, date, capex)
     
     Returns:
         dict: Debt sizing results
@@ -902,13 +1017,6 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
     print(f"\nAsset {asset.get('name', asset['id'])}: {period_type.capitalize()} debt sizing by CFADS type")
     print(f"CAPEX: ${capex:,.0f}M, {period_type.capitalize()} periods: {len(debt_service_capacity)}")
     
-    # Solve for optimal debt from debt service capacity
-    solution = solve_debt_amount_from_debt_service(
-        capex, debt_service_capacity, 
-        max_gearing, interest_rate, tenor_years, 
-        period_frequency=period_type, period_fractions=period_fractions, debug=False
-    )
-    
     # Calculate debt service start date (from operations start)
     # Normalize OperatingStartDate to model start_date if it's before it
     operations_start = pd.to_datetime(asset['OperatingStartDate'])
@@ -916,6 +1024,32 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
         model_start = pd.to_datetime(start_date)
         if operations_start < model_start:
             operations_start = model_start
+    
+    # Extract construction info for IDC calculation
+    construction_start = None
+    asset_capex_schedule = None
+    if capex_schedule is not None:
+        # Get CAPEX schedule for this asset
+        asset_capex_schedule = capex_schedule[capex_schedule['asset_id'] == asset['id']].copy()
+        if not asset_capex_schedule.empty:
+            # Get construction start date from asset
+            construction_start = asset.get('constructionStartDate')
+            if construction_start:
+                construction_start = pd.to_datetime(construction_start)
+                # Normalize to first of month
+                construction_start = construction_start.replace(day=1)
+            else:
+                # Fallback: assume construction starts 12 months before operations start
+                construction_start = operations_start - relativedelta(months=12)
+                construction_start = construction_start.replace(day=1)
+    
+    # Solve for optimal debt from debt service capacity (with IDC accounting)
+    solution = solve_debt_amount_from_debt_service(
+        capex, debt_service_capacity, 
+        max_gearing, interest_rate, tenor_years, 
+        period_frequency=period_type, period_fractions=period_fractions, debug=False,
+        capex_schedule=asset_capex_schedule, construction_start=construction_start, operations_start=operations_start
+    )
     
     return {
         'optimal_debt': solution['debt'],
@@ -928,7 +1062,7 @@ def size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex
         'tenor_years': tenor_years
     }
 
-def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly', start_date=None):
+def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency='quarterly', start_date=None, capex_schedule=None):
     """
     Size debt for a single asset based on CFADS by cashflow type (merchant vs contracted).
     
@@ -942,23 +1076,25 @@ def size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calc
         opex_df (pd.DataFrame): OPEX data
         dscr_calculation_frequency (str): 'annual', 'quarterly', or 'monthly' - determines DSCR calculation period
         start_date (datetime): Model start date - used to normalize OperatingStartDate if it's before model start
+        capex_schedule (pd.DataFrame): Optional CAPEX schedule for IDC calculation
     
     Returns:
         dict: Debt sizing results
     """
-    return size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency, start_date)
+    return size_debt_for_asset_cfads_by_type(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency, start_date, capex_schedule)
 
 def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_result, 
                                  start_date, end_date, repayment_frequency, monthly_cfads=None, target_dscrs=None, grace_period='prorate'):
     """
     Generate monthly debt schedule from debt sizing results.
     Key corrections:
-    1. Interest accrues on drawn debt during construction (even if not paid)
-    2. Debt service starts from operations start date (with grace period logic)
-    3. Monthly DSCR validation to ensure payments don't violate constraints
+    1. Interest During Construction (IDC) is capitalized - added to debt balance during construction
+    2. Interest accrues on drawn debt during construction and is added to balance (compound interest)
+    3. Debt service starts from operations start date (with grace period logic)
+    4. Monthly DSCR validation to ensure payments don't violate constraints
     
     Args:
-        debt_amount (float): Total debt amount in millions
+        debt_amount (float): Base debt amount in millions (before IDC capitalization)
         asset (dict): Asset data
         capex_df (pd.DataFrame): CAPEX schedule for the asset
         debt_sizing_result (dict): Results from debt sizing
@@ -1059,21 +1195,25 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
         for _, row in monthly_cfads.iterrows():
             monthly_cfads_dict[pd.to_datetime(row['date'])] = row.get('cfads', 0)
     
-    # Track balance, accrued interest, and populate payments
+    # Track balance and populate payments
+    # IDC is capitalized directly to balance during construction (not tracked separately)
     balance = 0.0
-    accrued_interest = 0.0  # Track interest accrued during construction
     
     for i, current_date in enumerate(schedule['date']):
         schedule.loc[i, 'beginning_balance'] = balance
         balance += schedule.loc[i, 'drawdowns']
         
-        # Interest accrues on outstanding balance (including during construction)
+        # Interest accrues on outstanding balance
         if balance > 0:
             monthly_interest_accrued = balance * monthly_rate
-            accrued_interest += monthly_interest_accrued
             
-            # If we're past operations start, interest is paid (not just accrued)
-            if current_date >= debt_service_start_date:
+            # During construction: capitalize interest (add to balance)
+            if current_date < debt_service_start_date:
+                # Capitalize IDC - add interest to balance (compound interest)
+                balance += monthly_interest_accrued
+                schedule.loc[i, 'interest'] = monthly_interest_accrued  # Record capitalized interest
+            # During operations: pay interest (existing logic below)
+            elif current_date >= debt_service_start_date:
                 # Apply debt service after operations start date
                 if annual_schedule:
                     # Determine period index based on schedule frequency
@@ -1119,7 +1259,6 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
                         schedule.loc[i, 'principal'] = min(monthly_principal, balance)
                         schedule.loc[i, 'debt_service'] = monthly_interest + schedule.loc[i, 'principal']
                         balance -= schedule.loc[i, 'principal']
-                        accrued_interest = max(0, accrued_interest - monthly_interest)
                     else:
                         # Annual schedule - calculate which year we're in
                         years_since_start = (current_date.year - debt_service_start_date.year) + \
@@ -1159,7 +1298,6 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
                         schedule.loc[i, 'principal'] = min(monthly_principal, balance)
                         schedule.loc[i, 'debt_service'] = monthly_interest + schedule.loc[i, 'principal']
                         balance -= schedule.loc[i, 'principal']
-                        accrued_interest = max(0, accrued_interest - monthly_interest)  # Reduce accrued interest by amount paid
                 else:
                     # No annual schedule (e.g., annuity method) - calculate interest directly
                     if current_date >= debt_service_start_date:
@@ -1167,7 +1305,6 @@ def generate_monthly_debt_schedule(debt_amount, asset, capex_df, debt_sizing_res
                         # For annuity, principal would be calculated separately
                         # Calculate debt_service for validation
                         schedule.loc[i, 'debt_service'] = schedule.loc[i, 'interest'] + schedule.loc[i, 'principal']
-                        accrued_interest = 0  # Reset since we're paying it
         
         schedule.loc[i, 'ending_balance'] = balance
     
@@ -1260,11 +1397,13 @@ def calculate_debt_schedule(assets, debt_assumptions, capex_schedule, cash_flow_
         if debt_sizing_method == 'dscr':
             # Size debt based on operational cash flows FROM OPERATIONS START
             # Use dscr_calculation_frequency for DSCR calculation
-            debt_sizing_result = size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency, start_date)
+            # Pass CAPEX schedule for IDC calculation
+            asset_capex = capex_schedule[capex_schedule['asset_id'] == asset['id']].copy()
+            debt_sizing_result = size_debt_for_asset(asset, asset_assumptions, revenue_df, opex_df, dscr_calculation_frequency, start_date, capex_schedule)
             optimal_debt = debt_sizing_result['optimal_debt']
             
             # Generate monthly debt schedule
-            asset_capex = capex_schedule[capex_schedule['asset_id'] == asset['id']].copy()
+            # asset_capex already extracted above
             
             # Prepare monthly CFADS for DSCR validation
             asset_cash_flow = cash_flow_df[cash_flow_df['asset_id'] == asset['id']].copy()
